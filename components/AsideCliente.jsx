@@ -29,12 +29,6 @@ export default function AsideCliente() {
           <a className=" text-white text-base]">Eventos</a>
         </button>
       </section>
-      <Button
-        variant="bordered"
-        className={` text-white w-[213px] h-12 rounded text-base mt-[60px] ${lato.className}`}
-      >
-        <p>Cerrar sesión</p>
-      </Button>
     </aside>
   );
 }
