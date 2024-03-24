@@ -1,7 +1,7 @@
 import { Josefin_Sans, Lato } from "next/font/google";
-import triadaLogo from "../public/assets/svg/triada-logo.svg";
-import playCircle from "../public/assets/svg/play_circle.svg";
-import AvatarImage from "../public/assets/images/header-picture.webp";
+import triadaLogo from "../../public/assets/svg/triada-logo.svg";
+import playCircle from "../../public/assets/svg/play_circle.svg";
+import AvatarImage from "../../public/assets/images/header-picture.webp";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 
@@ -29,6 +29,12 @@ export default function AsideCliente() {
           <a className=" text-white text-base]">Eventos</a>
         </button>
       </section>
+      <Button
+        variant="bordered"
+        className={` text-white w-[213px] h-12 rounded text-base mt-[60px] ${lato.className}`}
+      >
+        <p>Cerrar sesión</p>
+      </Button>
     </aside>
   );
 }

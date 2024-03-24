@@ -11,9 +11,9 @@ import {
   Button,
 } from "@nextui-org/react";
 import { Josefin_Sans, Lato } from "next/font/google";
-import triadaLogo from "../public/assets/svg/triada-logo.svg";
-import playCircle from "../public/assets/svg/play_circle.svg";
-import AvatarImage from "../public/assets/images/header-picture.webp";
+import triadaLogo from "../../public/assets/svg/triada-logo.svg";
+import playCircle from "../../public/assets/svg/play_circle.svg";
+import AvatarImage from "../../public/assets/images/header-picture.webp";
 import Image from "next/image";
 // import { Button } from "@nextui-org/react";
 
