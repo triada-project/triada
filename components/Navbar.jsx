@@ -14,14 +14,12 @@ import AnchorNavbar from "./HomeComponents/NavbarComponents/AnchorNavbar";
 
 export default function NavBar() {
   return (
-    <Navbar className=" bg-[#081540]">
+    <Navbar className=" h-20  bg-[#081540]">
       <NavbarBrand>
-        {/* <AcmeLogo /> */}
-
-        <p className="font-bold text-inherit">ACME</p>
+        <p className="text-white font-bold text-inherit">ACME</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
-        <NavbarContent className="gap-8 pe-6" justify="end">
+        <NavbarContent className="gap-10 pe-6" justify="end">
           <AnchorNavbar href="#" nameAnchor="INICIO"></AnchorNavbar>
           <AnchorNavbar href="#" nameAnchor="NOSOTROS"></AnchorNavbar>
           <AnchorNavbar href="#" nameAnchor="MÚSICOS"></AnchorNavbar>
