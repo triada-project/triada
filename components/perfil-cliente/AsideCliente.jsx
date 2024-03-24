@@ -14,7 +14,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function AsideCliente() {
   return (
     <aside
-      className={`bg-[#081540] w-[245px] h-screen  flex flex-col items-center ${josefine.className} hidden sm:flex`}
+      className={`bg-[#081540] w-[245px] h-screen  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-2`}
     >
       <Image src={triadaLogo} className=" pt-12" />
       <section className=" pt-[120px] flex flex-col gap-10 items-center">

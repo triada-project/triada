@@ -10,7 +10,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function InformacionForm() {
   return (
-    <section className="flex flex-col items-center mb-16">
+    <section className="flex flex-col items-center mb-16 sm:col-start-5 sm:col-span-6 lg:items-start">
       <h2
         className={`${josefine.className} text-black text-xl font-semibold mt-10`}
       >
