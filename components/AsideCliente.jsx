@@ -24,9 +24,9 @@ export default function AsideCliente() {
             <p className=" text-white text-base"> Victoria Brego</p>
           </div>
         </div>
-        <button className=" w-full h-12 flex items-center gap-[18px]">
+        <button className=" w-[245px] h-12 flex items-center gap-[18px] hover:bg-[#312971] ">
           <Image src={playCircle} className=" ml-8" />
-          <a className=" text-white text-base">Eventos</a>
+          <a className=" text-white text-base]">Eventos</a>
         </button>
       </section>
       <Button
