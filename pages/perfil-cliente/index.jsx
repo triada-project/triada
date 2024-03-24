@@ -1,5 +1,11 @@
 import AsideCliente from "@/components/AsideCliente";
+import MenuMobileClient from "@/components/MenuMobileClient";
 
 export default function PerfilCliente() {
-  return <AsideCliente />;
+  return (
+    <>
+      <MenuMobileClient />
+      <AsideCliente />
+    </>
+  );
 }
