@@ -8,7 +8,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function GradientButton(props) {
   return (
-    <div className="pt-4 pl-40 ">
+    <div className="pl-20 pt-4 sm:pl-40 ">
       <button
         className={`px-1 py-1 rounded-3xl bg-gradient-to-r from-[#FF01C0] via-purple-500 to-[#01FFFE] text-xl font-semibold ${josefine.className}`}
       >

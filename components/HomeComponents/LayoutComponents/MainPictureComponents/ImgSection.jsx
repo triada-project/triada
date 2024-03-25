@@ -20,15 +20,14 @@ export default function ImgSection() {
         }}
       >
         <Image
-          className="bg-fixed"
           src="/assets/images/header-picture.webp"
           layout="fill"
           objectFit="cover"
         />
       </div>
-      <div id="titleContainer " className="sm:pt-4 md:pl-16 lg:pl-20 xl:pl-4 ">
+      <div id="titleContainer " className="sm:pt-4 md:pl-16 lg:pl-16 xl:pl-4 ">
         <p
-          className={`pt-40 pl-40 sm:text-6xl md:text-6xl lg:text-6xl font-bold leading-normal text-white xl:text-7xl ${josefine.className}`}
+          className={`pt-28 pl-20 text-5xl  sm:pt-40 sm:pl-40  sm:text-6xl md:text-6xl lg:text-6xl font-bold leading-normal text-white xl:text-7xl ${josefine.className}`}
         >
           Armoniza tus <br /> eventos y conecta <br /> con la
           <span className="  leading-normal text-transparent bg-clip-text bg-gradient-to-r from-[#FF01C0] via-purple-500 to-[#01FFFE]">
@@ -37,7 +36,7 @@ export default function ImgSection() {
           </span>
         </p>
         <h2
-          className={`xl:text-2xl pt-2 pl-40 font-bold leading-normal text-white ${josefine.className}`}
+          className={`pl-20 xl:text-2xl pt-2 sm:pl-40 font-bold leading-normal text-white ${josefine.className}`}
         >
           ¡Encuentra la mejor música para tu <br />
           evento especial!
