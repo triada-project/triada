@@ -15,9 +15,11 @@ import AnchorNavbar from "./HomeComponents/NavbarComponents/AnchorNavbar";
 export default function NavBar() {
   return (
     <Navbar className=" h-20  bg-[#081540]">
-      <NavbarBrand>
-        <p className="text-white font-bold text-inherit">ACME</p>
-      </NavbarBrand>
+      <div>
+        <a href="/">
+          <img src="assets/images/PngLogoNavBar.png" alt="logoImg" />
+        </a>
+      </div>
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
         <NavbarContent className="gap-10 pe-6" justify="end">
           <AnchorNavbar href="#" nameAnchor="INICIO"></AnchorNavbar>

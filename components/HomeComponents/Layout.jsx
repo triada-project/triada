@@ -1,5 +1,5 @@
-import ImgSection from "./LayoutComponents/MainPictureComponents/ImgSection";
-import CardsContainer from "./LayoutComponents/MainPictureComponents/CardsSection/CardsContainer";
+import ImgSection from "./LayoutComponents/ImgSection";
+import CardsContainer from "./CardsSectionComponents/CardsContainer";
 
 export default function Layout() {
   return (

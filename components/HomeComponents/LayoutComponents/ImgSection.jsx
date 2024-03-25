@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Josefin_Sans, Lato } from "next/font/google";
-import GradientButton from "./GradientButton";
+import GradientButton from "./MainPictureComponents/GradientButton";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
