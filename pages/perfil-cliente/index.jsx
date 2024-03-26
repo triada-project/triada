@@ -17,9 +17,9 @@ export default function PerfilCliente() {
       <main className="  flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]  ">
         <AsideCliente />
         <section className=" flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-screen lg:flex-row lg:gap-7 lg:items-start ">
-          <div className=" flex flex-col items-center lg:items-start lg:ml-[72px]">
+          <div className=" flex flex-col items-center lg:items-start lg:ml-[4.5rem]">
             <h1
-              className={`${josefine.className}  text-black text-xl font-semibold mt-10 sm:text-[28px] lg:mt-[72px] `}
+              className={`${josefine.className}  text-black text-xl font-semibold mt-10 sm:text-[28px] lg:mt-[4.5rem] `}
             >
               Mi Perfil
             </h1>

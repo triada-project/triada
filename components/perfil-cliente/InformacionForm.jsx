@@ -10,7 +10,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function InformacionForm() {
   return (
-    <section className="flex flex-col items-center lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py-5 lg:border-opacity-25 lg:shadow-lg lg:items-start mt-[67px]">
+    <section className="flex flex-col items-center my-11 lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py-5 lg:border-opacity-25 lg:shadow-lg lg:items-start lg:mt-[67px]">
       <h2 className={`${josefine.className} text-black text-xl font-semibold`}>
         Información
       </h2>
@@ -19,16 +19,19 @@ export default function InformacionForm() {
           <Input
             className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
             isRequired
+            radius="sm"
             label="Nombre para mostrar"
           />
           <Input
             className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
             isRequired
+            radius="sm"
             label="Estado de recidencia"
           />
           <Input
             className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
             isRequired
+            radius="sm"
             label="Localidad"
           />
           <Button
