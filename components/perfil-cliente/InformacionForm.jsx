@@ -1,5 +1,6 @@
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Input } from "@nextui-org/react";
+import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 
 const josefine = Josefin_Sans({
@@ -22,18 +23,26 @@ export default function InformacionForm() {
             radius="sm"
             label="Nombre para mostrar"
           />
-          <Input
-            className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
+          <Select
+            label="Estado de residencia"
             isRequired
             radius="sm"
-            label="Estado de recidencia"
-          />
-          <Input
-            className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
-            isRequired
-            radius="sm"
+            className=" w-[328px] h-14 lg:w-[30rem]"
+          >
+            <SelectItem>Nuevo León</SelectItem>
+            <SelectItem>CDMX</SelectItem>
+            <SelectItem>Jalisco</SelectItem>
+          </Select>
+          <Select
             label="Localidad"
-          />
+            isRequired
+            radius="sm"
+            className=" w-[328px] h-14 lg:w-[30rem]"
+          >
+            <SelectItem>Monterrey</SelectItem>
+            <SelectItem>Santa Catarina</SelectItem>
+            <SelectItem>San Pedro</SelectItem>
+          </Select>
           <Button
             className={` bg-[#EF107D] text-white w-[328px] h-[50px] rounded text-base ${lato.className} lg:w-[30rem]`}
           >
