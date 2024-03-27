@@ -2,25 +2,31 @@ import React from "react";
 import dataMusician from "../../objects/musicianObject.json";
 import { Avatar, AvatarIcon, Chip } from "@nextui-org/react";
 import { Josefin_Sans, Lato, Pacifico } from "next/font/google";
-import star from "../../public/assets/images/star.webp";
+import check from "../../public/assets/svg/check.svg";
+import Image from "next/image";
+import { Rating } from "@smastrom/react-rating";
+
+import "@smastrom/react-rating/style.css";
+
+const josefin = Josefin_Sans({
+  weight: ["300", "400", "600", "700"],
+  subsets: ["latin"],
+});
+const lato = Lato({
+  weight: ["300", "400", "700"],
+  subsets: ["latin"],
+});
+const pacifico = Pacifico({
+  weight: ["400"],
+  subsets: ["latin"],
+});
 
 export default function musicianDetail() {
   const { users } = dataMusician;
+  console.log(users.musicalGenere);
 
-  // const josefin = Josefin_Sans({
-  //   weight: ["300", "400", "600", "700"],
-  //   subsets: ["latin"],
-  // });
-  // const lato = Lato({
-  //   weight: ["300", "400", "600", "700"],
-  //   subsets: ["latin"],
-  // });
-  // const pacifico = Pacifico({
-  //   weight: ["300", "400", "600", "700"],
-  //   subsets: ["latin"],
-  // });
+  const musicalGeneres = users.musicalGenere;
 
-  const stars = star;
   return (
     <>
       <div className="ml-5 mt-5 mr-5">
@@ -38,17 +44,22 @@ export default function musicianDetail() {
           <h3 className="text-[455A64]">
             {users.location[0].city}, {users.location[0].state}
           </h3>
-          <span>stars</span>
-          <span> {users.ranking}</span>
+          <div className="flex items-centerflex items-center">
+            <Rating style={{ maxWidth: 100 }} value={users.ranking} readOnly />
+            <div className="ml-2">{users.ranking}</div>
+          </div>
           <div>
-            <Chip
-              classNames={{
-                base: "bg-[#081540] h-[32px] mt-2",
-                content: "text-[#29FEFD]",
-              }}
-            >
-              {users.musicalGenere.join(", ")}
-            </Chip>
+            {musicalGeneres.map((nombre, index) => (
+              // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
+              <Chip
+                classNames={{
+                  base: "bg-[#081540] h-[32px] mt-2",
+                  content: "text-[#29FEFD] ",
+                }}
+              >
+                {nombre}
+              </Chip>
+            ))}
           </div>
         </div>
         <div>
@@ -94,14 +105,22 @@ export default function musicianDetail() {
           </h2>
           <div>
             <ul>
-              <span></span>
-              <li>Piano de 88 teclas afinado</li>
-              <span></span>
-              <li>Camerino con iluminación y espejo</li>
-              <span></span>
-              <li>Catering ligero</li>
-              <span></span>
-              <li>Agua</li>
+              <div className="flex items-center">
+                <Image src={check} alt="check" width={20} height={20} />
+                <li className="ml-2">Piano de 88 teclas afinado</li>
+              </div>
+              <div className="flex items-center">
+                <Image src={check} alt="check" width={20} height={20} />
+                <li className="ml-2">Camerino con iluminación y espejo</li>
+              </div>
+              <div className="flex items-center">
+                <Image src={check} alt="check" width={20} height={20} />
+                <li className="ml-2">Catering ligero</li>
+              </div>
+              <div className="flex items-center">
+                <Image src={check} alt="check" width={20} height={20} />
+                <li className="ml-2">Agua</li>
+              </div>
             </ul>
           </div>
         </div>
