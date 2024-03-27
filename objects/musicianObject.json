@@ -11,14 +11,21 @@
         "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Argentina_Dur%C3%A1n_Fern%C3%A1ndez.jpg/800px-Argentina_Dur%C3%A1n_Fern%C3%A1ndez.jpg"
       }
     ],
+    "location": [
+      {
+        "state": "Nuevo León",
+        "city": "Monterrey"
+      }
+    ],
     "musicianType": [
       {
         "solist": true,
         "band": false
       }
     ],
+    "ranking": 5,
     "eventType": ["Conciertos en recintos", "Coorporativos"],
-    "musicalGenere": ["Clásico", "Piano", "Tradicional mexicana"],
+    "musicalGenere": ["Clásico", "Piano", "Música tradicional mexicana"],
     "repertory": [
       {
         "title": "Song 1",
@@ -65,7 +72,8 @@
         ]
       }
     ],
-    "eventFee": "$7000.00",
+    "eventFee": "$7000",
+    "maxHours": 2,
     "idStripeConnect": "kL4s8n",
     "schedule": "scheduleObjectId?"
   }
