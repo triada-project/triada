@@ -31,3 +31,12 @@ body {
     text-wrap: balance;
   }
 }
+
+
+.calendar-icon {
+  display: inline-block;
+  width: 16px; /* Ajusta el ancho y alto según el tamaño de tu imagen */
+  height: 16px;
+  background-image: url('../assets/images/calendar.png');
+  background-size: cover; /* Ajusta el tamaño de la imagen */
+}
