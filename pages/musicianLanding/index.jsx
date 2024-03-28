@@ -5,8 +5,8 @@ import { Josefin_Sans, Lato, Pacifico } from "next/font/google";
 import check from "../../public/assets/svg/check.svg";
 import Image from "next/image";
 import { Rating } from "@smastrom/react-rating";
-
 import "@smastrom/react-rating/style.css";
+import CalendarUI from "../../components/CalendarUI";
 
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -26,6 +26,7 @@ export default function musicianDetail() {
   console.log(users.musicalGenere);
 
   const musicalGeneres = users.musicalGenere;
+  const eventType = users.eventType;
 
   return (
     <>
@@ -74,14 +75,17 @@ export default function musicianDetail() {
           <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
             Eventos en los que toca
           </h2>
-          <Chip
-            classNames={{
-              base: "bg-[#081540] h-[32px] mt-2",
-              content: "text-[#29FEFD]",
-            }}
-          >
-            {users.eventType.join(", ")}
-          </Chip>
+          {eventType.map((nombre, index) => (
+            // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
+            <Chip
+              classNames={{
+                base: "bg-[#081540] h-[32px] mt-2",
+                content: "text-[#29FEFD] ",
+              }}
+            >
+              {nombre}
+            </Chip>
+          ))}
         </div>
         <div>
           <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
@@ -152,22 +156,54 @@ export default function musicianDetail() {
             </Chip>
           </div>
         </div>
-        <div>
-          <h1 className="{`${roboto.classname} text-[#312971] text-2xl font-bold mt-5 ml-10 mr-10 sm:text-[30px]">
-            Inicia la reservación para tu evento aquí
-          </h1>
-          <div>
-            <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
-              Elige una fecha
-            </h2>
-            <div>
-              <p>Calendar</p>
-            </div>
+        <div className="border-2 rounded-lg mt-5">
+          <div className="ml-5 mr-5 ">
+            <h1 className="{`${roboto.classname} text-[#312971] text-2xl text-center font-bold mt-5 sm:text-[30px]">
+              Inicia la reservación para tu evento aquí
+            </h1>
             <div>
               <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
-                Elige el horario
+                Elige una fecha
               </h2>
-              <div></div>
+              <div className="border-2 rounded-lg mt-5">
+                <CalendarUI />
+              </div>
+              <div>
+                <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
+                  Elige el horario
+                </h2>
+                <p>(!)Blue text</p>
+                <div>
+                  <p>RHF hora inicio hora fin</p>
+                </div>
+                <span>
+                  <p>Horas contratadas</p>
+                </span>
+                <span>
+                  <p>suma de horas ingresadas</p>
+                </span>
+                <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
+                  Detalles del evento
+                </h2>
+                <div>
+                  <p>RHF hora inicio hora fin</p>
+                </div>
+                <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
+                  Resumen
+                </h2>
+                <span>
+                  <p>Horas contratadas</p>
+                </span>
+                <span>
+                  <p>suma de horas ingresadas</p>
+                </span>
+                <span>
+                  <p>Total de reservación</p>
+                </span>
+                <span>
+                  <p>multiplicación de horas ingresadas por costo por hora</p>
+                </span>
+              </div>
             </div>
           </div>
         </div>
