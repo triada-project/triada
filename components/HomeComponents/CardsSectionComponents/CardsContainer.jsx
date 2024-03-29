@@ -13,7 +13,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function CardsContainer() {
   return (
-    <section className="pl-24 flex flex-col gap-4 place-content-center sm:flex sm:flex-row sm:flex-wrap sm:gap-4 lg:flex-nowrap  sm:justify-around mt-20 py-14 px-14  bg-[#081540]">
+    <section className="w-screen pl-24 flex flex-col gap-4 place-content-center sm:flex sm:flex-row sm:flex-wrap sm:gap-4 lg:flex-nowrap  sm:justify-around mt-20 py-14 px-14  bg-[#081540]">
       <InfoCard
         titleCard="Muestra tu trabajo"
         paragraph="Da a conocer tu talento,

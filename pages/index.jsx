@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import NavBar from "@/components/Navbar";
-import Layout from "@/components/HomeComponents/Layout";
+import ImgSection from "@/components/HomeComponents/ImgSectionComponents/ImgSection";
 import CardsContainer from "@/components/HomeComponents/CardsSectionComponents/CardsContainer";
 import AboutUsSection from "@/components/HomeComponents/AboutUsSectionComponents/AboutUsSection";
 
@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <NavBar />
       <main>
-        <Layout />
+        <ImgSection />
         <CardsContainer />
         <AboutUsSection />
       </main>

@@ -1,5 +1,5 @@
 import UsSection from "./UsSection";
 
-export default function AboutUs() {
+export default function AboutUsSection() {
   return <UsSection />;
 }

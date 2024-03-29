@@ -14,7 +14,7 @@ import AnchorNavbar from "./HomeComponents/NavbarComponents/AnchorNavbar";
 
 export default function NavBar() {
   return (
-    <Navbar className=" h-20  bg-[#081540]">
+    <Navbar className="w-screen h-20  bg-[#081540]">
       <div>
         <a href="/">
           <img src="assets/images/PngLogoNavBar.png" alt="logoImg" />
