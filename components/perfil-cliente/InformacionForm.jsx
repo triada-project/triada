@@ -26,6 +26,10 @@ export default function InformacionForm() {
       <h2 className={`${josefine.className} text-black text-xl font-semibold`}>
         Información
       </h2>
+      {errors.estado && (
+        <h3 className=" text-danger">* Favor de compeltar todos los campos</h3>
+      )}
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className=" flex flex-col items-center gap-7 mt-11">
           <Input
