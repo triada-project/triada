@@ -14,7 +14,7 @@ import Events from "../objects/events.json";
 export default function ModalCliente() {
   const {isOpen, onOpen, onClose} = useDisclosure();
   const [size, setSize] = React.useState('2xl')
-  // const [eventosPendientes, setEventosPendientes] = useState([]);
+  //const [eventosPendientes, setEventosPendientes] = useState([]);
 
   
 
