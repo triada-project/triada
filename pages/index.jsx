@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <main className="w-screen bg-[#081540]">
+      <main className="w-screen">
         <ImgSection />
         <CardsContainer />
         <AboutUsSection />
