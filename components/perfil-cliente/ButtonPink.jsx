@@ -3,13 +3,12 @@ import { Lato } from "next/font/google";
 
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function ButtonPink(props) {
+export default function ButtonPink() {
   return (
     <Button
-      type={props.type}
-      className={` bg-[#EF107D] text-white ${props.width} h-[50px] rounded text-base ${lato.className} ${props.mtop} `}
+      className={` bg-[#EF107D] text-white w-[150px] h-[50px] rounded text-base ${lato.className} mt-5 mx-[89px]`}
     >
-      {props.text}
+      Cargar imagen
     </Button>
   );
 }

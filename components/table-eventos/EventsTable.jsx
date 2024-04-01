@@ -29,15 +29,7 @@ const statusColorMap = {
   vacation: "warning",
 };
 
-const INITIAL_VISIBLE_COLUMNS = [
-  "músico",
-  "fecha",
-  "horario",
-  "ubicación",
-  "costo",
-  "status",
-  "más",
-];
+const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
 
 export default function EventsTable() {
   const [filterValue, setFilterValue] = React.useState("");
@@ -48,7 +40,7 @@ export default function EventsTable() {
   const [statusFilter, setStatusFilter] = React.useState("all");
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [sortDescriptor, setSortDescriptor] = React.useState({
-    column: "fecha",
+    column: "age",
     direction: "ascending",
   });
   const [page, setPage] = React.useState(1);
@@ -106,34 +98,23 @@ export default function EventsTable() {
     const cellValue = user[columnKey];
 
     switch (columnKey) {
-      case "músico":
+      case "name":
         return (
           <User
             avatarProps={{ radius: "lg", src: user.avatar }}
-            //description={user.email}
-            name={user.name}
+            description={user.email}
+            name={cellValue}
           >
             {user.email}
           </User>
         );
-      case "horario":
+      case "role":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-small">
-              {user.horaInicio} a {user.horaFinal}
+            <p className="text-bold text-small capitalize">{cellValue}</p>
+            <p className="text-bold text-tiny capitalize text-default-400">
+              {user.team}
             </p>
-            {/* <p className="text-bold text-tiny capitalize text-default-400">
-              {user.team}
-            </p> */}
-          </div>
-        );
-      case "costo":
-        return (
-          <div className="flex flex-col">
-            <p className="text-bold text-small">$ {user.costo} MXN</p>
-            {/* <p className="text-bold text-tiny capitalize text-default-400">
-              {user.team}
-            </p> */}
           </div>
         );
       case "status":
@@ -147,9 +128,9 @@ export default function EventsTable() {
             {cellValue}
           </Chip>
         );
-      case "más":
+      case "actions":
         return (
-          <div className="relative flex justify-center items-center gap-2">
+          <div className="relative flex justify-end items-center gap-2">
             <Dropdown>
               <DropdownTrigger>
                 <Button isIconOnly size="sm" variant="light">
@@ -157,9 +138,9 @@ export default function EventsTable() {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem>Ver detalles</DropdownItem>
-                {/* <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem> */}
+                <DropdownItem>View</DropdownItem>
+                <DropdownItem>Edit</DropdownItem>
+                <DropdownItem>Delete</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -298,24 +279,19 @@ export default function EventsTable() {
   const bottomContent = React.useMemo(() => {
     return (
       <div className="py-2 px-2 flex justify-between items-center">
-        {/* <span className="w-[30%] text-small text-default-400">
+        <span className="w-[30%] text-small text-default-400">
           {selectedKeys === "all"
             ? "All items selected"
-            : `${selectedKeys.size} de ${filteredItems.length} seleccionados`}
-        </span> */}
+            : `${selectedKeys.size} of ${filteredItems.length} selected`}
+        </span>
         <Pagination
           isCompact
           showControls
           showShadow
-          //color="primary"
+          color="primary"
           page={page}
           total={pages}
           onChange={setPage}
-          classNames={{
-            wrapper: "gap-0 overflow-visible h-8 rounded border border-divider",
-            item: "w-8 h-8 text-small rounded-none bg-transparent",
-            cursor: "bg-[#081540] text-white font-bold",
-          }}
         />
         <div className="hidden lg:flex w-[30%] justify-end gap-2">
           <Button
@@ -349,7 +325,7 @@ export default function EventsTable() {
         wrapper: "max-h-[382px]",
       }}
       selectedKeys={selectedKeys}
-      //selectionMode="multiple"
+      selectionMode="multiple"
       sortDescriptor={sortDescriptor}
       topContent={topContent}
       topContentPlacement="outside"
