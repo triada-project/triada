@@ -2,11 +2,19 @@ import React from "react";
 import dataMusician from "../../objects/musicianObject.json";
 import { Avatar, AvatarIcon, Chip } from "@nextui-org/react";
 import { Josefin_Sans, Lato, Pacifico } from "next/font/google";
+import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import check from "../../public/assets/svg/check.svg";
 import Image from "next/image";
+
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import CalendarUI from "../../components/CalendarUI";
+import footerBgMobil from "../../public/assets/images/footerBgMobil.webp";
+import CarouselVideos from "@/components/CarouselVideos";
+import CarouselFotos from "../../components/CarouselFotos";
+import HoursForm from "../../components/HoursForm";
+import EventForm from "../../components/EventForm";
+import AsideLeft from "@/components/AsideLeft";
 
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -92,7 +100,7 @@ export default function musicianDetail() {
             Videos
           </h2>
           <div>
-            <p>Carousel</p>
+            <CarouselVideos />
           </div>
         </div>
         <div>
@@ -100,7 +108,7 @@ export default function musicianDetail() {
             Fotos
           </h2>
           <div>
-            <p>Carousel</p>
+            <CarouselFotos />
           </div>
         </div>
         <div>
@@ -156,57 +164,80 @@ export default function musicianDetail() {
             </Chip>
           </div>
         </div>
-        <div className="border-2 rounded-lg mt-5">
-          <div className="ml-5 mr-5 ">
-            <h1 className="{`${roboto.classname} text-[#312971] text-2xl text-center font-bold mt-5 sm:text-[30px]">
-              Inicia la reservación para tu evento aquí
-            </h1>
+        <div className="border-2 rounded-lg p-5 mt-10">
+          <h1 className="{`${roboto.classname} text-[#312971] text-2xl text-center font-bold sm:text-[30px]">
+            Inicia la reservación para tu evento aquí
+          </h1>
+          <div>
+            <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
+              Elige una fecha
+            </h2>
+            <div className="border-2 rounded-lg mt-5">
+              {
+                //<CalendarUI />
+              }
+            </div>
             <div>
               <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
-                Elige una fecha
+                Elige el horario
               </h2>
-              <div className="border-2 rounded-lg mt-5">
-                <CalendarUI />
+              <div className="border border-blue-700 bg-blue-100 rounded-md mt-2 flex ">
+                <div>
+                  <Image
+                    src={info_FILL1}
+                    alt="info"
+                    width={20}
+                    height={20}
+                    className="ml-2 mt-2 mr-5"
+                  />
+                </div>
+                <div>
+                  <p className="text-blue-700 flex-auto text-center p-2">
+                    Disponible Jueves de 16:00 a 22:00 Viernes de 16:00 a 22:00
+                    Sábado de 16:00 a 22:00
+                  </p>
+                </div>
               </div>
               <div>
-                <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
-                  Elige el horario
-                </h2>
-                <p>(!)Blue text</p>
+                <HoursForm />
+              </div>
+              <div className="flex items-center mt-5">
+                <p>Horas contratadas</p>
+                <p className="ml-5">00</p>
+              </div>
+              <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
+                Detalles del evento
+              </h2>
+              <div>
+                <EventForm />
+              </div>
+              <div className="border border-blue-700 bg-blue-100 rounded-md mt-5 flex">
                 <div>
-                  <p>RHF hora inicio hora fin</p>
+                  <Image
+                    src={info_FILL1}
+                    alt="info"
+                    width={20}
+                    height={20}
+                    className="ml-2 mt-2 mr-5"
+                  />
                 </div>
-                <span>
-                  <p>Horas contratadas</p>
-                </span>
-                <span>
-                  <p>suma de horas ingresadas</p>
-                </span>
-                <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
-                  Detalles del evento
-                </h2>
                 <div>
-                  <p>RHF hora inicio hora fin</p>
+                  <p className="text-blue-700 flex-auto text-center p-2">
+                    Al terminar tu proceso de compra tu dinero estará protegido
+                    sin cobrarse, si el artista acepta tu reservación se cobrará
+                    el día del evento mediante un código que te haremos llegar.
+                    Si el artista rechaza la reservación, se te devolverá
+                    integro.
+                  </p>
                 </div>
-                <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
-                  Resumen
-                </h2>
-                <span>
-                  <p>Horas contratadas</p>
-                </span>
-                <span>
-                  <p>suma de horas ingresadas</p>
-                </span>
-                <span>
-                  <p>Total de reservación</p>
-                </span>
-                <span>
-                  <p>multiplicación de horas ingresadas por costo por hora</p>
-                </span>
               </div>
             </div>
           </div>
         </div>
+        <AsideLeft />
+      </div>
+      <div className="mt-[100px]">
+        <Image src={footerBgMobil} alt="footer" />
       </div>
     </>
   );
