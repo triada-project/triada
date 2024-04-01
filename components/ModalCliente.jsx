@@ -28,7 +28,7 @@ export default function ModalCliente() {
     onOpen();
   }
 
-  const eventosPendientes = events.filter((evento) => evento.estado === 'cancelado');
+  const eventosPendientes = events.filter((evento) => evento.estado === 'finalizado');
 
   return (
     <>
@@ -125,7 +125,7 @@ export default function ModalCliente() {
                 
                 <p className="text-black text-sm font-bold pb-2 pt-4">Setlist del evento</p>
 
-                <div class="columns-2 lg:columns-3 text-black flex mx-auto ">
+                <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-black  mx-auto ">
                                   
                     <Card className="mr-5">
                         <CardBody>
