@@ -5,6 +5,7 @@ import AvatarImage from "../../public/assets/images/avatar-empty.webp";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -44,27 +45,32 @@ export default function AsideCliente() {
     >
       <Image src={triadaLogo} className=" pt-12" />
       <section className=" pt-[120px] flex flex-col gap-10 items-center">
-        <Button className=" w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ">
-          <div className=" flex items-center gap-3 ">
-            <Image
-              src={
-                !tokenObjet()?.profilePicture?.url
-                  ? AvatarImage
-                  : tokenObjet()?.profilePicture?.url
-              }
-              width={40}
-              height={40}
-              className=" w-10 h-10 rounded-full border border-[#29FEFD] "
-            />
-            <p className=" w-28 text-white text-base text-ellipsis overflow-hidden ...">
-              {tokenObjet()?.name}
-            </p>
-          </div>
-        </Button>
-        <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
-          <Image src={playCircle} className="" />
-          <a className=" text-white text-base]">Eventos</a>
-        </Button>
+        <Link href="/perfil-cliente">
+          <Button className=" w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ">
+            <div className=" flex items-center gap-3 ">
+              <Image
+                src={
+                  !tokenObjet()?.profilePicture?.url
+                    ? AvatarImage
+                    : tokenObjet()?.profilePicture?.url
+                }
+                width={40}
+                height={40}
+                className=" w-10 h-10 rounded-full border border-[#29FEFD] "
+              />
+              <p className=" w-28 text-white text-base text-ellipsis overflow-hidden ...">
+                {tokenObjet()?.name}
+              </p>
+            </div>
+          </Button>
+        </Link>
+
+        <Link href="/perfil-cliente/eventos">
+          <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
+            <Image src={playCircle} className="" />
+            <p className=" text-white text-base]">Eventos</p>
+          </Button>
+        </Link>
       </section>
       <Button
         variant="bordered"
