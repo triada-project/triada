@@ -1,8 +1,11 @@
 import { Inter } from "next/font/google";
 import NavBar from "@/components/Navbar";
-import Layout from "@/components/HomeComponents/Layout";
+
+import ImgSection from "@/components/HomeComponents/ImgSectionComponents/ImgSection";
 import CardsContainer from "@/components/HomeComponents/CardsSectionComponents/CardsContainer";
 import AboutUsSection from "@/components/HomeComponents/AboutUsSectionComponents/AboutUsSection";
+import GradientBar from "@/components/HomeComponents/GradientBarComponents/GradientBar";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,10 +13,13 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <main>
-        <Layout />
+
+      <main className="w-screen">
+        <ImgSection />
         <CardsContainer />
         <AboutUsSection />
+        <GradientBar />
+
       </main>
     </>
   );
