@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "users": {
     "_id": "PQ3fAWlGX7kL4s8nf4wO",
     "name": "Argentina Durán",
@@ -78,3 +79,94 @@
     "schedule": "scheduleObjectId?"
   }
 }
+=======
+    "users": [
+        {
+            "_id": "PQ3fAWlGX7kL4s8nf4wO",
+            "name": "Argentina Durán",
+            "email": "piano@example.com",
+            "password": "piano",
+            "roll": "musician",
+            "profilePicture": [{
+                "key_id": "PQ3img",
+             "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Argentina_Dur%C3%A1n_Fern%C3%A1ndez.jpg/800px-Argentina_Dur%C3%A1n_Fern%C3%A1ndez.jpg"
+            }],
+             "musicianType": [{
+                "solist": true,
+                "band": false
+             }],
+             "eventType": [
+                "Conciertos en recintos",
+                "Coorporativos"
+             ],
+             "musicalGenere": [
+                "Clásico",
+                "Piano",
+                "Tradicional mexicana"
+             ],
+             "repertory": [{
+                "title": "Song 1",
+                "author": "Author 1",
+                "eventType": [
+                    "Conciertos en recintos",
+                "Coorporativos"
+                ]
+             },
+             {
+                "title": "Song 2",
+                "author": "Author 2",
+                "eventType": [
+                    "Conciertos en recintos",
+                "Coorporativos"
+                ]
+             },
+             {
+                "title": "Song 3",
+                "author": "Author 3",
+                "eventType": [
+                    "Conciertos en recintos",
+                "Coorporativos"
+                ]
+             },
+             {
+                "title": "Song 4",
+                "author": "Author 4",
+                "eventType": [
+                    "Conciertos en recintos",
+                "Coorporativos"
+                ]
+             },
+             {
+                "title": "Song 5",
+                "author": "Author 5",
+                "eventType": [
+                    "Conciertos en recintos",
+                "Coorporativos"
+                ]
+             }
+            ],
+            "description": "Con una carrera que abarca décadas, Argentina Durán ha establecido su reputación como una de las principales intérpretes de música clásica. Su habilidad técnica y su capacidad para transmitir emociones a través de las teclas del piano la han convertido en una figura destacada en el mundo de la música.",
+            "multimedia": [{
+                "pics": [
+                    "https://www.elsoldepuebla.com.mx/gossip/6c9uge-la-pianista-argentina-duran-esta-de-vuelta-en-puebla-te-decimos-donde-y-cuando/ALTERNATES/LANDSCAPE_1140/La%20pianista%20Argentina%20Dur%C3%A1n%20est%C3%A1%20de%20vuelta%20en%20Puebla,%20te%20decimos%20d%C3%B3nde%20y%20cu%C3%A1ndo",
+                    "https://tecolotito.elsiglodetorreon.com.mx/i/2022/10/1609865.jpeg",
+                    "https://th.bing.com/th/id/OIP.b0W8k6W7m4HsBs159AjNMQHaEk?rs=1&pid=ImgDetMain",
+                    "https://www.elsoldepuebla.com.mx/gossip/8dpg7i-la-pianista-argentina-duran-dara-show-gratuito-en-puebla/ALTERNATES/LANDSCAPE_1140/La%20pianista%20Argentina%20Dur%C3%A1n%20dar%C3%A1%20show%20gratuito%20en%20Puebla",
+                    "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUdokOXz8680EScg3KyLB4_1yBMADhLC7bk5Z6FKfpsQCheaimnx9MXwQu_JZRM37Gih3DUgwO-16yRYXOSw98C2r9tEv_IsUAcXUQ8zg-Qx_4Lv7h_F4d6brt6v9DwWhEZiyTdr6NyZosPfmT5iJHaE8Kx3OQR-ntu94QqlfGuN-QQD95bHm-pw/s1240/280755277_542626507306423_68072614643326139_n.jpg"
+                ],
+                "videos": [
+                    "https://www.youtube.com/watch?v=00TLrFv8ppI&t=1332s",
+                    "https://www.youtube.com/watch?v=kZKcHnQXksw",
+                    "https://www.youtube.com/watch?v=NsvDK26WvA0",
+                    "https://www.youtube.com/watch?v=d6RrGeLrgSk",
+                    "https://www.youtube.com/watch?v=VqN8X0RGp-c"
+                ]
+            }],
+            "eventFee": "$7000.00",
+            "idStripeConnect": "kL4s8n",
+            "schedule": "scheduleObjectId?"
+        }
+    ]
+    
+}
+>>>>>>> 044f5d837507e213603574599c7fc6d936b916ea
