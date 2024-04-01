@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {Image} from "@nextui-org/react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
@@ -7,12 +7,16 @@ import { Input } from "@nextui-org/react";
 import {Chip} from "@nextui-org/react";
 import Events from "../objects/events.json";
 
+// condicional rendering
 
 
 
 export default function ModalCliente() {
   const {isOpen, onOpen, onClose} = useDisclosure();
   const [size, setSize] = React.useState('2xl')
+  // const [eventosPendientes, setEventosPendientes] = useState([]);
+
+  
 
   const { events } = Events;
 
@@ -21,6 +25,8 @@ export default function ModalCliente() {
     setSize(size)
     onOpen();
   }
+
+  const eventosPendientes = events.filter((evento) => evento.estado === 'activo');
 
   return (
     <>
@@ -43,7 +49,7 @@ export default function ModalCliente() {
                 {/* w-full sm:w-1/2 mb-3 sm:mb-0 */}
                 
                
-                {events.map((evento, index) => (
+                {eventosPendientes.map((evento, index) => (
                 <div key={index} class="flex flex-col sm:flex-row ">                
                  
                     <div class="w-3/10 ">
@@ -52,7 +58,7 @@ export default function ModalCliente() {
                     <div class="w-7/10 p-3 ">
                         
                       <p class="text-black font-bold text-xl mb-2" >{evento.titulo_evento} </p>
-                       <Chip className="text-sm p-2">Activo</Chip>
+                       <Chip className="text-sm p-2">{evento.estado}</Chip>
                         
                         
                         <p className="text-black text-sm font-bold mt-2 pb-2">Detalle del evento: </p>
@@ -66,7 +72,7 @@ export default function ModalCliente() {
                             <ul class="list-none mr-5 ">
                                 <li className="text-xs">{evento.tipo_evento}</li>
                                 <li className="text-xs">Contact:</li>
-                                <li className="text-xs">{evento.telefono_evento}</li>
+                                {evento.estado === 'activo' && <li className="text-xs">{evento.telefono_evento}</li>}
                             </ul>                                              
                             <ul class="list-none ">
                                 <li className="text-xs">Horas contratadas: {evento.horas_contratadas_evento}</li>
@@ -79,7 +85,7 @@ export default function ModalCliente() {
                 </div>
                 ))}
 
-                {events.map((evento, index) => (
+                {eventosPendientes.map((evento, index) => (
                   <Card key={index} className="mt-2">
                     <CardBody>
                       <p className="text-sm">{evento.direccion_evento}</p>
@@ -130,22 +136,31 @@ export default function ModalCliente() {
 
 
                 </div>     
-                        
-                <div className="mt-4">
-                                  
-                    <p className="text-black text-sm font-bold pb-2">Escribir codigo</p>
-                    <Input  type="email" label="Introducir Codigo" variant="bordered"  className="pb-4 w-full text-black" />
-                    
-                     <Button color="danger" className="w-full">
-                        Enviar
-                    </Button>              
+                
+                   
+                  
+                
+                <div className={` ${eventosPendientes.estado === 'pendiente' && hidden} `}>
+                                
+                  <p className="text-black text-sm font-bold pb-2">Escribir codigo</p>
+                  <Input  type="email" label="Introducir Codigo" variant="bordered"  className="pb-4 w-full text-black" />
+                  
+                  <Button color="danger" className="w-full">
+                      Enviar
+                  </Button>              
                 </div>
+                
+
+                
+              
+                
+                 
                  
               </ModalBody>
               <ModalFooter>
-                <Button color="primary d-none" onPress={onClose}>
+                {/* <Button color="primary d-none" onPress={onClose}>
                   Action
-                </Button>
+                </Button> */}
                 <Button color="danger" variant="light" onPress={onClose}>
                   Cerrar
                 </Button>
