@@ -1,3 +1,4 @@
+
 import ElementList from "./ElementList";
 import { Josefin_Sans, Lato } from "next/font/google";
 import GradientLogInButton from "./GradientLogInButton";
@@ -18,4 +19,5 @@ export default function AboutUsSection() {
       <WhyUsSection />
     </section>
   );
+
 }

@@ -1,6 +1,8 @@
+
 import ElementList from "./ElementList";
 import { Josefin_Sans, Lato } from "next/font/google";
 import GradientLogInButton from "./GradientLogInButton";
+
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -10,6 +12,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function UsSection() {
   return (
+
     <>
       <div id="imgContainer" className="flex  md:pl-20  ">
         <img
@@ -61,5 +64,6 @@ export default function UsSection() {
         <GradientLogInButton nameButton="¡Registrate!" />
       </div>
     </>
+
   );
 }
