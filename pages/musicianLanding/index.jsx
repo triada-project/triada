@@ -8,12 +8,12 @@ import Image from "next/image";
 
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import CalendarUI from "../../components/CalendarUI";
+import CalendarUI from "../../components/musicianLanding/CalendarUI";
 import footerBgMobil from "../../public/assets/images/footerBgMobil.webp";
 import CarouselVideos from "@/components/CarouselVideos";
-import CarouselFotos from "../../components/CarouselFotos";
-import HoursForm from "../../components/HoursForm";
-import EventForm from "../../components/EventForm";
+import CarouselFotos from "../../components/musicianLanding/CarouselFotos";
+import HoursForm from "../../components/musicianLanding/HoursForm";
+import EventForm from "../../components/musicianLanding/EventForm";
 import AsideLeft from "@/components/AsideLeft";
 
 const josefin = Josefin_Sans({

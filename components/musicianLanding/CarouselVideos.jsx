@@ -1,6 +1,6 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import dataMusician from "../objects/musicianObject.json";
+import dataMusician from "../../objects/musicianObject.json";
 import YouTube from "react-youtube";
 // Import Swiper styles
 import "swiper/css";
