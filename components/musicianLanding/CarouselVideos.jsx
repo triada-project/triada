@@ -12,23 +12,22 @@ export default function CarouselVideos() {
 
   return (
     <Swiper
-      spaceBetween={50}
-      slidesPerView={3}
+      spaceBetween={0}
+      slidesPerView={2}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
-      className="flex grid gap-5"
     >
       <SwiperSlide>
-        <YouTube videoId="kZKcHnQXksw" className="w-80 rounded-lg" />
+        <YouTube videoId="kZKcHnQXksw" />
       </SwiperSlide>
       <SwiperSlide>
-        <YouTube videoId="NsvDK26WvA0" className="w-80 rounded-lg" />
+        <YouTube videoId="NsvDK26WvA0" className="w-40 " />
       </SwiperSlide>
       <SwiperSlide>
-        <YouTube videoId="d6RrGeLrgSk" className="w-80 rounded-lg" />
+        <YouTube videoId="d6RrGeLrgSk" className="w-40 " />
       </SwiperSlide>
       <SwiperSlide>
-        <YouTube videoId="VqN8X0RGp-c" className="w-80 rounded-lg" />
+        <YouTube videoId="VqN8X0RGp-c" className="w-40 " />
       </SwiperSlide>
     </Swiper>
   );

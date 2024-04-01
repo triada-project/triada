@@ -10,11 +10,11 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import CalendarUI from "../../components/musicianLanding/CalendarUI";
 import footerBgMobil from "../../public/assets/images/footerBgMobil.webp";
-import CarouselVideos from "@/components/CarouselVideos";
+import CarouselVideos from "../..//components/musicianLanding/CarouselVideos";
 import CarouselFotos from "../../components/musicianLanding/CarouselFotos";
 import HoursForm from "../../components/musicianLanding/HoursForm";
 import EventForm from "../../components/musicianLanding/EventForm";
-import AsideLeft from "@/components/AsideLeft";
+import AsideLeft from "@/components/musicianLanding/AsideLeft";
 
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
