@@ -1,6 +1,5 @@
 import { Josefin_Sans, Lato } from "next/font/google";
 import triadaLogo from "../../public/assets/svg/triada-logo.svg";
-import playCircle from "../../public/assets/svg/play_circle.svg";
 import Calendar from "../../public/assets/svg/calendar.svg";
 import Repertory from "../../public/assets/svg/repertory.svg";
 import Galery from "../../public/assets/svg/galery.svg";
@@ -9,6 +8,7 @@ import Image from "next/image";
 import { Button } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import PlayCircleColor from "@/public/assets/svg/playCircleColor";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -16,7 +16,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function AsideMusico(props) {
+export default function AsideMusico({ page, hidden }) {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
 
@@ -46,7 +46,7 @@ export default function AsideMusico(props) {
     <aside
       className={`bg-[#081540] fixed w-[245px] h-screen  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-1 `}
     >
-      <Image src={triadaLogo} className={`pt-12 ${props.hidden}`} />
+      <Image src={triadaLogo} className={`pt-12 ${hidden}`} />
       <section className=" pt-[120px] flex flex-col gap-10 items-center">
         <Link href="/perfil-musico">
           <Button className=" w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ">
@@ -69,9 +69,19 @@ export default function AsideMusico(props) {
         </Link>
 
         <Link href="/perfil-musico/eventos">
-          <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
-            <Image src={playCircle} className="" />
-            <p className=" text-white text-base]">Eventos</p>
+          <Button
+            className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
+              page === "eventos" ? "bg-[#312971]" : ""
+            } `}
+          >
+            <PlayCircleColor colorFill={page} />
+            <p
+              className={` text-base ${
+                page === "eventos" ? "text-[#29FEFD]" : "text-white"
+              } `}
+            >
+              Eventos
+            </p>
           </Button>
         </Link>
         <Link href="/perfil-musico/disponibilidad">
