@@ -20,6 +20,7 @@ import AvatarImage from "../../public/assets/images/avatar-empty.webp";
 import AsideMusico from "./AsideMusico";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import PlayCircleColor from "@/public/assets/svg/playCircleColor";
 
 // import { Button } from "@nextui-org/react";
 
@@ -29,7 +30,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function MenuMobileMusician() {
+export default function MenuMobileMusician({ page }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
@@ -76,7 +77,11 @@ export default function MenuMobileMusician() {
       >
         <section className=" pt-11 flex flex-col gap-10 items-center">
           <Link href="/perfil-musico">
-            <Button className=" w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ">
+            <Button
+              className={` w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ${
+                page === "perfil" ? "bg-[#312971]" : ""
+              } `}
+            >
               <div className=" flex items-center gap-3 ">
                 <Image
                   src={
@@ -96,9 +101,23 @@ export default function MenuMobileMusician() {
           </Link>
 
           <Link href="/perfil-musico/eventos">
-            <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
+            {/* <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
               <Image src={playCircle} className="" />
               <p className=" text-white text-base]">Eventos</p>
+            </Button> */}
+            <Button
+              className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
+                page === "eventos" ? "bg-[#312971]" : ""
+              } `}
+            >
+              <PlayCircleColor colorFill={page} />
+              <p
+                className={` text-base ${
+                  page === "eventos" ? "text-[#29FEFD]" : "text-white"
+                } `}
+              >
+                Eventos
+              </p>
             </Button>
           </Link>
           <Link href="/perfil-musico/disponibilidad">

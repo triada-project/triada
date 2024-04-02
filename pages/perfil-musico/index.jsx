@@ -14,7 +14,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function PerfilMusico() {
   return (
     <>
-      <MenuMobileMusician />
+      <MenuMobileMusician page="perfil" />
       <main className="  flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]  ">
         <AsideMusico page="perfil" />
         <section className=" flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-screen lg:flex-row lg:gap-7 lg:items-start ">
