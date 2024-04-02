@@ -1,5 +1,5 @@
 import React from "react";
-import { Josefin_Sans, Lato, Pacifico } from "next/font/google";
+import { Josefin_Sans, Lato } from "next/font/google";
 import { Avatar, AvatarIcon, Chip } from "@nextui-org/react";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
@@ -9,12 +9,12 @@ import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import check from "../../public/assets/svg/check.svg";
 import Image from "next/image";
 import CalendarUI from "../../components/musicianLanding/CalendarUI";
-import footerBgMobil from "../../public/assets/images/footerBgMobil.webp";
 import CarouselVideos from "../..//components/musicianLanding/CarouselVideos";
 import CarouselFotos from "../../components/musicianLanding/CarouselFotos";
 import HoursForm from "../../components/musicianLanding/HoursForm";
 import EventForm from "../../components/musicianLanding/EventForm";
 import AsideLeft from "@/components/musicianLanding/AsideLeft";
+import MainFooter from "../../components/mainFooter/MainFooter";
 
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -22,10 +22,6 @@ const josefin = Josefin_Sans({
 });
 const lato = Lato({
   weight: ["300", "400", "700"],
-  subsets: ["latin"],
-});
-const pacifico = Pacifico({
-  weight: ["400"],
   subsets: ["latin"],
 });
 
@@ -249,9 +245,7 @@ export default function musicianDetail() {
           <AsideLeft />
         </div>
       </div>
-      <div className="mt-[100px]">
-        <Image src={footerBgMobil} alt="footer" />
-      </div>
+      <MainFooter />
     </>
   );
 }
