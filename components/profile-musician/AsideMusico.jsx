@@ -48,7 +48,7 @@ export default function AsideMusico(props) {
     >
       <Image src={triadaLogo} className={`pt-12 ${props.hidden}`} />
       <section className=" pt-[120px] flex flex-col gap-10 items-center">
-        <Link href="/perfil-cliente">
+        <Link href="/perfil-musico">
           <Button className=" w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ">
             <div className=" flex items-center gap-3 ">
               <Image
@@ -68,25 +68,25 @@ export default function AsideMusico(props) {
           </Button>
         </Link>
 
-        <Link href="/perfil-cliente/eventos">
+        <Link href="/perfil-musico/eventos">
           <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
             <Image src={playCircle} className="" />
             <p className=" text-white text-base]">Eventos</p>
           </Button>
         </Link>
-        <Link href="/perfil-cliente/eventos">
+        <Link href="/perfil-musico/disponibilidad">
           <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
             <Image src={Calendar} className="" />
             <p className=" text-white text-base]">Disponibilidad</p>
           </Button>
         </Link>
-        <Link href="/perfil-cliente/eventos">
+        <Link href="/perfil-musico/galeria">
           <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
             <Image src={Galery} className="" />
             <p className=" text-white text-base]">Galería</p>
           </Button>
         </Link>
-        <Link href="/perfil-cliente/eventos">
+        <Link href="/perfil-musico/repertorio">
           <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
             <Image src={Repertory} className="" />
             <p className=" text-white text-base]">Repertorio</p>
