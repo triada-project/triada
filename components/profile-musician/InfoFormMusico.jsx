@@ -5,6 +5,7 @@ import { Textarea } from "@nextui-org/react";
 import ButtonPink from "../perfil-cliente/ButtonPink";
 import { useForm } from "react-hook-form";
 import SelectGenreMusic from "../SelectGenreMusic/SelectGenreMusic";
+import SelectTypeEvents from "../SelectGenreMusic/SelectTypeEvents";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -80,6 +81,23 @@ export default function InfoFormMusico() {
             className="w-[328px] lg:w-[30rem]"
           />
           <SelectGenreMusic width="w-[328px] lg:w-[30rem]" />
+          <SelectTypeEvents width="w-[328px] lg:w-[30rem]" />
+          <Input
+            className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
+            isRequired
+            variant="bordered"
+            radius="sm"
+            label="Costo por hora evento"
+            {...register("eventCost")}
+          />
+          <Input
+            className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
+            isRequired
+            variant="bordered"
+            radius="sm"
+            label="Días anticipación para agendar"
+            {...register("nombre")}
+          />
           {/* <Button
             type="submit"
             className={` bg-[#EF107D] text-white w-[328px] h-[50px] rounded text-base ${lato.className} lg:w-[30rem]`}

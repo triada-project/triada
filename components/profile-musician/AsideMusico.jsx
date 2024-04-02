@@ -44,7 +44,7 @@ export default function AsideMusico() {
 
   return (
     <aside
-      className={`bg-[#081540] w-[245px] h-screen  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-1 `}
+      className={`bg-[#081540] fixed w-[245px] h-screen  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-1 `}
     >
       <Image src={triadaLogo} className=" pt-12" />
       <section className=" pt-[120px] flex flex-col gap-10 items-center">

@@ -50,6 +50,16 @@ export const musicalGenre = [
   { id: 22, musicalGenre: "Grupero" },
 ];
 
+export const typeEvents = [
+  { id: 1, typeEvents: "Boda" },
+  { id: 2, typeEvents: "Cenas" },
+  { id: 3, typeEvents: "Concierto en recinto" },
+  { id: 4, typeEvents: "Corporativos" },
+  { id: 5, typeEvents: "Fiestas" },
+  { id: 6, typeEvents: "Servicios Religiosos" },
+  { id: 7, typeEvents: "Bares" },
+];
+
 export const users = [
   {
     id: 1,
