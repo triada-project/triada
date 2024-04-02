@@ -49,7 +49,11 @@ export default function AsideMusico({ page, hidden }) {
       <Image src={triadaLogo} className={`pt-12 ${hidden}`} />
       <section className=" pt-[120px] flex flex-col gap-10 items-center">
         <Link href="/perfil-musico">
-          <Button className=" w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ">
+          <Button
+            className={` w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ${
+              page === "perfil" ? "bg-[#312971]" : ""
+            } `}
+          >
             <div className=" flex items-center gap-3 ">
               <Image
                 src={
