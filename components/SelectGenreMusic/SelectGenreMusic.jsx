@@ -22,7 +22,9 @@ export default function SelectGenreMusic(props) {
         return (
           <div className="flex flex-wrap gap-2">
             {items.map((item) => (
-              <Chip key={item.key}>{item.data.musicalGenre}</Chip>
+              <Chip key={item.key} className=" bg-[#081540] text-white">
+                {item.data.musicalGenre}
+              </Chip>
             ))}
           </div>
         );
