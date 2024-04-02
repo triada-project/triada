@@ -12,9 +12,9 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function AsideLeft() {
   const { users } = dataMusician;
-  const eventType = users.eventType;
+
   return (
-    <aside className="ms:w-1/4">
+    <aside className="ms:w-1/4 lg:w-1/4git p">
       <div className="border-2 rounded-lg p-5 mt-10">
         <h2
           className={`${josefin.classname} text-[#37474F] text-center font-semibold sm:text-[20px]`}

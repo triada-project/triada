@@ -11,24 +11,27 @@ export default function CarouselVideos() {
   console.log(pics);
 
   return (
-    <Swiper
-      spaceBetween={0}
-      slidesPerView={2}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
-      <SwiperSlide>
-        <YouTube videoId="kZKcHnQXksw" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <YouTube videoId="NsvDK26WvA0" className="w-40 " />
-      </SwiperSlide>
-      <SwiperSlide>
-        <YouTube videoId="d6RrGeLrgSk" className="w-40 " />
-      </SwiperSlide>
-      <SwiperSlide>
-        <YouTube videoId="VqN8X0RGp-c" className="w-40 " />
-      </SwiperSlide>
-    </Swiper>
+    <div className="sm:w-[328px] sm:h-auto sm:w-64 sm:h-48 ">
+      <Swiper
+        spaceBetween={2}
+        slidesPerView={1}
+        onSlideChange={() => console.log("slide change")}
+        onSwiper={(swiper) => console.log(swiper)}
+        className=" "
+      >
+        <SwiperSlide>
+          <YouTube videoId="kZKcHnQXksw" className="sm:w-64 sm:h-48 " />
+        </SwiperSlide>
+        <SwiperSlide>
+          <YouTube videoId="NsvDK26WvA0" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <YouTube videoId="d6RrGeLrgSk" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <YouTube videoId="VqN8X0RGp-c" />
+        </SwiperSlide>
+      </Swiper>
+    </div>
   );
 }

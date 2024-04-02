@@ -31,7 +31,7 @@ export default function HoursForm() {
             //autoFocus={true}
             variant="bordered"
             radius="sm"
-            className={`w-[135px] h-14 lg:w-[30rem]`}
+            className={`w-[135px] h-14 `}
             //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
             {...register("startHour", { required: true })}
           >
@@ -58,7 +58,7 @@ export default function HoursForm() {
             isRequired
             variant="bordered"
             radius="sm"
-            className=" w-[135px] h-14 lg:w-[30rem]"
+            className=" w-[135px] h-14 "
             {...register("endHour")}
           >
             <SelectItem key={"10:00"}>10:00</SelectItem>
