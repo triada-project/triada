@@ -1,6 +1,7 @@
 import { Josefin_Sans, Lato } from "next/font/google";
 import triadaLogo from "../../public/assets/svg/triada-logo.svg";
 import playCircle from "../../public/assets/svg/play_circle.svg";
+import PlayCircleColor from "@/public/assets/svg/playCircleColor";
 import AvatarImage from "../../public/assets/images/avatar-empty.webp";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
@@ -13,7 +14,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function AsideCliente() {
+export default function AsideCliente({ page }) {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
 
@@ -41,12 +42,16 @@ export default function AsideCliente() {
 
   return (
     <aside
-      className={`bg-[#081540] w-[245px] h-screen  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-1 `}
+      className={`bg-[#081540] fixed w-[245px] h-screen  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-1 `}
     >
       <Image src={triadaLogo} className=" pt-12" />
       <section className=" pt-[120px] flex flex-col gap-10 items-center">
         <Link href="/perfil-cliente">
-          <Button className=" w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ">
+          <Button
+            className={` w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ${
+              page === "perfil" ? "bg-[#312971]" : ""
+            } `}
+          >
             <div className=" flex items-center gap-3 ">
               <Image
                 src={
@@ -66,9 +71,19 @@ export default function AsideCliente() {
         </Link>
 
         <Link href="/perfil-cliente/eventos">
-          <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
-            <Image src={playCircle} className="" />
-            <p className=" text-white text-base]">Eventos</p>
+          <Button
+            className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
+              page === "eventos" ? "bg-[#312971]" : ""
+            } `}
+          >
+            <PlayCircleColor colorFill={page} />
+            <p
+              className={` text-base ${
+                page === "eventos" ? "text-[#29FEFD]" : "text-white"
+              } `}
+            >
+              Eventos
+            </p>
           </Button>
         </Link>
       </section>
