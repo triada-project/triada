@@ -16,7 +16,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function AsideMusico() {
+export default function AsideMusico(props) {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
 
@@ -46,7 +46,7 @@ export default function AsideMusico() {
     <aside
       className={`bg-[#081540] fixed w-[245px] h-screen  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-1 `}
     >
-      <Image src={triadaLogo} className=" pt-12" />
+      <Image src={triadaLogo} className={`pt-12 ${props.hidden}`} />
       <section className=" pt-[120px] flex flex-col gap-10 items-center">
         <Link href="/perfil-cliente">
           <Button className=" w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ">
