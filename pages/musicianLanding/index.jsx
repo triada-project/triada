@@ -64,7 +64,7 @@ export default function musicianDetail() {
                 />
                 <div className="ml-2">{users.ranking}</div>
               </div>
-              <div>
+              <div className="gap gap-1 flex flex-nowrap">
                 {musicalGeneres.map((nombre, index) => (
                   // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
                   <Chip
@@ -90,17 +90,19 @@ export default function musicianDetail() {
               <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                 Eventos en los que toca
               </h2>
-              {eventType.map((nombre, index) => (
-                // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
-                <Chip
-                  classNames={{
-                    base: "bg-[#081540] h-[32px] mt-2",
-                    content: "text-[#29FEFD] ",
-                  }}
-                >
-                  {nombre}
-                </Chip>
-              ))}
+              <div className="gap gap-1 flex flex-nowrap">
+                {eventType.map((nombre, index) => (
+                  // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
+                  <Chip
+                    classNames={{
+                      base: "bg-[#081540] h-[32px] mt-2",
+                      content: "text-[#29FEFD] ",
+                    }}
+                  >
+                    {nombre}
+                  </Chip>
+                ))}
+              </div>
             </div>
             <div>
               <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">

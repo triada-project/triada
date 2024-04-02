@@ -11,16 +11,15 @@ export default function CarouselVideos() {
   console.log(pics);
 
   return (
-    <div className="sm:w-[328px] sm:h-auto sm:w-64 sm:h-48 ">
+    <div className="w-full h-full bg-blue-700 ">
       <Swiper
         spaceBetween={2}
         slidesPerView={1}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
-        className=" "
       >
         <SwiperSlide>
-          <YouTube videoId="kZKcHnQXksw" className="sm:w-64 sm:h-48 " />
+          <YouTube videoId="kZKcHnQXksw" />
         </SwiperSlide>
         <SwiperSlide>
           <YouTube videoId="NsvDK26WvA0" />
