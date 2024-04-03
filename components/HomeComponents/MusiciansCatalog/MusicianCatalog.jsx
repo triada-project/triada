@@ -1,5 +1,7 @@
 import { Josefin_Sans, Lato } from "next/font/google";
 import OptionalInputs from "./OptionalInputs";
+import MusicianCard from "./MusicianCard";
+import InvisibleMusicianCard from "./InvisibleMusicianCard";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -9,7 +11,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function MusicianCatalog() {
   return (
-    <section className="bg-[#081540] pb-10 px-[16px]">
+    <section id="musicianCatalog" className="bg-[#081540] px-[16px]">
       <h1
         className={`text-white  text-center pt-[56px] text-lg font-bold ${josefine.className}`}
       >
@@ -40,7 +42,10 @@ export default function MusicianCatalog() {
           option4="Zihuatanejo"
           option5="León"
         />
-        <div className="pt-[19px] pb-[16px] flex justify-around sm:w-10 sm:mt-3  ">
+        <div
+          id="pinkButton"
+          className="pt-[19px] pb-[16px] flex justify-around sm:w-10 sm:mt-3  "
+        >
           <button className="rounded-lg bg-[#EE0075] w-[435px] h-[35px] flex flex-row justify-center gap-[18px]  text-white">
             <h2 className="pt-1 sm:hidden">Buscar</h2>
             <a href="" className="pt-1">
@@ -69,6 +74,48 @@ export default function MusicianCatalog() {
             </a>
           </button>
         </div>
+      </div>
+      <div
+        id="cardsContainer"
+        className="  flex flex-col pt-[62px] gap-3 sm:flex-row sm:flex-wrap place-items-center     "
+      >
+        <MusicianCard
+          musician="the beetles"
+          locality="Los angeles, USA"
+          chip1="jazz"
+          chip2="clasica"
+          className={"hidden"}
+        />
+        <MusicianCard
+          musician="the beetles"
+          locality="Los angeles, USA"
+          chip1="jazz"
+          chip2="clasica"
+        />
+        <InvisibleMusicianCard
+          musician="the beetles"
+          locality="Los angeles, USA"
+          chip1="jazz"
+          chip2="clasica"
+        />
+        <InvisibleMusicianCard
+          musician="the beetles"
+          locality="Los angeles, USA"
+          chip1="jazz"
+          chip2="clasica"
+        />
+        <InvisibleMusicianCard
+          musician="the beetles"
+          locality="Los angeles, USA"
+          chip1="jazz"
+          chip2="clasica"
+        />
+        <InvisibleMusicianCard
+          musician="the beetles"
+          locality="Los angeles, USA"
+          chip1="jazz"
+          chip2="clasica"
+        />
       </div>
     </section>
   );
