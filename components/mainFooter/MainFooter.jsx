@@ -22,7 +22,7 @@ export default function MainFooter() {
         className="relative "
         style={{
           zIndex: -1,
-          top: 400,
+          top: 350,
           left: 0,
         }}
       >
@@ -40,28 +40,28 @@ export default function MainFooter() {
 
       <div
         layout="absolute"
-        className="text-white flex flex-col text-center items-center sm:flex-row mt-[100px]"
+        className="text-white flex flex-col text-center  sm:flex-row  sm:gap-6 sm:justify-center sm:items-center sm:mt-10 "
       >
         <p>logo</p>
-        <Link href="/musicianLanding" className="mt-3">
+        <Link href="/musicianLanding" className="mt-4">
           Nosotros
         </Link>
-        <Link href="/musicianLanding" className="mt-3">
+        <Link href="/musicianLanding" className="mt-4">
           Músicos
         </Link>
-        <Link href="/musicianLanding" className="mt-3">
+        <Link href="/musicianLanding" className="mt-4">
           Preguntas frecuentes
         </Link>
 
-        <p className="mt-3">(C) 2024</p>
+        <p className="mt-4">(C) 2024</p>
 
-        <Link href="/musicianLanding" className="mt-3">
+        <Link href="/musicianLanding" className="mt-4">
           Aviso de privacidad
         </Link>
-        <Link href="/musicianLanding" className="mt-3">
+        <Link href="/musicianLanding" className="mt-4">
           Términos y condiciones
         </Link>
-        <div className="flex flex-row gap-6 justify-center mt-3">
+        <div className="flex flex-row gap-6 justify-center mt-5">
           <a id="" href="#">
             <Image src={logoInstagram} alt="" />
           </a>

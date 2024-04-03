@@ -21,7 +21,7 @@ export default function AsideLeft() {
         >
           Temas más representativos del repertorio
         </h2>
-        <div className="mt-2">
+        <div className="mt-2 ">
           <p
             className={`font-semibold text-inherit sm:text-[16px] ${lato.className}`}
           >
@@ -30,14 +30,16 @@ export default function AsideLeft() {
           <p>{users.repertory[0].author}</p>
           {users.repertory[0].eventType.map((nombre, index) => (
             // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
-            <Chip
-              classNames={{
-                base: "bg-[#081540] h-[32px] mt-1 ",
-                content: "text-[#29FEFD] ",
-              }}
-            >
-              {nombre}
-            </Chip>
+            <div className="gap gap-1 flex flex-nowrap">
+              <Chip
+                classNames={{
+                  base: "bg-[#081540] h-[32px] mt-1 ",
+                  content: "text-[#29FEFD] ",
+                }}
+              >
+                {nombre}
+              </Chip>
+            </div>
           ))}
         </div>
         <div className="mt-2">
@@ -48,15 +50,16 @@ export default function AsideLeft() {
           </p>
           <p>{users.repertory[1].author}</p>
           {users.repertory[1].eventType.map((nombre, index) => (
-            // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
-            <Chip
-              classNames={{
-                base: "bg-[#081540] h-[32px] mt-1 ",
-                content: "text-[#29FEFD] ",
-              }}
-            >
-              {nombre}
-            </Chip>
+            <div className="gap gap-1 flex flex-nowrap">
+              <Chip
+                classNames={{
+                  base: "bg-[#081540] h-[32px] mt-1 ",
+                  content: "text-[#29FEFD] ",
+                }}
+              >
+                {nombre}
+              </Chip>
+            </div>
           ))}
         </div>
         <div className="mt-2">
@@ -67,15 +70,16 @@ export default function AsideLeft() {
           </p>
           <p>{users.repertory[2].author}</p>
           {users.repertory[2].eventType.map((nombre, index) => (
-            // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
-            <Chip
-              classNames={{
-                base: "bg-[#081540] h-[32px] mt-1 ",
-                content: "text-[#29FEFD] ",
-              }}
-            >
-              {nombre}
-            </Chip>
+            <div className="gap gap-1 flex flex-nowrap">
+              <Chip
+                classNames={{
+                  base: "bg-[#081540] h-[32px] mt-1 ",
+                  content: "text-[#29FEFD] ",
+                }}
+              >
+                {nombre}
+              </Chip>
+            </div>
           ))}
         </div>
         <div className="mt-2">
@@ -86,15 +90,16 @@ export default function AsideLeft() {
           </p>
           <p>{users.repertory[3].author}</p>
           {users.repertory[3].eventType.map((nombre, index) => (
-            // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
-            <Chip
-              classNames={{
-                base: "bg-[#081540] h-[32px] mt-1 ",
-                content: "text-[#29FEFD] ",
-              }}
-            >
-              {nombre}
-            </Chip>
+            <div className="gap gap-1 flex flex-nowrap">
+              <Chip
+                classNames={{
+                  base: "bg-[#081540] h-[32px] mt-1 ",
+                  content: "text-[#29FEFD] ",
+                }}
+              >
+                {nombre}
+              </Chip>
+            </div>
           ))}
         </div>
         <div className="mt-2">
@@ -105,15 +110,16 @@ export default function AsideLeft() {
           </p>
           <p>{users.repertory[4].author}</p>
           {users.repertory[4].eventType.map((nombre, index) => (
-            // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
-            <Chip
-              classNames={{
-                base: "bg-[#081540] h-[32px] mt-1 ",
-                content: "text-[#29FEFD] ",
-              }}
-            >
-              {nombre}
-            </Chip>
+            <div className="gap gap-1 flex flex-nowrap">
+              <Chip
+                classNames={{
+                  base: "bg-[#081540] h-[32px] mt-1 ",
+                  content: "text-[#29FEFD] ",
+                }}
+              >
+                {nombre}
+              </Chip>
+            </div>
           ))}
         </div>
         <div></div>
