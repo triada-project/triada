@@ -177,11 +177,7 @@ export default function musicianDetail() {
                 <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                   Elige una fecha
                 </h2>
-                <div className="border-2 rounded-lg mt-5">
-                  {
-                    //<CalendarUI />
-                  }
-                </div>
+                <div className="border-2 rounded-lg mt-5">{<CalendarUI />}</div>
                 <div>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                     Elige el horario
