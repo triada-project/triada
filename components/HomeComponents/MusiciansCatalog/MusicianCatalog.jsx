@@ -115,6 +115,7 @@ export default function MusicianCatalog() {
           locality="Los angeles, USA"
           chip1="jazz"
           chip2="classic"
+
         />
       </div>
     </section>
