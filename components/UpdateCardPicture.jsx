@@ -19,7 +19,7 @@ export default function UpdateCardPicture() {
           </p>
         </figure>
       </div>
-      <ButtonPink />
+      <ButtonPink width={"w-[150px]"} text={"Cargar imagen"} mtop="mt-5" />
     </section>
   );
 }

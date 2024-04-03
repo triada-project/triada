@@ -1,8 +1,11 @@
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Input } from "@nextui-org/react";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
-import ButtonPink from "./ButtonPink";
+import { Textarea } from "@nextui-org/react";
+import ButtonPink from "../perfil-cliente/ButtonPink";
 import { useForm } from "react-hook-form";
+import SelectGenreMusic from "../SelectGenreMusic/SelectGenreMusic";
+import SelectTypeEvents from "../SelectGenreMusic/SelectTypeEvents";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -10,7 +13,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function InformacionForm() {
+export default function InfoFormMusico() {
   const {
     register,
     handleSubmit,
@@ -69,12 +72,39 @@ export default function InformacionForm() {
             <SelectItem key={"Santa Catarina"}>Santa Catarina</SelectItem>
             <SelectItem key={"San Pedro"}>San Pedro</SelectItem>
           </Select>
+          <Textarea
+            variant="bordered"
+            isRequired
+            label="Descripción"
+            placeholder="Cuentanos sobre ti"
+            description="200 caracteres como máximo, solo texto simple."
+            className="w-[328px] lg:w-[30rem]"
+          />
+          <SelectGenreMusic width="w-[328px] lg:w-[30rem]" />
+          <SelectTypeEvents width="w-[328px] lg:w-[30rem]" />
+          <Input
+            className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
+            isRequired
+            variant="bordered"
+            radius="sm"
+            label="Costo por hora evento"
+            {...register("eventCost")}
+          />
+          <Input
+            className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
+            isRequired
+            variant="bordered"
+            radius="sm"
+            label="Días anticipación para agendar"
+            {...register("nombre")}
+          />
           {/* <Button
             type="submit"
             className={` bg-[#EF107D] text-white w-[328px] h-[50px] rounded text-base ${lato.className} lg:w-[30rem]`}
           >
             Guardar
           </Button> */}
+
           <ButtonPink
             width="w-[328px] lg:w-[30rem]"
             text="Guardar"

@@ -1,7 +1,7 @@
-import AsideCliente from "../../components/perfil-cliente/AsideCliente.jsx";
+import AsideMusico from "@/components/profile-musician/AsideMusico.jsx";
 import MenuMobileMusician from "@/components/profile-musician/MenuMobileMusician.jsx";
 import UpdateCardPicture from "../../components/UpdateCardPicture.jsx";
-import InformacionForm from "@/components/perfil-cliente/InformacionForm.jsx";
+import InfoFormMusico from "@/components/profile-musician/InfoFormMusico.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
 
 const josefine = Josefin_Sans({
@@ -10,12 +10,12 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function PerfilCliente() {
+export default function PerfilMusico() {
   return (
     <>
-      <MenuMobileMusician role="client" page="perfil" />
+      <MenuMobileMusician page="perfil" role="musico" />
       <main className="  flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]  ">
-        <AsideCliente page="perfil" />
+        <AsideMusico page="perfil" />
         <section className=" flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-screen lg:flex-row lg:gap-7 lg:items-start ">
           <div className=" flex flex-col items-center lg:items-start lg:ml-[4.5rem]">
             <h1
@@ -25,7 +25,7 @@ export default function PerfilCliente() {
             </h1>
             <UpdateCardPicture />
           </div>
-          <InformacionForm />
+          <InfoFormMusico />
         </section>
       </main>
     </>
