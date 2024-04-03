@@ -12,12 +12,10 @@ import {
 } from "@nextui-org/react";
 import { Josefin_Sans, Lato } from "next/font/google";
 import triadaLogo from "../../public/assets/svg/triada-logo.svg";
-import playCircle from "../../public/assets/svg/play_circle.svg";
 import Calendar from "../../public/assets/svg/calendar.svg";
 import Repertory from "../../public/assets/svg/repertory.svg";
 import Galery from "../../public/assets/svg/galery.svg";
 import AvatarImage from "../../public/assets/images/avatar-empty.webp";
-import AsideMusico from "./AsideMusico";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import PlayCircleColor from "@/public/assets/svg/playCircleColor";
@@ -30,7 +28,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function MenuMobileMusician({ page }) {
+export default function MenuMobileMusician({ page, role }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
@@ -76,7 +74,11 @@ export default function MenuMobileMusician({ page }) {
         className={`bg-[#081540] w-[245px] h-screen  flex flex-col items-center ${josefine.className}`}
       >
         <section className=" pt-11 flex flex-col gap-10 items-center">
-          <Link href="/perfil-musico">
+          <Link
+            href={`${
+              role === "client" ? "/perfil-cliente/" : "/perfil-musico/"
+            }`}
+          >
             <Button
               className={` w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ${
                 page === "perfil" ? "bg-[#312971]" : ""
@@ -100,7 +102,13 @@ export default function MenuMobileMusician({ page }) {
             </Button>
           </Link>
 
-          <Link href="/perfil-musico/eventos">
+          <Link
+            href={`${
+              role === "client"
+                ? "/perfil-cliente/eventos"
+                : "/perfil-musico/eventos"
+            }`}
+          >
             {/* <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
               <Image src={playCircle} className="" />
               <p className=" text-white text-base]">Eventos</p>
@@ -120,24 +128,32 @@ export default function MenuMobileMusician({ page }) {
               </p>
             </Button>
           </Link>
-          <Link href="/perfil-musico/disponibilidad">
-            <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
-              <Image src={Calendar} className="" />
-              <p className=" text-white text-base]">Disponibilidad</p>
-            </Button>
-          </Link>
-          <Link href="/perfil-musico/galeria">
-            <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
-              <Image src={Galery} className="" />
-              <p className=" text-white text-base]">Galería</p>
-            </Button>
-          </Link>
-          <Link href="/perfil-musico/repertorio">
-            <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
-              <Image src={Repertory} className="" />
-              <p className=" text-white text-base]">Repertorio</p>
-            </Button>
-          </Link>
+
+          {role === "musico" && (
+            <Link href="/perfil-musico/disponibilidad">
+              <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
+                <Image src={Calendar} className="" />
+                <p className=" text-white text-base]">Disponibilidad</p>
+              </Button>
+            </Link>
+          )}
+          {role === "musico" && (
+            <Link href="/perfil-musico/galeria">
+              <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
+                <Image src={Galery} className="" />
+                <p className=" text-white text-base]">Galería</p>
+              </Button>
+            </Link>
+          )}
+
+          {role === "musico" && (
+            <Link href="/perfil-musico/repertorio">
+              <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
+                <Image src={Repertory} className="" />
+                <p className=" text-white text-base]">Repertorio</p>
+              </Button>
+            </Link>
+          )}
         </section>
         <Button
           variant="bordered"

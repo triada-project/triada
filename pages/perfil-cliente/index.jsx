@@ -1,5 +1,5 @@
 import AsideCliente from "../../components/perfil-cliente/AsideCliente.jsx";
-import MenuMobileClient from "../../components/perfil-cliente/MenuMobileClient.jsx";
+import MenuMobileMusician from "@/components/profile-musician/MenuMobileMusician.jsx";
 import UpdateCardPicture from "../../components/UpdateCardPicture.jsx";
 import InformacionForm from "@/components/perfil-cliente/InformacionForm.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
@@ -13,7 +13,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function PerfilCliente() {
   return (
     <>
-      <MenuMobileClient />
+      <MenuMobileMusician role="client" page="perfil" />
       <main className="  flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]  ">
         <AsideCliente page="perfil" />
         <section className=" flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-screen lg:flex-row lg:gap-7 lg:items-start ">
