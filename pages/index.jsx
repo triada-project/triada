@@ -7,6 +7,7 @@ import AboutUsSection from "@/components/HomeComponents/AboutUsSectionComponents
 import GradientBar from "@/components/HomeComponents/GradientBarComponents/GradientBar";
 
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -14,11 +15,14 @@ export default function Home() {
     <>
       <NavBar />
 
+
+
       <main className="w-screen">
         <ImgSection />
         <CardsContainer />
         <AboutUsSection />
         <GradientBar />
+
 
       </main>
     </>
