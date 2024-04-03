@@ -238,7 +238,7 @@ export default function EventsTable() {
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Dropdown>
+            {/* <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
                 <Button
                   endContent={<ChevronDownIcon className="text-small" />}
@@ -261,7 +261,7 @@ export default function EventsTable() {
                   </DropdownItem>
                 ))}
               </DropdownMenu>
-            </Dropdown>
+            </Dropdown> */}
             {/* <Button color="primary" endContent={<PlusIcon />}>
               Add New
             </Button> */}
