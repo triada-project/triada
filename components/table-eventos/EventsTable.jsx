@@ -297,7 +297,7 @@ export default function EventsTable() {
 
   const bottomContent = React.useMemo(() => {
     return (
-      <div className="py-2 px-2 flex justify-between items-center">
+      <div className="py-2 px-2 flex  justify-end items-center">
         {/* <span className="w-[30%] text-small text-default-400">
           {selectedKeys === "all"
             ? "All items selected"
@@ -317,7 +317,7 @@ export default function EventsTable() {
             cursor: "bg-[#081540] text-white font-bold",
           }}
         />
-        <div className="hidden lg:flex w-[30%] justify-end gap-2">
+        {/* <div className="hidden lg:flex w-[30%] justify-end gap-2">
           <Button
             isDisabled={pages === 1}
             size="sm"
@@ -334,7 +334,7 @@ export default function EventsTable() {
           >
             Siguiente
           </Button>
-        </div>
+        </div> */}
       </div>
     );
   }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
