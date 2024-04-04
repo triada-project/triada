@@ -8,11 +8,11 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function GradientButton(props) {
   return (
-    <div className="pl-20 pt-4 sm:pl-40 ">
+    <div className="container px-[102px] pt-[21px] pb-[36px]  sm:pl-40 ">
       <button
-        className={`px-1 py-1 rounded-3xl bg-gradient-to-r from-[#FF01C0] via-purple-500 to-[#01FFFE] text-xl font-semibold ${josefine.className}`}
+        className={`px-1 py-1 w-[156px] rounded-3xl bg-gradient-to-r from-[#FF01C0] via-purple-500 to-[#01FFFE]  ${josefine.className}`}
       >
-        <h1 className=" py-2 flex gap-24 bg-gradient-to-r from-[#3F1150] to-[#184673] rounded-3xl px-5 text-[#29FEFD]">
+        <h1 className=" text-[#29FEFD] rounded-3xl py-[5px] flex justify-center text-[14px] gap-[28px] bg-gradient-to-r from-[#3F1150] to-[#184673]  ">
           {" "}
           {props.nameButton}{" "}
           <a href="">

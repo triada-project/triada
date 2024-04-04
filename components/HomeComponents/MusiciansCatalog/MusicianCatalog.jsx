@@ -11,11 +11,11 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function MusicianCatalog() {
   return (
-    <section id="musicianCatalog" className="bg-[#081540] px-[16px]">
+    <section id="musicianCatalog" className="bg-[#081540] pt-[56px] px-[16px]">
       <h1
-        className={`text-white  text-center pt-[56px] text-lg font-bold ${josefine.className}`}
+        className={`text-white text-center text-[15px] font-bold ${josefine.className}`}
       >
-        Catalogo Musical
+        Catálogo Musical
       </h1>
       <div className="flex flex-col justify-center sm:flex-row">
         <OptionalInputs
@@ -44,10 +44,14 @@ export default function MusicianCatalog() {
         />
         <div
           id="pinkButton"
-          className="pt-[19px] pb-[16px] flex justify-around sm:w-10 sm:mt-3  "
+          className="pt-[19px] pb-[64px]  px-[16px] w-[330px] h-[40px] flex justify-around sm:w-10 sm:mt-3  "
         >
-          <button className="rounded-lg bg-[#EE0075] w-[435px] h-[35px] flex flex-row justify-center gap-[18px]  text-white">
-            <h2 className="pt-1 sm:hidden">Buscar</h2>
+          <button className="text-white rounded-lg bg-[#EE0075] w-[328px] h-[35px] flex flex-row justify-center gap-[18px] ">
+            <h2
+              className={`pt-[6px] font-bold text-[14px] sm:hidden ${josefine.className} `}
+            >
+              Buscar
+            </h2>
             <a href="" className="pt-1">
               <svg
                 width="24"
@@ -77,10 +81,10 @@ export default function MusicianCatalog() {
       </div>
       <div
         id="cardsContainer"
-        className="  flex flex-col pt-[62px] gap-3 sm:flex-row sm:flex-wrap place-items-center     "
+        className="  flex flex-col px-[80px]  gap-3 sm:flex-row sm:flex-wrap place-items-center     "
       >
         <MusicianCard
-          musician="the beetles"
+          musician="The beetles"
           locality="Los angeles, USA"
           chip1="jazz"
           chip2="clasica"
@@ -91,31 +95,6 @@ export default function MusicianCatalog() {
           locality="Los angeles, USA"
           chip1="jazz"
           chip2="clasica"
-        />
-        <InvisibleMusicianCard
-          musician="the beetles"
-          locality="Los angeles, USA"
-          chip1="jazz"
-          chip2="clasica"
-        />
-        <InvisibleMusicianCard
-          musician="the beetles"
-          locality="Los angeles, USA"
-          chip1="jazz"
-          chip2="clasica"
-        />
-        <InvisibleMusicianCard
-          musician="the beetles"
-          locality="Los angeles, USA"
-          chip1="jazz"
-          chip2="clasica"
-        />
-        <InvisibleMusicianCard
-          musician="the beetles"
-          locality="Los angeles, USA"
-          chip1="jazz"
-          chip2="classic"
-
         />
       </div>
     </section>
