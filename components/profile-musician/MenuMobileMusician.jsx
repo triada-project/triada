@@ -65,7 +65,7 @@ export default function MenuMobileMusician({ page, role }) {
         />
         <NavbarBrand>
           <Link href="/">
-            <Image src={triadaLogo} width={50} height={34} />
+            <Image src={triadaLogo} width={66} height={50} />
           </Link>
         </NavbarBrand>
       </NavbarContent>
