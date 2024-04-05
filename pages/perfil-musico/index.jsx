@@ -14,7 +14,7 @@ export default function PerfilMusico() {
   return (
     <>
       <MenuMobileMusician page="perfil" role="musico" />
-      <main className="  flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]  ">
+      <main className=" bg-white max-w-[1440px] flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]  ">
         <AsideMusico page="perfil" />
         <section className=" flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-screen lg:flex-row lg:gap-7 lg:items-start ">
           <div className=" flex flex-col items-center lg:items-start lg:ml-[4.5rem]">
