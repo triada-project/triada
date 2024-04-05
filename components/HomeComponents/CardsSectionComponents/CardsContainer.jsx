@@ -1,4 +1,3 @@
-import { Card, CardHeader, CardFooter } from "@nextui-org/react";
 import { Josefin_Sans, Lato } from "next/font/google";
 import InfoCard from "./InfoCard";
 import InfoCard2 from "./InfoCard2";

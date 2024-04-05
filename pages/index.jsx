@@ -5,7 +5,7 @@ import ImgSection from "@/components/HomeComponents/ImgSectionComponents/ImgSect
 import CardsContainer from "@/components/HomeComponents/CardsSectionComponents/CardsContainer";
 import AboutUsSection from "@/components/HomeComponents/AboutUsSectionComponents/AboutUsSection";
 import GradientBar from "@/components/HomeComponents/GradientBarComponents/GradientBar";
-
+import MusicianCatalog from "@/components/HomeComponents/MusiciansCatalog/MusicianCatalog";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,13 +13,12 @@ export default function Home() {
   return (
     <>
       <NavBar />
-
-      <main className="w-screen">
+      <main className="w-screen ">
         <ImgSection />
         <CardsContainer />
         <AboutUsSection />
         <GradientBar />
-
+        <MusicianCatalog />
       </main>
     </>
   );
