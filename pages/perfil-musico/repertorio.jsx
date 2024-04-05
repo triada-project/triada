@@ -11,7 +11,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function Repertorio() {
   return (
     <>
-      <MenuMobileMusician page="repetorio" role="musico" />
+      <MenuMobileMusician page="repertorio" role="musico" />
       <main className="max-w-[1440px] bg-white  flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]">
         <AsideMusico page="repertorio" />
         <section className=" w-[90%] flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-screen sm:w-[80%] sm:ml-11 lg:ml-[72px] lg:items-start ">
