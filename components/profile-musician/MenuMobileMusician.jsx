@@ -10,6 +10,15 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@nextui-org/react";
+
 import { Josefin_Sans, Lato } from "next/font/google";
 import triadaLogo from "../../public/assets/svg/triada-logo.svg";
 import AvatarImage from "../../public/assets/images/avatar-empty.webp";
@@ -32,6 +41,7 @@ export default function MenuMobileMusician({ page, role }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -147,6 +157,7 @@ export default function MenuMobileMusician({ page, role }) {
               </Button>
             </Link>
           )}
+
           {role === "musico" && (
             <Link href="/perfil-musico/galeria">
               <Button
@@ -186,11 +197,58 @@ export default function MenuMobileMusician({ page, role }) {
           )}
         </section>
         <Button
+          onPress={onOpen}
           variant="bordered"
           className={` text-white w-[213px] h-12 rounded text-base mt-[60px] ${lato.className}`}
         >
           <p>Cerrar sesión</p>
         </Button>
+        <Modal
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          isDismissable={false}
+          isKeyboardDismissDisabled={true}
+        >
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader
+                  className={`flex flex-col gap-1 ${lato.className}`}
+                >
+                  ¿Estas seguro que quieres cerrar sesión?
+                </ModalHeader>
+                {/* <ModalBody>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nullam pulvinar risus non risus hendrerit venenatis.
+                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nullam pulvinar risus non risus hendrerit venenatis.
+                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                  </p>
+                  <p>
+                    Magna exercitation reprehenderit magna aute tempor cupidatat
+                    consequat elit dolor adipisicing. Mollit dolor eiusmod sunt
+                    ex incididunt cillum quis. Velit duis sit officia eiusmod
+                    Lorem aliqua enim laboris do dolor eiusmod. Et mollit
+                    incididunt nisi consectetur esse laborum eiusmod pariatur
+                    proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
+                  </p>
+                </ModalBody> */}
+                <ModalFooter>
+                  <Button color="danger" onPress={onClose}>
+                    Si
+                  </Button>
+                  <Button color="primary" onPress={onClose}>
+                    No
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
 
         {/* <section className=" pt-11 flex flex-col gap-10 items-center">
           <div className=" w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ">
