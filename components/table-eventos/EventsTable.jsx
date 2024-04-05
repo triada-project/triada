@@ -144,7 +144,7 @@ export default function EventsTable() {
         );
       case "estatus":
         return (
-          <div className=" flex gap-3 capitalize">
+          <div className=" flex items-center gap-2 capitalize">
             <Image src={statusColorMap[user.estatus]} width={20} height={20} />
             <p>{cellValue}</p>
           </div>
