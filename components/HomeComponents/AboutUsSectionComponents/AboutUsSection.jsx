@@ -14,7 +14,10 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function AboutUsSection() {
   return (
     <section className="xl:container xl:mx-auto">
-      <div className="w-screen bg-[#081540] grid sm:grid sm:grid-cols-2 sm:bg-[#9E1056] md:bg-[#081540] md:pb-16 ">
+      <div
+        id="usContainer"
+        className="w-screen bg-[#081540] grid sm:grid sm:grid-cols-2 sm:bg-[#9E1056] lg:bg-[#081540] md:pb-16 "
+      >
         <UsSection />
         <WhyUsSection />
       </div>
