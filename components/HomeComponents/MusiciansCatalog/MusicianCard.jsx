@@ -48,7 +48,7 @@ export default function MusicianCard(props) {
       >
         <button className="text-white rounded-lg bg-[#EE0075] w-[168px] h-[25px]  pb-[36px] flex flex-row justify-center sm:w-[180px] md:w-[300px] md:pt-1    ">
           <h2
-            className={` text-[14px] font-normal  sm:px-2 ${lato.className} `}
+            className={` text-[14px] font-normal sm:pt-2 sm:px-2 ${lato.className} `}
           >
             INFORMACIÓN
           </h2>

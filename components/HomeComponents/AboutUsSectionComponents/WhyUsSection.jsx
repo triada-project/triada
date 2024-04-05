@@ -60,7 +60,10 @@ export default function WhyUsSection() {
           </div>
         </div>
       </section>
-      <div id="imgContainer2" className=" flex md:pl-20 h-[430px] lg:pt-28  ">
+      <div
+        id="imgContainer2"
+        className="hidden sm:flex md:pl-20 h-[430px] lg:pt-28  "
+      >
         <img
           className=" hidden sm:flex  w-full  h-60  sm:h-[430px] sm:object-none md: md:mt-5 md:z-10  md:static md:rounded-2xl lg:justify-center lg:w-[542px] lg:h-[540px]"
           // Puede ser esta classname, que opinan ustedes bg-cover
