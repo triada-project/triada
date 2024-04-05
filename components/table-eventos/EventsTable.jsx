@@ -27,6 +27,7 @@ import Active from "../../public/assets/svg/active.svg";
 import Alert from "../../public/assets/svg/alert-circle.svg";
 import Finalized from "../../public/assets/svg/finalized.svg";
 import Rejected from "../../public/assets/svg/rejected.svg";
+import More from "../../public/assets/svg/add-circle.svg";
 
 const statusColorMap = {
   activo: Active,
@@ -160,7 +161,11 @@ export default function EventsTable() {
       case "más":
         return (
           <div className="relative flex justify-center items-center gap-2">
-            <Dropdown>
+            <a href="" className="  flex items-center gap-1">
+              <Image src={More} width={20} height={20} />
+              <p>Detalles</p>
+            </a>
+            {/* <Dropdown>
               <DropdownTrigger>
                 <Button isIconOnly size="sm" variant="light">
                   <VerticalDotsIcon className="text-default-300" />
@@ -168,10 +173,8 @@ export default function EventsTable() {
               </DropdownTrigger>
               <DropdownMenu>
                 <DropdownItem>Ver detalles</DropdownItem>
-                {/* <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem> */}
               </DropdownMenu>
-            </Dropdown>
+            </Dropdown> */}
           </div>
         );
       default:
