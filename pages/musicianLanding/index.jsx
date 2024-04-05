@@ -38,7 +38,7 @@ export default function musicianDetail() {
       {
         //<div className="p-5  bg-purple-700">
       }
-      <div className="grid grid-cols-1 sm:grid-cols-4 sm:grid-rows-12 grid-flow-col text-white text-center sm:text-left bg-yellow-700">
+      <div className="grid grid-cols-1 sm:grid-cols-4 sm:grid-rows-9 grid-flow-col text-white text-center sm:text-left bg-yellow-700">
         <div className="p-5 col-start-1 flex justify-center">
           <Avatar
             src={users.profilePicture[0].url}
@@ -47,7 +47,7 @@ export default function musicianDetail() {
           />
         </div>
 
-        <main className="col-start-1 sm:col-start-2 sm:col-span-4 row-span-12  p-5 bg-red-700">
+        <main className="col-start-1 sm:col-start-2 sm:col-span-3 row-span-9  p-5 bg-red-700">
           <div className="">
             <h1 className="{`${josefin.classname} text-black text-3xl font-semibold sm:mt-0 sm:text-[28px]">
               {users.name}
@@ -243,11 +243,11 @@ export default function musicianDetail() {
             </div>
           </div>
         </main>
-        <div className="col-start-1 p-5 sm:row-start-2 sm:row-span-12 bg-green-700">
+        <div className="col-start-1 p-5 sm:row-start-2 sm:row-span-9 bg-green-700">
           <AsideLeft />
         </div>
       </div>
-      <div>
+      <div className="row-start-10 col-span-4">
         <MainFooter />
       </div>
       {

@@ -4,7 +4,7 @@ import { Josefin_Sans, Lato } from "next/font/google";
 import Link from "next/link";
 import footerBgMobil from "./footerBgMobil.webp";
 import footerBg from "./footerBg.webp";
-import line from "./line.webp";
+import logoFooter from "./logoFooter.webp";
 import logoFacebook from "./logoFacebook.webp";
 import logoInstagram from "./logoInstagram.webp";
 import logoTwitter from "./logoTwitter.webp";
@@ -19,17 +19,15 @@ export default function MainFooter() {
   return (
     <>
       <div
-        className="relative "
+        className="relative top-[380px] sm:top-[110px] "
         style={{
           zIndex: -1,
-          top: 350,
-          left: 0,
         }}
       >
         <Image
           src={footerBgMobil}
           objectFit="contain"
-          className=" static vlock sm:hidden w-screen"
+          className=" static block sm:hidden w-screen"
         />
         <Image
           src={footerBg}
@@ -40,9 +38,11 @@ export default function MainFooter() {
 
       <div
         layout="absolute"
-        className="text-white flex flex-col text-center  sm:flex-row  sm:gap-6 sm:justify-center sm:items-center sm:mt-10 "
+        className="text-white flex flex-col text-center sm:flex-row  sm:gap-6 sm:justify-center sm:items-center sm:mt-10 "
       >
-        <p>logo</p>
+        <div className="flex justify-center ">
+          <Image src={logoFooter} alt="logoFooter" />
+        </div>
         <Link href="/musicianLanding" className="mt-4">
           Nosotros
         </Link>
@@ -52,8 +52,8 @@ export default function MainFooter() {
         <Link href="/musicianLanding" className="mt-4">
           Preguntas frecuentes
         </Link>
-
-        <p className="mt-4">(C) 2024</p>
+        <div className="bg-white h-[1px] ml-5 mt-5 mr-5 sm:hidden "></div>
+        <p className="mt-4">© 2024</p>
 
         <Link href="/musicianLanding" className="mt-4">
           Aviso de privacidad
