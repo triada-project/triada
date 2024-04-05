@@ -11,7 +11,7 @@ export default function CarouselVideos() {
   console.log(pics);
 
   return (
-    <div className="w-full h-full bg-blue-700 ">
+    <div className="w-full h-full ">
       <Swiper
         spaceBetween={2}
         slidesPerView={1}
