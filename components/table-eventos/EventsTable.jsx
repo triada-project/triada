@@ -22,20 +22,27 @@ import { SearchIcon } from "./SearchIcon";
 import { ChevronDownIcon } from "./ChevronDownIcon";
 import { columns, users, statusOptions } from "./data";
 import { capitalize } from "./utils";
+import Image from "next/image";
+import Active from "../../public/assets/svg/active.svg";
+import Alert from "../../public/assets/svg/alert-circle.svg";
+import Finalized from "../../public/assets/svg/finalized.svg";
+import Rejected from "../../public/assets/svg/rejected.svg";
+import More from "../../public/assets/svg/add-circle.svg";
 
 const statusColorMap = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
+  activo: Active,
+  pendiente: Alert,
+  finalizado: Finalized,
+  rechazado: Rejected,
 };
 
 const INITIAL_VISIBLE_COLUMNS = [
-  "músico",
+  "evento",
   "fecha",
   "horario",
   "ubicación",
   "costo",
-  "status",
+  "estatus",
   "más",
 ];
 
@@ -76,7 +83,7 @@ export default function EventsTable() {
       Array.from(statusFilter).length !== statusOptions.length
     ) {
       filteredUsers = filteredUsers.filter((user) =>
-        Array.from(statusFilter).includes(user.status)
+        Array.from(statusFilter).includes(user.estatus)
       );
     }
 
@@ -106,7 +113,7 @@ export default function EventsTable() {
     const cellValue = user[columnKey];
 
     switch (columnKey) {
-      case "músico":
+      case "evento":
         return (
           <User
             avatarProps={{ radius: "lg", src: user.avatar }}
@@ -136,21 +143,29 @@ export default function EventsTable() {
             </p> */}
           </div>
         );
-      case "status":
+      case "estatus":
         return (
-          <Chip
-            className="capitalize"
-            color={statusColorMap[user.status]}
-            size="sm"
-            variant="flat"
-          >
-            {cellValue}
-          </Chip>
+          <div className=" flex items-center gap-2 capitalize">
+            <Image src={statusColorMap[user.estatus]} width={20} height={20} />
+            <p>{cellValue}</p>
+          </div>
+          // <Chip
+          //   className="capitalize"
+          //   color={statusColorMap[user.estatus]}
+          //   size="sm"
+          //   variant="flat"
+          // >
+          //   {cellValue}
+          // </Chip>
         );
       case "más":
         return (
           <div className="relative flex justify-center items-center gap-2">
-            <Dropdown>
+            <a href="" className="  flex items-center gap-1">
+              <Image src={More} width={20} height={20} />
+              <p>Detalles</p>
+            </a>
+            {/* <Dropdown>
               <DropdownTrigger>
                 <Button isIconOnly size="sm" variant="light">
                   <VerticalDotsIcon className="text-default-300" />
@@ -158,10 +173,8 @@ export default function EventsTable() {
               </DropdownTrigger>
               <DropdownMenu>
                 <DropdownItem>Ver detalles</DropdownItem>
-                {/* <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem> */}
               </DropdownMenu>
-            </Dropdown>
+            </Dropdown> */}
           </div>
         );
       default:
@@ -231,9 +244,9 @@ export default function EventsTable() {
                 selectionMode="multiple"
                 onSelectionChange={setStatusFilter}
               >
-                {statusOptions.map((status) => (
-                  <DropdownItem key={status.uid} className="capitalize">
-                    {capitalize(status.name)}
+                {statusOptions.map((estatus) => (
+                  <DropdownItem key={estatus.uid} className="capitalize">
+                    {capitalize(estatus.name)}
                   </DropdownItem>
                 ))}
               </DropdownMenu>
@@ -297,7 +310,7 @@ export default function EventsTable() {
 
   const bottomContent = React.useMemo(() => {
     return (
-      <div className="py-2 px-2 flex justify-between items-center">
+      <div className="py-2 px-2 flex  justify-end items-center">
         {/* <span className="w-[30%] text-small text-default-400">
           {selectedKeys === "all"
             ? "All items selected"
@@ -317,7 +330,7 @@ export default function EventsTable() {
             cursor: "bg-[#081540] text-white font-bold",
           }}
         />
-        <div className="hidden lg:flex w-[30%] justify-end gap-2">
+        {/* <div className="hidden lg:flex w-[30%] justify-end gap-2">
           <Button
             isDisabled={pages === 1}
             size="sm"
@@ -334,7 +347,7 @@ export default function EventsTable() {
           >
             Siguiente
           </Button>
-        </div>
+        </div> */}
       </div>
     );
   }, [selectedKeys, items.length, page, pages, hasSearchFilter]);

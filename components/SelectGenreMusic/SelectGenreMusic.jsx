@@ -6,12 +6,19 @@ export default function SelectGenreMusic(props) {
   return (
     <Select
       isRequired
+      className={props.selectType === "home" ? ` text-[#29FEFD] dark ` : ""}
       items={musicalGenre}
-      label="Géneros Musicales"
+      label={
+        props.selectType === "home" ? "Género Musical" : "Géneros Musicales"
+      }
       variant="bordered"
       isMultiline={true}
-      selectionMode="multiple"
-      placeholder="Selecciona uno o más géneros"
+      selectionMode={props.selectType === "home" ? "single" : "multiple"}
+      placeholder={
+        props.selectType === "home"
+          ? "Selecciona un género musical"
+          : "Selecciona uno o más géneros musicales"
+      }
       //labelPlacement="outside"
       classNames={{
         base: `${props.width}`,
