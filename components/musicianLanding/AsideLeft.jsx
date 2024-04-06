@@ -14,14 +14,14 @@ export default function AsideLeft() {
   const { users } = dataMusician;
 
   return (
-    <aside className="ms:w-1/4 lg:w-1/4git p">
-      <div className="border-2 rounded-lg p-5 mt-10">
+    <aside className="ms:w-1/4 lg:w-1/4git ">
+      <div className="border-2 rounded-lg p-5 ">
         <h2
           className={`${josefin.classname} text-[#37474F] text-center font-semibold sm:text-[20px]`}
         >
-          Temas más representativos del repertorio
+          Temas más representativos
         </h2>
-        <div className="mt-2">
+        <div className="mt-2 ">
           <p
             className={`font-semibold text-inherit sm:text-[16px] ${lato.className}`}
           >
@@ -30,14 +30,7 @@ export default function AsideLeft() {
           <p>{users.repertory[0].author}</p>
           {users.repertory[0].eventType.map((nombre, index) => (
             // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
-            <Chip
-              classNames={{
-                base: "bg-[#081540] h-[32px] mt-1 ",
-                content: "text-[#29FEFD] ",
-              }}
-            >
-              {nombre}
-            </Chip>
+            <div className="gap gap-1 flex flex-nowrap"></div>
           ))}
         </div>
         <div className="mt-2">
@@ -48,15 +41,7 @@ export default function AsideLeft() {
           </p>
           <p>{users.repertory[1].author}</p>
           {users.repertory[1].eventType.map((nombre, index) => (
-            // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
-            <Chip
-              classNames={{
-                base: "bg-[#081540] h-[32px] mt-1 ",
-                content: "text-[#29FEFD] ",
-              }}
-            >
-              {nombre}
-            </Chip>
+            <div className="gap gap-1 flex flex-nowrap"></div>
           ))}
         </div>
         <div className="mt-2">
@@ -67,15 +52,7 @@ export default function AsideLeft() {
           </p>
           <p>{users.repertory[2].author}</p>
           {users.repertory[2].eventType.map((nombre, index) => (
-            // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
-            <Chip
-              classNames={{
-                base: "bg-[#081540] h-[32px] mt-1 ",
-                content: "text-[#29FEFD] ",
-              }}
-            >
-              {nombre}
-            </Chip>
+            <div className="gap gap-1 flex flex-nowrap"></div>
           ))}
         </div>
         <div className="mt-2">
@@ -86,15 +63,7 @@ export default function AsideLeft() {
           </p>
           <p>{users.repertory[3].author}</p>
           {users.repertory[3].eventType.map((nombre, index) => (
-            // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
-            <Chip
-              classNames={{
-                base: "bg-[#081540] h-[32px] mt-1 ",
-                content: "text-[#29FEFD] ",
-              }}
-            >
-              {nombre}
-            </Chip>
+            <div className="gap gap-1 flex flex-nowrap"></div>
           ))}
         </div>
         <div className="mt-2">
@@ -105,15 +74,7 @@ export default function AsideLeft() {
           </p>
           <p>{users.repertory[4].author}</p>
           {users.repertory[4].eventType.map((nombre, index) => (
-            // Usamos map para iterar sobre la lista de nombres y renderizar cada uno como un elemento <li>
-            <Chip
-              classNames={{
-                base: "bg-[#081540] h-[32px] mt-1 ",
-                content: "text-[#29FEFD] ",
-              }}
-            >
-              {nombre}
-            </Chip>
+            <div className="gap gap-1 flex flex-nowrap"></div>
           ))}
         </div>
         <div></div>

@@ -7,11 +7,16 @@ export default function SelectTypeEvents(props) {
     <Select
       isRequired
       items={typeEvents}
-      label="Tipo de eventos"
+      label={props.selectType === "home" ? "Tipo de evento" : "Tipos de evento"}
+      className={props.selectType === "home" ? ` text-[#29FEFD] dark ` : ""}
       variant="bordered"
       isMultiline={true}
-      selectionMode="multiple"
-      placeholder="Selecciona uno o más tipos de evento"
+      selectionMode={props.selectType === "home" ? "single" : "multiple"}
+      placeholder={
+        props.selectType === "home"
+          ? "Selecciona el tipo de tu evento"
+          : "Selecciona uno o más tipos de evento"
+      }
       //labelPlacement="outside"
       classNames={{
         base: `${props.width}`,

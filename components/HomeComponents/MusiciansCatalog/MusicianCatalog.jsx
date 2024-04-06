@@ -83,6 +83,7 @@ export default function MusicianCatalog() {
             </button>
           </div>
         </div>
+
       </section>
 
       <MusiciansCardsContainer />
@@ -91,6 +92,7 @@ export default function MusicianCatalog() {
           src="/assets/images/GradientCircle.png"
           alt=""
           className="w-[48px] h-[48px] "
+
         />
       </div>
     </>

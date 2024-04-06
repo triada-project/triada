@@ -1,14 +1,22 @@
 import { Josefin_Sans, Lato } from "next/font/google";
 import triadaLogo from "../../public/assets/svg/triada-logo.svg";
-import Calendar from "../../public/assets/svg/calendar.svg";
-import Repertory from "../../public/assets/svg/repertory.svg";
-import Galery from "../../public/assets/svg/galery.svg";
 import AvatarImage from "../../public/assets/images/avatar-empty.webp";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import PlayCircleColor from "@/public/assets/svg/playCircleColor";
+import CalendarColor from "@/public/assets/svg/CalendarColor.jsx";
+import GaleryColor from "@/public/assets/svg/GaleryColor";
+import RepertorioColor from "@/public/assets/svg/RepertoryColor";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -19,6 +27,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function AsideMusico({ page, hidden }) {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -91,30 +100,105 @@ export default function AsideMusico({ page, hidden }) {
           </Button>
         </Link>
         <Link href="/perfil-musico/disponibilidad">
-          <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
-            <Image src={Calendar} className="" />
-            <p className=" text-white text-base]">Disponibilidad</p>
+          <Button
+            className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
+              page === "disponibilidad" ? "bg-[#312971]" : ""
+            } `}
+          >
+            <CalendarColor colorFill={page} />
+            <p
+              className={` text-base ${
+                page === "disponibilidad" ? "text-[#29FEFD]" : "text-white"
+              } `}
+            >
+              Disponibilidad
+            </p>
           </Button>
         </Link>
         <Link href="/perfil-musico/galeria">
-          <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
-            <Image src={Galery} className="" />
-            <p className=" text-white text-base]">Galería</p>
+          <Button
+            className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
+              page === "galeria" ? "bg-[#312971]" : ""
+            } `}
+          >
+            <GaleryColor colorFill={page} />
+            <p
+              className={` text-base ${
+                page === "galeria" ? "text-[#29FEFD]" : "text-white"
+              } `}
+            >
+              Galería
+            </p>
           </Button>
         </Link>
         <Link href="/perfil-musico/repertorio">
-          <Button className=" rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ">
-            <Image src={Repertory} className="" />
-            <p className=" text-white text-base]">Repertorio</p>
+          <Button
+            className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
+              page === "repertorio" ? "bg-[#312971]" : ""
+            } `}
+          >
+            <RepertorioColor colorFill={page} />
+            <p
+              className={` text-base ${
+                page === "repertorio" ? "text-[#29FEFD]" : "text-white"
+              } `}
+            >
+              Repertorio
+            </p>
           </Button>
         </Link>
       </section>
       <Button
+        onPress={onOpen}
         variant="bordered"
         className={` text-white w-[213px] h-12 rounded text-base mt-[60px] ${lato.className}`}
       >
         <p>Cerrar sesión</p>
       </Button>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        isDismissable={false}
+        isKeyboardDismissDisabled={true}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className={`flex flex-col gap-1 ${lato.className}`}>
+                ¿Estas seguro que quieres cerrar sesión?
+              </ModalHeader>
+              {/* <ModalBody>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nullam pulvinar risus non risus hendrerit venenatis.
+                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nullam pulvinar risus non risus hendrerit venenatis.
+                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                  </p>
+                  <p>
+                    Magna exercitation reprehenderit magna aute tempor cupidatat
+                    consequat elit dolor adipisicing. Mollit dolor eiusmod sunt
+                    ex incididunt cillum quis. Velit duis sit officia eiusmod
+                    Lorem aliqua enim laboris do dolor eiusmod. Et mollit
+                    incididunt nisi consectetur esse laborum eiusmod pariatur
+                    proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
+                  </p>
+                </ModalBody> */}
+              <ModalFooter>
+                <Button color="danger" onPress={onClose}>
+                  Si
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  No
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </aside>
   );
 }

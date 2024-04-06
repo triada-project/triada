@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import NavBar from "@/components/Navbar";
-
 import ImgSection from "@/components/HomeComponents/ImgSectionComponents/ImgSection";
 import CardsContainer from "@/components/HomeComponents/CardsSectionComponents/CardsContainer";
 import AboutUsSection from "@/components/HomeComponents/AboutUsSectionComponents/AboutUsSection";
