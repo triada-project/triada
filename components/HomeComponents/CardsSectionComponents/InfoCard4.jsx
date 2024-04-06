@@ -9,7 +9,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function InfoCard4(props) {
   return (
-    <Card className="w-[240px] sm:w-[308px]  md:w-72 h-auto pb-4 bg-[#18244C] text-white   ">
+    <Card className="w-[240px] sm:w-[308px]  lg:w-[282px] h-auto pb-4 bg-[#18244C] text-white   ">
       <CardHeader className="flex pt-8 justify-center">
         <a href="">
           <svg

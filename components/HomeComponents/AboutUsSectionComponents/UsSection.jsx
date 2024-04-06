@@ -11,43 +11,39 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function UsSection() {
   return (
     <>
-      <div id="imgContainer" className=" border border-white flex lg:pl-20  ">
+      <div id="imgContainer" className="  flex lg:pl-20 lg:pb-[217px]  ">
         <img
-          className="object-cover w-[358px] h-[107px] sm:w-[380px] sm:h-[410px] sm:object-none  md:mt-5 md:z-10  md:static md:rounded-2xl lg:justify-center lg:w-[542px] lg:h-[540px]"
-          // Puede ser esta classname, que opinan ustedes bg-cover
+          className="object-cover w-[358px] h-[107px] sm:w-[380px] sm:h-[410px] sm:object-none  md:mt-5 md:z-10  md:static md:rounded-2xl lg:hidden"
           src="/assets/images/picture-nosotros.webp"
           alt="microphoneUsSection"
         ></img>
-        <div
-          id="pinkBox"
-          className=" rounded-2xl md:w-72 md:h-80 bg-[#9E1056] md:absolute md:z-0 md:-mx-5 lg:w-[455px] lg:h-[525px] lg:me-16  "
-        ></div>
-        <div
-          id="pinkBox2"
-          className=" rounded-2xl md:w-48 md:h-40 bg-[#9E1056] md:absolute md:z-0 md:mx-[134px] md:my-64 lg:w-[335px] lg:h-[325px] lg:ms-[230px]   "
-        ></div>
+        <img
+          className=" hidden lg:flex lg:object-none md:z-10  md:static  lg:justify-center lg:w-[599px] lg:h-[599px]"
+          src="/assets/images/ImagenDeNosotros.png"
+          alt="microphoneUsSection"
+        ></img>
       </div>
       <div
         id="infoContainer"
-        className=" border border-white container mx-auto flex flex-col  pt-[64px] sm:pt-[30px] sm:px-[31px]  "
+        className="  container mx-auto flex flex-col  pt-[64px] sm:pt-[30px] sm:px-[31px]  lg:px-[80px]  "
       >
         <div
           id="textContainer"
           className=" flex flex-col gap-3 px-[18px]  text-center sm:text-left sm:px-0    "
         >
           <h2
-            className={`text-white flex font-bold text-[16px] justify-center sm:justify-start  sm:text-[20px] lg:text-3xl  ${josefine.className}`}
+            className={`text-white flex font-bold text-[16px] justify-center sm:justify-start  sm:text-[20px] lg:text-[40px]  ${josefine.className}`}
           >
             Nosotros
           </h2>
           <h3
-            className={`text-white flex   font-normal text-[18px]  lg:text-3xl   ${lato.className}`}
+            className={`text-white flex   font-normal text-[18px]  lg:text-[20px]   ${lato.className}`}
           >
             Te conectamos con una variedad de artistas musicales con los que
             encontrarás la combinación perfecta de sonidos para tu evento.
           </h3>
           <h3
-            className={`text-white flex  pb-[11px] font-normal text-[18px] sm:pb-0 lg:text-3xl  ${lato.className}`}
+            className={`text-white flex  pb-[11px] font-normal text-[18px] sm:pb-0 lg:text-[20px] lg:pb-0  ${lato.className}`}
           >
             Únete a nosotros y haz que la música en vivo sea más accesible y
             emocionante para todos.
@@ -55,7 +51,7 @@ export default function UsSection() {
         </div>
         <div
           id="listContainer"
-          className=" flex flex-col pb-[116px] px-[69px] pt-[11px]  gap-[16px] sm:gap-3 sm:pl-8 sm:pt-[20px] sm:pb-0 lg:pt-8 "
+          className=" flex flex-col pb-[116px] px-[69px] pt-[11px]  gap-[16px] sm:gap-3 sm:pl-8 sm:pt-[20px] sm:pb-0 lg:pt-[50px] lg:px-0 lg:justify-start  "
         >
           <ElementList titleElement="Los mejores músicos" />
           <ElementList titleElement="Seguridad en pagos" />

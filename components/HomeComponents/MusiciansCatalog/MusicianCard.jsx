@@ -8,7 +8,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function MusicianCard(props) {
   return (
-    <div className="bg-[#312971] flex flex-col w-[200px] sm:w-[200px] md:w-[300px] pb-2 rounded-lg  ">
+    <div className="bg-[#312971] flex flex-col w-[200px] sm:w-[200px] md:w-[300px] pb-2 rounded-lg lg:w-[324px]  ">
       <div id="imgContainer" className=" h-[120px]  ">
         <img
           src="/assets/images/_CardMedia_.png"
@@ -46,7 +46,7 @@ export default function MusicianCard(props) {
         id="pinkButton"
         className=" px-[16px] pb-[36px] flex  sm:w-[200px] sm:ps-2 md:ps-3 md:w-96   "
       >
-        <button className="text-white rounded-lg bg-[#EE0075] w-[168px] h-[25px]  pb-[36px] flex flex-row justify-center sm:w-[180px] md:w-[300px] md:pt-1    ">
+        <button className="text-white rounded-lg bg-[#EE0075] w-[168px] h-[25px]  pb-[36px] flex flex-row justify-center sm:w-[180px] lg:w-[292px]  lg:px-[16px]  ">
           <h2
             className={` text-[14px] font-normal sm:pt-2 sm:px-2 ${lato.className} `}
           >

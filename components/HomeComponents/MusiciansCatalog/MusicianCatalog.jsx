@@ -2,6 +2,7 @@ import { Josefin_Sans, Lato } from "next/font/google";
 import OptionalInputs from "./OptionalInputs";
 import MusicianCard from "./MusicianCard";
 import MusiciansCardsContainer from "./MusiciansCardsContainer";
+import SelectHomeEvents from "../SelectHomeEvents";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -14,49 +15,34 @@ export default function MusicianCatalog() {
     <>
       <section
         id="musicianCatalog"
-        className="bg-[#081540] pt-[56px] px-[16px]"
+        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-[1440px] "
       >
-        <h1
-          className={`text-white text-center text-[15px] font-bold ${josefine.className}`}
+        <div id="titleContainer ">
+          <h1
+            className={`text-white text-center text-[15px] font-bold lg:text-[40px]  ${josefine.className}`}
+          >
+            Catálogo Musical
+          </h1>
+        </div>
+        <div
+          id="inputsContainer"
+          className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-[744px] sm:px-[56px] sm:pt-[35px] sm:flex-row lg:w-[1440px] lg:px-[183px]"
         >
-          Catálogo Musical
-        </h1>
-        <div className="flex flex-col justify-center sm:flex-row">
-          <OptionalInputs
-            placeholder="Tipo de evento"
-            option1="Boda"
-            option2="Cumpleaños"
-            option3="XV años"
-            option4="Bautizo"
-            option5="Chill"
-          />
-          <OptionalInputs
-            placeholder="Género"
-            option1="Banda"
-            option2="Cumbia"
-            option3="Rock"
-            option4="Norteño"
-            option5="Jazz"
-          />
-          <OptionalInputs
-            placeholder="Localidad"
-            option1="Monterrey"
-            option2="Guadalajara"
-            option3="CdMx"
-            option4="Zihuatanejo"
-            option5="León"
-          />
+          <SelectHomeEvents selectType="home" />
+          <SelectHomeEvents selectType="home" />
+          <SelectHomeEvents selectType="home" />
+
           <div
             id="pinkButton"
-            className="pt-[19px] pb-[64px]  px-[16px] w-[330px] h-[40px] flex justify-around sm:w-10 sm:mt-3  "
+            className="pt-[19px] pb-[64px]  px-[16px] w-[330px] h-[40px] flex justify-around sm:pt-[12px] sm:pb-0 sm:px-0 lg:w-[68px] lg:h-[61px] lg:pt-2 "
           >
-            <button className="text-white rounded-lg bg-[#EE0075] w-[328px] h-[35px] flex flex-row justify-center gap-[18px] ">
+            <button className="text-white rounded-lg bg-[#EE0075] w-[328px] h-[35px] flex flex-row sm:w-[50px] justify-center gap-[18px] lg:h-[45px] ">
               <h2
-                className={`pt-[6px] font-bold text-[14px] sm:hidden ${josefine.className} `}
+                className={`pt-[6px] font-bold text-[14px] sm:hidden  ${josefine.className} `}
               >
                 Buscar
               </h2>
-              <a href="" className="pt-1">
+              <a href="" className="pt-2">
                 <svg
                   width="24"
                   height="24"
@@ -83,16 +69,14 @@ export default function MusicianCatalog() {
             </button>
           </div>
         </div>
-
       </section>
 
       <MusiciansCardsContainer />
-      <div className="bg-[#081540] -mt-12 pe-[17px] sm:w-[744px] flex justify-end sm:pe-[35px] sm:-mt-0  sm:pt-[5px]">
+      <div className="bg-[#081540] -mt-12 pe-[17px] sm:w-[744px] flex justify-end sm:pe-[35px] sm:-mt-0  sm:pt-[5px] lg:w-[1440px] lg:pe-[80px] lg:-mt-12 lg:pb-2">
         <img
           src="/assets/images/GradientCircle.png"
           alt=""
           className="w-[48px] h-[48px] "
-
         />
       </div>
     </>
