@@ -1,5 +1,6 @@
 import React from "react";
 import { Josefin_Sans, Lato } from "next/font/google";
+import { Josefin_Sans, Lato } from "next/font/google";
 import { Avatar, AvatarIcon, Chip } from "@nextui-org/react";
 import NavBar from "@/components/Navbar";
 import dataMusician from "../../objects/musicianObject.json";
@@ -170,6 +171,9 @@ export default function musicianDetail() {
       <div className="">
         <MainFooter />
       </div>
+      {
+        //</div>
+      }
     </>
   );
 }

@@ -5,6 +5,7 @@ import CardsContainer from "@/components/HomeComponents/CardsSectionComponents/C
 import AboutUsSection from "@/components/HomeComponents/AboutUsSectionComponents/AboutUsSection";
 import GradientBar from "@/components/HomeComponents/GradientBarComponents/GradientBar";
 import MusicianCatalog from "@/components/HomeComponents/MusiciansCatalog/MusicianCatalog";
+import MainFooter from "@/components/mainFooter/MainFooter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function Home() {
         <AboutUsSection />
         <GradientBar />
         <MusicianCatalog />
+        <MainFooter />
       </main>
     </>
   );

@@ -19,7 +19,8 @@ export default function MainFooter() {
   return (
     <>
       <div
-        className="relative top-[380px] sm:top-[110px] "
+        id="footerContainer"
+        className="bg-[#081540] relative top-[380px] sm:top-[110px] lg:w-[1440px] "
         style={{
           zIndex: -1,
         }}
