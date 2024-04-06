@@ -97,17 +97,15 @@ export default function musicianDetail() {
               <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                 Videos
               </h2>
-              <div className="md:w-[640px] md:h-[360px] bg-red-700 ">
-                <CarouselVideos />
-              </div>
+
+              <CarouselVideos />
             </div>
             <div>
               <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                 Fotos
               </h2>
-              <div className="md:w-[640px] md:h-[360px] bg-red-700 ">
-                <CarouselFotos />
-              </div>
+
+              <CarouselFotos />
             </div>
             <div>
               <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
