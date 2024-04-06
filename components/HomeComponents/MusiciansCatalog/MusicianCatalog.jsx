@@ -15,18 +15,18 @@ export default function MusicianCatalog() {
     <>
       <section
         id="musicianCatalog"
-        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 "
+        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-[1440px] "
       >
-        <div id="titleContainer">
+        <div id="titleContainer ">
           <h1
-            className={`text-white text-center text-[15px] font-bold ${josefine.className}`}
+            className={`text-white text-center text-[15px] font-bold lg:text-[40px]  ${josefine.className}`}
           >
             Catálogo Musical
           </h1>
         </div>
         <div
           id="inputsContainer"
-          className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-[744px] sm:px-[56px]   sm:pt-[35px] sm:flex-row "
+          className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-[744px] sm:px-[56px] sm:pt-[35px] sm:flex-row lg:w-[1440px] lg:px-[183px]"
         >
           <SelectHomeEvents selectType="home" />
           <SelectHomeEvents selectType="home" />
@@ -34,15 +34,15 @@ export default function MusicianCatalog() {
 
           <div
             id="pinkButton"
-            className="pt-[19px] pb-[64px]  px-[16px] w-[330px] h-[40px] flex justify-around sm:pt-[12px] sm:pb-0 sm:px-0  "
+            className="pt-[19px] pb-[64px]  px-[16px] w-[330px] h-[40px] flex justify-around sm:pt-[12px] sm:pb-0 sm:px-0 lg:w-[68px] lg:h-[61px] lg:pt-2 "
           >
-            <button className="text-white rounded-lg bg-[#EE0075] w-[328px] h-[35px] flex flex-row sm:w-[50px] justify-center gap-[18px] ">
+            <button className="text-white rounded-lg bg-[#EE0075] w-[328px] h-[35px] flex flex-row sm:w-[50px] justify-center gap-[18px] lg:h-[45px] ">
               <h2
-                className={`pt-[6px] font-bold text-[14px] sm:hidden ${josefine.className} `}
+                className={`pt-[6px] font-bold text-[14px] sm:hidden  ${josefine.className} `}
               >
                 Buscar
               </h2>
-              <a href="" className="pt-1">
+              <a href="" className="pt-2">
                 <svg
                   width="24"
                   height="24"
@@ -72,7 +72,7 @@ export default function MusicianCatalog() {
       </section>
 
       <MusiciansCardsContainer />
-      <div className="bg-[#081540] -mt-12 pe-[17px] sm:w-[744px] flex justify-end sm:pe-[35px] sm:-mt-0  sm:pt-[5px]">
+      <div className="bg-[#081540] -mt-12 pe-[17px] sm:w-[744px] flex justify-end sm:pe-[35px] sm:-mt-0  sm:pt-[5px] lg:w-[1440px] lg:pe-[80px] lg:-mt-12 lg:pb-2">
         <img
           src="/assets/images/GradientCircle.png"
           alt=""

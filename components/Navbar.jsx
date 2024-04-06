@@ -23,7 +23,7 @@ export default function NavBar() {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      className="lg:w-full bg-[#081540] dark text-foreground"
+      className=" bg-[#081540] dark text-foreground lg:w-[1440px]"
     >
       <NavbarContent className="">
         <NavbarMenuToggle

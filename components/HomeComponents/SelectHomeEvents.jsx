@@ -13,11 +13,11 @@ export default function SelectHomeEvents(props) {
       isMultiline={true}
       selectionMode={props.selectType === "home" ? "single" : "multiple"}
       //labelPlacement="outside"
-      classNames="w-[328px] sm:w-[164px] sm:h-[45px]"
+      classNames="w-[328px] sm:w-[164px] sm:h-[45px] lg:w-[300px] "
       // className={` h-16 ${props.width}`}
       renderValue={(items) => {
         return (
-          <div className="flex flex-wrap pt-2  gap-2">
+          <div className="flex flex-wrap pt-2  gap-2 ">
             {items.map((item) => (
               <Chip key={item.key} className=" bg-[#081540] text-white">
                 {item.data.typeEvents}

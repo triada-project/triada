@@ -19,7 +19,6 @@ export default function Home() {
         <AboutUsSection />
         <GradientBar />
         <MusicianCatalog />
-        <MainFooter />
       </main>
     </>
   );
