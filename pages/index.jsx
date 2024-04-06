@@ -5,6 +5,8 @@ import CardsContainer from "@/components/HomeComponents/CardsSectionComponents/C
 import AboutUsSection from "@/components/HomeComponents/AboutUsSectionComponents/AboutUsSection";
 import GradientBar from "@/components/HomeComponents/GradientBarComponents/GradientBar";
 import MusicianCatalog from "@/components/HomeComponents/MusiciansCatalog/MusicianCatalog";
+import MusicianCard from "@/components/HomeComponents/MusiciansCatalog/MusicianCard";
+import MusiciansCardsContainer from "@/components/HomeComponents/MusiciansCatalog/MusiciansCardsContainer";
 
 const inter = Inter({ subsets: ["latin"] });
 

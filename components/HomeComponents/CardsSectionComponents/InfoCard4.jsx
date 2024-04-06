@@ -9,7 +9,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function InfoCard4(props) {
   return (
-    <Card className="w-80 sm:w-60  md:w-72 h-auto pb-4 bg-[#18244C] text-white   ">
+    <Card className="w-[240px] sm:w-[308px]  md:w-72 h-auto pb-4 bg-[#18244C] text-white   ">
       <CardHeader className="flex pt-8 justify-center">
         <a href="">
           <svg
@@ -29,12 +29,12 @@ export default function InfoCard4(props) {
         </a>
       </CardHeader>
       <div
-        className={`flex -mt-1 justify-center font-bold ${josefine.className}`}
+        className={`flex -mt-1 justify-center font-bold text-[16px] ${josefine.className}`}
       >
         <p>{props.titleCard}</p>
       </div>
       <div
-        className={`flex pt-2 px-2 justify-center font-thin  ${lato.className}`}
+        className={`flex pt-2 px-2 justify-center font-thin text-[14px] sm:px-[36px]  ${lato.className}`}
       >
         <p className="flex text-center text-balance ">{props.paragraph}</p>
       </div>
