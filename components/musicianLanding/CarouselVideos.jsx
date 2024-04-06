@@ -1,25 +1,20 @@
-// Import Swiper React components
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+//import "./styles.css";
+import { Navigation } from "swiper/modules";
 import dataMusician from "../../objects/musicianObject.json";
 import YouTube from "react-youtube";
-// Import Swiper styles
-import "swiper/css";
 
 export default function CarouselVideos() {
   const { users } = dataMusician;
-  const pics = users.multimedia.pics;
-  console.log(pics);
 
   return (
-    <div className="w-full h-full ">
-      <Swiper
-        spaceBetween={2}
-        slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
+    <>
+      <Swiper navigation={true} modules={[Navigation]}>
         <SwiperSlide>
-          <YouTube videoId="kZKcHnQXksw" />
+          <YouTube videoId="kZKcHnQXksw" className="h-60" />
         </SwiperSlide>
         <SwiperSlide>
           <YouTube videoId="NsvDK26WvA0" />
@@ -31,6 +26,6 @@ export default function CarouselVideos() {
           <YouTube videoId="VqN8X0RGp-c" />
         </SwiperSlide>
       </Swiper>
-    </div>
+    </>
   );
 }
