@@ -23,7 +23,7 @@ export default function AsideLeft() {
         >
           Temas más representativos
         </h2>
-        <div className="mt-2 flex flex-row justify-center items-center">
+        <div className="mt-2 flex flex-row items-center">
           <span>
             <Image src={play} alt="play" />
           </span>
@@ -36,8 +36,58 @@ export default function AsideLeft() {
             <p>{users.repertory[0].author}</p>
           </span>
         </div>
-
-        <div></div>
+        <div className="mt-2 flex flex-row items-center">
+          <span>
+            <Image src={play} alt="play" />
+          </span>
+          <span className="ml-5">
+            <p
+              className={`font-semibold text-inherit sm:text-[16px] ${lato.className}`}
+            >
+              {users.repertory[1].title}
+            </p>
+            <p>{users.repertory[1].author}</p>
+          </span>
+        </div>
+        <div className="mt-2 flex flex-row items-center">
+          <span>
+            <Image src={play} alt="play" />
+          </span>
+          <span className="ml-5">
+            <p
+              className={`font-semibold text-inherit sm:text-[16px] ${lato.className}`}
+            >
+              {users.repertory[2].title}
+            </p>
+            <p>{users.repertory[2].author}</p>
+          </span>
+        </div>
+        <div className="mt-2 flex flex-row items-center">
+          <span>
+            <Image src={play} alt="play" />
+          </span>
+          <span className="ml-5">
+            <p
+              className={`font-semibold text-inherit sm:text-[16px] ${lato.className}`}
+            >
+              {users.repertory[3].title}
+            </p>
+            <p>{users.repertory[3].author}</p>
+          </span>
+        </div>
+        <div className="mt-2 flex flex-row items-center">
+          <span>
+            <Image src={play} alt="play" />
+          </span>
+          <span className="ml-5">
+            <p
+              className={`font-semibold text-inherit sm:text-[16px] ${lato.className}`}
+            >
+              {users.repertory[4].title}
+            </p>
+            <p>{users.repertory[4].author}</p>
+          </span>
+        </div>
       </div>
       <div className="border-2 rounded-lg p-5 mt-10 shadow-xl">
         <h2
