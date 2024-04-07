@@ -11,15 +11,11 @@ const lato = Lato({
 
 export default function RepertoryCard() {
   return (
-    <div className=" w-56 h-36 border border-[#EAEAEA] px-4 py-4">
+    <div className=" w-56 h-36 border border-[#EAEAEA] px-4 py-4 shadow-lg hover:-translate-y-1 hover:scale-110 duration-300">
       <section className=" flex flex-col gap-3">
-        <Image
-          src={closeCard}
-          alt="close"
-          width={20}
-          height={20}
-          className=" place-self-end"
-        />
+        <button className=" place-self-end">
+          <Image src={closeCard} alt="close" width={20} height={20} />
+        </button>
         <div className=" flex gap-1 items-center">
           <Image src={noteMusic} alt="note" width={20} height={20} />
           <p className={`${lato.className} text-base`}>Enter Sandman</p>
