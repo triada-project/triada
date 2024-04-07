@@ -11,7 +11,7 @@ const lato = Lato({
 
 export default function RepertoryCard({ song, author }) {
   return (
-    <div className=" w-56 h-36 border border-[#EAEAEA] px-4 py-4 shadow-lg hover:-translate-y-1 hover:scale-110 duration-300">
+    <div className=" rounded-xl w-56 h-36 border border-[#EAEAEA] px-4 py-4 shadow-lg hover:-translate-y-1 hover:scale-110 duration-300">
       <section className=" flex flex-col gap-3">
         <button className=" place-self-end">
           <Image src={closeCard} alt="close" width={20} height={20} />
