@@ -9,7 +9,7 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-export default function RepertoryCard() {
+export default function RepertoryCard({ song, author }) {
   return (
     <div className=" w-56 h-36 border border-[#EAEAEA] px-4 py-4 shadow-lg hover:-translate-y-1 hover:scale-110 duration-300">
       <section className=" flex flex-col gap-3">
@@ -18,11 +18,15 @@ export default function RepertoryCard() {
         </button>
         <div className=" flex gap-1 items-center">
           <Image src={noteMusic} alt="note" width={20} height={20} />
-          <p className={`${lato.className} text-base`}>Enter Sandman</p>
+          <p className={`${lato.className} w-[160px] text-base truncate ...`}>
+            {song}
+          </p>
         </div>
         <div className=" flex gap-1 items-center">
           <Image src={star} alt="note" width={20} height={20} />
-          <p className={`${lato.className} text-base`}>Metallica</p>
+          <p className={`${lato.className} w-[160px] text-base truncate ...`}>
+            {author}
+          </p>
         </div>
       </section>
     </div>

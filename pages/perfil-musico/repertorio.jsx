@@ -5,6 +5,11 @@ import RepertoryCard from "@/components/RepertoryCard";
 import { Input } from "@nextui-org/react";
 import ButtonPink from "@/components/perfil-cliente/ButtonPink";
 import { useForm } from "react-hook-form";
+import dataMusician from "@/objects/musicianObject.json";
+
+//console.log(dataMusician.users.repertory);
+const repertory = dataMusician.users.repertory;
+//console.log(repertory);
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -68,14 +73,14 @@ export default function Repertorio() {
             />
           </form>
           <article className=" flex flex-col gap-7 lg:w-full lg:flex-row lg:flex-wrap lg:gap-[73px]">
-            <RepertoryCard />
-            <RepertoryCard />
-            <RepertoryCard />
-            <RepertoryCard />
-            <RepertoryCard />
-            <RepertoryCard />
-            <RepertoryCard />
-            <RepertoryCard />
+            {repertory.map((song) => (
+              <RepertoryCard
+                key={song.author}
+                song={song.title}
+                author={song.author}
+              />
+            ))}
+            {/* <RepertoryCard /> */}
           </article>
         </section>
       </main>
