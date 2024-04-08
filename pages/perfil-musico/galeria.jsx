@@ -20,6 +20,10 @@ export default function PerfilMusico() {
           >
             Galería
           </h1>
+          <p className={`${lato} text-[#455A64]`}>
+            Sube fotos y videos de tus presentaciones para que el público
+            conozca tu trabajo.
+          </p>
         </section>
       </main>
     </>
