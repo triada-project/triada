@@ -42,9 +42,12 @@ export default function musicianDetail() {
               className="w-80 h-60 rounded-lg shadow-xl  "
             />
           </div>
+
           <main className="col-start-1 sm:col-start-3 sm:col-span-4 md:col-start-2 md:col-span-3 row-span-9  p-5 ">
             <div className="">
-              <h1 className="{`${josefin.classname} text-black text-3xl font-semibold sm:mt-0 sm:text-[28px]">
+              <h1
+                className={`${josefin.classname} text-black text-3xl font-semibold sm:mt-0 sm:text-[28px]`}
+              >
                 {users.name}
               </h1>
               <h3 className="text-[#455A64]">
@@ -166,25 +169,27 @@ export default function musicianDetail() {
               <EventForm />
             </div>
           </main>
-          <div className="col-start-1 sm:col-span-2 md:col-span-1 p-5 sm:row-start-2 sm:row-span-9 ">
-            <AsideLeft />
-            <div className="flex justify-center mt-10 sm:hidden">
-              <ButtonPink
-                width="w-[280px] lg:w-[30rem]"
-                text="Haz tu reservación"
-                type="submit"
-              />
-            </div>
-            <EventInput />
-          </main>
+        </div>
+        <div className="col-start-1 sm:col-span-2 md:col-span-1 p-5 sm:row-start-2 sm:row-span-9 ">
+          <AsideLeft />
+          <div className="flex justify-center mt-10 sm:hidden">
+            <ButtonPink
+              width="w-[280px] lg:w-[30rem]"
+              text="Haz tu reservación"
+              type="submit"
+            />
+          </div>
+          <EventInput />
+
           <div className="col-start-1 p-5 sm:row-start-2 sm:row-span-9 ">
             <AsideLeft />
           </div>
         </div>
       </div>
       <div className="">
-      <div className="">
-        <MainFooter />
+        <div className="">
+          <MainFooter />
+        </div>
       </div>
     </>
   );
