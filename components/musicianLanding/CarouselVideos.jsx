@@ -2,20 +2,18 @@ import React from "react";
 import ImageGallery from "react-image-gallery";
 // import stylesheet if you're not already using CSS @import
 import "react-image-gallery/styles/css/image-gallery.css";
+import YouTube from "react-youtube";
 
 export default function CarouselVideos() {
   const images = [
     {
       original: "https://picsum.photos/id/1018/1000/600/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
     },
     {
       original: "https://picsum.photos/id/1015/1000/600/",
-      thumbnail: "https://picsum.photos/id/1015/250/150/",
     },
     {
       original: "https://picsum.photos/id/1019/1000/600/",
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
     },
   ];
   return <ImageGallery items={images} />;
@@ -37,7 +35,7 @@ export default function CarouselVideos() {
     <>
       <Swiper navigation={true} modules={[Navigation]}>
         <SwiperSlide>
-          <YouTube videoId="kZKcHnQXksw" className="h-60" />
+          <YouTube videoId="kZKcHnQXksw"  />
         </SwiperSlide>
         <SwiperSlide>
           <YouTube videoId="NsvDK26WvA0" />
