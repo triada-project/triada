@@ -1,10 +1,11 @@
 import React from "react";
 import { Josefin_Sans, Lato } from "next/font/google";
-import dataMusician from "../../objects/musicianObject.json";
 import { Avatar, Chip } from "@nextui-org/react";
 import { Rating } from "@smastrom/react-rating";
+import dataMusician from "../../objects/musicianObject.json";
 import play from "./play.webp";
 import Image from "next/image";
+import ButtonPink from "@/components/musicianLanding/ButtonPink";
 
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -116,6 +117,13 @@ export default function AsideLeft() {
           </div>
           <p>{users.coments[0].coment}</p>
         </div>
+      </div>
+      <div className="flex justify-center mt-10 sm:hidden">
+        <ButtonPink
+          width="w-[280px] lg:w-[30rem]"
+          text="Haz tu reservación"
+          type="submit"
+        />
       </div>
     </aside>
   );

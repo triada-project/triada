@@ -1,6 +1,5 @@
 import React from "react";
 import { Josefin_Sans, Lato } from "next/font/google";
-import { Josefin_Sans, Lato } from "next/font/google";
 import { Avatar, AvatarIcon, Chip } from "@nextui-org/react";
 import NavBar from "@/components/Navbar";
 import dataMusician from "../../objects/musicianObject.json";
@@ -12,7 +11,6 @@ import AsideLeft from "@/components/musicianLanding/AsideLeft";
 import MainFooter from "../../components/mainFooter/MainFooter";
 import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
-import ButtonPink from "@/components/musicianLanding/ButtonPink";
 
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -34,7 +32,7 @@ export default function musicianDetail() {
     <>
       <NavBar />
       <div className="lg:ml-[80px] lg:mr-[80px] ">
-        <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-4 md:grid-rows-9 grid-flow-col text-white  ">
+        <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-4 md:grid-rows-9 grid-flow-col  ">
           <div className="p-5 col-start-1 sm:col-span-2 md:col-span-1 flex justify-center ">
             <Avatar
               src={users.profilePicture[0].url}
@@ -108,80 +106,70 @@ export default function musicianDetail() {
                 <CarouselFotos />
               </span>
             </div>
-            <div className="md:flex md:flex-row md:gap-56">
-              <div>
-                <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
-                  Requerimientos
-                </h2>
-                <div className="text-black">
-                  <ul>
-                    <div className="flex items-center ">
-                      <Image src={check} alt="check" width={20} height={20} />
-                      <li className="ml-2">Piano de 88 teclas afinado</li>
-                    </div>
-                    <div className="flex items-center">
-                      <Image src={check} alt="check" width={20} height={20} />
-                      <li className="ml-2">
-                        Camerino con iluminación y espejo
-                      </li>
-                    </div>
-                    <div className="flex items-center">
-                      <Image src={check} alt="check" width={20} height={20} />
-                      <li className="ml-2">Catering ligero</li>
-                    </div>
-                    <div className="flex items-center">
-                      <Image src={check} alt="check" width={20} height={20} />
-                      <li className="ml-2">Agua</li>
-                    </div>
-                  </ul>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
-                    Tiempo máximo de concierto
-                  </h2>
-                  <Chip
-                    classNames={{
-                      base: "bg-[#081540] h-[32px] mt-2",
-                      content: "text-[#29FEFD]",
-                    }}
-                  >
-                    {users.maxHours} horas
-                  </Chip>
-                </div>
-                <div>
-                  <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
-                    Costo por hora
-                  </h2>
-                  <Chip
-                    classNames={{
-                      base: "bg-[#081540] h-[32px] mt-2",
-                      content: "text-[#29FEFD]",
-                    }}
-                  >
-                    {users.eventFee}
-                  </Chip>
-                </div>
+            {
+              //<div className="md:flex md:flex-row md:gap-56">
+            }
+            <div>
+              <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
+                Requerimientos
+              </h2>
+              <div className="text-black">
+                <ul>
+                  <div className="flex items-center ">
+                    <Image src={check} alt="check" width={20} height={20} />
+                    <li className="ml-2">Piano de 88 teclas afinado</li>
+                  </div>
+                  <div className="flex items-center">
+                    <Image src={check} alt="check" width={20} height={20} />
+                    <li className="ml-2">Camerino con iluminación y espejo</li>
+                  </div>
+                  <div className="flex items-center">
+                    <Image src={check} alt="check" width={20} height={20} />
+                    <li className="ml-2">Catering ligero</li>
+                  </div>
+                  <div className="flex items-center">
+                    <Image src={check} alt="check" width={20} height={20} />
+                    <li className="ml-2">Agua</li>
+                  </div>
+                </ul>
               </div>
             </div>
+            <div>
+              <div>
+                <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
+                  Tiempo máximo de concierto
+                </h2>
+                <Chip
+                  classNames={{
+                    base: "bg-[#081540] h-[32px] mt-2",
+                    content: "text-[#29FEFD]",
+                  }}
+                >
+                  {users.maxHours} horas
+                </Chip>
+              </div>
+              <div>
+                <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
+                  Costo por hora
+                </h2>
+                <Chip
+                  classNames={{
+                    base: "bg-[#081540] h-[32px] mt-2",
+                    content: "text-[#29FEFD]",
+                  }}
+                >
+                  {users.eventFee}
+                </Chip>
+              </div>
+            </div>
+            {
+              //</div>
+            }
             <div className="mt-5 shadow-xl">
               <EventForm />
             </div>
           </main>
-        </div>
-        <div className="col-start-1 sm:col-span-2 md:col-span-1 p-5 sm:row-start-2 sm:row-span-9 ">
-          <AsideLeft />
-          <div className="flex justify-center mt-10 sm:hidden">
-            <ButtonPink
-              width="w-[280px] lg:w-[30rem]"
-              text="Haz tu reservación"
-              type="submit"
-            />
-          </div>
-          <EventInput />
-
-          <div className="col-start-1 p-5 sm:row-start-2 sm:row-span-9 ">
+          <div className="col-start-1 sm:col-span-2 md:col-span-1 p-5 sm:row-start-2 sm:row-span-9 ">
             <AsideLeft />
           </div>
         </div>
