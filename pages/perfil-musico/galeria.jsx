@@ -33,9 +33,6 @@ export default function PerfilMusico() {
             Sube fotos y videos de tus presentaciones para que el público
             conozca tu trabajo.
           </p>
-          <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
-            Fotos
-          </h2>
 
           <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
             Videos
