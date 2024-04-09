@@ -30,7 +30,7 @@ export default function musicianDetail() {
 
   return (
     <>
-      <main className="max-w-[1440px]">
+      <main className="max-w-[1440px] m-auto">
         <NavBar />
         <div className="lg:ml-[80px] lg:mr-[80px] ">
           <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-4 md:grid-rows-9 grid-flow-col  ">
