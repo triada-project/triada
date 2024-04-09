@@ -7,18 +7,18 @@ const josefine = Josefin_Sans({
 
 export default function GradientLogInButton(props) {
   return (
-    <div className="flex justify-center  sm:hidden ">
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-4 py-2 flex   justify-center sm:hidden ">
       <button
         className={`px-1 py-1 rounded-3xl bg-gradient-to-r from-[#FF01C0] via-purple-500 to-[#01FFFE] text-xl font-semibold ${josefine.className}`}
       >
-        <h1 className=" py-2 flex gap-24 bg-black rounded-3xl px-5 text-[#29FEFD]">
+        <h1 className="bg-black text-[#29FEFD] rounded-3xl py-1 px-[18px] flex gap-[31px] text-[14px]    ">
           {" "}
           {props.nameButton}{" "}
           <a href="">
             <svg
               className=""
-              width="24"
-              height="24"
+              width="22"
+              height="22"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
