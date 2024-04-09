@@ -1,14 +1,11 @@
-import ModalCliente from "@/components/Modales/ModalCliente";
-import ModalMusico from "@/components/Modales/ModalMusico";
-
-
-
+import ModalCliente from "@/components/ModalCliente";
+import NavBarPrueba from "@/components/NavbarPrueba";
 
 export default function Index() {
   return (
    <>
+        <NavBarPrueba></NavBarPrueba>
         <ModalCliente></ModalCliente>
-        <ModalMusico></ModalMusico>
    </>
   
   );
