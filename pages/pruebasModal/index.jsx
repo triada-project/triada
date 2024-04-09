@@ -7,7 +7,7 @@ import ModalMusico from "@/components/Modales/ModalMusico";
 export default function Index() {
   return (
    <>
-        <ModalCliente></ModalCliente>
+        <ModalCliente></ModalCliente> 
         <ModalMusico></ModalMusico>
    </>
   
