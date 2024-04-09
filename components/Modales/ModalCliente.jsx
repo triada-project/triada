@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { Card, CardHeader, CardBody, CardFooter, Image, Chip } from "@nextui-org/react";
 
-
 import { Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 // import Events from "../objects/events.json";
@@ -11,6 +10,8 @@ import Events from "../../objects/events.json";
 
 // condicional rendering
 import { Josefin_Sans, Lato, } from "next/font/google";
+import More from "../../public/assets/svg/add-circle";
+
 
 const josefine = Josefin_Sans({ weight: ["300", "400", "600", "700"], subsets: ["latin"] });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
@@ -38,9 +39,9 @@ export default function ModalCliente() {
     <>
       <div className="flex flex-wrap gap-3 p-5">
 
-       
-               
-        <Button key={size} onPress={() => handleOpen(size)}>Detalle evento </Button>
+                      
+        <Button className="bg-white  p-0"  key={size} onPress={() => handleOpen(size)}>  <More ></More> <p>  Detalles  </p>   </Button>
+        
       
       </div>
       <Modal 
