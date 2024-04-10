@@ -24,7 +24,6 @@
       }
     ],
     "ranking": 5,
-    "date": "2024-05-12",
     "eventType": ["Conciertos en recintos", "Coorporativos"],
     "musicalGenere": ["Clásico", "Piano", "Música tradicional mexicana"],
     "repertory": [
@@ -62,6 +61,7 @@
           "https://tecolotito.elsiglodetorreon.com.mx/i/2022/16/1609825.jpeg",
           "https://palabrasclaras.mx/wp-content/uploads/2022/12/ARGENTINA-DURAN-1068x801.jpeg",
           "https://diarioistmo.blob.core.windows.net/images/2022/11/19/299959279-607050807530659-3915973587644233652-n.jpg"
+
         ],
         "videos": [
           "https://www.youtube.com/watch?v=00TLrFv8ppI&t=1332s",
@@ -129,3 +129,4 @@
     ]
   }
 }
+

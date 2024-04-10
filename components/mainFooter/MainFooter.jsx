@@ -20,9 +20,9 @@ export default function MainFooter() {
     <>
       <div
         id="footerContainer"
-        className="bg-[#081540] relative top-[380px] sm:top-[110px] lg:w-[1440px] "
+        className=" relative top-[380px] sm:top-[110px] lg:w-[1440px] "
         style={{
-          zIndex: -1,
+          zIndex: 0,
         }}
       >
         <Image
@@ -40,6 +40,9 @@ export default function MainFooter() {
       <div
         layout="absolute"
         className="text-white flex flex-col text-center sm:flex-row  sm:gap-6 sm:justify-center sm:items-center sm:mt-10 "
+        style={{
+          zIndex: +1,
+        }}
       >
         <div className="flex justify-center ">
           <Image src={logoFooter} alt="logoFooter" />
