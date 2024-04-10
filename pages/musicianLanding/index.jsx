@@ -12,6 +12,7 @@ import MainFooter from "../../components/mainFooter/MainFooter";
 import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
 
+
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
@@ -20,6 +21,7 @@ const lato = Lato({
   weight: ["300", "400", "700"],
   subsets: ["latin"],
 });
+
 
 export default function musicianDetail() {
   const { users } = dataMusician;
