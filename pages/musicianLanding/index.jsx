@@ -178,7 +178,7 @@ export default function musicianDetail() {
             </div>
           </div>
         </div>
-        <FooterMain />
+        <FooterMain marginT={"mt-[100px]"} />
 
         {/* <div className="">
           <MainFooter />
