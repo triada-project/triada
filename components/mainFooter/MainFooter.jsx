@@ -15,6 +15,8 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
+//quitar absolute y realative
+
 export default function MainFooter() {
   return (
     <>

@@ -5,7 +5,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import YouTube from "react-youtube";
 
 export default function CarouselVideos() {
-  const images = [
+  const videos = [
     {
       original: "https://picsum.photos/id/1018/1000/600/",
     },
@@ -16,10 +16,26 @@ export default function CarouselVideos() {
       original: "https://picsum.photos/id/1019/1000/600/",
     },
   ];
-  return <ImageGallery items={images} />;
+  return <ImageGallery items={videos} />;
 }
 
-/*import React, { useRef, useState } from "react";
+/*
+<iframe
+  title="sample video"
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/4pSzhZ76GdM?autoplay=1&amp;showinfo=0"
+  allowfullscreen=""
+  style="border: none;"
+></iframe>
+
+
+
+
+
+
+
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
