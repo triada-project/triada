@@ -6,9 +6,9 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function ButtonsStepper({ mTop }) {
   return (
-    <div className={`flex items-center gap-11 ${mTop}`}>
+    <div className={`flex items-center w-full justify-between ${mTop} `}>
       <Button
-        className={`${lato.className} w-[107px] h-8 rounded font-bold px-2 py-1 shadow-md bg-white border border-[#EE0075]`}
+        className={`${lato.className} w-[107px] h-8 rounded font-bold px-2 py-1 shadow-md bg-white border border-[#EE0075] md:w-[150px] md:h-[50px]`}
       >
         <div className=" flex gap-2 items-center">
           <Image
@@ -20,9 +20,9 @@ export default function ButtonsStepper({ mTop }) {
           <p className={`${lato.className} text-[#EE0075] font-bold `}>Atrás</p>
         </div>
       </Button>
-      <p className=" font-bold text-sm">1/6</p>
+      <p className=" font-bold text-sm md:text-lg">1 / 6</p>
       <Button
-        className={`${lato.className} w-[107px] h-8 rounded font-bold bg-[#EE0075] px-2 py-1 shadow-md`}
+        className={`${lato.className} w-[107px] h-8 rounded font-bold bg-[#EE0075] px-2 py-1 shadow-md md:w-[150px] md:h-[50px]`}
       >
         <div className=" flex gap-2 items-center">
           <p className={`${lato.className} text-white font-bold `}>Siguiente</p>
