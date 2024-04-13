@@ -20,7 +20,7 @@ export default function MainFooter() {
     <>
       <div
         id="footerContainer"
-        className="bg-[#081540] relative top-[380px] sm:top-[110px] lg:w-[1440px] "
+        className="bg-[#081540] relative pt-[28px] lg:w-[1440px]  "
         style={{
           zIndex: -1,
         }}
@@ -28,18 +28,19 @@ export default function MainFooter() {
         <Image
           src={footerBgMobil}
           objectFit="contain"
-          className=" static block sm:hidden w-screen"
+          className=" static block sm:hidden w-screen "
         />
         <Image
           src={footerBg}
           objectFit="contain"
-          className=" hidden sm:block w-screen "
+          className=" hidden sm:block  "
         />
       </div>
 
       <div
+        id="textFooterContainer"
         layout="absolute"
-        className="text-white flex flex-col text-center sm:flex-row  sm:gap-6 sm:justify-center sm:items-center sm:mt-10 "
+        className="-mt-[370px] text-white flex flex-col text-center sm:flex-row  sm:gap-6 sm:justify-center sm:items-center sm:-mt-16 lg:w-[1400px] "
       >
         <div className="flex justify-center ">
           <Image src={logoFooter} alt="logoFooter" />
