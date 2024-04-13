@@ -78,6 +78,7 @@ export default function Repertorio() {
                 key={song.author}
                 song={song.title}
                 author={song.author}
+                page={"repertory"}
               />
             ))}
             {/* <RepertoryCard /> */}
