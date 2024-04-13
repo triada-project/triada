@@ -15,7 +15,7 @@ export default function MusicianCatalog() {
     <>
       <section
         id="musicianCatalog"
-        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-[1440px] "
+        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-[1440px] lg:pb-[81px] "
       >
         <div id="titleContainer ">
           <h1

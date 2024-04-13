@@ -13,12 +13,17 @@ import {
 import ButtonNavbar1 from "./HomeComponents/NavbarComponents/ButtonNavbar1";
 import ButtonNavbar2 from "./HomeComponents/NavbarComponents/ButtonNavbar2";
 import AnchorNavbar from "./HomeComponents/NavbarComponents/AnchorNavbar";
-// import { AcmeLogo } from "./AcmeLogo.jsx";
+import { Josefin_Sans, Lato } from "next/font/google";
+import AnchorToggleMenu from "./HomeComponents/NavbarComponents/AnchorToggleMenu";
+
+const josefine = Josefin_Sans({
+  weight: ["300", "400", "600", "700"],
+  subsets: ["latin"],
+});
+const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-  const menuItems = ["INICIO", "NOSOTROS", "MÚSICOS"];
 
   return (
     <Navbar
@@ -47,13 +52,21 @@ export default function NavBar() {
         <ButtonNavbar2 href="#" nameButton="REGISTRO"></ButtonNavbar2>
       </div>
       <NavbarMenu id="menu" className=" pt-5 w-[245px] bg-[#081540]  ">
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem className="text-white" key={`${item}-${index}`}>
-            <Link className="w-[120px] text-white" href="#" size="lg">
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        <AnchorToggleMenu href="#" nameAnchor="INICIO"></AnchorToggleMenu>
+        <AnchorToggleMenu href="#" nameAnchor="NOSOTROS"></AnchorToggleMenu>
+        <AnchorToggleMenu href="#" nameAnchor="MÚSICOS"></AnchorToggleMenu>
+        <button
+          href="#"
+          className={` lg:hidden rounded-md px-8 font-normal border border-[#29FEFD] bg-inherit text-[#29FEFD] hover:bg-[#29FEFD] hover:text-black ${josefine.className}`}
+        >
+          <h2 className="pt-1">ACCEDE</h2>
+        </button>
+        <button
+          href="#"
+          className={`lg:hidden font-semibold rounded-md  px-8 bg-[#29FEFD] text-[#081540] hover:bg-[#EF107D] hover:text-white ${josefine.className} `}
+        >
+          <h2 className="pt-1">REGISTRO</h2>
+        </button>
       </NavbarMenu>
     </Navbar>
   );
