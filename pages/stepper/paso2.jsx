@@ -10,7 +10,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function Stepper() {
+export default function Step2() {
   const {
     register,
     handleSubmit,
