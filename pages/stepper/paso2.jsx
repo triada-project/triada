@@ -66,7 +66,8 @@ export default function Stepper() {
             <ButtonsStepper
               mTop={"mt-[60px]"}
               step={"2"}
-              stepLink={"/stepper"}
+              stepBack={"/stepper"}
+              stepNext={"/stepper/paso3"}
             />
           </div>
         </form>
