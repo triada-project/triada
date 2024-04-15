@@ -1,0 +1,65 @@
+{
+    "events":[
+        {
+            "url_imagen": "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+            "estado": "pendiente",
+            "titulo_evento":"Union de John & Jane",
+            "fecha_evento":"16/03/2024",
+            "inicio_evento":"01:00 pm",
+            "termino_evento":"3:00 pm",
+            "tipo_evento":"Boda",
+            "telefono_evento":"8150279946",
+            "horas_contratadas_evento":"2",
+            "costo_evento":"8000",
+            "estatus_evento":"Pendiente",
+            "direccion_evento":"Juárez #650, entre Alpino y Casa Blanca, Colonia San Agustín, C.P. 68188 Monterrey, Nuevo León"
+
+        },
+        {
+            "url_imagen": "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+            "estado": "activo",
+            "titulo_evento":"Union de John & Jane",
+            "fecha_evento":"16/03/2024",
+            "inicio_evento":"01:00 pm",
+            "termino_evento":"3:00 pm",
+            "tipo_evento":"Boda",
+            "telefono_evento":"8150279946",
+            "horas_contratadas_evento":"2",
+            "costo_evento":"8000",
+            "estatus_evento":"En proceso",
+            "direccion_evento":"Juárez #650, entre Alpino y Casa Blanca, Colonia San Agustín, C.P. 68188 Monterrey, Nuevo León"
+
+        },
+        {
+            "url_imagen": "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+            "estado": "finalizado",
+            "titulo_evento":"Union de John & Jane",
+            "fecha_evento":"16/03/2024",
+            "inicio_evento":"01:00 pm",
+            "termino_evento":"3:00 pm",
+            "tipo_evento":"Boda",
+            "telefono_evento":"8150279946",
+            "horas_contratadas_evento":"2",
+            "costo_evento":"8000",
+            "estatus_evento":"Finalizado",
+            "direccion_evento":"Juárez #650, entre Alpino y Casa Blanca, Colonia San Agustín, C.P. 68188 Monterrey, Nuevo León"
+
+        },
+        {
+            "url_imagen": "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+            "estado": "cancelado",
+            "titulo_evento":"Union de John & Jane",
+            "fecha_evento":"16/03/2024",
+            "inicio_evento":"01:00 pm",
+            "termino_evento":"3:00 pm",
+            "tipo_evento":"Boda",
+            "telefono_evento":"8150279946",
+            "horas_contratadas_evento":"2",
+            "costo_evento":"8000",
+            "estatus_evento":"Cancelado",
+            "direccion_evento":"Juárez #650, entre Alpino y Casa Blanca, Colonia San Agustín, C.P. 68188 Monterrey, Nuevo León"
+
+
+        }
+    ]
+}
