@@ -2,6 +2,7 @@ import { Lato, Josefin_Sans } from "next/font/google";
 import ButtonsStepper from "@/components/stepperComponents/buttonsStepper";
 import StepperLayout from "@/components/stepperComponents/StepperLayout";
 import { useForm } from "react-hook-form";
+import Image from "next/image";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import SelectGenreMusic from "@/components/SelectGenreMusic/SelectGenreMusic";
 import { Input } from "@nextui-org/react";
@@ -27,12 +28,26 @@ export default function Step5() {
   return (
     <StepperLayout>
       <section className=" w-[330px] mt-14 md:w-[404px] lg:w-[500px] flex flex-col items-center">
-        <h2
-          className={`${josefine.className} text-xl text-center font-semibold md:text-3xl `}
+        <p
+          className={`${lato.className} text-start text-[#455A64] w-[328px] mt-3 md:w-full md:text-center`}
         >
-          Datos de contratación y pago
-        </h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
+          Para gestionar los pagos de los eventos que te contraten, te
+          redirigiremos a <b>Stripe</b> , una plataforma segura de pagos en
+          línea. Crear tu cuenta en Stripe será rápido y sencillo
+        </p>
+        <Image
+          src={"/assets/images/payment-information.webp"}
+          width={300}
+          height={300}
+          className=" sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px]"
+        />
+        <ButtonsStepper
+          mTop={"mt-[60px]"}
+          step={"7"}
+          stepBack={"/stepper/paso6"}
+          stepNext={"/stepper/paso8"}
+        />
+        {/* <form onSubmit={handleSubmit(onSubmit)}>
           <div className=" flex flex-col items-center mt-5">
             <p
               className={`${lato.className} text-start text-[#455A64] w-[328px] md:w-full md:text-center pb-3`}
@@ -96,14 +111,9 @@ export default function Step5() {
               text="Agregar requerimiento"
               type="submit"
             />
-            <ButtonsStepper
-              mTop={"mt-[60px]"}
-              step={"5"}
-              stepBack={"/stepper/paso2"}
-              stepNext={"/stepper/paso4"}
-            />
+            
           </div>
-        </form>
+        </form> */}
       </section>
     </StepperLayout>
   );
