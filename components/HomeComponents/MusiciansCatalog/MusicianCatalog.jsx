@@ -34,8 +34,8 @@ export default function MusicianCatalog() {
           id="inputsContainer"
           className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-[744px] sm:px-[56px] sm:pt-[35px] sm:flex-row lg:w-[1440px] lg:px-[183px]"
         >
-          <SelectHomeEvents selectType="home" />
-          <SelectHomeEvents selectType="home" />
+          <SelectHomeEvents typeItems="typeEvents" selectType="home" />
+          <SelectHomeEvents typeItems="musicalGenre" selectType="home" />
           <SelectHomeEvents selectType="home" />
 
           <div
