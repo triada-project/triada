@@ -29,7 +29,7 @@ export default function Step5() {
     <StepperLayout>
       <section className=" w-[330px] mt-14 md:w-[404px] lg:w-[500px] flex flex-col items-center">
         <p
-          className={`${lato.className} text-start text-[#455A64] w-[328px] mt-3 md:w-full md:text-center`}
+          className={`${lato.className} text-center text-xl text-[#455A64] w-[328px] mt-3 md:w-full md:text-center`}
         >
           Para gestionar los pagos de los eventos que te contraten, te
           redirigiremos a <b>Stripe</b> , una plataforma segura de pagos en
