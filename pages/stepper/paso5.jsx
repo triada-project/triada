@@ -4,8 +4,9 @@ import StepperLayout from "@/components/stepperComponents/StepperLayout";
 import { useForm } from "react-hook-form";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import SelectGenreMusic from "@/components/SelectGenreMusic/SelectGenreMusic";
-import SelectTypeEvents from "@/components/SelectGenreMusic/SelectTypeEvents";
+import { Input } from "@nextui-org/react";
 import ButtonPink from "@/components/perfil-cliente/ButtonPink";
+import SelectTypeEvents from "@/components/SelectGenreMusic/SelectTypeEvents";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -13,7 +14,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function Step3() {
+export default function Step5() {
   const {
     register,
     handleSubmit,
@@ -29,15 +30,14 @@ export default function Step3() {
         <h2
           className={`${josefine.className} text-xl text-center font-semibold md:text-3xl `}
         >
-          Cuéntanos sobre tu música
+          Datos de contratación y pago
         </h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className=" flex flex-col items-center mt-5">
             <p
               className={`${lato.className} text-start text-[#455A64] w-[328px] md:w-full md:text-center pb-3`}
             >
-              ¿Cómo describirías la configuración musical del proyecto (Solista,
-              Dúo, Grupo, Banda, etc.)?
+              ¿Cúales son tus honorarios por hora evento?
             </p>
             <Select
               label="Tipo de artista"
@@ -57,18 +57,31 @@ export default function Step3() {
             <p
               className={`${lato.className} text-start text-[#455A64] w-[328px] md:w-full md:text-center pb-3 mt-5`}
             >
-              ¿Cuáles son los géneros musicales que interpretas? Selecciona al
-              menos 1 opción y un máximo de 5.
+              ¿Cuántas horas máximo te pueden agendar por evento?
             </p>
             <SelectGenreMusic {...register("musicGenre")} />
 
             <p
               className={`${lato.className} text-start text-[#455A64] w-[328px] md:w-full md:text-center pb-3 mt-5`}
             >
-              ¿Cuáles son los tipos de eventos a los que asistes?
+              ¿Tienes requerimientos especiales para tu presentación? Dinos
+              cuáles son (máximo 5):
             </p>
-            <SelectTypeEvents />
-            <ButtonPink width="w-full" text="Agregar" type="submit" />
+            <Input
+              label="Escribe aquí el requerimiento"
+              isRequired
+              //autoFocus={true}
+              variant="bordered"
+              radius="sm"
+              className={`w-[328px] h-14 md:w-[500px] mb-7 lg:w-full`}
+              //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
+              {...register("song", { required: true })}
+            />
+            <ButtonPink
+              width="w-full"
+              text="Agregar requerimiento"
+              type="submit"
+            />
             <ButtonsStepper
               mTop={"mt-[60px]"}
               step={"3"}
