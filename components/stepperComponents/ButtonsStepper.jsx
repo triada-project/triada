@@ -29,7 +29,7 @@ export default function ButtonsStepper({ mTop, step, stepBack, stepNext }) {
         </Button>
       </Link>
 
-      <p className=" font-bold text-sm md:text-lg">{`${step} / 6`}</p>
+      <p className=" font-bold text-sm md:text-lg">{`${step} / 7`}</p>
       <Link href={`${stepNext}`}>
         <Button
           type="submit"
