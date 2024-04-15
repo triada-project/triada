@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import SelectGenreMusic from "@/components/SelectGenreMusic/SelectGenreMusic";
 import SelectTypeEvents from "@/components/SelectGenreMusic/SelectTypeEvents";
-import ButtonPink from "@/components/perfil-cliente/ButtonPink";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -68,7 +67,7 @@ export default function Step3() {
               ¿Cuáles son los tipos de eventos a los que asistes?
             </p>
             <SelectTypeEvents />
-            <ButtonPink width="w-full" text="Agregar" type="submit" />
+
             <ButtonsStepper
               mTop={"mt-[60px]"}
               step={"3"}

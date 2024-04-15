@@ -39,27 +39,41 @@ export default function Step5() {
             >
               ¿Cúales son tus honorarios por hora evento?
             </p>
-            <Select
-              label="Tipo de artista"
+            <Input
+              type="number"
+              label="Ingresa aquí tus honorarios"
               isRequired
+              placeholder="0.00"
               //autoFocus={true}
               variant="bordered"
               radius="sm"
-              className={`w-[328px] h-14 md:w-[404px]`}
-              //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-              {...register("musicianTyoe", { required: true })}
-            >
-              <SelectItem key={"Banda"}>Banda</SelectItem>
-              <SelectItem key={"Solista"}>Duo</SelectItem>
-              <SelectItem key={"Solista"}>Solista</SelectItem>
-            </Select>
+              className={`w-[328px] h-14 md:w-[500px] lg:w-full`}
+              {...register("song", { required: true })}
+              startContent={
+                <div className="pointer-events-none flex items-center">
+                  <span className="text-default-400 text-small">$</span>
+                </div>
+              }
+            />
 
             <p
               className={`${lato.className} text-start text-[#455A64] w-[328px] md:w-full md:text-center pb-3 mt-5`}
             >
               ¿Cuántas horas máximo te pueden agendar por evento?
             </p>
-            <SelectGenreMusic {...register("musicGenre")} />
+            <Input
+              type="number"
+              label="Ingresa aquí las horas"
+              isRequired
+              placeholder="0"
+              min={1}
+              max={24}
+              //autoFocus={true}
+              variant="bordered"
+              radius="sm"
+              className={`w-[328px] h-14 md:w-[500px] lg:w-full`}
+              {...register("song", { required: true })}
+            />
 
             <p
               className={`${lato.className} text-start text-[#455A64] w-[328px] md:w-full md:text-center pb-3 mt-5`}
