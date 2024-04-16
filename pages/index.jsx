@@ -5,21 +5,22 @@ import CardsContainer from "@/components/HomeComponents/CardsSectionComponents/C
 import AboutUsSection from "@/components/HomeComponents/AboutUsSectionComponents/AboutUsSection";
 import GradientBar from "@/components/HomeComponents/GradientBarComponents/GradientBar";
 import MusicianCatalog from "@/components/HomeComponents/MusiciansCatalog/MusicianCatalog";
-import MainFooter from "@/components/mainFooter/MainFooter";
+import FooterMain from "@/components/footer/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
     <>
-      <NavBar />
-      <main className="">
+
+      <main className="bg-[#081540] max-w-[1440px] items-center m-auto">
+        <NavBar />
         <ImgSection />
         <CardsContainer />
         <AboutUsSection />
         <GradientBar />
         <MusicianCatalog />
-        <MainFooter />
+        <FooterMain />
       </main>
     </>
   );
