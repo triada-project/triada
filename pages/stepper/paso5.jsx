@@ -2,11 +2,9 @@ import { Lato, Josefin_Sans } from "next/font/google";
 import ButtonsStepper from "@/components/stepperComponents/buttonsStepper";
 import StepperLayout from "@/components/stepperComponents/StepperLayout";
 import { useForm } from "react-hook-form";
-import { Select, SelectSection, SelectItem } from "@nextui-org/react";
-import SelectGenreMusic from "@/components/SelectGenreMusic/SelectGenreMusic";
 import { Input } from "@nextui-org/react";
 import ButtonPink from "@/components/perfil-cliente/ButtonPink";
-import SelectTypeEvents from "@/components/SelectGenreMusic/SelectTypeEvents";
+import RequestCard from "@/components/RequestCard";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -83,6 +81,7 @@ export default function Step5() {
             </p>
             <Input
               label="Escribe aquí el requerimiento"
+              description="Límite 100 carateres por requerimiento."
               isRequired
               //autoFocus={true}
               variant="bordered"
@@ -91,11 +90,17 @@ export default function Step5() {
               //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
               {...register("song", { required: true })}
             />
+
             <ButtonPink
               width="w-full"
               text="Agregar requerimiento"
               type="submit"
             />
+            <RequestCard />
+            <RequestCard />
+            <RequestCard />
+            <RequestCard />
+            <RequestCard />
             <ButtonsStepper
               mTop={"mt-[60px]"}
               step={"5"}
