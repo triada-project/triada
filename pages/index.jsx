@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <main className="w-screen ">
+      <main className="">
         <ImgSection />
         <CardsContainer />
         <AboutUsSection />
