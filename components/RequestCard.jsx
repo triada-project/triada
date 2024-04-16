@@ -6,7 +6,7 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-export default function RequestCard({ song, author, page }) {
+export default function RequestCard({ text, onDelete, page }) {
   return (
     <div
       className={
@@ -16,10 +16,7 @@ export default function RequestCard({ song, author, page }) {
       }
     >
       <section className=" flex items-center justify-between">
-        <span className={`${lato.className} max-w-[90%]`}>
-          El viento silba entre los árboles altos mientras el río serpentea bajo
-          el puente antiguo.
-        </span>
+        <span className={`${lato.className} max-w-[90%]`}>{text}</span>
         <div className=" flex items-center gap-2">
           <Image
             src={"/assets/svg/edit.svg"}
@@ -27,12 +24,14 @@ export default function RequestCard({ song, author, page }) {
             width={20}
             height={20}
           />
-          <Image
-            src={"/assets/svg/close-card.svg"}
-            alt="close"
-            width={20}
-            height={20}
-          />
+          <button onClick={onDelete}>
+            <Image
+              src={"/assets/svg/close-card.svg"}
+              alt="close"
+              width={20}
+              height={20}
+            />
+          </button>
         </div>
       </section>
     </div>
