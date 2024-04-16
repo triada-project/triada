@@ -36,7 +36,7 @@ export default function ModalCliente() {
     onOpen();
   }
 
-  const eventosPendientes = events.filter((evento) => evento.estado === 'cancelado');
+  const eventosPendientes = events.filter((evento) => evento.estado === 'pendiente por confirmar');
 
   return (
     <>
@@ -99,10 +99,10 @@ export default function ModalCliente() {
                           </div>
                         )}
 
-                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'pendiente' && (
-                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
-                            <Image src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"  className="w-52 h-4 mr-2" />
-                            <p className="text-xs pr-1">{evento.estado}</p>
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'pendiente por confirmar' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-2/4 rounded-full items-center">
+                            <Image src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"  className="w-10 h-4 mr-2" />
+                            <p className="text-xs w-full pr-1">{evento.estado}</p>
                           </div>
                         )}
                     

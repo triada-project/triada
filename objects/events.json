@@ -2,7 +2,7 @@
     "events":[
         {
             "url_imagen": "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
-            "estado": "pendiente",
+            "estado": "pendiente por confirmar",
             "titulo_evento":"Union de John & Jane",
             "fecha_evento":"16/03/2024",
             "inicio_evento":"01:00 pm",
