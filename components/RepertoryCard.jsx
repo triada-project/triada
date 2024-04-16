@@ -9,9 +9,15 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-export default function RepertoryCard({ song, author }) {
+export default function RepertoryCard({ song, author, page }) {
   return (
-    <div className=" rounded-xl w-56 h-36 border border-[#EAEAEA] px-4 py-4 shadow-lg hover:-translate-y-1 hover:scale-110 duration-300">
+    <div
+      className={
+        page === "repertory"
+          ? " rounded-xl w-56 h-36 border border-[#EAEAEA] px-4 py-4 shadow-lg hover:-translate-y-1 hover:scale-110 duration-300 "
+          : "rounded-xl w-56 h-36 border border-[#EAEAEA] px-4 py-4 shadow-lg"
+      }
+    >
       <section className=" flex flex-col gap-3">
         <button className=" place-self-end">
           <Image src={closeCard} alt="close" width={20} height={20} />

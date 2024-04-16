@@ -13,10 +13,12 @@ import {
 import AnchorNavbar from "./HomeComponents/NavbarComponents/AnchorNavbar";
 import { Josefin_Sans, Lato } from "next/font/google";
 import AnchorToggleMenu from "./HomeComponents/NavbarComponents/AnchorToggleMenu";
+
 import LogInModal from "./HomeComponents/NavbarComponents/LogInModal";
 import LogInModalToggle from "./HomeComponents/NavbarComponents/LogInModalToggle";
 import RegisterModal from "./HomeComponents/NavbarComponents/RegisterModal";
 import RegisterModalToggle from "./HomeComponents/NavbarComponents/RegisterModalToggle";
+
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -59,6 +61,7 @@ export default function NavBar() {
         <AnchorToggleMenu href="#" nameAnchor="MÚSICOS"></AnchorToggleMenu>
         <LogInModalToggle />
         <RegisterModalToggle />
+
       </NavbarMenu>
     </Navbar>
   );

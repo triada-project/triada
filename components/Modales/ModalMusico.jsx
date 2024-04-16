@@ -24,7 +24,7 @@ export default function ModalClientePendiente() {
     onOpen();
   }
 
-  const eventosPendientes = events.filter((evento) => evento.estado === 'cancelado');
+  const eventosPendientes = events.filter((evento) => evento.estado === 'activo');
 
   return (
     <>
@@ -103,7 +103,34 @@ export default function ModalClientePendiente() {
                       />
                       <div className="flex flex-col gap-2">
                         <p className="text-center md:text-lg font-semibold">{evento.titulo_evento}</p>
-                        <Chip>{evento.estado}</Chip>
+                        
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'finalizado' && (
+                        <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                          <Image src="/assets/svg/checkmark-circle.svg"  className="w-52 h-4 mr-2" />
+                          <p className="text-xs pr-1">{evento.estado}</p>
+                        </div>
+                        )}
+
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'activo' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
+                            <Image src="/assets/svg/play.svg"  className="w-52 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'cancelado' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                            <Image src="/assets/svg/close-circle.svg"  className="w-52 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'pendiente' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                            <Image src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"  className="w-52 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
                       </div>
                     
 
@@ -122,7 +149,7 @@ export default function ModalClientePendiente() {
                         </div>
                         <div>
                           <div className="flex items-center">
-                            <Image src="/assets/svg/calendar.svg"  className="w-6 h-6 mr-2" />
+                            <Image src="/assets/svg/calendar_client.svg"  className="w-6 h-6 mr-2" />
                             <p>Fecha: {evento.fecha_evento}</p>
                           </div>
                         </div>
@@ -193,7 +220,7 @@ export default function ModalClientePendiente() {
                       
                       <div>
                         <div className="flex items-center">
-                          <Image src="/assets/svg/calendar.svg"  className="w-6 h-6 mr-2" />
+                          <Image src="/assets/svg/calendar_client.svg"  className="w-6 h-6 mr-2" />
                           <p>Horas contratadas: {evento.horas_contratadas_evento}</p>
                         </div>
                       </div>
@@ -227,6 +254,16 @@ export default function ModalClientePendiente() {
                   colaborar en eventos futuros que se alineen mejor con las expectativas de ambas partes.
                   ¡Agradecemos tu comprensión!
                 </div>
+                )}
+
+                {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'activo' && (
+                  <div className=" mt-5 pt-4" >
+                    
+                    <Button color="danger" className="w-full">
+                        Enviar codigo
+                    </Button>
+
+                  </div>
                 )}
 
 
