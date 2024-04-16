@@ -10,13 +10,13 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/react";
-import ButtonNavbar1 from "./HomeComponents/NavbarComponents/ButtonNavbar1";
-import ButtonNavbar2 from "./HomeComponents/NavbarComponents/ButtonNavbar2";
 import AnchorNavbar from "./HomeComponents/NavbarComponents/AnchorNavbar";
 import { Josefin_Sans, Lato } from "next/font/google";
 import AnchorToggleMenu from "./HomeComponents/NavbarComponents/AnchorToggleMenu";
 import LogInModal from "./HomeComponents/NavbarComponents/LogInModal";
 import LogInModalToggle from "./HomeComponents/NavbarComponents/LogInModalToggle";
+import RegisterModal from "./HomeComponents/NavbarComponents/RegisterModal";
+import RegisterModalToggle from "./HomeComponents/NavbarComponents/RegisterModalToggle";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -51,20 +51,14 @@ export default function NavBar() {
       </div>
       <div id="buttons" className="flex gap-[24px]" justify="end">
         <LogInModal />
-        <ButtonNavbar2 href="#" nameButton="REGISTRO"></ButtonNavbar2>
+        <RegisterModal />
       </div>
       <NavbarMenu id="menu" className=" pt-5 w-[245px] bg-[#081540]  ">
         <AnchorToggleMenu href="#" nameAnchor="INICIO"></AnchorToggleMenu>
         <AnchorToggleMenu href="#" nameAnchor="NOSOTROS"></AnchorToggleMenu>
         <AnchorToggleMenu href="#" nameAnchor="MÚSICOS"></AnchorToggleMenu>
         <LogInModalToggle />
-
-        <button
-          href="#"
-          className={`lg:hidden font-semibold rounded-md  px-8 bg-[#29FEFD] text-[#081540] hover:bg-[#EF107D] hover:text-white ${josefine.className} `}
-        >
-          <h2 className="pt-1">REGISTRO</h2>
-        </button>
+        <RegisterModalToggle />
       </NavbarMenu>
     </Navbar>
   );

@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body {
-  background-color: #081540;
-} */
+body {
+  background-color: #ebedf4;
+}
 
 .slick-slide > div {
   display: flex;
