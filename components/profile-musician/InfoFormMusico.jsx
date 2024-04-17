@@ -6,6 +6,8 @@ import ButtonPink from "../perfil-cliente/ButtonPink";
 import { useForm } from "react-hook-form";
 import SelectGenreMusic from "../SelectGenreMusic/SelectGenreMusic";
 import SelectTypeEvents from "../SelectGenreMusic/SelectTypeEvents";
+import LocalidadSelect from "../SelectsLocation/LocalidadSelect";
+import EstadoSelect from "../SelectsLocation/EstadoSelect";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -43,35 +45,11 @@ export default function InfoFormMusico() {
             label="Nombre para mostrar"
             {...register("nombre")}
           />
-          <Select
-            label="Estado de residencia"
-            isRequired
-            //autoFocus={true}
-            variant="bordered"
-            radius="sm"
-            className={`w-[328px] h-14 lg:w-[30rem]`}
-            //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-            {...register("estado", { required: true })}
-          >
-            <SelectItem key={"Nuevo León"}>Nuevo León</SelectItem>
-            <SelectItem key={"CDMX"}>CDMX</SelectItem>
-            <SelectItem key={"Jalisco"}>Jalisco</SelectItem>
-          </Select>
+          <EstadoSelect />
           {/* <div className=" text-tiny text-danger-50">
             Debes elegir un estado
           </div> */}
-          <Select
-            label="Localidad"
-            isRequired
-            variant="bordered"
-            radius="sm"
-            className=" w-[328px] h-14 lg:w-[30rem]"
-            {...register("localidad")}
-          >
-            <SelectItem key={"Monterrey"}>Monterrey</SelectItem>
-            <SelectItem key={"Santa Catarina"}>Santa Catarina</SelectItem>
-            <SelectItem key={"San Pedro"}>San Pedro</SelectItem>
-          </Select>
+          <LocalidadSelect />
           <Textarea
             variant="bordered"
             isRequired
