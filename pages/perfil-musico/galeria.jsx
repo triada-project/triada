@@ -27,7 +27,9 @@ export default function PerfilMusico() {
             conozca tu trabajo.
           </p>
           <GalleryPhotos />
-          <GalleryVideos />
+          <div className="mt-10">
+            <GalleryVideos />
+          </div>
         </section>
       </main>
     </>
