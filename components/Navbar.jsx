@@ -10,15 +10,24 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/react";
-import ButtonNavbar1 from "./HomeComponents/NavbarComponents/ButtonNavbar1";
-import ButtonNavbar2 from "./HomeComponents/NavbarComponents/ButtonNavbar2";
 import AnchorNavbar from "./HomeComponents/NavbarComponents/AnchorNavbar";
-// import { AcmeLogo } from "./AcmeLogo.jsx";
+import { Josefin_Sans, Lato } from "next/font/google";
+import AnchorToggleMenu from "./HomeComponents/NavbarComponents/AnchorToggleMenu";
+
+import LogInModal from "./HomeComponents/NavbarComponents/LogInModal";
+import LogInModalToggle from "./HomeComponents/NavbarComponents/LogInModalToggle";
+import RegisterModal from "./HomeComponents/NavbarComponents/RegisterModal";
+import RegisterModalToggle from "./HomeComponents/NavbarComponents/RegisterModalToggle";
+
+
+const josefine = Josefin_Sans({
+  weight: ["300", "400", "600", "700"],
+  subsets: ["latin"],
+});
+const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-  const menuItems = ["INICIO", "NOSOTROS", "MÚSICOS"];
 
   return (
     <Navbar
@@ -43,17 +52,16 @@ export default function NavBar() {
         <AnchorNavbar href="#" nameAnchor="MÚSICOS"></AnchorNavbar>
       </div>
       <div id="buttons" className="flex gap-[24px]" justify="end">
-        <ButtonNavbar1 href="#" nameButton="ACCEDE"></ButtonNavbar1>
-        <ButtonNavbar2 href="#" nameButton="REGISTRO"></ButtonNavbar2>
+        <LogInModal />
+        <RegisterModal />
       </div>
       <NavbarMenu id="menu" className=" pt-5 w-[245px] bg-[#081540]  ">
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem className="text-white" key={`${item}-${index}`}>
-            <Link className="w-[120px] text-white" href="#" size="lg">
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        <AnchorToggleMenu href="#" nameAnchor="INICIO"></AnchorToggleMenu>
+        <AnchorToggleMenu href="#" nameAnchor="NOSOTROS"></AnchorToggleMenu>
+        <AnchorToggleMenu href="#" nameAnchor="MÚSICOS"></AnchorToggleMenu>
+        <LogInModalToggle />
+        <RegisterModalToggle />
+
       </NavbarMenu>
     </Navbar>
   );
