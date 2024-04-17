@@ -2,11 +2,10 @@ import { Lato, Josefin_Sans } from "next/font/google";
 import ButtonsStepper from "@/components/stepperComponents/buttonsStepper";
 import StepperLayout from "@/components/stepperComponents/StepperLayout";
 import { useForm } from "react-hook-form";
-import { Select, SelectSection, SelectItem } from "@nextui-org/react";
-import SelectGenreMusic from "@/components/SelectGenreMusic/SelectGenreMusic";
 import { Input } from "@nextui-org/react";
 import ButtonPink from "@/components/perfil-cliente/ButtonPink";
-import SelectTypeEvents from "@/components/SelectGenreMusic/SelectTypeEvents";
+import RequestCard from "@/components/RequestCard";
+import { useState } from "react";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -15,6 +14,35 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Step5() {
+  const [requests, setRequests] = useState([]);
+  const [text, setText] = useState("");
+  const onInputChange = (event) => {
+    setText(event.target.value);
+  };
+
+  //console.log(requests);
+
+  const addRequest = () => {
+    if (text.trim().length > 0) {
+      setRequests([text, ...requests]);
+      setText("");
+    } else {
+      alert("Ingresa un texto");
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      addRequest();
+    }
+  };
+
+  const onDelete = (index) => {
+    const newRequests = [...requests];
+    newRequests.splice(index, 1);
+    setRequests(newRequests);
+  };
+
   const {
     register,
     handleSubmit,
@@ -82,20 +110,44 @@ export default function Step5() {
               cuáles son (máximo 5):
             </p>
             <Input
+              type="text"
+              maxLength={100}
+              onChange={onInputChange}
+              value={text}
+              onKeyDown={handleKeyDown}
               label="Escribe aquí el requerimiento"
+              description="Límite 100 carateres por requerimiento."
               isRequired
               //autoFocus={true}
               variant="bordered"
               radius="sm"
               className={`w-[328px] h-14 md:w-[404px] mb-7 lg:w-full`}
               //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-              {...register("song", { required: true })}
+              // {...register("request", { required: true })}
             />
+
+            {/* <button onClick={addRequest}>Agregar</button> */}
+
             <ButtonPink
+              onClick={addRequest}
               width="w-full"
               text="Agregar requerimiento"
-              type="submit"
+              // type="submit"
             />
+            {requests.map((request, index) => {
+              return (
+                <RequestCard
+                  key={index}
+                  text={request}
+                  onDelete={() => onDelete(index)}
+                />
+              );
+            })}
+            {/* <RequestCard />
+            <RequestCard />
+            <RequestCard />
+            <RequestCard />
+            <RequestCard /> */}
             <ButtonsStepper
               mTop={"mt-[60px]"}
               step={"5"}

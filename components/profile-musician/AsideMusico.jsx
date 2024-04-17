@@ -17,6 +17,7 @@ import PlayCircleColor from "@/public/assets/svg/playCircleColor";
 import CalendarColor from "@/public/assets/svg/CalendarColor.jsx";
 import GaleryColor from "@/public/assets/svg/GaleryColor";
 import RepertorioColor from "@/public/assets/svg/RepertoryColor";
+import RequestColor from "@/public/assets/svg/requestColor";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -37,7 +38,7 @@ export default function AsideMusico({ page, hidden }) {
     //console.log(token);
     return () => {};
   });
-  console.log(token);
+  //console.log(token);
 
   const tokenObjet = () => {
     if (token) {
@@ -144,6 +145,22 @@ export default function AsideMusico({ page, hidden }) {
               } `}
             >
               Repertorio
+            </p>
+          </Button>
+        </Link>
+        <Link href="/perfil-musico/requerimientos">
+          <Button
+            className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
+              page === "requerimientos" ? "bg-[#312971]" : ""
+            } `}
+          >
+            <RequestColor colorFill={page} />
+            <p
+              className={` text-base ${
+                page === "requerimientos" ? "text-[#29FEFD]" : "text-white"
+              } `}
+            >
+              Requerimientos
             </p>
           </Button>
         </Link>
