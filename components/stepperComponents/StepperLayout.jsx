@@ -10,7 +10,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function StepperLayout({ children }) {
   return (
-    <main className=" max-w-[1440px] bg-white flex flex-col items-center m-auto ">
+    <main className=" shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50 max-w-[1440px] bg-white flex flex-col items-center m-auto ">
       <div className=" flex gap-2 items-center mt-10">
         <h1
           className={`${josefine.className} text-[#665DFB] text-xl md:text-4xl`}
