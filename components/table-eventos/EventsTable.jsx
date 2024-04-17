@@ -28,6 +28,7 @@ import Alert from "../../public/assets/svg/alert-circle.svg";
 import Finalized from "../../public/assets/svg/finalized.svg";
 import Rejected from "../../public/assets/svg/rejected.svg";
 import More from "../../public/assets/svg/add-circle.svg";
+import ModalCliente from "../Modales/ModalCliente";
 
 const statusColorMap = {
   activo: Active,
@@ -160,11 +161,9 @@ export default function EventsTable() {
         );
       case "más":
         return (
-          <div className="relative flex justify-center items-center gap-2">
-            <a href="" className="  flex items-center gap-1">
-              <Image src={More} width={20} height={20} />
-              <p>Detalles</p>
-            </a>
+          <div className="relative flex  items-start p-0">
+            <ModalCliente></ModalCliente>
+
             {/* <Dropdown>
               <DropdownTrigger>
                 <Button isIconOnly size="sm" variant="light">

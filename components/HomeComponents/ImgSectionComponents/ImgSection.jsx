@@ -11,37 +11,36 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function ImgSection() {
   return (
     <>
-      <div
-        style={{
-          zIndex: -1,
-          position: "fixed",
-          width: "100vw",
-          height: "100vh",
-        }}
-      >
-        <Image
-          src="/assets/images/header-picture.webp"
-          layout="fill"
-          objectFit="cover"
-        />
-      </div>
-      <div id="titleContainer " className="sm:pt-4 md:pl-16 lg:pl-16 xl:pl-4 ">
-        <p
-          className={`pt-28 pl-20 text-5xl  sm:pt-40 sm:pl-40  sm:text-6xl md:text-6xl lg:text-6xl font-bold leading-normal text-white xl:text-7xl ${josefine.className}`}
+      <div id="imgSection" className="container ">
+        <div
+          className="relative w-[360px] h-[325px] sm:w-screen sm:h-[369px] lg:w-[1440px] lg:h-[759px] bg-cover bg-no-repeat  "
+          style={{
+            backgroundImage: `url('/assets/images/header-picture.webp')`,
+          }}
         >
-          Armoniza tus <br /> eventos y conecta <br /> con la
-          <span className="  leading-normal text-transparent bg-clip-text bg-gradient-to-r from-[#FF01C0] via-purple-500 to-[#01FFFE]">
-            {" "}
-            MÚSICA
-          </span>
-        </p>
-        <h2
-          className={`pl-20 xl:text-2xl pt-2 sm:pl-40 font-bold leading-normal text-white ${josefine.className}`}
-        >
-          ¡Encuentra la mejor música para tu <br />
-          evento especial!
-        </h2>
-        <GradientButton nameButton="Ver músicos" />
+          <div
+            id="text-container"
+            className="absolute inset-0 flex justify-center items-center sm:pl-[55px] sm:justify-start  "
+          >
+            <div className="text-center sm:w-[345px] sm:text-left  lg:w-[601px] lg:h-[381px]  ">
+              <h1
+                className={`text-white  px-[20px] pt-[33px] text-[32px] font-semibold  text-center sm:pt-[70px] sm:text-[32px] sm:text-left lg:pt-0   lg:text-[60px]  ${josefine.className}`}
+              >
+                Armoniza tus eventos y conecta con la
+                <span className=" text-transparent text-[32px] bg-clip-text lg:text-[60px] bg-gradient-to-r from-[#FF01C0] via-purple-500 to-[#01FFFE]">
+                  {" "}
+                  Música
+                </span>
+              </h1>
+              <h2
+                className={`text-white px-[25px] text-[16px] text-center font-semibold sm:text-left sm:text-[20px] lg:w-[345px]  ${josefine.className}`}
+              >
+                ¡Encuentra la mejor música para tu evento especial!
+              </h2>
+              <GradientButton nameButton="Ver Músicos" />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

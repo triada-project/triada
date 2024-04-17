@@ -1,18 +1,29 @@
 import MusicGenre from "./MusicGenre";
+import Slider from "react-slick";
 
 export default function GradientBar() {
+  const settings = {
+    dots: false,
+    arrows: false,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
   return (
-    <section className="bg-[#081540]">
-      <div className="w-screen sm:bg-[url('/assets/svg/gradientBar.svg')]">
-        <div className=" w-screen bg-[#9E1056] sm:bg-inherit h-10 flex flex-row justify-evenly items-center sm:h-40  md:bg-[#9E1056] lg:h-[107px] lg:flex-r">
-          <MusicGenre genre="Rock" />
-          <MusicGenre genre="Banda" />
-          <MusicGenre genre="Norteño" />
-          <MusicGenre genre="Jazz" />
-          <MusicGenre genre="Cumbia" />
-          <MusicGenre genre="Clasica" />
+    <section className="bg-[#081540] lg:w-[1440px] ">
+      <div className="w-screen bg-[url('/assets/images/pinkRectangle.png')]   sm:bg-[url('/assets/svg/gradientBar.svg')] sm:h-40 lg:bg-zinc-950 lg:bg-[url('/assets/images/pinkRectangle.png')] lg:h-[107px] lg:w-[1440px]">
+        <Slider {...settings} className="">
           <MusicGenre genre="Soul" />
-        </div>
+          <MusicGenre genre="Clasica" />
+          <MusicGenre genre="Cumbia" />
+          <MusicGenre genre="Jazz" />
+          <MusicGenre genre="Norteño" />
+          <MusicGenre genre="Banda" />
+        </Slider>
       </div>
     </section>
   );

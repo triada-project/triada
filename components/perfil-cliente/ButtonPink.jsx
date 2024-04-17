@@ -6,6 +6,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function ButtonPink(props) {
   return (
     <Button
+      onClick={props.onClick}
       type={props.type}
       className={` bg-[#EF107D] text-white ${props.width} h-[50px] rounded text-base ${lato.className} ${props.mtop} `}
     >

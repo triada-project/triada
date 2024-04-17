@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body {
-  background-color: #081540;
-} */
+body {
+  background-color: #312971;
+}
+
+.slick-slide > div {
+  display: flex;
+  justify-content: center;
+  margin: 0 10 px;
+}
+.slick-prev {
+  left: 3% !important;
+  z-index: 1;
+}
+.slick-next {
+  right: 3% !important;
+  z-index: 1;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  background: linear-gradient(#fe3ece, #29fefd);
+  background-clip: text;
+  color: transparent !important;
+}

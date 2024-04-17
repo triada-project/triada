@@ -7,10 +7,12 @@ const josefine = Josefin_Sans({
 
 export default function MusicGenre(props) {
   return (
-    <h3
-      className={`text-white font-bold text-[14px] sm:-mt-20 md:-mt-0 md:text-[20px] ${josefine.className}`}
-    >
-      {props.genre}
-    </h3>
+    <div className="pt-1 sm:pt-[30px] lg:pt-[40px]">
+      <h3
+        className={`text-white font-bold text-[14px]   md:-mt-0 md:text-[20px] ${josefine.className}`}
+      >
+        {props.genre}
+      </h3>
+    </div>
   );
 }

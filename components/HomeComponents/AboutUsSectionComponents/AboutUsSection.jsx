@@ -1,4 +1,3 @@
-
 import ElementList from "./ElementList";
 import { Josefin_Sans, Lato } from "next/font/google";
 import GradientLogInButton from "./GradientLogInButton";
@@ -14,10 +13,14 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function AboutUsSection() {
   return (
-    <section className="w-screen bg-[#081540] grid sm:grid sm:grid-cols-2 sm:bg-[#9E1056] md:bg-[#081540] md:pb-16 ">
-      <UsSection />
-      <WhyUsSection />
+    <section className="container ">
+      <div
+        id="usContainer"
+        className="w-screen bg-[#081540] grid sm:grid sm:grid-cols-2 sm:bg-[#9E1056] lg:bg-[#081540] lg:w-[1440px]   "
+      >
+        <UsSection />
+        <WhyUsSection />
+      </div>
     </section>
   );
-
 }

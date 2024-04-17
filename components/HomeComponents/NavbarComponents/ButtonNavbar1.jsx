@@ -11,7 +11,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function ButtonNavbar1(props) {
   return (
     <Button
-      className={`hidden sm:flex rounded-md px-8 font-normal border border-[#29FEFD] bg-inherit text-[#29FEFD] hover:bg-[#29FEFD] hover:text-black ${josefine.className}`}
+      className={`hidden lg:flex rounded-md px-8 font-normal border border-[#29FEFD] bg-inherit text-[#29FEFD] hover:bg-[#29FEFD] hover:text-black ${josefine.className}`}
       as={Link}
       href={props.href}
     >
