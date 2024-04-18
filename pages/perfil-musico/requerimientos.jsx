@@ -27,6 +27,11 @@ export default function Requerimientos() {
   };
 
   //console.log(requests);
+  const updateRequest = (index, newText) => {
+    const updatedRequests = [...requests];
+    updatedRequests[index] = newText;
+    setRequests(updatedRequests);
+  };
 
   const addRequest = () => {
     if (text.trim().length > 0 && requests.length < 5) {
@@ -118,6 +123,7 @@ export default function Requerimientos() {
                 <RequestCard
                   key={index}
                   text={request}
+                  onUpdate={(newText) => updateRequest(index, newText)}
                   onDelete={() => onDelete(index)}
                   page={"requerimientos"}
                 />
