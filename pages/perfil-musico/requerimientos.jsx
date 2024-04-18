@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import dataMusician from "@/objects/musicianObject.json";
 import RequestCard from "@/components/RequestCard";
+import { Toaster, toast } from "sonner";
 
 //console.log(dataMusician.users.repertory);
 const repertory = dataMusician.users.repertory;
@@ -32,7 +33,8 @@ export default function Requerimientos() {
       setRequests([text, ...requests]);
       setText("");
     } else if (requests.length >= 5) {
-      alert("Ya has alcanzado el límite de 5 requerimientos.");
+      toast.warning("Ya has alcanzado el límite de 5 requerimientos.");
+      // alert("Ya has alcanzado el límite de 5 requerimientos.");
     } else {
       alert("Ingresa un texto");
     }
@@ -79,6 +81,12 @@ export default function Requerimientos() {
               (acondicionamiento del lugar, etc ). Puedes agregar máximo 5
               requerimientos.
             </p>
+            <div>
+              <Toaster richColors closeButton />
+              {/* <button onClick={() => toast("My first toast")}>
+                Give me a toast
+              </button> */}
+            </div>
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
