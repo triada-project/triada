@@ -1,5 +1,8 @@
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
+import estados from "../../data/estados.json";
+
+console.log(estados);
 
 export default function EstadoSelect() {
   const {
@@ -18,9 +21,12 @@ export default function EstadoSelect() {
       //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
       {...register("estado", { required: true })}
     >
-      <SelectItem key={"Nuevo León"}>Nuevo León</SelectItem>
+      {estados.map((estado) => (
+        <SelectItem key={estado.clave}>{estado.nombre}</SelectItem>
+      ))}
+      {/* <SelectItem key={"Nuevo León"}>Nuevo León</SelectItem>
       <SelectItem key={"CDMX"}>CDMX</SelectItem>
-      <SelectItem key={"Jalisco"}>Jalisco</SelectItem>
+      <SelectItem key={"Jalisco"}>Jalisco</SelectItem> */}
     </Select>
   );
 }
