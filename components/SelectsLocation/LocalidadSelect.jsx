@@ -16,6 +16,7 @@ export default function LocalidadSelect() {
       className=" w-[328px] h-14 lg:w-[30rem]"
       {...register("localidad")}
     >
+      {}
       <SelectItem key={"Monterrey"}>Monterrey</SelectItem>
       <SelectItem key={"Santa Catarina"}>Santa Catarina</SelectItem>
       <SelectItem key={"San Pedro"}>San Pedro</SelectItem>

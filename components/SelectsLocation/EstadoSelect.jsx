@@ -24,9 +24,6 @@ export default function EstadoSelect() {
       {estados.map((estado) => (
         <SelectItem key={estado.clave}>{estado.nombre}</SelectItem>
       ))}
-      {/* <SelectItem key={"Nuevo León"}>Nuevo León</SelectItem>
-      <SelectItem key={"CDMX"}>CDMX</SelectItem>
-      <SelectItem key={"Jalisco"}>Jalisco</SelectItem> */}
     </Select>
   );
 }

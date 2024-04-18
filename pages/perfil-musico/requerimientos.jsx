@@ -1,7 +1,6 @@
 import MenuMobileMusician from "@/components/profile-musician/MenuMobileMusician.jsx";
 import AsideMusico from "@/components/profile-musician/AsideMusico.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
-import RepertoryCard from "@/components/RepertoryCard";
 import { Input } from "@nextui-org/react";
 import ButtonPink from "@/components/perfil-cliente/ButtonPink";
 import { useForm } from "react-hook-form";
@@ -29,9 +28,11 @@ export default function Requerimientos() {
   //console.log(requests);
 
   const addRequest = () => {
-    if (text.trim().length > 0) {
+    if (text.trim().length > 0 && requests.length < 5) {
       setRequests([text, ...requests]);
       setText("");
+    } else if (requests.length >= 5) {
+      alert("Ya has alcanzado el límite de 5 requerimientos.");
     } else {
       alert("Ingresa un texto");
     }
