@@ -2,7 +2,7 @@ import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import estados from "../../data/estados.json";
 
-console.log(estados);
+//console.log(estados);
 
 export default function EstadoSelect() {
   const {
