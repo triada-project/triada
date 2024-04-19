@@ -41,7 +41,7 @@ export default function Requerimientos() {
       toast.warning("Ya has alcanzado el límite de 5 requerimientos.");
       // alert("Ya has alcanzado el límite de 5 requerimientos.");
     } else {
-      alert("Ingresa un texto");
+      toast.warning("Ingresa un texto.");
     }
   };
 
