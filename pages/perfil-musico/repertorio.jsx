@@ -32,7 +32,7 @@ export default function Repertorio() {
       <MenuMobileMusician page="repertorio" role="musico" />
       <main className=" overflow-y-auto shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50 max-w-[1440px] bg-white  flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]">
         <AsideMusico page="repertorio" />
-        <section className=" w-[90%] flex flex-col items-center gap-11 sm:col-start-2 sm:col-span-1 sm:h-screen sm:w-[80%] sm:ml-11 lg:w-full  lg:items-start ">
+        <section className=" w-[90%] flex flex-col items-center gap-11 sm:col-start-2 sm:col-span-1 sm:h-screen sm:w-[80%] sm:pl-11 lg:w-full  lg:items-start ">
           <div className=" flex flex-col items-center mt-10 gap-2 lg:items-start lg:mt-0">
             <h1
               className={`${josefine.className} text-black text-xl font-semibold  sm:text-[28px] lg:mt-[4.5rem] `}
@@ -72,7 +72,7 @@ export default function Repertorio() {
               type="submit"
             />
           </form>
-          <article className=" flex flex-col gap-7 lg:w-full lg:flex-row lg:flex-wrap lg:gap-[73px]">
+          <article className=" flex flex-col gap-7 lg:w-full lg:flex-row lg:flex-wrap lg:gap-[73px] pb-11">
             {repertory.map((song) => (
               <RepertoryCard
                 key={song.author}

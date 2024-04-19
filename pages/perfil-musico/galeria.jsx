@@ -16,7 +16,7 @@ export default function PerfilMusico() {
       <MenuMobileMusician page="galeria" role="musico" />
       <main className=" overflow-y-auto  shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50 max-w-[1440px] bg-white  flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]">
         <AsideMusico page="galeria" />
-        <section className=" w-[90%] flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-screen sm:w-[80%] sm:pl-11 lg:pl-[72px] lg:items-start ">
+        <section className=" w-[90%] flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-full sm:w-[80%] sm:pl-11 lg:pl-[72px] lg:items-start ">
           <h1
             className={`${josefine.className} text-black text-xl font-semibold my-10 sm:text-[28px] lg:mt-[4.5rem] `}
           >
@@ -27,7 +27,7 @@ export default function PerfilMusico() {
             conozca tu trabajo.
           </p>
           <GalleryPhotos />
-          <div className="mt-10">
+          <div className="my-10">
             <GalleryVideos />
           </div>
         </section>
