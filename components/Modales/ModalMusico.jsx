@@ -39,9 +39,7 @@ export default function ModalClientePendiente() {
     onOpen();
   };
 
-  const eventosPendientes = events.filter(
-    (evento) => evento.estado === "activo"
-  );
+  const eventosPendientes = events.filter((evento) => evento.estado === 'activo');
 
   return (
     <>
@@ -107,40 +105,61 @@ export default function ModalClientePendiente() {
                           </div>
                         )}
 
-                      {eventosPendientes.length > 0 &&
-                        eventosPendientes[0].estado === "pendiente" && (
-                          <div className="bg-red-200  rounded-md h-22 w-full mt-4  p-4 ">
-                            <h2 className="text-center">
-                              Nueva solicitud de evento
-                            </h2>
-                            <p>
-                              Esta es una nueva solicitud de evento, analiza la
-                              propuesta para aceptarla o declinarla
-                            </p>
-                            <div className="flex flex-row gap-4 mt-5">
-                              <Button color="danger" className="w-full">
-                                Rechazar Evento
-                              </Button>
-                              <Button color="danger" className="w-full">
-                                Aceptar
-                              </Button>
-                            </div>
+                    {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'pendiente' && (
+                    <div className="bg-red-200  rounded-md h-22 w-full mt-4  p-4 "  >
+                      <h2 className="text-center">Nueva solicitud de evento</h2>
+                      <p>Esta es una nueva solicitud de evento, analiza la propuesta para aceptarla
+                         o declinarla
+                      </p>
+                      <div className="flex flex-row gap-4 mt-5">
+                        <Button color="danger" className="w-full">
+                            Rechazar Evento
+                        </Button>   
+                        <Button color="danger" className="w-full">
+                            Aceptar
+                        </Button>        
+                      </div>
+
+                    </div>
+                    )}
+                    <br />
+                    
+                    <div className="flex flex-row gap-6">
+                      <Image
+                        alt="card-background"
+                        src={evento.url_imagen}
+                        className="rounded-full w-20 h-20"
+                      />
+                      <div className="flex flex-col gap-2">
+                        <p className="text-center md:text-lg font-semibold">{evento.titulo_evento}</p>
+                        
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'finalizado' && (
+                        <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                          <Image src="/assets/svg/checkmark-circle.svg"  className="w-52 h-4 mr-2" />
+                          <p className="text-xs pr-1">{evento.estado}</p>
+                        </div>
+                        )}
+
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'activo' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
+                            <Image src="/assets/svg/play.svg"  className="w-52 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
                           </div>
                         )}
-                      <br />
 
-                      <div className="flex flex-row gap-6">
-                        <Image
-                          alt="card-background"
-                          src={evento.url_imagen}
-                          className="rounded-full w-20 h-20"
-                        />
-                        <div className="flex flex-col gap-2">
-                          <p className="text-center md:text-lg font-semibold">
-                            {evento.titulo_evento}
-                          </p>
-                          <Chip>{evento.estado}</Chip>
-                        </div>
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'cancelado' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                            <Image src="/assets/svg/close-circle.svg"  className="w-52 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'pendiente' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                            <Image src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"  className="w-52 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
                       </div>
 
                       <div>
@@ -149,35 +168,30 @@ export default function ModalClientePendiente() {
                         </p>
                       </div>
 
-                      <div className="flex flex-col sm:flex-row gap-10">
-                        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
-                          <div>
-                            <p className="text-sm font-semibold">Agenda</p>
-                          </div>
-                          <div>
-                            <div className="flex items-center">
-                              <Image
-                                src="/assets/svg/calendar.svg"
-                                className="w-6 h-6 mr-2"
-                              />
-                              <p>Fecha: {evento.fecha_evento}</p>
-                            </div>
-                          </div>
+                    <div className="flex flex-col sm:flex-row gap-10">
+                  
+                      <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+                        <div>
+                          <p className="text-sm font-semibold">Agenda</p>
+                        </div>
+                        <div>
                           <div className="flex items-center">
-                            <Image
-                              src="/assets/svg/timer.svg"
-                              className="w-6 h-6 mr-2"
-                            />
-                            <p>Hora Inicio: {evento.inicio_evento}</p>
-                          </div>
-                          <div className="flex items-center">
-                            <Image
-                              src="/assets/svg/timer.svg"
-                              className="w-6 h-6 mr-2"
-                            />
-                            <p>Hora Término: {evento.termino_evento}</p>
+                            <Image src="/assets/svg/calendar_client.svg"  className="w-6 h-6 mr-2" />
+                            <p>Fecha: {evento.fecha_evento}</p>
                           </div>
                         </div>
+                        <div className="flex items-center">
+                          <Image src="/assets/svg/timer.svg" className="w-6 h-6 mr-2" />
+                          <p>Hora Inicio: {evento.inicio_evento}</p>
+                        </div>
+                        <div className="flex items-center">
+                          <Image src="/assets/svg/timer.svg" className="w-6 h-6 mr-2" />
+                          <p>Hora Término: {evento.termino_evento}</p>
+                        </div>
+                      </div>
+
+                     
+
 
                         <div className="flex flex-col  ">
                           <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
@@ -241,63 +255,58 @@ export default function ModalClientePendiente() {
                       <div>
                         <p className="text-sm font-semibold">Resumen</p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-1 gap-4 mt-4">
-                          <div>
-                            <div className="flex items-center">
-                              <Image
-                                src="/assets/svg/calendar.svg"
-                                className="w-6 h-6 mr-2"
-                              />
-                              <p>
-                                Horas contratadas:{" "}
-                                {evento.horas_contratadas_evento}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="flex items-center">
-                            <Image
-                              src="/assets/svg/timer.svg"
-                              className="w-6 h-6 mr-2"
-                            />
-                            <p>Honorarios: {evento.costo_evento}</p>
-                          </div>
-                          <div className="flex items-center">
-                            <Image
-                              src="/assets/svg/timer.svg"
-                              className="w-6 h-6 mr-2"
-                            />
-                            <p>Estatus de pago: {evento.estatus_evento}</p>
-                          </div>
+                    <div className="grid grid-cols-1 md:grid-cols-1 gap-4 mt-4">
+                      
+                      <div>
+                        <div className="flex items-center">
+                          <Image src="/assets/svg/calendar_client.svg"  className="w-6 h-6 mr-2" />
+                          <p>Horas contratadas: {evento.horas_contratadas_evento}</p>
                         </div>
                       </div>
+                      <div className="flex items-center">
+                        <Image src="/assets/svg/timer.svg" className="w-6 h-6 mr-2" />
+                        <p>Honorarios: {evento.costo_evento}</p>
+                      </div>
+                      <div className="flex items-center">
+                        <Image src="/assets/svg/timer.svg" className="w-6 h-6 mr-2" />
+                        <p>Estatus de pago: {evento.estatus_evento}</p>
+                      </div>
                     </div>
+                    
+                  </div>
+                </div>
 
-                    <br />
-                    {eventosPendientes.length > 0 &&
-                      eventosPendientes[0].estado === "activo" && (
-                        <div className="bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full mt-4  p-4 ">
-                          El pago se depositara en tu cuenta en automático al
-                          terminar el evento, recuerda compartir el código de
-                          inicio de evento al cliente antes de inicar tú
-                          presentación..
-                        </div>
-                      )}
-                    {eventosPendientes.length > 0 &&
-                      eventosPendientes[0].estado === "cancelado" && (
-                        <div className="bg-red-200 hover:bg-red-300  rounded-md h-22 w-full mt-4  p-4 ">
-                          Lamentamos informar que la realización de este evento
-                          no fue posible, ya que no cumplia con las expectativas
-                          ni del cliente ni de la banda musical. Diferencias en
-                          la ubicación, la fecha y otros factores externos
-                          influyeron en esta decisión. Estamos comprometidos a
-                          brindar experiencias excepcionales, y aunque esta
-                          ocasion no funcionó, esperamos que puedan colaborar en
-                          eventos futuros que se alineen mejor con las
-                          expectativas de ambas partes. ¡Agradecemos tu
-                          comprensión!
-                        </div>
-                      )}
-                  </Card>
+                <br />
+                {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'activo' && (
+                <div className="bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full mt-4  p-4 "  >
+                  El pago se depositara en tu cuenta en automático al terminar el evento, 
+                  recuerda compartir el código de inicio de evento al cliente antes de inicar tú 
+                  presentación..
+                </div>
+                )}
+                {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'cancelado' && (
+                <div className="bg-red-200 hover:bg-red-300  rounded-md h-22 w-full mt-4  p-4 "  >
+                  Lamentamos informar que la realización de este evento no fue posible, ya que no cumplia
+                  con las expectativas ni del cliente ni de la banda musical. Diferencias en la ubicación,
+                  la fecha y otros factores externos influyeron en esta decisión. Estamos comprometidos a
+                  brindar experiencias excepcionales, y aunque esta ocasion no funcionó, esperamos que puedan
+                  colaborar en eventos futuros que se alineen mejor con las expectativas de ambas partes.
+                  ¡Agradecemos tu comprensión!
+                </div>
+                )}
+
+                {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'activo' && (
+                  <div className=" mt-5 pt-4" >
+                    
+                    <Button color="danger" className="w-full">
+                        Enviar codigo
+                    </Button>
+
+                  </div>
+                )}
+
+
+              </Card>
                 ))}
               </ModalBody>
               <ModalFooter>

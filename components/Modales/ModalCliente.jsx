@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
 
 import {
   Modal,
@@ -36,6 +38,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function ModalCliente() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [size, setSize] = React.useState("2xl");
+  const [rating, setRating] = useState(3); // Initial value
   //const [eventosPendientes, setEventosPendientes] = useState([]);
 
   const { events } = Events;
@@ -46,7 +49,7 @@ export default function ModalCliente() {
   };
 
   const eventosPendientes = events.filter(
-    (evento) => evento.estado === "finalizado"
+    (evento) => evento.estado === "pendiente por confirmar"
   );
 
   return (
@@ -76,22 +79,69 @@ export default function ModalCliente() {
                   // <div key={index} class="flex flex-col sm:flex-row ">
                   <div
                     key={index}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                    className="grid grid-cols-1 md:grid-cols-[40fr,60fr] gap-4"
                   >
                     {/* class=" w-full sm:w-unit-6xl" */}
-                    <div>
+                    <div className="">
                       <Image
                         alt="NextUI hero Image"
                         src={evento.url_imagen}
-                        className="max-w[100px] "
+                        className="max-w[150px] h-200"
                       />
                     </div>
 
-                    <div class="w-7/10 p-3  ">
+                    <div class=" p-0 ">
                       <p class="text-black font-bold text-xl mb-1">
                         {evento.titulo_evento}{" "}
                       </p>
-                      <Chip className="text-sm p-2">{evento.estado}</Chip>
+                      {/* <Chip className="text-sm p-2 outline outline-offset-2 outline-1 bg-inherit "> </Chip> */}
+
+                      {eventosPendientes.length > 0 &&
+                        eventosPendientes[0].estado === "finalizado" && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                            <Image
+                              src="/assets/svg/checkmark-circle.svg"
+                              className="w-52 h-4 mr-2"
+                            />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+
+                      {eventosPendientes.length > 0 &&
+                        eventosPendientes[0].estado === "activo" && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
+                            <Image
+                              src="/assets/svg/play.svg"
+                              className="w-52 h-4 mr-2"
+                            />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+
+                      {eventosPendientes.length > 0 &&
+                        eventosPendientes[0].estado === "cancelado" && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                            <Image
+                              src="/assets/svg/close-circle.svg"
+                              className="w-52 h-4 mr-2"
+                            />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+
+                      {eventosPendientes.length > 0 &&
+                        eventosPendientes[0].estado ===
+                          "pendiente por confirmar" && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-2/4 rounded-full items-center">
+                            <Image
+                              src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"
+                              className="w-10 h-4 mr-2"
+                            />
+                            <p className="text-xs w-full pr-1">
+                              {evento.estado}
+                            </p>
+                          </div>
+                        )}
 
                       <p className="text-black text-sm font-bold mt-2 pb-2">
                         Detalle del evento:{" "}
@@ -100,10 +150,10 @@ export default function ModalCliente() {
                       {/* <div class="columns-1 lg:columns-3  text-black flex"> */}
                       {/* <div className="grid grid-cols-1 md:grid-cols-1 gap-4"> */}
                       <div className="flex flex-col md:flex-row ">
-                        <ul class="list-none mr-5 ">
+                        <ul class="list-none mr-9 ">
                           <div className="flex  items-center gap-1">
                             <Image
-                              src="/assets/svg/calendar.svg"
+                              src="/assets/svg/calendar_client.svg"
                               className="mr-1 w-4 h-6 md:mr-3"
                             />
                             <li className="md:text-xs">
@@ -131,19 +181,19 @@ export default function ModalCliente() {
                           </div>
                         </ul>
 
-                        <ul class="list-none mr-5 ">
+                        <ul class="list-none mr-9 ">
                           <div className="flex items-center">
                             <Image
                               src="/assets/svg/flash-sharp.svg"
-                              className="w-4 h-6 mr-2 md:w-3"
+                              className="w-4 h-6 mr-2 md:w-4"
                             />
                             <li className="md:text-xs">{evento.tipo_evento}</li>
                           </div>
-                          <li className="text-xs">Contact:</li>
+                          {/* <li className="text-xs">Contact:</li> */}
                           <div className="flex items-center gap-1">
                             <Image
                               src="/assets/svg/call.svg"
-                              className="w-4 h-6 mr-2  md:w-3"
+                              className="w-4 h-6 mr-2  md:w-4 hover:border-slate-400"
                             />
                             {evento.estado === "activo" ||
                               (evento.estado === "finalizado" && (
@@ -157,8 +207,8 @@ export default function ModalCliente() {
                         <ul class="list-none ">
                           <div className="flex items-center gap-1">
                             <Image
-                              src="/assets/svg/calendar.svg"
-                              className="w-4 h-6 mr-2 md:w-3"
+                              src="/assets/svg/calendar_client.svg"
+                              className="w-4 h-6 mr-2 md:w-4"
                             />
                             <li className="md:text-xs">
                               Horas: {evento.horas_contratadas_evento}
@@ -167,7 +217,7 @@ export default function ModalCliente() {
                           <div className="flex items-center gap-1">
                             <Image
                               src="/assets/svg/cash-outline.svg"
-                              className="w-4 h-6 mr-2 md:w-3"
+                              className="w-4 h-6 mr-2 md:w-4"
                             />
                             <li className="md:text-xs">
                               Costo:${evento.costo_evento}
@@ -176,10 +226,11 @@ export default function ModalCliente() {
                           <div className="flex  gap-1">
                             <Image
                               src="/assets/svg/card-sharp.svg"
-                              className="w-4 h-6 mr-2 md:w-3"
+                              className="w-4 h-6 mr-2 md:w-4"
                             />
-                            <li className="md:text-xs">
-                              Estatus: {evento.estatus_evento}
+                            <li className="md:text-xs pt-1">
+                              {" "}
+                              {evento.estatus_evento}
                             </li>
                           </div>
                         </ul>
@@ -264,9 +315,17 @@ export default function ModalCliente() {
                 {eventosPendientes.length > 0 &&
                   eventosPendientes[0].estado === "finalizado" && (
                     <div>
-                      <p className="text-black text-sm font-bold pb-2">
-                        Escribir reseña
-                      </p>
+                      <div className="flex flex-row">
+                        <p className="text-black text-sm font-bold pb-2 mr-3 items-center">
+                          Escribir reseña:
+                        </p>
+                        <Rating
+                          className="pb-3"
+                          style={{ maxWidth: 100 }}
+                          value={rating}
+                          onChange={setRating}
+                        />
+                      </div>
                       <Input
                         type="email"
                         label="Tu opinion es importante..."

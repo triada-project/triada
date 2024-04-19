@@ -1,8 +1,7 @@
 import { Josefin_Sans, Lato } from "next/font/google";
-import OptionalInputs from "./OptionalInputs";
-import MusicianCard from "./MusicianCard";
 import MusiciansCardsContainer from "./MusiciansCardsContainer";
 import SelectHomeEvents from "../SelectHomeEvents";
+import SelectGenreMusicianCatalog from "./SelectGenreMusicianCatalog";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -11,11 +10,17 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function MusicianCatalog() {
+  const scrollUp = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       <section
         id="musicianCatalog"
-        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-[1440px] "
+        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-[1440px] lg:pb-[81px] "
       >
         <div id="titleContainer ">
           <h1
@@ -28,8 +33,8 @@ export default function MusicianCatalog() {
           id="inputsContainer"
           className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-[744px] sm:px-[56px] sm:pt-[35px] sm:flex-row lg:w-[1440px] lg:px-[183px]"
         >
-          <SelectHomeEvents selectType="home" />
-          <SelectHomeEvents selectType="home" />
+          <SelectHomeEvents typeItems="typeEvents" selectType="home" />
+          <SelectGenreMusicianCatalog selectType="home" />
           <SelectHomeEvents selectType="home" />
 
           <div
@@ -77,6 +82,7 @@ export default function MusicianCatalog() {
           src="/assets/images/GradientCircle.png"
           alt=""
           className="w-[48px] h-[48px] "
+          onClick={scrollUp}
         />
       </div>
     </>

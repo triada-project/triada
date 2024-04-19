@@ -12,6 +12,7 @@ import MainFooter from "../../components/mainFooter/MainFooter";
 import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
+import FooterMain from "@/components/footer/footer";
 
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -31,7 +32,7 @@ export default function musicianDetail() {
 
   return (
     <>
-      <main className="max-w-[1440px] m-auto bg-white">
+      <main className=" shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50 max-w-[1440px] m-auto bg-white">
         <NavBar />
         <div className="lg:ml-[80px] lg:mr-[80px] ">
           <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-4 md:grid-rows-7 grid-flow-col  ">
@@ -190,10 +191,11 @@ export default function musicianDetail() {
             </div>
           </div>
         </div>
+        <FooterMain marginT={"mt-[100px]"} />
 
-        <div className="">
+        {/* <div className="">
           <MainFooter />
-        </div>
+        </div> */}
       </main>
     </>
   );
