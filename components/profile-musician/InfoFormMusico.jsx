@@ -57,31 +57,40 @@ export default function InfoFormMusico() {
             placeholder="Cuentanos sobre ti"
             description="200 caracteres como máximo, solo texto simple."
             className="w-[328px] lg:w-[30rem]"
+            {...register("description")}
           />
           <SelectGenreMusic width="w-[328px] lg:w-[30rem]" />
           <SelectTypeEvents width="w-[328px] lg:w-[30rem]" />
           <Input
-            className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
-            isRequired
-            variant="bordered"
-            radius="sm"
+            type="number"
             label="Costo por hora evento"
-            {...register("eventCost")}
-          />
-          <Input
-            className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
             isRequired
+            placeholder="0.00"
+            //autoFocus={true}
             variant="bordered"
             radius="sm"
-            label="Días anticipación para agendar"
-            {...register("nombre")}
+            className={`w-[328px] h-14 rounded-none lg:w-[30rem]`}
+            {...register("eventCost")}
+            startContent={
+              <div className="pointer-events-none flex items-center">
+                <span className="text-default-400 text-small">$</span>
+              </div>
+            }
           />
-          {/* <Button
-            type="submit"
-            className={` bg-[#EF107D] text-white w-[328px] h-[50px] rounded text-base ${lato.className} lg:w-[30rem]`}
-          >
-            Guardar
-          </Button> */}
+
+          <Input
+            type="number"
+            label="Duración máxima de horas por evento"
+            isRequired
+            placeholder="0"
+            min={1}
+            max={24}
+            //autoFocus={true}
+            variant="bordered"
+            radius="sm"
+            className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
+            {...register("eventHours", { required: true })}
+          />
 
           <ButtonPink
             width="w-[328px] lg:w-[30rem]"
