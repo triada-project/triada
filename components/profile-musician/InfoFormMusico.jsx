@@ -3,7 +3,7 @@ import { Input } from "@nextui-org/react";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import ButtonPink from "../perfil-cliente/ButtonPink";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import SelectGenreMusic from "../SelectGenreMusic/SelectGenreMusic";
 import SelectTypeEvents from "../SelectGenreMusic/SelectTypeEvents";
 import LocalidadSelect from "../SelectsLocation/LocalidadSelect";
@@ -19,8 +19,14 @@ export default function InfoFormMusico() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onBlur",
+    defaultValues: {
+      estado: "",
+    },
+  });
 
   //console.log(errors);
 
@@ -45,7 +51,20 @@ export default function InfoFormMusico() {
             label="Nombre para mostrar"
             {...register("nombre")}
           />
-          <EstadoSelect />
+
+          <Controller
+            name="estado"
+            control={control}
+            rules={{ required: true }} // Add your validation rules here
+            render={({ field: { onChange, onBlur, value } }) => (
+              <EstadoSelect
+                // onBlur={onBlur}
+                onChange={onChange}
+                selectedKeys={value ? [value] : []}
+              />
+            )}
+          />
+          {/* <EstadoSelect /> */}
           {/* <div className=" text-tiny text-danger-50">
             Debes elegir un estado
           </div> */}

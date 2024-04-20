@@ -1,19 +1,13 @@
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
-import { useForm } from "react-hook-form";
 import estados from "../../data/estados.json";
 import useSelectedStateStore from "@/stores/selectedStateStore";
 
 //console.log(estados);
 
-export default function EstadoSelect() {
+export default function EstadoSelect({ onChange, onBlur, selectedKeys }) {
   const setSelectedState = useSelectedStateStore(
     (state) => state.setSelectedState
   );
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   const handleEstadoChange = (selectedEstado) => {
     setSelectedState(selectedEstado);
@@ -26,11 +20,13 @@ export default function EstadoSelect() {
       variant="bordered"
       radius="sm"
       className="w-[328px] h-14 lg:w-[30rem]"
-      {...register("estado", { required: true })}
+      onChange={onChange}
+      // onBlur={onBlur}
+      selectedKeys={selectedKeys}
     >
       {estados.map((estado) => (
         <SelectItem
-          key={estado.clave}
+          key={estado.nombre}
           onClick={() => handleEstadoChange(estado.nombre)}
         >
           {estado.nombre}
