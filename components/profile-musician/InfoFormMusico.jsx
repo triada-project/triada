@@ -25,6 +25,7 @@ export default function InfoFormMusico() {
     mode: "onBlur",
     defaultValues: {
       estado: "",
+      municipio: "",
     },
   });
 
@@ -64,11 +65,22 @@ export default function InfoFormMusico() {
               />
             )}
           />
-          {/* <EstadoSelect /> */}
           {/* <div className=" text-tiny text-danger-50">
             Debes elegir un estado
           </div> */}
-          <LocalidadSelect />
+          <Controller
+            name="municipio"
+            control={control}
+            rules={{ required: true }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <LocalidadSelect
+                // onBlur={onBlur}
+                onChange={onChange}
+                selectedKeys={value ? [value] : []}
+              />
+            )}
+          />
+
           <Textarea
             variant="bordered"
             isRequired

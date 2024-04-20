@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import estadosMunicipios from "../../data/estados-municipios.json";
 import useSelectedStateStore from "@/stores/selectedStateStore";
 
-export default function LocalidadSelect() {
+export default function LocalidadSelect({ onChange, selectedKeys }) {
   const selectedState = useSelectedStateStore((state) => state.selectedState);
-  console.log(selectedState);
+  //console.log(selectedState);
   const {
     register,
     handleSubmit,
@@ -22,10 +22,11 @@ export default function LocalidadSelect() {
       variant="bordered"
       radius="sm"
       className="w-[328px] h-14 lg:w-[30rem]"
-      {...register("localidad")}
+      onChange={onChange}
+      selectedKeys={selectedKeys}
     >
       {localidades.map((localidad, index) => (
-        <SelectItem key={index}>{localidad}</SelectItem>
+        <SelectItem key={localidad}>{localidad}</SelectItem>
       ))}
     </Select>
   );
