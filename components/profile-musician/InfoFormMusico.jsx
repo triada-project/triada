@@ -46,7 +46,7 @@ export default function InfoFormMusico(props) {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <section className="flex flex-col items-center my-11 lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py-5 lg:border-opacity-25 lg:shadow-lg lg:items-start ">
+    <section className="flex flex-col items-center mt-11 lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py-5 lg:border-opacity-25 lg:shadow-lg lg:items-start ">
       <h2 className={`${josefine.className} text-black text-xl font-semibold`}>
         Información
       </h2>

@@ -2,6 +2,7 @@ import AsideMusico from "@/components/profile-musician/AsideMusico.jsx";
 import MenuMobileMusician from "@/components/profile-musician/MenuMobileMusician.jsx";
 import UpdateCardPicture from "../../components/UpdateCardPicture.jsx";
 import InfoFormMusico from "@/components/profile-musician/InfoFormMusico.jsx";
+import NewPasswordForm from "@/components/NewPasswordForm.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
 
 const josefine = Josefin_Sans({
@@ -25,7 +26,10 @@ export default function PerfilMusico() {
             </h1>
             <UpdateCardPicture />
           </div>
-          <InfoFormMusico />
+          <div className=" flex flex-col gap-8">
+            <InfoFormMusico />
+            <NewPasswordForm />
+          </div>
         </section>
       </main>
     </>
