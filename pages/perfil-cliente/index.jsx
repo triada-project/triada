@@ -2,6 +2,7 @@ import AsideCliente from "../../components/perfil-cliente/AsideCliente.jsx";
 import MenuMobileMusician from "@/components/profile-musician/MenuMobileMusician.jsx";
 import UpdateCardPicture from "../../components/UpdateCardPicture.jsx";
 import InformacionForm from "@/components/perfil-cliente/InformacionForm.jsx";
+import NewPasswordForm from "@/components/newPasswordForm.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
 
 const josefine = Josefin_Sans({
@@ -14,9 +15,9 @@ export default function PerfilCliente() {
   return (
     <>
       <MenuMobileMusician role="client" page="perfil" />
-      <main className="shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50  max-w-[1440px] bg-white  flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]  ">
+      <main className=" 	shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50  bg-white max-w-[1440px] flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)] overflow-y-auto  ">
         <AsideCliente page="perfil" />
-        <section className=" flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-screen lg:flex-row lg:gap-7 lg:items-start ">
+        <section className="  flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-screen lg:flex-row lg:gap-7 lg:items-start ">
           <div className=" flex flex-col items-center lg:items-start lg:ml-[4.5rem]">
             <h1
               className={`${josefine.className}  text-black text-xl font-semibold mt-10 sm:text-[28px] lg:mt-[4.5rem] `}
@@ -25,7 +26,10 @@ export default function PerfilCliente() {
             </h1>
             <UpdateCardPicture />
           </div>
-          <InformacionForm />
+          <div className=" flex flex-col gap-8">
+            <InformacionForm />
+            <NewPasswordForm />
+          </div>
         </section>
       </main>
     </>
