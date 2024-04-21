@@ -1,6 +1,6 @@
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Input } from "@nextui-org/react";
-import { Select, SelectSection, SelectItem } from "@nextui-org/react";
+import { Select, SelectItem, Avatar, Chip } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import ButtonPink from "../perfil-cliente/ButtonPink";
 import { useForm, Controller } from "react-hook-form";
@@ -8,6 +8,8 @@ import SelectGenreMusic from "../SelectGenreMusic/SelectGenreMusic";
 import SelectTypeEvents from "../SelectGenreMusic/SelectTypeEvents";
 import LocalidadSelect from "../SelectsLocation/LocalidadSelect";
 import EstadoSelect from "../SelectsLocation/EstadoSelect";
+import { users, musicalGenre } from "../SelectGenreMusic/data";
+import { useState } from "react";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -15,7 +17,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function InfoFormMusico() {
+export default function InfoFormMusico(props) {
   const {
     register,
     handleSubmit,
@@ -26,10 +28,20 @@ export default function InfoFormMusico() {
     defaultValues: {
       estado: "",
       municipio: "",
+      genreMusic: "",
+      eventType: "",
     },
   });
 
-  //console.log(errors);
+  // const [values, setValues] = useState([]);
+
+  // const handleSelectionChange = (e) => {
+  //   setValues(new Set(e.target.value.split(",")));
+  // };
+
+  // console.log(Array.from(values));
+  // console.log(values);
+  // console.log(errors);
 
   const onSubmit = (data) => console.log(data);
 
@@ -90,8 +102,46 @@ export default function InfoFormMusico() {
             className="w-[328px] lg:w-[30rem]"
             {...register("description")}
           />
-          <SelectGenreMusic width="w-[328px] lg:w-[30rem]" />
-          <SelectTypeEvents width="w-[328px] lg:w-[30rem]" />
+
+          <Controller
+            name="genreMusic"
+            control={control}
+            rules={{ required: true }}
+            render={({ field: { onChange, value } }) => (
+              <SelectGenreMusic
+                onChange={(val) => {
+                  if (Array.isArray(val)) {
+                    onChange(val.join(","));
+                  } else {
+                    onChange(val);
+                  }
+                }}
+                selectedKeys={value ? value.split(",") : []}
+                width="w-[328px] lg:w-[30rem]"
+              />
+            )}
+          />
+
+          <Controller
+            name="eventType"
+            control={control}
+            rules={{ required: true }}
+            render={({ field: { onChange, value } }) => (
+              <SelectTypeEvents
+                onChange={(val) => {
+                  if (Array.isArray(val)) {
+                    onChange(val.join(","));
+                  } else {
+                    onChange(val);
+                  }
+                }}
+                selectedKeys={value ? value.split(",") : []}
+                width="w-[328px] lg:w-[30rem]"
+              />
+            )}
+          />
+
+          {/* <SelectTypeEvents width="w-[328px] lg:w-[30rem]" /> */}
           <Input
             type="number"
             label="Costo por hora evento"
