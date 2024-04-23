@@ -35,6 +35,7 @@ export default function NewPasswordForm() {
           <PasswordInput text="Nueva contraseña" />
           <PasswordInput text="Confirmar nueva contraseña" />
 
+
           {/* <div className=" text-tiny text-danger-50">
             Debes elegir un estado
           </div> */}
