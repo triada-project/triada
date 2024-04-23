@@ -100,7 +100,9 @@ export default function musicianDetail() {
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                     Videos
                   </h2>
-                  <CarouselVideos />
+                  <div className="">
+                    <CarouselVideos />
+                  </div>
                 </span>
                 <span>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
