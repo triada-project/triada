@@ -163,7 +163,7 @@ export default function EventsTable() {
         return (
           <div className="relative flex  items-start p-0">
             <ModalCliente></ModalCliente>
-            
+
             {/* <Dropdown>
               <DropdownTrigger>
                 <Button isIconOnly size="sm" variant="light">
