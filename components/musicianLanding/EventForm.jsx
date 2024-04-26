@@ -246,15 +246,15 @@ export default function EventForm() {
               className="mt-5 sm:mt-0"
             />
           </div>
-          <div className="text-black w-full divide-y divide-[#455A64]">
-            <h2 className="{`${josefin.classname} text-[#37474F] font-semibold sm:text-[20px]">
+          <div className="text-[#455A64] w-full divide-y ">
+            <h2 className="{`${josefin.classname} text-[#37474F] font-semibold sm:text-[20px] divide-[#455A64]">
               Resumen
             </h2>
-            <div className="flex">
+            <div className="flex mt-4">
               <p className="w-1/2">Horas contratadas</p>
               <p className="w-1/2 text-right">00</p>
             </div>
-            <div className="flex">
+            <div className="flex mt-4">
               <p className="w-2/3">Total de reservación</p>
               <p className="w-1/3 text-right">$00.000.00</p>
             </div>

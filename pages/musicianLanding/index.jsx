@@ -11,6 +11,7 @@ import AsideLeft from "@/components/musicianLanding/AsideLeft";
 import MainFooter from "../../components/mainFooter/MainFooter";
 import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
+import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import FooterMain from "@/components/footer/footer";
 
 const josefin = Josefin_Sans({
@@ -99,7 +100,9 @@ export default function musicianDetail() {
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                     Videos
                   </h2>
-                  <CarouselVideos />
+                  <div className="">
+                    <CarouselVideos />
+                  </div>
                 </span>
                 <span>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
@@ -108,34 +111,49 @@ export default function musicianDetail() {
                   <CarouselFotos />
                 </span>
               </div>
-              {
-                //<div className="md:flex md:flex-row md:gap-56">
-              }
+
               <div>
                 <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                   Requerimientos
                 </h2>
-                <div className="text-black">
+                <div className="text-black ">
                   <ul>
-                    <div className="flex items-center ">
+                    <div className="flex items-center mt-4">
                       <Image src={check} alt="check" width={20} height={20} />
                       <li className="ml-2">Piano de 88 teclas afinado</li>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center mt-4">
                       <Image src={check} alt="check" width={20} height={20} />
                       <li className="ml-2">
                         Camerino con iluminación y espejo
                       </li>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center mt-4">
                       <Image src={check} alt="check" width={20} height={20} />
                       <li className="ml-2">Catering ligero</li>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center mt-4">
                       <Image src={check} alt="check" width={20} height={20} />
                       <li className="ml-2">Agua</li>
                     </div>
                   </ul>
+                  <div className="border border-blue-700 bg-blue-100 rounded-md mt-5 flex">
+                    <div>
+                      <Image
+                        src={info_FILL1}
+                        alt="info"
+                        width={20}
+                        height={20}
+                        className="ml-2 mt-2 mr-5"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-blue-700 flex-auto text-center p-2">
+                        Consulta con el artista si hay requerimientos
+                        adicionales.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div>
@@ -166,9 +184,6 @@ export default function musicianDetail() {
                   </Chip>
                 </div>
               </div>
-              {
-                //</div>
-              }
               <div className="mt-5 shadow-xl">
                 <EventForm />
               </div>
