@@ -3,6 +3,7 @@ import { Input } from "@nextui-org/react";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import ButtonPink from "./ButtonPink";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -11,11 +12,34 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function InformacionForm() {
+  const [token, setToken] = useState("");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    // if (!token) {
+    //   window.location.href = "/login";
+    // }
+    //console.log(token);
+    return () => {};
+  });
+  console.log(token);
+
+  const tokenObjet = () => {
+    if (token) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        token.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      return payloadObject;
+    }
+  };
+  console.log(tokenObjet());
 
   //console.log(errors);
 
