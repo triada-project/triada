@@ -1,9 +1,9 @@
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Input } from "@nextui-org/react";
-import { Select, SelectSection, SelectItem } from "@nextui-org/react";
+import { Spinner } from "@nextui-org/react";
 import ButtonPink from "./ButtonPink";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import useTokenStore from "@/stores/tokenStore";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -12,7 +12,7 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function InformacionForm() {
-  const [token, setToken] = useState("");
+  const tokenObject = useTokenStore((state) => state.tokenObject);
 
   const {
     register,
@@ -20,30 +20,19 @@ export default function InformacionForm() {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    setToken(localStorage.getItem("token"));
-    // if (!token) {
-    //   window.location.href = "/login";
-    // }
-    //console.log(token);
-    return () => {};
-  });
-  console.log(token);
-
-  const tokenObjet = () => {
-    if (token) {
-      const [encodedHeader, encodedPayload, encodedSignature] =
-        token.split(".");
-      const decodedPayload = atob(encodedPayload);
-      const payloadObject = JSON.parse(decodedPayload);
-      return payloadObject;
-    }
-  };
-  console.log(tokenObjet());
+  //console.log(tokenObject);
 
   //console.log(errors);
 
   const onSubmit = (data) => console.log(data);
+  // Verificar si el tokenObject está listo
+  if (!tokenObject) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
+      </div>
+    );
+  }
 
   return (
     <section className="flex flex-col items-center mt-11 lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py-5 lg:border-opacity-25 lg:shadow-lg lg:items-start lg:mt-[67px]">
@@ -62,43 +51,11 @@ export default function InformacionForm() {
             variant="bordered"
             radius="sm"
             label="Nombre para mostrar"
+            //placeholder={`${tokenObjet()?.name}`}
+            defaultValue={`${tokenObject?.name}`}
             {...register("nombre")}
           />
-          {/* <Select
-            label="Estado de residencia"
-            isRequired
-            //autoFocus={true}
-            variant="bordered"
-            radius="sm"
-            className={`w-[328px] h-14 lg:w-[30rem]`}
-            //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-            {...register("estado", { required: true })}
-          >
-            <SelectItem key={"Nuevo León"}>Nuevo León</SelectItem>
-            <SelectItem key={"CDMX"}>CDMX</SelectItem>
-            <SelectItem key={"Jalisco"}>Jalisco</SelectItem>
-          </Select> */}
-          {/* <div className=" text-tiny text-danger-50">
-            Debes elegir un estado
-          </div> */}
-          {/* <Select
-            label="Localidad"
-            isRequired
-            variant="bordered"
-            radius="sm"
-            className=" w-[328px] h-14 lg:w-[30rem]"
-            {...register("localidad")}
-          >
-            <SelectItem key={"Monterrey"}>Monterrey</SelectItem>
-            <SelectItem key={"Santa Catarina"}>Santa Catarina</SelectItem>
-            <SelectItem key={"San Pedro"}>San Pedro</SelectItem>
-          </Select> */}
-          {/* <Button
-            type="submit"
-            className={` bg-[#EF107D] text-white w-[328px] h-[50px] rounded text-base ${lato.className} lg:w-[30rem]`}
-          >
-            Guardar
-          </Button> */}
+
           <ButtonPink
             width="w-[328px] lg:w-[30rem]"
             text="Guardar"

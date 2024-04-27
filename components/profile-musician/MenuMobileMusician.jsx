@@ -51,7 +51,7 @@ export default function MenuMobileMusician({ page, role }) {
     //console.log(token);
     return () => {};
   });
-  console.log(token);
+  //console.log(token);
 
   const tokenObjet = () => {
     if (token) {
