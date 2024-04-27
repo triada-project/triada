@@ -4,6 +4,7 @@ import { Spinner } from "@nextui-org/react";
 import ButtonPink from "./ButtonPink";
 import { useForm } from "react-hook-form";
 import useTokenStore from "@/stores/tokenStore";
+import { useEffect, useState } from "react";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -20,11 +21,27 @@ export default function InformacionForm() {
     formState: { errors },
   } = useForm();
 
-  //console.log(tokenObject);
+  console.log(tokenObject);
 
   //console.log(errors);
 
-  const onSubmit = (data) => console.log(data);
+  //const onSubmit = (data) => console.log(data);
+
+  async function onSubmit(data) {
+    const response = await fetch(
+      `http://localhost:4000/users/${tokenObject?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.nombre,
+        }),
+      }
+    );
+  }
+
   // Verificar si el tokenObject está listo
   if (!tokenObject) {
     return (
