@@ -1,28 +1,61 @@
 import { useForm } from "react-hook-form";
-import { Josefin_Sans, Lato } from "next/font/google";
+// import { useNavigate } from "react-router-dom";
+import { Josefin_Sans } from "next/font/google";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
 });
-const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function LogInForm() {
+export default function LoginFormDB() {
+  //   const navigate = useNavigate();
   const {
     register,
-    formState: { errors },
     handleSubmit,
+    setError,
+    formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+
+  async function onSubmit(data) {
+    const response = await fetch("http://localhost:3007/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const responseData = await response.json();
+    if (responseData?.token) {
+      localStorage.setItem("token", responseData.token);
+      //   navigate("/");
+      alert("Login exitoso");
+    } else {
+      setError("root", { message: "Información incorrecta, prueba de nuevo." });
+    }
+  }
 
   return (
-    <div>
+    <>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-[20px]"
       >
+        {errors.root && (
+          <p
+            className="bg-red-500/50
+                text-white
+                w-full
+                rounded-md
+                p-1
+                border border-red-500"
+          >
+            {errors.root?.message}
+          </p>
+        )}
         <div className="flex flex-col ">
           <label
             className={`pb-[8px] font-bold text-[16px] ${josefine.className}`}
@@ -84,6 +117,6 @@ export default function LogInForm() {
           className={`bg-[#EE0075] rounded-xl font-semibold text-[18px] h-[42px] ${josefine.className} `}
         />
       </form>
-    </div>
+    </>
   );
 }
