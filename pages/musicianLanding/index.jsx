@@ -95,20 +95,19 @@ export default function musicianDetail() {
                   ))}
                 </div>
               </div>
-              <div className="md:flex md:flex-row md:gap-4">
+              <div className="md:gap-4">
                 <span>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                     Videos
                   </h2>
-                  <div className="">
-                    <CarouselVideos />
-                  </div>
+
+                  <CarouselVideos />
                 </span>
                 <span>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                     Fotos
                   </h2>
-                  <CarouselFotos />
+                  <CarouselFotos classname="" />
                 </span>
               </div>
 
