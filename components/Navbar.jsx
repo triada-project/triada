@@ -1,33 +1,41 @@
 import React from "react";
 import {
   Navbar,
-  NavbarBrand,
   NavbarContent,
-  NavbarItem,
-  Link,
-  Button,
   NavbarMenuToggle,
   NavbarMenu,
-  NavbarMenuItem,
 } from "@nextui-org/react";
 import AnchorNavbar from "./HomeComponents/NavbarComponents/AnchorNavbar";
-import { Josefin_Sans, Lato } from "next/font/google";
 import AnchorToggleMenu from "./HomeComponents/NavbarComponents/AnchorToggleMenu";
 
 import LogInModal from "./HomeComponents/NavbarComponents/LogInModal";
 import LogInModalToggle from "./HomeComponents/NavbarComponents/LogInModalToggle";
 import RegisterModal from "./HomeComponents/NavbarComponents/RegisterModal";
 import RegisterModalToggle from "./HomeComponents/NavbarComponents/RegisterModalToggle";
+import clsx from "clsx";
+import { useEffect, useState } from "react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Avatar,
+} from "@nextui-org/react";
+import UserLogOutNavbar from "./HomeComponents/NavbarComponents/UserLogOutNavbar";
 
-
-const josefine = Josefin_Sans({
-  weight: ["300", "400", "600", "700"],
-  subsets: ["latin"],
-});
-const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
+const TOKEN_KEY = "token";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = window.localStorage.getItem(TOKEN_KEY);
+    if (token) {
+      console.log("este es el token", token);
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <Navbar
@@ -51,17 +59,25 @@ export default function NavBar() {
         <AnchorNavbar href="#" nameAnchor="NOSOTROS"></AnchorNavbar>
         <AnchorNavbar href="#" nameAnchor="MÚSICOS"></AnchorNavbar>
       </div>
-      <div id="buttons" className="flex gap-[24px]" justify="end">
+      <div
+        id="buttons"
+        className={clsx("flex gap-[24px]", { hidden: isLoggedIn })}
+        justify="end"
+      >
         <LogInModal />
         <RegisterModal />
       </div>
+
+      <UserLogOutNavbar />
+
       <NavbarMenu id="menu" className=" pt-5 w-[245px] bg-[#081540]  ">
         <AnchorToggleMenu href="#" nameAnchor="INICIO"></AnchorToggleMenu>
         <AnchorToggleMenu href="#" nameAnchor="NOSOTROS"></AnchorToggleMenu>
         <AnchorToggleMenu href="#" nameAnchor="MÚSICOS"></AnchorToggleMenu>
-        <LogInModalToggle />
-        <RegisterModalToggle />
-
+        <div className={clsx("flex flex-col gap-2", { hidden: isLoggedIn })}>
+          <LogInModalToggle />
+          <RegisterModalToggle />
+        </div>
       </NavbarMenu>
     </Navbar>
   );
