@@ -2,16 +2,19 @@ import { Josefin_Sans, Lato } from "next/font/google";
 import { Input } from "@nextui-org/react";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Checkbox } from "@nextui-org/react";
 import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
+import dataMusician from "../../objects/musicianObject.json";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
+const { users } = dataMusician;
 
 export default function EventForm() {
   const {
@@ -19,8 +22,43 @@ export default function EventForm() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const onSubmit = (data) => console.log(data);
+
+  const [startHour, setStartHour] = useState("");
+  const [endHour, setEndHour] = useState("");
+  // Función para manejar cambios en la hora de inicio
+  const handleStartHourChange = (e) => {
+    setStartHour(e.target.value);
+  };
+
+  // Función para manejar cambios en la hora de fin
+  const handleEndHourChange = (e) => {
+    setEndHour(e.target.value);
+  };
+  // Función para calcular y mostrar total de horas
+  const getTotalHours = () => {
+    // Validar si se han seleccionado ambas horas
+    if (startHour && endHour) {
+      // Convertir horas de texto a objetos Date para facilitar el cálculo
+      const startTime = new Date(`2024-04-29T${startHour}`);
+      const endTime = new Date(`2024-04-29T${endHour}`);
+
+      // Calcular la diferencia en milisegundos
+      const difference = endTime - startTime;
+
+      // Convertir la diferencia a horas
+      const totalHours = difference / (1000 * 60 * 60);
+
+      // Mostrar el total de horas
+      return totalHours;
+    } else {
+      return 0; // Mostrar 0 si no se han seleccionado ambas horas
+    }
+  };
+  const totalRes = () => {
+    return users.eventFee * getTotalHours();
+  };
+  console.log(totalRes);
 
   return (
     <section className="border-2 rounded-lg p-5 mt-10flex flex-col  lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py- lg:border-opacity-25 lg:shadow-lg lg:items-start lg:mt-[67px]">
@@ -57,7 +95,6 @@ export default function EventForm() {
                 //autoFocus={true}
                 variant="bordered"
                 radius="sm"
-                className={` `}
                 //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
                 {...register("startHour", { required: true })}
               >
@@ -93,7 +130,6 @@ export default function EventForm() {
                 <SelectItem key={"30"}>30</SelectItem>
                 <SelectItem key={"31"}>31</SelectItem>
               </Select>
-
               <Select
                 label="Mes"
                 isRequired
@@ -115,7 +151,6 @@ export default function EventForm() {
                 <SelectItem key={"Noviembre"}>Noviembre</SelectItem>
                 <SelectItem key={"Diciembre"}>Diciembre</SelectItem>
               </Select>
-
               <Select
                 label="Año"
                 isRequired
@@ -148,6 +183,7 @@ export default function EventForm() {
                 className={``}
                 //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
                 {...register("startHour", { required: true })}
+                onChange={handleStartHourChange}
               >
                 <SelectItem key={"9:00"}>9:00</SelectItem>
                 <SelectItem key={"10:00"}>10:00</SelectItem>
@@ -164,7 +200,6 @@ export default function EventForm() {
                 <SelectItem key={"21:00"}>21:00</SelectItem>
                 <SelectItem key={"22:00"}>22:00</SelectItem>
               </Select>
-
               <Select
                 label="Hora de fin"
                 isRequired
@@ -172,6 +207,7 @@ export default function EventForm() {
                 radius="sm"
                 className=""
                 {...register("endHour")}
+                onChange={handleEndHourChange}
               >
                 <SelectItem key={"10:00"}>10:00</SelectItem>
                 <SelectItem key={"11:00"}>11:00</SelectItem>
@@ -201,14 +237,14 @@ export default function EventForm() {
               variant="bordered"
               radius="sm"
               label="Colonia"
-              {...register("colonia")}
+              {...register("colonia", { maxLength: 30 })}
               className="sm:w-1/2"
             />
             <Input
               variant="bordered"
               radius="sm"
               label="Código postal"
-              {...register("cp")}
+              {...register("cp", { minLength: 5, maxLength: 5 })}
               className="sm:w-1/2 mt-5 sm:mt-0"
             />
           </div>
@@ -218,14 +254,18 @@ export default function EventForm() {
               variant="bordered"
               radius="sm"
               label="Referencia"
-              {...register("referencia")}
+              {...register("referencia", { maxLength: 80 })}
             />
             <Input
               isRequired
               variant="bordered"
               radius="sm"
               label="Teléfono"
-              {...register("telefono")}
+              {...register("telefono", {
+                minLength: 10,
+                maxLength: 10,
+                //pattern: /(\(\d{3}\)[.-]?|\d{3}[.-]?)?\d{3}[.-]?\d{4}/,
+              })}
               className="mt-5 sm:mt-0"
             />
           </div>
@@ -235,14 +275,14 @@ export default function EventForm() {
               variant="bordered"
               radius="sm"
               label="Nombre de evento"
-              {...register("eventName")}
+              {...register("eventName", { maxLength: 50 })}
             />
             <Input
               isRequired
               variant="bordered"
               radius="sm"
               label="Tipo de evento"
-              {...register("eventType")}
+              {...register("eventType", { maxLength: 50 })}
               className="mt-5 sm:mt-0"
             />
           </div>
@@ -252,11 +292,11 @@ export default function EventForm() {
             </h2>
             <div className="flex mt-4">
               <p className="w-1/2">Horas contratadas</p>
-              <p className="w-1/2 text-right">00</p>
+              <p className="w-1/2 text-right">{getTotalHours()} horas</p>
             </div>
             <div className="flex mt-4">
               <p className="w-2/3">Total de reservación</p>
-              <p className="w-1/3 text-right">$00.000.00</p>
+              <p className="w-1/3 text-right">${totalRes()}</p>
             </div>
           </div>
           <Checkbox>Acepto términos y condiciones</Checkbox>

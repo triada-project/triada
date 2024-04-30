@@ -69,7 +69,7 @@
       ]
     },
 
-    "eventFee": "$7000",
+    "eventFee": 7000,
     "maxHours": 2,
     "idStripeConnect": "kL4s8n",
     "schedule": "scheduleObjectId?",

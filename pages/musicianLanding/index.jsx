@@ -8,7 +8,6 @@ import Image from "next/image";
 import CarouselVideos from "../..//components/musicianLanding/CarouselVideos";
 import CarouselFotos from "../../components/musicianLanding/CarouselFotos";
 import AsideLeft from "@/components/musicianLanding/AsideLeft";
-import MainFooter from "../../components/mainFooter/MainFooter";
 import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
@@ -25,7 +24,6 @@ const lato = Lato({
 
 export default function musicianDetail() {
   const { users } = dataMusician;
-  console.log(users.musicalGenere);
 
   const musicalGeneres = users.musicalGenere;
   const eventType = users.eventType;
@@ -193,10 +191,6 @@ export default function musicianDetail() {
           </div>
         </div>
         <FooterMain marginT={"mt-[100px]"} />
-
-        {/* <div className="">
-          <MainFooter />
-        </div> */}
       </main>
     </>
   );
