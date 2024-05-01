@@ -26,8 +26,8 @@ export default function InfoFormMusico(props) {
   } = useForm({
     mode: "onBlur",
     defaultValues: {
-      estado: "",
-      municipio: "",
+      state: "",
+      city: "",
       genreMusic: "",
       eventType: "",
     },
@@ -66,7 +66,7 @@ export default function InfoFormMusico(props) {
           />
 
           <Controller
-            name="estado"
+            name="state"
             control={control}
             rules={{ required: true }} // Add your validation rules here
             render={({ field: { onChange, onBlur, value } }) => (
@@ -81,7 +81,7 @@ export default function InfoFormMusico(props) {
             Debes elegir un estado
           </div> */}
           <Controller
-            name="municipio"
+            name="city"
             control={control}
             rules={{ required: true }}
             render={({ field: { onChange, onBlur, value } }) => (
