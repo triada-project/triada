@@ -4,6 +4,8 @@ import UpdateCardPicture from "../../components/UpdateCardPicture.jsx";
 import InformacionForm from "@/components/perfil-cliente/InformacionForm.jsx";
 import NewPasswordForm from "@/components/newPasswordForm.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
+import { useEffect } from "react";
+import useTokenStore from "@/stores/tokenStore";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -12,6 +14,18 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function PerfilCliente() {
+  // Cargar el token inicialmente cuando se monta el componente
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+  }, []);
+
   return (
     <>
       <MenuMobileMusician role="client" page="perfil" />
