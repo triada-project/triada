@@ -28,7 +28,7 @@ export default function InfoFormMusico(props) {
     defaultValues: {
       state: "",
       city: "",
-      genreMusic: "",
+      musicalGenre: "",
       eventType: "",
     },
   });
@@ -62,7 +62,7 @@ export default function InfoFormMusico(props) {
             variant="bordered"
             radius="sm"
             label="Nombre para mostrar"
-            {...register("nombre")}
+            {...register("name")}
           />
 
           <Controller
@@ -104,7 +104,7 @@ export default function InfoFormMusico(props) {
           />
 
           <Controller
-            name="genreMusic"
+            name="musicalGenre"
             control={control}
             rules={{ required: true }}
             render={({ field: { onChange, value } }) => (
@@ -151,7 +151,7 @@ export default function InfoFormMusico(props) {
             variant="bordered"
             radius="sm"
             className={`w-[328px] h-14 rounded-none lg:w-[30rem]`}
-            {...register("eventCost")}
+            {...register("eventFee")}
             startContent={
               <div className="pointer-events-none flex items-center">
                 <span className="text-default-400 text-small">$</span>
@@ -170,7 +170,7 @@ export default function InfoFormMusico(props) {
             variant="bordered"
             radius="sm"
             className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
-            {...register("eventHours", { required: true })}
+            {...register("maximumHoursEvent", { required: true })}
           />
 
           <ButtonPink
