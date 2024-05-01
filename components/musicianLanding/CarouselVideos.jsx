@@ -5,7 +5,7 @@ import YouTube from "react-youtube";
 
 export default function CarouselVideos() {
   const videos = () => {
-    return <YouTube videoId="00TLrFv8ppI" className="" />;
+    return <YouTube videoId="00TLrFv8ppI" className="w-" />;
   };
 
   const Images = [

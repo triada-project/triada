@@ -8,7 +8,6 @@ import Image from "next/image";
 import CarouselVideos from "../..//components/musicianLanding/CarouselVideos";
 import CarouselFotos from "../../components/musicianLanding/CarouselFotos";
 import AsideLeft from "@/components/musicianLanding/AsideLeft";
-import MainFooter from "../../components/mainFooter/MainFooter";
 import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
@@ -25,7 +24,6 @@ const lato = Lato({
 
 export default function musicianDetail() {
   const { users } = dataMusician;
-  console.log(users.musicalGenere);
 
   const musicalGeneres = users.musicalGenere;
   const eventType = users.eventType;
@@ -95,20 +93,19 @@ export default function musicianDetail() {
                   ))}
                 </div>
               </div>
-              <div className="md:flex md:flex-row md:gap-4">
+              <div className="md:gap-4">
                 <span>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                     Videos
                   </h2>
-                  <div className="">
-                    <CarouselVideos />
-                  </div>
+
+                  <CarouselVideos />
                 </span>
                 <span>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                     Fotos
                   </h2>
-                  <CarouselFotos />
+                  <CarouselFotos classname="" />
                 </span>
               </div>
 
@@ -194,10 +191,6 @@ export default function musicianDetail() {
           </div>
         </div>
         <FooterMain marginT={"mt-[100px]"} />
-
-        {/* <div className="">
-          <MainFooter />
-        </div> */}
       </main>
     </>
   );
