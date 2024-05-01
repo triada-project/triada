@@ -2,12 +2,14 @@ import { Josefin_Sans, Lato } from "next/font/google";
 import { Input } from "@nextui-org/react";
 import { Select, SelectItem, Avatar, Chip } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
+import { Spinner } from "@nextui-org/react";
 import ButtonPink from "../perfil-cliente/ButtonPink";
 import { useForm, Controller } from "react-hook-form";
 import SelectGenreMusic from "../SelectGenreMusic/SelectGenreMusic";
 import SelectTypeEvents from "../SelectGenreMusic/SelectTypeEvents";
 import LocalidadSelect from "../SelectsLocation/LocalidadSelect";
 import EstadoSelect from "../SelectsLocation/EstadoSelect";
+import useTokenStore from "@/stores/tokenStore";
 import { users, musicalGenre } from "../SelectGenreMusic/data";
 import { useState } from "react";
 
@@ -18,6 +20,8 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function InfoFormMusico(props) {
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+  console.log(tokenObject);
   const {
     register,
     handleSubmit,
@@ -43,7 +47,38 @@ export default function InfoFormMusico(props) {
   // console.log(values);
   // console.log(errors);
 
-  const onSubmit = (data) => console.log(data);
+  async function onSubmit(data) {
+    const response = await fetch(
+      `http://localhost:4000/users/${tokenObject?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          city: data.city,
+          state: data.state,
+          description: data.description,
+          eventFee: data.eventFee,
+          eventType: data.eventType.split(","),
+          maximumHours: data.maximumHours,
+          musicalGenre: data.musicalGenre.split(","),
+        }),
+      }
+    );
+  }
+
+  //const onSubmit = (data) => console.log(data);
+
+  // Verificar si el tokenObject está listo
+  if (!tokenObject) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
+      </div>
+    );
+  }
 
   return (
     <section className="flex flex-col items-center mt-11 lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py-5 lg:border-opacity-25 lg:shadow-lg lg:items-start ">
