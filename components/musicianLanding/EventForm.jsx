@@ -98,7 +98,6 @@ export default function EventForm() {
               <Select
                 label="Día"
                 isRequired
-                autoFocus={true}
                 variant="bordered"
                 radius="sm"
                 {...register("day", { required: true })}
@@ -165,11 +164,6 @@ export default function EventForm() {
               >
                 <SelectItem key={"2024"}>2024</SelectItem>
                 <SelectItem key={"2025"}>2025</SelectItem>
-                <SelectItem key={"2026"}>2026</SelectItem>
-                <SelectItem key={"2027"}>2027</SelectItem>
-                <SelectItem key={"2028"}>2028</SelectItem>
-                <SelectItem key={"2029"}>2029</SelectItem>
-                <SelectItem key={"2030"}>2030</SelectItem>
               </Select>
             </div>
           </span>
@@ -183,10 +177,8 @@ export default function EventForm() {
                 ref="startHour"
                 label="Hora de inicio"
                 isRequired
-                //autoFocus={true}
                 variant="bordered"
                 radius="sm"
-                //value={startHourValue}
                 {...register("startHour", { required: true })}
               >
                 <SelectItem key={"09:00"}>09:00</SelectItem>
@@ -211,8 +203,6 @@ export default function EventForm() {
                 isRequired
                 variant="bordered"
                 radius="sm"
-                className=""
-                //value={endHourValue}
                 {...register("endHour", { required: true })}
               >
                 <SelectItem key={"10:00"}>10:00</SelectItem>
@@ -239,17 +229,17 @@ export default function EventForm() {
         <div className=" flex flex-col items-center gap-5 mt-5">
           <div className="sm:flex gap-4 w-full">
             <Input
+              isRequired
               variant="bordered"
               radius="sm"
               label="Estado"
-              defaultValue=""
               onChange={(e) => setValue(e.target.value)}
               {...register("state", { maxLength: 30, required: false })}
               className="sm:w-1/2"
             />
 
             <Input
-              //isRequired
+              isRequired
               variant="bordered"
               radius="sm"
               label="Ciudad"
@@ -263,7 +253,7 @@ export default function EventForm() {
           </div>
           <div className="sm:flex gap-4 w-full">
             <Input
-              //isRequired
+              isRequired
               variant="bordered"
               radius="sm"
               label="Colonia"
@@ -286,7 +276,7 @@ export default function EventForm() {
           </div>
           <div className="sm:flex items-center gap-4 w-full">
             <Input
-              //isRequired
+              isRequired
               variant="bordered"
               radius="sm"
               label="Referencia"
@@ -295,7 +285,7 @@ export default function EventForm() {
               {...register("reference", { maxLength: 80 })}
             />
             <Input
-              //isRequired
+              isRequired
               variant="bordered"
               radius="sm"
               label="Teléfono"
@@ -311,7 +301,7 @@ export default function EventForm() {
           </div>
           <div className="sm:flex items-center gap-4 w-full">
             <Input
-              //isRequired
+              isRequired
               variant="bordered"
               radius="sm"
               label="Nombre de evento"
@@ -320,7 +310,7 @@ export default function EventForm() {
               {...register("eventName", { maxLength: 50 })}
             />
             <Select
-              //isRequired
+              isRequired
               variant="bordered"
               radius="sm"
               label="Tipo de evento"
