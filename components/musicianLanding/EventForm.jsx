@@ -1,3 +1,5 @@
+import React from "react";
+import ReactDOM from "react-dom";
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Input } from "@nextui-org/react";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
@@ -19,29 +21,29 @@ const { users } = dataMusician;
 export default function EventForm() {
   const {
     register,
+    watch,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
 
-  const [startHour, setStartHour] = useState("");
-  const [endHour, setEndHour] = useState("");
-  // Función para manejar cambios en la hora de inicio
-  const handleStartHourChange = (e) => {
-    setStartHour(e.target.value);
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
-  // Función para manejar cambios en la hora de fin
-  const handleEndHourChange = (e) => {
-    setEndHour(e.target.value);
-  };
+  const watchStartHour = watch("startHour", "00:00");
+  const watchEndHour = watch("endHour", "00:00");
   // Función para calcular y mostrar total de horas
   const getTotalHours = () => {
+    var startHourValue = watchStartHour; //getValues("startHour");
+    var endHourValue = watchEndHour; //getValues("endHour");
+
     // Validar si se han seleccionado ambas horas
-    if (startHour && endHour) {
+    if (startHourValue && endHourValue) {
       // Convertir horas de texto a objetos Date para facilitar el cálculo
-      const startTime = new Date(`2024-04-29T${startHour}`);
-      const endTime = new Date(`2024-04-29T${endHour}`);
+      const startTime = new Date(`2024-04-29T${startHourValue}`);
+
+      const endTime = new Date(`2024-04-29T${endHourValue}`);
 
       // Calcular la diferencia en milisegundos
       const difference = endTime - startTime;
@@ -55,10 +57,10 @@ export default function EventForm() {
       return 0; // Mostrar 0 si no se han seleccionado ambas horas
     }
   };
+
   const totalRes = () => {
     return users.eventFee * getTotalHours();
   };
-  console.log(totalRes);
 
   return (
     <section className="border-2 rounded-lg p-5 mt-10flex flex-col  lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py- lg:border-opacity-25 lg:shadow-lg lg:items-start lg:mt-[67px]">
@@ -77,8 +79,12 @@ export default function EventForm() {
         </div>
         <div>
           <p className="text-blue-700 flex-auto text-center p-2">
-            Disponible Jueves de 16:00 a 22:00 Viernes de 16:00 a 22:00 Sábado
-            de 16:00 a 22:00
+            Disponible{" "}
+            {
+              //`${users.availability}`}
+            }
+            Jueves de 16:00 a 20:00 Viernes de 16:00 a 20:00 Sábado de 16:00 a
+            20:00
           </p>
         </div>
       </div>
@@ -92,11 +98,10 @@ export default function EventForm() {
               <Select
                 label="Día"
                 isRequired
-                //autoFocus={true}
+                autoFocus={true}
                 variant="bordered"
                 radius="sm"
-                //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-                {...register("startHour", { required: true })}
+                {...register("day", { required: true })}
               >
                 <SelectItem key={"1"}>1</SelectItem>
                 <SelectItem key={"2"}>2</SelectItem>
@@ -135,8 +140,7 @@ export default function EventForm() {
                 isRequired
                 variant="bordered"
                 radius="sm"
-                className=""
-                {...register("endHour")}
+                {...register("month", { required: true })}
               >
                 <SelectItem key={"Enero"}>Enero</SelectItem>
                 <SelectItem key={"Febrero"}>Febrero</SelectItem>
@@ -157,7 +161,7 @@ export default function EventForm() {
                 variant="bordered"
                 radius="sm"
                 className=" "
-                {...register("endHour")}
+                {...register("year", { required: true })}
               >
                 <SelectItem key={"2024"}>2024</SelectItem>
                 <SelectItem key={"2025"}>2025</SelectItem>
@@ -175,17 +179,17 @@ export default function EventForm() {
             </h2>
             <div className="flex gap-2">
               <Select
+                id="startHour"
+                ref="startHour"
                 label="Hora de inicio"
                 isRequired
                 //autoFocus={true}
                 variant="bordered"
                 radius="sm"
-                className={``}
-                //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
+                //value={startHourValue}
                 {...register("startHour", { required: true })}
-                onChange={handleStartHourChange}
               >
-                <SelectItem key={"9:00"}>9:00</SelectItem>
+                <SelectItem key={"09:00"}>09:00</SelectItem>
                 <SelectItem key={"10:00"}>10:00</SelectItem>
                 <SelectItem key={"11:00"}>11:00</SelectItem>
                 <SelectItem key={"12:00"}>12:00</SelectItem>
@@ -201,13 +205,15 @@ export default function EventForm() {
                 <SelectItem key={"22:00"}>22:00</SelectItem>
               </Select>
               <Select
+                id="endHour"
+                ref="endHour"
                 label="Hora de fin"
                 isRequired
                 variant="bordered"
                 radius="sm"
                 className=""
-                {...register("endHour")}
-                onChange={handleEndHourChange}
+                //value={endHourValue}
+                {...register("endHour", { required: true })}
               >
                 <SelectItem key={"10:00"}>10:00</SelectItem>
                 <SelectItem key={"11:00"}>11:00</SelectItem>
@@ -233,37 +239,71 @@ export default function EventForm() {
         <div className=" flex flex-col items-center gap-5 mt-5">
           <div className="sm:flex gap-4 w-full">
             <Input
-              isRequired
+              variant="bordered"
+              radius="sm"
+              label="Estado"
+              defaultValue=""
+              onChange={(e) => setValue(e.target.value)}
+              {...register("state", { maxLength: 30, required: false })}
+              className="sm:w-1/2"
+            />
+
+            <Input
+              //isRequired
+              variant="bordered"
+              radius="sm"
+              label="Ciudad"
+              defaultValue=""
+              onChange={(e) => setValue(e.target.value)}
+              {...register("city", {
+                required: false,
+              })}
+              className="sm:w-1/2 mt-5 sm:mt-0"
+            />
+          </div>
+          <div className="sm:flex gap-4 w-full">
+            <Input
+              //isRequired
               variant="bordered"
               radius="sm"
               label="Colonia"
-              {...register("colonia", { maxLength: 30 })}
+              defaultValue=""
+              onChange={(e) => setValue(e.target.value)}
+              {...register("neigbourhood", { maxLength: 30, required: false })}
               className="sm:w-1/2"
             />
             <Input
               variant="bordered"
               radius="sm"
               label="Código postal"
-              {...register("cp", { minLength: 5, maxLength: 5 })}
+              defaultValue=""
+              onChange={(e) => setValue(e.target.value)}
+              {...register("cp", {
+                required: false,
+              })}
               className="sm:w-1/2 mt-5 sm:mt-0"
             />
           </div>
           <div className="sm:flex items-center gap-4 w-full">
             <Input
-              isRequired
+              //isRequired
               variant="bordered"
               radius="sm"
               label="Referencia"
-              {...register("referencia", { maxLength: 80 })}
+              defaultValue=""
+              onChange={(e) => setValue(e.target.value)}
+              {...register("reference", { maxLength: 80 })}
             />
             <Input
-              isRequired
+              //isRequired
               variant="bordered"
               radius="sm"
               label="Teléfono"
-              {...register("telefono", {
-                minLength: 10,
-                maxLength: 10,
+              defaultValue=""
+              onChange={(e) => setValue(e.target.value)}
+              {...register("phone", {
+                //minLength: 10,
+                //maxLength: 10,
                 //pattern: /(\(\d{3}\)[.-]?|\d{3}[.-]?)?\d{3}[.-]?\d{4}/,
               })}
               className="mt-5 sm:mt-0"
@@ -271,20 +311,37 @@ export default function EventForm() {
           </div>
           <div className="sm:flex items-center gap-4 w-full">
             <Input
-              isRequired
+              //isRequired
               variant="bordered"
               radius="sm"
               label="Nombre de evento"
+              defaultValue=""
+              onChange={(e) => setValue(e.target.value)}
               {...register("eventName", { maxLength: 50 })}
             />
-            <Input
-              isRequired
+            <Select
+              //isRequired
               variant="bordered"
               radius="sm"
               label="Tipo de evento"
-              {...register("eventType", { maxLength: 50 })}
+              onChange={(e) => setValue(e.target.value)}
+              {...register("eventType")}
               className="mt-5 sm:mt-0"
-            />
+            >
+              <SelectItem key={"Boda"}>Boda</SelectItem>
+              <SelectItem key={"Cena"}>Cena</SelectItem>
+              <SelectItem key={"Concierto en recinto"}>
+                Concierto en recinto
+              </SelectItem>
+              <SelectItem key={"Coorporativo"}>Coorporativo</SelectItem>
+              <SelectItem key={"Cumpleaños"}>Cumpleaños</SelectItem>
+              <SelectItem key={"Presentación en bar"}>
+                Presentación en bar
+              </SelectItem>
+              <SelectItem key={"Servicio religioso"}>
+                Servicio religioso
+              </SelectItem>
+            </Select>
           </div>
           <div className="text-[#455A64] w-full divide-y ">
             <h2 className="{`${josefin.classname} text-[#37474F] font-semibold sm:text-[20px] divide-[#455A64]">
