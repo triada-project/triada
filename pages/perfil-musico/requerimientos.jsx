@@ -18,7 +18,21 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Requerimientos() {
-  const [requests, setRequests] = useState([]);
+  const [requests, setRequests] = useState(() => {
+    if (typeof window !== "undefined") {
+      // Retrieve requests from localStorage (if available)
+      const storedRequests = localStorage.getItem("storedRequests");
+      try {
+        return storedRequests ? JSON.parse(storedRequests) : [];
+      } catch (error) {
+        console.error("Error parsing stored requests:", error);
+        return [];
+      }
+    } else {
+      // Handle server-side rendering (optional)
+      return [];
+    }
+  });
   const [text, setText] = useState("");
   // const onInputChange = (event) => {
   //   setText(event.target.value);
@@ -34,8 +48,46 @@ export default function Requerimientos() {
       const decodedPayload = atob(encodedPayload);
       const payloadObject = JSON.parse(decodedPayload);
       useTokenStore.setState({ tokenObject: payloadObject });
+      fetchRequests();
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("storedRequests", JSON.stringify(requests));
+  }, [requests]);
+
+  const fetchRequests = async () => {
+    if (!tokenObject) return;
+
+    try {
+      const response = await fetch(
+        `http://localhost:4000/users/${tokenObject?._id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenObject?.accessToken}`,
+          },
+        }
+      );
+
+      const responseData = await response.json();
+      console.log(responseData?.data?.requirements);
+
+      if (response.status === 200 || 201) {
+        setRequests(responseData?.data?.requirements || []);
+        // Optional: Display success message
+      } else {
+        toast.error("Ocurrió un error al obtener los requerimientos.");
+        console.error(
+          "Error en la respuesta de la API:",
+          responseData.message || response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Error al obtener los requerimientos:", error);
+      toast.error("Ocurrió un error al obtener los requerimientos.");
+    }
+  };
 
   const onInputChange = (event) => {
     setText(event.target.value);
@@ -113,6 +165,8 @@ export default function Requerimientos() {
     );
   }
 
+  console.log(requests);
+
   return (
     <>
       <MenuMobileMusician page="requerimientos" role="musico" />
@@ -188,6 +242,7 @@ export default function Requerimientos() {
             {/* <button onClick={handleSaveRequests}>Guardar Requerimientos</button> */}
             <ButtonPink
               width="w-full "
+              mtop="mt-4"
               text="Guardar Requerimientos"
               onClick={handleSaveRequests}
             />
