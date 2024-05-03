@@ -45,17 +45,23 @@ export default function Requerimientos() {
       const decodedPayload = atob(encodedPayload);
       const payloadObject = JSON.parse(decodedPayload);
       useTokenStore.setState({ tokenObject: payloadObject });
-      fetchRequests();
     }
   }, []);
+
+  useEffect(() => {
+    if (tokenObject) {
+      // Verifica si tokenObject es válido
+      fetchRequests();
+    }
+  }, [tokenObject]);
 
   useEffect(() => {
     localStorage.setItem("storedRequests", JSON.stringify(requests));
   }, [requests]);
 
   const fetchRequests = async () => {
-    if (!tokenObject) return;
-
+    //if (!tokenObject) return;
+    console.log(tokenObject);
     try {
       const response = await fetch(
         `http://localhost:4000/users/${tokenObject?._id}`,
