@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { Toaster, toast } from "sonner";
 import useTokenStore from "@/stores/tokenStore";
+import { Spinner } from "@nextui-org/react";
 
 //console.log(dataMusician.users.repertory);
 //const repertory = dataMusician.users.repertory;
@@ -37,6 +38,18 @@ export default function Repertorio() {
   const [artist, setArtist] = useState(""); // Input for artist name
 
   const tokenObject = useTokenStore((state) => state.tokenObject);
+
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+      //fetchRequests();
+    }
+  }, []);
 
   const onInputChangeText = (text) => {
     setText(text.target.value);
@@ -125,6 +138,14 @@ export default function Repertorio() {
   };
 
   console.log(repertoire);
+
+  if (!tokenObject) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
+      </div>
+    );
+  }
 
   return (
     <>

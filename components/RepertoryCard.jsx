@@ -37,13 +37,6 @@ export default function RepertoryCard({
     setEditedSong(event.target.value);
   };
 
-  // const handleSave = () => {
-  //   onEdit({ song: editedSong, author: editedAuthor });
-  //   console.log(editedAuthor);
-  //   console.log(editedSong);
-  //   setIsEditing(false); // Close editing mode after saving
-  // };
-
   const handleSave = () => {
     // Verificar si se realizaron cambios en la canción o el autor
     if (editedSong !== song || editedAuthor !== author) {
@@ -67,36 +60,38 @@ export default function RepertoryCard({
       }
     >
       <section className=" flex flex-col gap-3">
-        {isEditing ? (
-          <div className=" flex justify-between items-center">
-            <button
-              className={`${lato.className} text-sm hover:border-b-1 hover:border-zinc-950`}
-              onClick={handleSave}
-            >
-              Guardar
-            </button>
-            <button
-              className={`${lato.className} text-sm hover:border-b-1 hover:border-zinc-950`}
-              onClick={handleCancel}
-            >
-              Cancelar
-            </button>
-          </div>
-        ) : (
-          <div className=" flex justify-between">
-            <button onClick={handleEditToggle} className=" place-self-start">
-              <Image
-                src={"/assets/svg/edit.svg"}
-                alt="edit"
-                width={20}
-                height={20}
-              />
-            </button>
-            <button onClick={onDelete} className=" place-self-end">
-              <Image src={closeCard} alt="close" width={20} height={20} />
-            </button>
-          </div>
-        )}
+        <div className=" flex justify-between items-center">
+          {isEditing ? (
+            <>
+              <button
+                className={`${lato.className} text-sm hover:border-b-1 hover:border-zinc-950`}
+                onClick={handleSave}
+              >
+                Guardar
+              </button>
+              <button
+                className={`${lato.className} text-sm hover:border-b-1 hover:border-zinc-950`}
+                onClick={handleCancel}
+              >
+                Cancelar
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={handleEditToggle} className=" place-self-start">
+                <Image
+                  src={"/assets/svg/edit.svg"}
+                  alt="edit"
+                  width={20}
+                  height={20}
+                />
+              </button>
+              <button onClick={onDelete} className=" place-self-end">
+                <Image src={closeCard} alt="close" width={20} height={20} />
+              </button>
+            </>
+          )}
+        </div>
         {/* <div className=" flex justify-between">
           <button className=" place-self-start">
             <Image
@@ -110,49 +105,53 @@ export default function RepertoryCard({
             <Image src={closeCard} alt="close" width={20} height={20} />
           </button>
         </div> */}
-        {isEditing ? (
-          <div className=" flex gap-1 items-center">
-            <Image src={noteMusic} alt="note" width={20} height={20} />
-            <input
-              type="text"
-              autoFocus={true}
-              maxLength={100}
-              value={editedSong}
-              onChange={handleSongChange}
-              className={`${lato.className} w-[80%]`}
-            />
-          </div>
-        ) : (
-          <div className=" flex gap-1 items-center">
-            <Image src={noteMusic} alt="note" width={20} height={20} />
-            <span
-              className={`${lato.className} w-[160px] text-base truncate ...`}
-            >
-              {song}
-            </span>
-          </div>
-        )}
+        <div className=" flex gap-1 items-center">
+          {isEditing ? (
+            <>
+              <Image src={noteMusic} alt="note" width={20} height={20} />
+              <input
+                type="text"
+                autoFocus={true}
+                maxLength={100}
+                value={editedSong}
+                onChange={handleSongChange}
+                className={`${lato.className} w-[80%]`}
+              />
+            </>
+          ) : (
+            <>
+              <Image src={noteMusic} alt="note" width={20} height={20} />
+              <span
+                className={`${lato.className} w-[160px] text-base truncate ...`}
+              >
+                {song}
+              </span>
+            </>
+          )}
+        </div>
 
-        {isEditing ? (
-          <div className=" flex gap-1 items-center">
-            <Image src={star} alt="note" width={20} height={20} />
-            <input
-              className={`${lato.className} w-[80%]`}
-              value={editedAuthor}
-              onChange={handleAuthorChange}
-              label="Nombre del artista original"
-            />
-          </div>
-        ) : (
-          <div className=" flex gap-1 items-center">
-            <Image src={star} alt="note" width={20} height={20} />
-            <span
-              className={`${lato.className} w-[160px] text-base truncate ...`}
-            >
-              {author}
-            </span>
-          </div>
-        )}
+        <div className=" flex gap-1 items-center">
+          {isEditing ? (
+            <>
+              <Image src={star} alt="note" width={20} height={20} />
+              <input
+                className={`${lato.className} w-[80%]`}
+                value={editedAuthor}
+                onChange={handleAuthorChange}
+                label="Nombre del artista original"
+              />
+            </>
+          ) : (
+            <>
+              <Image src={star} alt="note" width={20} height={20} />
+              <span
+                className={`${lato.className} w-[160px] text-base truncate ...`}
+              >
+                {author}
+              </span>
+            </>
+          )}
+        </div>
       </section>
     </div>
   );

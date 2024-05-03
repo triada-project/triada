@@ -34,9 +34,6 @@ export default function Requerimientos() {
     }
   });
   const [text, setText] = useState("");
-  // const onInputChange = (event) => {
-  //   setText(event.target.value);
-  // };
 
   const tokenObject = useTokenStore((state) => state.tokenObject);
 
