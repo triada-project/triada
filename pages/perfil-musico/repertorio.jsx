@@ -51,6 +51,37 @@ export default function Repertorio() {
     }
   }, []);
 
+  useEffect(() => {
+    if (tokenObject) {
+      // Verifica si tokenObject es válido
+      fetchRepertorie();
+    }
+  }, [tokenObject]);
+
+  const fetchRepertorie = async () => {
+    console.log(tokenObject);
+    const response = await fetch(
+      `http://localhost:4000/users/${tokenObject?._id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenObject?.accessToken}`,
+        },
+      }
+    );
+
+    const responseData = await response.json();
+    console.log(responseData?.data?.repertory);
+
+    if (response.status === 200 || 201) {
+      setRepertoire(responseData?.data?.repertory || []);
+    } else {
+      console.log(responseData);
+      toast.error("Error al cargar el repertorio");
+    }
+  };
+
   const onInputChangeText = (text) => {
     setText(text.target.value);
   };
