@@ -215,9 +215,9 @@ export default function Repertorio() {
             ))}
             {/* <RepertoryCard /> */}
             <ButtonPink
-              width="w-full "
+              width="w-full lg:w-[95%] "
               mtop="mt-4"
-              text="Guardar Requerimientos"
+              text="Guardar repertorio"
               onClick={handleSaveRepertoire}
             />
           </article>
