@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import ReactDOM from "react-dom";
 import { Contrail_One, Josefin_Sans, Lato } from "next/font/google";
 import {
@@ -30,7 +30,6 @@ export default function EventForm() {
     handleSubmit,
     control,
     formState: { errors },
-
   } = useForm({
     mode: "onBlur",
     defaultValues: {
@@ -118,28 +117,7 @@ export default function EventForm() {
     setEndHour(e.target.value);
   };
   // Función para calcular y mostrar total de horas
-  const getTotalHours = () => {
-    // Validar si se han seleccionado ambas horas
-    if (startHour && endHour) {
-      // Convertir horas de texto a objetos Date para facilitar el cálculo
-      const startTime = new Date(`2024-04-29T${startHour}`);
-      const endTime = new Date(`2024-04-29T${endHour}`);
 
-      // Calcular la diferencia en milisegundos
-      const difference = endTime - startTime;
-
-      // Convertir la diferencia a horas
-      const totalHours = difference / (1000 * 60 * 60);
-
-      // Mostrar el total de horas
-      return totalHours;
-    } else {
-      return 0; // Mostrar 0 si no se han seleccionado ambas horas
-    }
-  };
-  const totalRes = () => {
-    return users.eventFee * getTotalHours();
-  };
   console.log(totalRes);
 
   return (
@@ -191,7 +169,6 @@ export default function EventForm() {
                   />
                 )}
               />
-
             </div>
           </span>
           <span className="items-center gap-2 w-1/2">
@@ -231,9 +208,7 @@ export default function EventForm() {
                 isRequired
                 variant="bordered"
                 radius="sm"
-
                 {...register("endHour", { required: true })}
-
               >
                 <SelectItem key={"10:00"}>10:00</SelectItem>
                 <SelectItem key={"11:00"}>11:00</SelectItem>
@@ -286,10 +261,8 @@ export default function EventForm() {
               variant="bordered"
               radius="sm"
               label="Colonia"
-
               onChange={(e) => setValue(e.target.value)}
               {...register("neigbourhood", { maxLength: 30, required: false })}
-
               className="sm:w-1/2"
             />
             <Input
@@ -300,7 +273,6 @@ export default function EventForm() {
               {...register("zipCode", {
                 required: false,
               })}
-
               className="sm:w-1/2 mt-5 sm:mt-0"
             />
           </div>
@@ -353,7 +325,6 @@ export default function EventForm() {
               radius="sm"
               label="Nombre de evento"
               onChange={(e) => setValue(e.target.value)}
-
               {...register("eventName", { maxLength: 50 })}
             />
             <Select
