@@ -10,6 +10,7 @@ import {
   Checkbox,
 } from "@nextui-org/react";
 import { useForm, Controller } from "react-hook-form";
+
 import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
@@ -104,6 +105,42 @@ export default function EventForm() {
     return users.eventFee * getTotalHours();
   };
 
+  const [startHour, setStartHour] = useState("");
+  const [endHour, setEndHour] = useState("");
+  // Función para manejar cambios en la hora de inicio
+  const handleStartHourChange = (e) => {
+    setStartHour(e.target.value);
+  };
+
+  // Función para manejar cambios en la hora de fin
+  const handleEndHourChange = (e) => {
+    setEndHour(e.target.value);
+  };
+  // Función para calcular y mostrar total de horas
+  const getTotalHours = () => {
+    // Validar si se han seleccionado ambas horas
+    if (startHour && endHour) {
+      // Convertir horas de texto a objetos Date para facilitar el cálculo
+      const startTime = new Date(`2024-04-29T${startHour}`);
+      const endTime = new Date(`2024-04-29T${endHour}`);
+
+      // Calcular la diferencia en milisegundos
+      const difference = endTime - startTime;
+
+      // Convertir la diferencia a horas
+      const totalHours = difference / (1000 * 60 * 60);
+
+      // Mostrar el total de horas
+      return totalHours;
+    } else {
+      return 0; // Mostrar 0 si no se han seleccionado ambas horas
+    }
+  };
+  const totalRes = () => {
+    return users.eventFee * getTotalHours();
+  };
+  console.log(totalRes);
+
   return (
     <section className="border-2 rounded-lg p-5 mt-10flex flex-col  lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py- lg:border-opacity-25 lg:shadow-lg lg:items-start lg:mt-[67px]">
       <h1 className="{`${roboto.classname} text-[#312971] text-2xl text-center font-bold sm:text-[30px]">
@@ -168,6 +205,7 @@ export default function EventForm() {
                 variant="bordered"
                 radius="sm"
                 {...register("startHour", { required: true })}
+                onChange={handleStartHourChange}
               >
                 <SelectItem key={"09:00"}>09:00</SelectItem>
                 <SelectItem key={"10:00"}>10:00</SelectItem>
