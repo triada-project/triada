@@ -28,7 +28,6 @@
     "musicalGenere": ["Clásico", "Piano", "Música tradicional mexicana"],
     "repertory": [
       {
-
         "title": "Piano Concerto No. 1",
         "author": "Frederich Chopin",
         "eventType": ["Conciertos en recintos", "Coorporativos"]
@@ -55,27 +54,22 @@
       }
     ],
     "description": "Con una carrera que abarca décadas, Argentina Durán ha establecido su reputación como una de las principales intérpretes de música clásica. Su habilidad técnica y su capacidad para transmitir emociones a través de las teclas del piano la han convertido en una figura destacada en el mundo de la música.",
-    "multimedia": [
-      {
-        "pics": [
-          "https://www.elsoldepuebla.com.mx/gossip/6c9uge-la-pianista-argentina-duran-esta-de-vuelta-en-puebla-te-decimos-donde-y-cuando/ALTERNATES/LANDSCAPE_1140/La%20pianista%20Argentina%20Dur%C3%A1n%20est%C3%A1%20de%20vuelta%20en%20Puebla,%20te%20decimos%20d%C3%B3nde%20y%20cu%C3%A1ndo",
+    "multimedia": {
+      "pics": [
+        "https://www.elsoldepuebla.com.mx/gossip/6c9uge-la-pianista-argentina-duran-esta-de-vuelta-en-puebla-te-decimos-donde-y-cuando/ALTERNATES/LANDSCAPE_1140/La%20pianista%20Argentina%20Dur%C3%A1n%20est%C3%A1%20de%20vuelta%20en%20Puebla,%20te%20decimos%20d%C3%B3nde%20y%20cu%C3%A1ndo",
+        "https://palabrasclaras.mx/wp-content/uploads/2022/12/ARGENTINA-DURAN-1068x801.jpeg",
+        "https://diarioistmo.blob.core.windows.net/images/2022/11/19/299959279-607050807530659-3915973587644233652-n.jpg"
+      ],
+      "videos": [
+        "https://www.youtube.com/watch?v=00TLrFv8ppI&t=1332s",
+        "https://www.youtube.com/watch?v=kZKcHnQXksw",
+        "https://www.youtube.com/watch?v=NsvDK26WvA0",
+        "https://www.youtube.com/watch?v=d6RrGeLrgSk",
+        "https://www.youtube.com/watch?v=VqN8X0RGp-c"
+      ]
+    },
 
-          "https://tecolotito.elsiglodetorreon.com.mx/i/2022/16/1609825.jpeg",
-          "https://palabrasclaras.mx/wp-content/uploads/2022/12/ARGENTINA-DURAN-1068x801.jpeg",
-          "https://diarioistmo.blob.core.windows.net/images/2022/11/19/299959279-607050807530659-3915973587644233652-n.jpg"
-
-
-        ],
-        "videos": [
-          "https://www.youtube.com/watch?v=00TLrFv8ppI&t=1332s",
-          "https://www.youtube.com/watch?v=kZKcHnQXksw",
-          "https://www.youtube.com/watch?v=NsvDK26WvA0",
-          "https://www.youtube.com/watch?v=d6RrGeLrgSk",
-          "https://www.youtube.com/watch?v=VqN8X0RGp-c"
-        ]
-      }
-    ],
-    "eventFee": "$7000",
+    "eventFee": 7000,
     "maxHours": 2,
     "idStripeConnect": "kL4s8n",
     "schedule": "scheduleObjectId?",
@@ -132,5 +126,3 @@
     ]
   }
 }
-
-

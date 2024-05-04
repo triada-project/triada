@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import NewUserForm from "./NewUserForm";
 
+
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
@@ -82,6 +83,7 @@ export default function RegisterModal() {
                     </h3>
                     {/* <RegisterForm /> */}
                     <NewUserForm />
+
                   </div>
                 </div>
 
@@ -91,6 +93,7 @@ export default function RegisterModal() {
                       label: "text-small text-white",
                     }}
                   >
+
 
                     Recuerdame
                   </Checkbox>

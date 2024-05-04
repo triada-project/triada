@@ -14,6 +14,7 @@ import {
 import { Josefin_Sans, Lato } from "next/font/google";
 import LoginFormDB from "./LoginFormDB";
 
+
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
@@ -52,6 +53,7 @@ export default function LogInModal() {
               </ModalHeader>
               <ModalBody>
                 <LoginFormDB />
+
 
                 <div className="flex py-2 px-1 justify-between">
                   <Checkbox

@@ -78,7 +78,9 @@ export default function RegisterModalToggle() {
                       ¡Es hora de crear conexiones musicales para crear eventos
                       inovidables!
                     </h3>
+
                     <NewUserForm />
+
                   </div>
                 </div>
 
