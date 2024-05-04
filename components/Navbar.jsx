@@ -17,7 +17,6 @@ import UserLogOutNavbar from "./HomeComponents/NavbarComponents/UserLogOutNavbar
 
 const TOKEN_KEY = "token";
 
-
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -104,7 +103,6 @@ export default function NavBar() {
         className={clsx("flex gap-[24px]", { hidden: isLoggedIn })}
         justify="end"
       >
-
         <LogInModal />
         <RegisterModal />
       </div>
@@ -135,7 +133,6 @@ export default function NavBar() {
           <LogInModalToggle />
           <RegisterModalToggle />
         </div>
-
       </NavbarMenu>
     </Navbar>
   );
