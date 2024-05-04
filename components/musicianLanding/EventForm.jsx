@@ -117,28 +117,7 @@ export default function EventForm() {
     setEndHour(e.target.value);
   };
   // Función para calcular y mostrar total de horas
-  const getTotalHours = () => {
-    // Validar si se han seleccionado ambas horas
-    if (startHour && endHour) {
-      // Convertir horas de texto a objetos Date para facilitar el cálculo
-      const startTime = new Date(`2024-04-29T${startHour}`);
-      const endTime = new Date(`2024-04-29T${endHour}`);
 
-      // Calcular la diferencia en milisegundos
-      const difference = endTime - startTime;
-
-      // Convertir la diferencia a horas
-      const totalHours = difference / (1000 * 60 * 60);
-
-      // Mostrar el total de horas
-      return totalHours;
-    } else {
-      return 0; // Mostrar 0 si no se han seleccionado ambas horas
-    }
-  };
-  const totalRes = () => {
-    return users.eventFee * getTotalHours();
-  };
   console.log(totalRes);
 
   return (
