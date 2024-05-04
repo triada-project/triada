@@ -1,11 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Josefin_Sans, Lato } from "next/font/google";
-import { Input } from "@nextui-org/react";
-import { Select, SelectSection, SelectItem } from "@nextui-org/react";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { Checkbox } from "@nextui-org/react";
+import { Contrail_One, Josefin_Sans, Lato } from "next/font/google";
+import {
+  Input,
+  Select,
+  SelectSection,
+  SelectItem,
+  DatePicker,
+  Checkbox,
+} from "@nextui-org/react";
+import { useForm, Controller } from "react-hook-form";
 import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
@@ -22,13 +26,51 @@ export default function EventForm() {
   const {
     register,
     watch,
-    getValues,
     handleSubmit,
+    control,
     formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
+  } = useForm({
+    mode: "onBlur",
+    defaultValues: {
+      date: "",
+    },
+  });
+  const onSubmit = async (data) => {
+    const fecha = new Date(data.date.year, data.date.month - 1, data.date.day);
+    const fechaFormateada = fecha.toLocaleDateString();
     console.log(data);
+    try {
+      const response = await fetch("http://localhost:3005/events", {
+        method: "POST",
+        body: JSON.stringify({
+          address: {
+            state: data.state,
+            city: data.city,
+            street: data.street,
+            neigbourhood: data.neigbourhood,
+            zipCode: data.zipCode,
+            exteriorNumber: data.number,
+            reference: data.reference,
+          },
+          date: fechaFormateada,
+          endHour: data.endHour,
+          eventName: data.eventName,
+          eventType: data.eventType,
+          phoneClient: data.phone,
+          startHour: data.startHour,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      const eventData = await response.json();
+      console.log(eventData);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const watchStartHour = watch("startHour", "00:00");
@@ -94,77 +136,23 @@ export default function EventForm() {
             <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 mb-2 sm:text-[20px]">
               Elige una fecha
             </h2>
-            <div className="flex gap-2">
-              <Select
-                label="Día"
-                isRequired
-                variant="bordered"
-                radius="sm"
-                {...register("day", { required: true })}
-              >
-                <SelectItem key={"1"}>1</SelectItem>
-                <SelectItem key={"2"}>2</SelectItem>
-                <SelectItem key={"3"}>3</SelectItem>
-                <SelectItem key={"4"}>4</SelectItem>
-                <SelectItem key={"5"}>5</SelectItem>
-                <SelectItem key={"6"}>6</SelectItem>
-                <SelectItem key={"7"}>7</SelectItem>
-                <SelectItem key={"8"}>8</SelectItem>
-                <SelectItem key={"9"}>9</SelectItem>
-                <SelectItem key={"10"}>10</SelectItem>
-                <SelectItem key={"11"}>11</SelectItem>
-                <SelectItem key={"12"}>12</SelectItem>
-                <SelectItem key={"13"}>13</SelectItem>
-                <SelectItem key={"14"}>14</SelectItem>
-                <SelectItem key={"15"}>15</SelectItem>
-                <SelectItem key={"16"}>16</SelectItem>
-                <SelectItem key={"17"}>17</SelectItem>
-                <SelectItem key={"18"}>18</SelectItem>
-                <SelectItem key={"19"}>19</SelectItem>
-                <SelectItem key={"20"}>20</SelectItem>
-                <SelectItem key={"21"}>21</SelectItem>
-                <SelectItem key={"22"}>22</SelectItem>
-                <SelectItem key={"23"}>23</SelectItem>
-                <SelectItem key={"24"}>24</SelectItem>
-                <SelectItem key={"25"}>25</SelectItem>
-                <SelectItem key={"26"}>26</SelectItem>
-                <SelectItem key={"27"}>27</SelectItem>
-                <SelectItem key={"28"}>28</SelectItem>
-                <SelectItem key={"29"}>29</SelectItem>
-                <SelectItem key={"30"}>30</SelectItem>
-                <SelectItem key={"31"}>31</SelectItem>
-              </Select>
-              <Select
-                label="Mes"
-                isRequired
-                variant="bordered"
-                radius="sm"
-                {...register("month", { required: true })}
-              >
-                <SelectItem key={"Enero"}>Enero</SelectItem>
-                <SelectItem key={"Febrero"}>Febrero</SelectItem>
-                <SelectItem key={"Marzo"}>Marzo</SelectItem>
-                <SelectItem key={"Abril"}>Abril</SelectItem>
-                <SelectItem key={"Mayo"}>Mayo</SelectItem>
-                <SelectItem key={"Junio"}>Junio</SelectItem>
-                <SelectItem key={"Julio"}>julio</SelectItem>
-                <SelectItem key={"Agost"}>Agosto</SelectItem>
-                <SelectItem key={"Septiembre"}>Septiembre</SelectItem>
-                <SelectItem key={"Octubre"}>Octubre</SelectItem>
-                <SelectItem key={"Noviembre"}>Noviembre</SelectItem>
-                <SelectItem key={"Diciembre"}>Diciembre</SelectItem>
-              </Select>
-              <Select
-                label="Año"
-                isRequired
-                variant="bordered"
-                radius="sm"
-                className=" "
-                {...register("year", { required: true })}
-              >
-                <SelectItem key={"2024"}>2024</SelectItem>
-                <SelectItem key={"2025"}>2025</SelectItem>
-              </Select>
+
+            <div className="w-full max-w-xl flex flex-row gap-4">
+              <Controller
+                name="date"
+                control={control}
+                rules={{ required: true }} // Add your validation rules here
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <DatePicker
+                    isRequired
+                    onChange={onChange}
+                    format="MM/dd/yy"
+                    label="Mes / Día / Año"
+                    variant="bordered"
+                    showMonthAndYearPickers
+                  />
+                )}
+              />
             </div>
           </span>
           <span className="items-center gap-2 w-1/2">
@@ -243,7 +231,6 @@ export default function EventForm() {
               variant="bordered"
               radius="sm"
               label="Ciudad"
-              defaultValue=""
               onChange={(e) => setValue(e.target.value)}
               {...register("city", {
                 required: false,
@@ -257,7 +244,6 @@ export default function EventForm() {
               variant="bordered"
               radius="sm"
               label="Colonia"
-              defaultValue=""
               onChange={(e) => setValue(e.target.value)}
               {...register("neigbourhood", { maxLength: 30, required: false })}
               className="sm:w-1/2"
@@ -266,9 +252,8 @@ export default function EventForm() {
               variant="bordered"
               radius="sm"
               label="Código postal"
-              defaultValue=""
               onChange={(e) => setValue(e.target.value)}
-              {...register("cp", {
+              {...register("zipCode", {
                 required: false,
               })}
               className="sm:w-1/2 mt-5 sm:mt-0"
@@ -279,8 +264,26 @@ export default function EventForm() {
               isRequired
               variant="bordered"
               radius="sm"
+              label="Calle"
+              onChange={(e) => setValue(e.target.value)}
+              {...register("street", { maxLength: 80 })}
+            />
+            <Input
+              isRequired
+              variant="bordered"
+              radius="sm"
+              label="Número"
+              onChange={(e) => setValue(e.target.value)}
+              {...register("number", {})}
+              className="mt-5 sm:mt-0"
+            />
+          </div>
+          <div className="sm:flex items-center gap-4 w-full">
+            <Input
+              isRequired
+              variant="bordered"
+              radius="sm"
               label="Referencia"
-              defaultValue=""
               onChange={(e) => setValue(e.target.value)}
               {...register("reference", { maxLength: 80 })}
             />
@@ -289,7 +292,6 @@ export default function EventForm() {
               variant="bordered"
               radius="sm"
               label="Teléfono"
-              defaultValue=""
               onChange={(e) => setValue(e.target.value)}
               {...register("phone", {
                 //minLength: 10,
@@ -305,7 +307,6 @@ export default function EventForm() {
               variant="bordered"
               radius="sm"
               label="Nombre de evento"
-              defaultValue=""
               onChange={(e) => setValue(e.target.value)}
               {...register("eventName", { maxLength: 50 })}
             />
