@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
   background-color: #312971;
 }
@@ -19,6 +20,7 @@ body {
   right: 3% !important;
   z-index: 1;
 }
+
 
 .slick-prev:before,
 .slick-next:before {
