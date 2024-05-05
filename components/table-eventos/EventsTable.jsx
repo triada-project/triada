@@ -20,15 +20,17 @@ import { PlusIcon } from "./PlusIcon";
 import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { SearchIcon } from "./SearchIcon";
 import { ChevronDownIcon } from "./ChevronDownIcon";
-import { columns, users, statusOptions } from "./data";
+import { columns, events, statusOptions } from "./data";
 import { capitalize } from "./utils";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import Active from "../../public/assets/svg/active.svg";
 import Alert from "../../public/assets/svg/alert-circle.svg";
 import Finalized from "../../public/assets/svg/finalized.svg";
 import Rejected from "../../public/assets/svg/rejected.svg";
 import More from "../../public/assets/svg/add-circle.svg";
 import ModalCliente from "../Modales/ModalCliente";
+import useTokenStore from "@/stores/tokenStore";
 
 const statusColorMap = {
   activo: Active,
@@ -48,6 +50,20 @@ const INITIAL_VISIBLE_COLUMNS = [
 ];
 
 export default function EventsTable() {
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+  }, []);
+
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+  console.log(tokenObject);
+  const [events, setEvents] = useState([]);
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState(
@@ -61,6 +77,26 @@ export default function EventsTable() {
   });
   const [page, setPage] = React.useState(1);
 
+  useEffect(() => {
+    async function fetchEvents() {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/events/66296aff20afd68ce1b1ad9b/events`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch events");
+        }
+        const data = await response.json();
+        setEvents(data.data);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    }
+    fetchEvents();
+  }, []);
+
+  console.log(events);
+
   const hasSearchFilter = Boolean(filterValue);
 
   const headerColumns = React.useMemo(() => {
@@ -72,7 +108,7 @@ export default function EventsTable() {
   }, [visibleColumns]);
 
   const filteredItems = React.useMemo(() => {
-    let filteredUsers = [...users];
+    let filteredUsers = [...events];
 
     if (hasSearchFilter) {
       filteredUsers = filteredUsers.filter((user) =>
@@ -89,7 +125,7 @@ export default function EventsTable() {
     }
 
     return filteredUsers;
-  }, [users, filterValue, statusFilter]);
+  }, [events, filterValue, statusFilter]);
 
   const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
@@ -110,49 +146,67 @@ export default function EventsTable() {
     });
   }, [sortDescriptor, items]);
 
-  const renderCell = React.useCallback((user, columnKey) => {
-    const cellValue = user[columnKey];
+  const renderCell = React.useCallback((event, columnKey) => {
+    const cellValue = event[columnKey];
 
     switch (columnKey) {
       case "evento":
         return (
           <User
-            avatarProps={{ radius: "lg", src: user.avatar }}
-            //description={user.email}
-            name={user.name}
+            avatarProps={{ radius: "lg", src: event.avatar }}
+            //description={event.email}
+            name={event.name}
           >
-            {user.email}
+            {event.email}
           </User>
         );
       case "horario":
         return (
           <div className="flex flex-col">
             <p className="text-bold text-small">
-              {user.horaInicio} a {user.horaFinal}
+              {event.startHour} a {event.endHour}
             </p>
             {/* <p className="text-bold text-tiny capitalize text-default-400">
-              {user.team}
+              {event.team}
             </p> */}
           </div>
         );
       case "costo":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-small">$ {user.costo} MXN</p>
+            <p className="text-bold text-small">$ {event.eventFee} MXN</p>
             {/* <p className="text-bold text-tiny capitalize text-default-400">
-              {user.team}
+              {event.team}
+            </p> */}
+          </div>
+        );
+      case "fecha":
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-small">{event.date}</p>
+            {/* <p className="text-bold text-tiny capitalize text-default-400">
+              {event.team}
+            </p> */}
+          </div>
+        );
+      case "ubicación":
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-small">{event?.address?.city}</p>
+            {/* <p className="text-bold text-tiny capitalize text-default-400">
+              {event.team}
             </p> */}
           </div>
         );
       case "estatus":
         return (
           <div className=" flex items-center gap-2 capitalize">
-            <Image src={statusColorMap[user.estatus]} width={20} height={20} />
-            <p>{cellValue}</p>
+            <Image src={statusColorMap[event.status]} width={20} height={20} />
+            <p>{event.status}</p>
           </div>
           // <Chip
           //   className="capitalize"
-          //   color={statusColorMap[user.estatus]}
+          //   color={statusColorMap[event.estatus]}
           //   size="sm"
           //   variant="flat"
           // >
@@ -281,7 +335,7 @@ export default function EventsTable() {
         </div>
         <div className="flex justify-between items-center">
           <span className="text-default-400 text-small">
-            Total {users.length} eventos
+            Total {events.length} eventos
           </span>
           <label className="flex items-center text-default-400 text-small">
             Filas por página:
@@ -302,7 +356,7 @@ export default function EventsTable() {
     statusFilter,
     visibleColumns,
     onRowsPerPageChange,
-    users.length,
+    events.length,
     onSearchChange,
     hasSearchFilter,
   ]);
@@ -379,9 +433,9 @@ export default function EventsTable() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"No users found"} items={sortedItems}>
+      <TableBody emptyContent={"No se encontraron eventos"} items={sortedItems}>
         {(item) => (
-          <TableRow key={item.id}>
+          <TableRow key={item._id}>
             {(columnKey) => (
               <TableCell>{renderCell(item, columnKey)}</TableCell>
             )}
