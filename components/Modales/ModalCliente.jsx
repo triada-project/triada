@@ -80,12 +80,12 @@ export default function ModalCliente() {
                 {/* w-full sm:w-1/2 mb-3 sm:mb-0 */}
 
                 {eventosPendientes.map((evento, index) => (
-                  // <div key={index} class="flex flex-col sm:flex-row ">
+                  // <div key={index} className="flex flex-col sm:flex-row ">
                   <div
                     key={index}
                     className="grid grid-cols-1 md:grid-cols-[40fr,60fr] gap-4"
                   >
-                    {/* class=" w-full sm:w-unit-6xl" */}
+                    {/* className=" w-full sm:w-unit-6xl" */}
                     <div className="">
                       <Image
                         alt="NextUI hero Image"
@@ -94,8 +94,8 @@ export default function ModalCliente() {
                       />
                     </div>
 
-                    <div class=" p-0 ">
-                      <p class="text-black font-bold text-xl mb-1">
+                    <div className=" p-0 ">
+                      <p className="text-black font-bold text-xl mb-1">
                         {evento.titulo_evento}{" "}
                       </p>
                       {/* <Chip className="text-sm p-2 outline outline-offset-2 outline-1 bg-inherit "> </Chip> */}
@@ -151,10 +151,10 @@ export default function ModalCliente() {
                         Detalle del evento:{" "}
                       </p>
 
-                      {/* <div class="columns-1 lg:columns-3  text-black flex"> */}
+                      {/* <div className="columns-1 lg:columns-3  text-black flex"> */}
                       {/* <div className="grid grid-cols-1 md:grid-cols-1 gap-4"> */}
                       <div className="flex flex-col md:flex-row ">
-                        <ul class="list-none mr-9 ">
+                        <ul className="list-none mr-9 ">
                           <div className="flex  items-center gap-1">
                             <Image
                               src="/assets/svg/calendar_client.svg"
@@ -185,7 +185,7 @@ export default function ModalCliente() {
                           </div>
                         </ul>
 
-                        <ul class="list-none mr-9 ">
+                        <ul className="list-none mr-9 ">
                           <div className="flex items-center">
                             <Image
                               src="/assets/svg/flash-sharp.svg"
@@ -208,7 +208,7 @@ export default function ModalCliente() {
                           </div>
                         </ul>
 
-                        <ul class="list-none ">
+                        <ul className="list-none ">
                           <div className="flex items-center gap-1">
                             <Image
                               src="/assets/svg/calendar_client.svg"
@@ -261,10 +261,10 @@ export default function ModalCliente() {
                   Setlist del evento
                 </p>
 
-                <div class=" grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-black  mx-auto hidden">
+                <div className=" grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-black  mx-auto hidden">
                   <Card className="mr-5">
                     <CardBody>
-                      <ul class="list-none mr-5 ">
+                      <ul className="list-none mr-5 ">
                         <li className="text-xs">Enter Sandman</li>
                         <li className="text-xs">Metallica</li>
                       </ul>
@@ -272,7 +272,7 @@ export default function ModalCliente() {
                   </Card>
                   <Card className="mr-5">
                     <CardBody>
-                      <ul class="list-none mr-5 ">
+                      <ul className="list-none mr-5 ">
                         <li className="text-xs">Enter Sandman</li>
                         <li className="text-xs">Metallica</li>
                       </ul>
@@ -280,7 +280,7 @@ export default function ModalCliente() {
                   </Card>
                   <Card className="mr-5">
                     <CardBody>
-                      <ul class="list-none mr-5 ">
+                      <ul className="list-none mr-5 ">
                         <li className="text-xs">Enter Sandman</li>
                         <li className="text-xs">Metallica</li>
                       </ul>
@@ -288,7 +288,7 @@ export default function ModalCliente() {
                   </Card>
                   <Card className="mr-5">
                     <CardBody>
-                      <ul class="list-none mr-5 ">
+                      <ul className="list-none mr-5 ">
                         <li className="text-xs">Enter Sandman</li>
                         <li className="text-xs">Metallica</li>
                       </ul>
