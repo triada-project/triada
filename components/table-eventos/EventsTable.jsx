@@ -81,7 +81,7 @@ export default function EventsTable() {
     async function fetchEvents() {
       try {
         const response = await fetch(
-          `http://localhost:4000/events/66296aff20afd68ce1b1ad9b/events`
+          `http://localhost:4000/events/${tokenObject._id}/events`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch events");
@@ -155,7 +155,7 @@ export default function EventsTable() {
           <User
             avatarProps={{ radius: "lg", src: event.avatar }}
             //description={event.email}
-            name={event.name}
+            name={event.clientName}
           >
             {event.email}
           </User>
