@@ -49,7 +49,7 @@ export default function ModalCliente() {
   };
 
   const eventosPendientes = events.filter(
-    (evento) => evento.estado === "pendiente"
+    (evento) => evento.estado === "activo"
   );
 
   return (
@@ -301,17 +301,21 @@ export default function ModalCliente() {
                   eventosPendientes[0].estado === "activo" && (
                     <div>
                       <p className="text-black text-sm font-bold pb-2">
-                        Escribir codigo
+                        Código de evento
                       </p>
-                      <Input
+                      <p className="text-black text-sm f pb-2">
+                        Comparte el código recibido por SMS al músico para
+                        iniciar el evento.
+                      </p>
+                      {/* <Input
                         type="email"
                         label="Introducir Codigo"
                         variant="bordered"
                         className="pb-4 w-full text-black"
-                      />
+                      /> */}
 
                       <Button color="danger" className="w-full">
-                        Enviar
+                        Solicitar código para incio de tu evento
                       </Button>
                     </div>
                   )}
