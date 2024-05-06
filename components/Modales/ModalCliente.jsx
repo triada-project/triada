@@ -49,7 +49,7 @@ export default function ModalCliente() {
   };
 
   const eventosPendientes = events.filter(
-    (evento) => evento.estado === "pendiente por confirmar"
+    (evento) => evento.estado === "pendiente"
   );
 
   return (
@@ -63,7 +63,12 @@ export default function ModalCliente() {
           <More /> <p> Detalles </p>
         </Button>
       </div>
-      <Modal size={size} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        size={size}
+        isOpen={isOpen}
+        onClose={onClose}
+        scrollBehavior="outside"
+      >
         <ModalContent>
           {(onClose) => (
             <>
