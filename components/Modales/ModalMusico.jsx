@@ -29,7 +29,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function ModalClientePendiente() {
+export default function ModalMusico() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [size, setSize] = React.useState("3xl");
 
@@ -348,9 +348,16 @@ export default function ModalClientePendiente() {
 
                     {eventosPendientes.length > 0 &&
                       eventosPendientes[0].estado === "activo" && (
-                        <div className=" mt-5 pt-4">
+                        <div className=" mt-5 pt-4 flex flex-col gap-3">
+                          <Input
+                            className=" w-full h-14 rounded-none"
+                            isRequired
+                            variant="bordered"
+                            radius="sm"
+                            label="Ingresa el código compartido por el cliente"
+                          />
                           <Button color="danger" className="w-full">
-                            Enviar codigo
+                            Enviar código
                           </Button>
                         </div>
                       )}

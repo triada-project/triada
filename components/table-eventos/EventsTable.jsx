@@ -30,6 +30,7 @@ import Finalized from "../../public/assets/svg/finalized.svg";
 import Rejected from "../../public/assets/svg/rejected.svg";
 import More from "../../public/assets/svg/add-circle.svg";
 import ModalCliente from "../Modales/ModalCliente";
+import ModalMusico from "../Modales/ModalMusico";
 import useTokenStore from "@/stores/tokenStore";
 
 const statusColorMap = {
@@ -216,7 +217,8 @@ export default function EventsTable() {
       case "más":
         return (
           <div className="relative flex  items-start p-0">
-            <ModalCliente></ModalCliente>
+            {/* <ModalCliente></ModalCliente> */}
+            <ModalMusico></ModalMusico>
 
             {/* <Dropdown>
               <DropdownTrigger>
