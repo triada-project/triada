@@ -149,6 +149,7 @@ export default function EventsTable() {
 
   const renderCell = React.useCallback((event, columnKey) => {
     const cellValue = event[columnKey];
+    //console.log(event);
 
     switch (columnKey) {
       case "evento":
@@ -218,7 +219,7 @@ export default function EventsTable() {
         return (
           <div className="relative flex  items-start p-0">
             {/* <ModalCliente></ModalCliente> */}
-            <ModalMusico></ModalMusico>
+            <ModalMusico eventData={event} />
 
             {/* <Dropdown>
               <DropdownTrigger>
