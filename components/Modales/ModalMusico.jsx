@@ -59,7 +59,7 @@ export default function ModalClientePendiente() {
         size={size}
         isOpen={isOpen}
         onClose={onClose}
-        scrollBehavior="inside"
+        scrollBehavior="outside"
       >
         <ModalContent>
           {(onClose) => (
@@ -69,7 +69,7 @@ export default function ModalClientePendiente() {
               <ModalBody className=" h-[600px] sm:flex sm:gap-3   ">
                 {/* <ModalBody className="sm:flex sm:gap-3 "> */}
                 {eventosPendientes.map((evento, index) => (
-                  <Card className=" p-10 overflow-auto">
+                  <div key={index} className=" p-10 overflow-auto bg-slate-500">
                     <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
                       {eventosPendientes.length > 0 &&
                         eventosPendientes[0].estado === "activo" && (
@@ -358,7 +358,7 @@ export default function ModalClientePendiente() {
                           </div>
                         )}
                     </div>
-                  </Card>
+                  </div>
                 ))}
               </ModalBody>
               <ModalFooter>
