@@ -60,8 +60,7 @@ export default function ModalCliente() {
           key={size}
           onPress={() => handleOpen(size)}
         >
-          {" "}
-          <More></More> <p> Detalles </p>{" "}
+          <More /> <p> Detalles </p>
         </Button>
       </div>
       <Modal size={size} isOpen={isOpen} onClose={onClose}>

@@ -19,6 +19,7 @@ import {
 import { Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import Events from "../../objects/events.json";
+import More from "../../public/assets/svg/add-circle";
 
 import { Josefin_Sans, Lato } from "next/font/google";
 
@@ -46,8 +47,12 @@ export default function ModalClientePendiente() {
   return (
     <>
       <div className="flex flex-wrap gap-3 p-5">
-        <Button key={size} onPress={() => handleOpen(size)}>
-          Detalle evento pendiente{" "}
+        <Button
+          className="bg-white  p-0"
+          key={size}
+          onPress={() => handleOpen(size)}
+        >
+          <More /> <p> Detalles </p>
         </Button>
       </div>
       <Modal
