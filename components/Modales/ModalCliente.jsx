@@ -257,7 +257,7 @@ export default function ModalCliente() {
                   Setlist del evento
                 </p>
 
-                <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-black  mx-auto hidden">
+                <div class=" grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-black  mx-auto hidden">
                   <Card className="mr-5">
                     <CardBody>
                       <ul class="list-none mr-5 ">
