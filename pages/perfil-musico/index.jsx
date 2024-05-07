@@ -4,6 +4,8 @@ import UpdateCardPicture from "../../components/UpdateCardPicture.jsx";
 import InfoFormMusico from "@/components/profile-musician/InfoFormMusico.jsx";
 import NewPasswordForm from "@/components/NewPasswordForm.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
+import useTokenStore from "@/stores/tokenStore";
+import { useEffect } from "react";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -12,6 +14,17 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function PerfilMusico() {
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+  }, []);
+
   return (
     <>
       <MenuMobileMusician page="perfil" role="musico" />

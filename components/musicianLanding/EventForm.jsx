@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { Contrail_One, Josefin_Sans, Lato } from "next/font/google";
 import {
@@ -10,7 +10,6 @@ import {
   Checkbox,
 } from "@nextui-org/react";
 import { useForm, Controller } from "react-hook-form";
-
 import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
@@ -37,6 +36,8 @@ export default function EventForm() {
     },
   });
   const onSubmit = async (data) => {
+
+    const phonePrefix = "+52" + data.phone;
     const fecha = new Date(data.date.year, data.date.month - 1, data.date.day);
     const fechaFormateada = fecha.toLocaleDateString();
     console.log(data);
@@ -50,15 +51,19 @@ export default function EventForm() {
             street: data.street,
             neigbourhood: data.neigbourhood,
             zipCode: data.zipCode,
-            exteriorNumber: data.number,
+            exteriorNumber: data.exteriorNumber,
+            interiorNumber: data.interiorNumber,
             reference: data.reference,
           },
           date: fechaFormateada,
           endHour: data.endHour,
           eventName: data.eventName,
           eventType: data.eventType,
-          phoneClient: data.phone,
+          phoneClient: phonePrefix,
           startHour: data.startHour,
+          totalHours: getTotalHours(),
+          payment: totalRes(),
+          isChecked: data.isChecked,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -105,21 +110,6 @@ export default function EventForm() {
     return users.eventFee * getTotalHours();
   };
 
-  const [startHour, setStartHour] = useState("");
-  const [endHour, setEndHour] = useState("");
-  // Función para manejar cambios en la hora de inicio
-  const handleStartHourChange = (e) => {
-    setStartHour(e.target.value);
-  };
-
-  // Función para manejar cambios en la hora de fin
-  const handleEndHourChange = (e) => {
-    setEndHour(e.target.value);
-  };
-  // Función para calcular y mostrar total de horas
-
-  console.log(totalRes);
-
   return (
     <section className="border-2 rounded-lg p-5 mt-10flex flex-col  lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py- lg:border-opacity-25 lg:shadow-lg lg:items-start lg:mt-[67px]">
       <h1 className="{`${roboto.classname} text-[#312971] text-2xl text-center font-bold sm:text-[30px]">
@@ -135,15 +125,17 @@ export default function EventForm() {
             className="ml-2 mt-2 mr-5"
           />
         </div>
-        <div>
-          <p className="text-blue-700 flex-auto text-center p-2">
-            Disponible{" "}
-            {
-              //`${users.availability}`}
-            }
-            Jueves de 16:00 a 20:00 Viernes de 16:00 a 20:00 Sábado de 16:00 a
-            20:00
-          </p>
+
+        <div className="flex">
+          <p className="text-blue-700 flex-auto text-center p-2">Disponible:</p>
+          {users.availability.map((slot) => (
+            <p
+              className="text-blue-700 flex-auto text-center p-2"
+              key={slot.day}
+            >
+              {slot.day}: {slot.hours}
+            </p>
+          ))}
         </div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -162,10 +154,11 @@ export default function EventForm() {
                   <DatePicker
                     isRequired
                     onChange={onChange}
-                    format="MM/dd/yy"
+
+                    format="mm/dd/yyyy"
                     label="Mes / Día / Año"
                     variant="bordered"
-                    showMonthAndYearPickers
+                    radius="sm"
                   />
                 )}
               />
@@ -175,7 +168,7 @@ export default function EventForm() {
             <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 mb-2 sm:text-[20px]">
               Elige el horario
             </h2>
-            <div className="flex gap-2">
+            <div className="sm:flex items-center gap-4 w-full">
               <Select
                 id="startHour"
                 ref="startHour"
@@ -184,7 +177,6 @@ export default function EventForm() {
                 variant="bordered"
                 radius="sm"
                 {...register("startHour", { required: true })}
-                onChange={handleStartHourChange}
               >
                 <SelectItem key={"09:00"}>09:00</SelectItem>
                 <SelectItem key={"10:00"}>10:00</SelectItem>
@@ -262,7 +254,8 @@ export default function EventForm() {
               radius="sm"
               label="Colonia"
               onChange={(e) => setValue(e.target.value)}
-              {...register("neigbourhood", { maxLength: 30, required: false })}
+
+              {...register("neigbourhood", { maxLength: 30 })}
               className="sm:w-1/2"
             />
             <Input
@@ -285,15 +278,26 @@ export default function EventForm() {
               onChange={(e) => setValue(e.target.value)}
               {...register("street", { maxLength: 80 })}
             />
-            <Input
-              isRequired
-              variant="bordered"
-              radius="sm"
-              label="Número"
-              onChange={(e) => setValue(e.target.value)}
-              {...register("number", {})}
-              className="mt-5 sm:mt-0"
-            />
+
+            <div className="sm:flex items-center gap-4 w-full">
+              <Input
+                isRequired
+                variant="bordered"
+                radius="sm"
+                label="Número exterior"
+                onChange={(e) => setValue(e.target.value)}
+                {...register("exteriorNumber", {})}
+                className="mt-5 sm:mt-0"
+              />
+              <Input
+                variant="bordered"
+                radius="sm"
+                label="Número interior"
+                onChange={(e) => setValue(e.target.value)}
+                {...register("interiorNumber")}
+                className="mt-5 sm:mt-0"
+              />
+            </div>
           </div>
           <div className="sm:flex items-center gap-4 w-full">
             <Input
@@ -310,11 +314,8 @@ export default function EventForm() {
               radius="sm"
               label="Teléfono"
               onChange={(e) => setValue(e.target.value)}
-              {...register("phone", {
-                //minLength: 10,
-                //maxLength: 10,
-                //pattern: /(\(\d{3}\)[.-]?|\d{3}[.-]?)?\d{3}[.-]?\d{4}/,
-              })}
+
+              {...register("phone", { pattern: /^[0-9]{10}$/ })}
               className="mt-5 sm:mt-0"
             />
           </div>
@@ -364,7 +365,10 @@ export default function EventForm() {
               <p className="w-1/3 text-right">${totalRes()}</p>
             </div>
           </div>
-          <Checkbox>Acepto términos y condiciones</Checkbox>
+          <Checkbox isRequired {...register("isChecked")}>
+            Acepto términos y condiciones
+          </Checkbox>
+          {/* if !token then modal iniciar sesión */}
           <ButtonPink
             width="w-[280px] lg:w-[30rem]"
             text="Pagar"
