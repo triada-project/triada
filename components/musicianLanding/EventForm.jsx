@@ -49,7 +49,8 @@ export default function EventForm() {
             street: data.street,
             neigbourhood: data.neigbourhood,
             zipCode: data.zipCode,
-            exteriorNumber: data.number,
+            exteriorNumber: data.exteriorNumber,
+            interiorNumber: data.interiorNumber,
             reference: data.reference,
           },
           date: fechaFormateada,
@@ -60,6 +61,7 @@ export default function EventForm() {
           startHour: data.startHour,
           totalHours: getTotalHours(),
           payment: totalRes(),
+          isChecked: data.isChecked,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -121,15 +123,16 @@ export default function EventForm() {
             className="ml-2 mt-2 mr-5"
           />
         </div>
-        <div>
-          <p className="text-blue-700 flex-auto text-center p-2">
-            Disponible{" "}
-            {
-              //`${users.availability}`}
-            }
-            Jueves de 16:00 a 20:00 Viernes de 16:00 a 20:00 Sábado de 16:00 a
-            20:00
-          </p>
+        <div className="flex">
+          <p className="text-blue-700 flex-auto text-center p-2">Disponible:</p>
+          {users.availability.map((slot) => (
+            <p
+              className="text-blue-700 flex-auto text-center p-2"
+              key={slot.day}
+            >
+              {slot.day}: {slot.hours}
+            </p>
+          ))}
         </div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -148,10 +151,10 @@ export default function EventForm() {
                   <DatePicker
                     isRequired
                     onChange={onChange}
-                    format="MM/dd/yy"
+                    format="mm/dd/yyyy"
                     label="Mes / Día / Año"
                     variant="bordered"
-                    showMonthAndYearPickers
+                    radius="sm"
                   />
                 )}
               />
@@ -161,7 +164,7 @@ export default function EventForm() {
             <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 mb-2 sm:text-[20px]">
               Elige el horario
             </h2>
-            <div className="flex gap-2">
+            <div className="sm:flex items-center gap-4 w-full">
               <Select
                 id="startHour"
                 ref="startHour"
@@ -247,7 +250,7 @@ export default function EventForm() {
               radius="sm"
               label="Colonia"
               onChange={(e) => setValue(e.target.value)}
-              {...register("neigbourhood", { maxLength: 30, required: false })}
+              {...register("neigbourhood", { maxLength: 30 })}
               className="sm:w-1/2"
             />
             <Input
@@ -270,15 +273,25 @@ export default function EventForm() {
               onChange={(e) => setValue(e.target.value)}
               {...register("street", { maxLength: 80 })}
             />
-            <Input
-              isRequired
-              variant="bordered"
-              radius="sm"
-              label="Número"
-              onChange={(e) => setValue(e.target.value)}
-              {...register("number", {})}
-              className="mt-5 sm:mt-0"
-            />
+            <div className="sm:flex items-center gap-4 w-full">
+              <Input
+                isRequired
+                variant="bordered"
+                radius="sm"
+                label="Número exterior"
+                onChange={(e) => setValue(e.target.value)}
+                {...register("exteriorNumber", {})}
+                className="mt-5 sm:mt-0"
+              />
+              <Input
+                variant="bordered"
+                radius="sm"
+                label="Número interior"
+                onChange={(e) => setValue(e.target.value)}
+                {...register("interiorNumber")}
+                className="mt-5 sm:mt-0"
+              />
+            </div>
           </div>
           <div className="sm:flex items-center gap-4 w-full">
             <Input
@@ -345,7 +358,9 @@ export default function EventForm() {
               <p className="w-1/3 text-right">${totalRes()}</p>
             </div>
           </div>
-          <Checkbox>Acepto términos y condiciones</Checkbox>
+          <Checkbox isRequired {...register("isChecked")}>
+            Acepto términos y condiciones
+          </Checkbox>
           <ButtonPink
             width="w-[280px] lg:w-[30rem]"
             text="Pagar"
