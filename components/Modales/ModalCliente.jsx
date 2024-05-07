@@ -35,7 +35,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function ModalCliente() {
+export default function ModalCliente({ eventData }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [size, setSize] = React.useState("2xl");
   const [rating, setRating] = useState(3); // Initial value
@@ -79,183 +79,176 @@ export default function ModalCliente() {
                 {/* className="sm:flex sm:gap-3 " */}
                 {/* w-full sm:w-1/2 mb-3 sm:mb-0 */}
 
-                {eventosPendientes.map((evento, index) => (
-                  // <div key={index} className="flex flex-col sm:flex-row ">
-                  <div
-                    key={index}
-                    className="grid grid-cols-1 md:grid-cols-[40fr,60fr] gap-4"
-                  >
-                    {/* className=" w-full sm:w-unit-6xl" */}
-                    <div className="">
-                      <Image
-                        alt="NextUI hero Image"
-                        src={evento.url_imagen}
-                        className="max-w[150px] h-200"
-                      />
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-[40fr,60fr] gap-4">
+                  {/* className=" w-full sm:w-unit-6xl" */}
+                  <div className="">
+                    <Image
+                      alt="NextUI hero Image"
+                      src={eventData.url_imagen}
+                      className="max-w[150px] h-200"
+                    />
+                  </div>
 
-                    <div className=" p-0 ">
-                      <p className="text-black font-bold text-xl mb-1">
-                        {evento.titulo_evento}{" "}
-                      </p>
-                      {/* <Chip className="text-sm p-2 outline outline-offset-2 outline-1 bg-inherit "> </Chip> */}
+                  <div className=" p-0 ">
+                    <p className="text-black font-bold text-xl mb-1">
+                      {eventData.clientName}{" "}
+                    </p>
+                    {/* <Chip className="text-sm p-2 outline outline-offset-2 outline-1 bg-inherit "> </Chip> */}
 
-                      {eventosPendientes.length > 0 &&
-                        eventosPendientes[0].estado === "finalizado" && (
-                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
-                            <Image
-                              src="/assets/svg/checkmark-circle.svg"
-                              className="w-52 h-4 mr-2"
-                            />
-                            <p className="text-xs pr-1">{evento.estado}</p>
-                          </div>
-                        )}
-
-                      {eventosPendientes.length > 0 &&
-                        eventosPendientes[0].estado === "activo" && (
-                          <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
-                            <Image
-                              src="/assets/svg/play.svg"
-                              className="w-52 h-4 mr-2"
-                            />
-                            <p className="text-xs pr-1">{evento.estado}</p>
-                          </div>
-                        )}
-
-                      {eventosPendientes.length > 0 &&
-                        eventosPendientes[0].estado === "cancelado" && (
-                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
-                            <Image
-                              src="/assets/svg/close-circle.svg"
-                              className="w-52 h-4 mr-2"
-                            />
-                            <p className="text-xs pr-1">{evento.estado}</p>
-                          </div>
-                        )}
-
-                      {eventosPendientes.length > 0 &&
-                        eventosPendientes[0].estado ===
-                          "pendiente por confirmar" && (
-                          <div className="flex flex-row border border-slate-950 p-1 w-2/4 rounded-full items-center">
-                            <Image
-                              src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"
-                              className="w-10 h-4 mr-2"
-                            />
-                            <p className="text-xs w-full pr-1">
-                              {evento.estado}
-                            </p>
-                          </div>
-                        )}
-
-                      <p className="text-black text-sm font-bold mt-2 pb-2">
-                        Detalle del evento:{" "}
-                      </p>
-
-                      {/* <div className="columns-1 lg:columns-3  text-black flex"> */}
-                      {/* <div className="grid grid-cols-1 md:grid-cols-1 gap-4"> */}
-                      <div className="flex flex-col md:flex-row ">
-                        <ul className="list-none mr-9 ">
-                          <div className="flex  items-center gap-1">
-                            <Image
-                              src="/assets/svg/calendar_client.svg"
-                              className="mr-1 w-4 h-6 md:mr-3"
-                            />
-                            <li className="md:text-xs">
-                              {" "}
-                              Fecha:{evento.fecha_evento}{" "}
-                            </li>
-                          </div>
-                          <div className="flex items-center gap-1 md:gap-0">
-                            <Image
-                              src="/assets/svg/timer.svg"
-                              className="w-4 h-6 mr-1 md:w-3"
-                            />
-                            <li className="md:text-xs ">
-                              Inicio: {evento.inicio_evento}{" "}
-                            </li>
-                          </div>
-                          <div className="flex items-center gap-1 md:gap:0">
-                            <Image
-                              src="/assets/svg/SvgClock.svg"
-                              className="w-4 h-6 mr-1 md:w-3 md:mr-0"
-                            />
-                            <li className="md:text-xs">
-                              Final: {evento.termino_evento}
-                            </li>
-                          </div>
-                        </ul>
-
-                        <ul className="list-none mr-9 ">
-                          <div className="flex items-center">
-                            <Image
-                              src="/assets/svg/flash-sharp.svg"
-                              className="w-4 h-6 mr-2 md:w-4"
-                            />
-                            <li className="md:text-xs">{evento.tipo_evento}</li>
-                          </div>
-                          {/* <li className="text-xs">Contact:</li> */}
-                          <div className="flex items-center gap-1">
-                            <Image
-                              src="/assets/svg/call.svg"
-                              className="w-4 h-6 mr-2  md:w-4 hover:border-slate-400"
-                            />
-                            {evento.estado === "activo" ||
-                              (evento.estado === "finalizado" && (
-                                <li className="text-xs">
-                                  {evento.telefono_evento}
-                                </li>
-                              ))}
-                          </div>
-                        </ul>
-
-                        <ul className="list-none ">
-                          <div className="flex items-center gap-1">
-                            <Image
-                              src="/assets/svg/calendar_client.svg"
-                              className="w-4 h-6 mr-2 md:w-4"
-                            />
-                            <li className="md:text-xs">
-                              Horas: {evento.horas_contratadas_evento}
-                            </li>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Image
-                              src="/assets/svg/cash-outline.svg"
-                              className="w-4 h-6 mr-2 md:w-4"
-                            />
-                            <li className="md:text-xs">
-                              Costo:${evento.costo_evento}
-                            </li>
-                          </div>
-                          <div className="flex  gap-1">
-                            <Image
-                              src="/assets/svg/card-sharp.svg"
-                              className="w-4 h-6 mr-2 md:w-4"
-                            />
-                            <li className="md:text-xs pt-1">
-                              {" "}
-                              {evento.estatus_evento}
-                            </li>
-                          </div>
-                        </ul>
+                    {eventData.status === "finalizado" && (
+                      <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                        <Image
+                          src="/assets/svg/checkmark-circle.svg"
+                          className="w-52 h-4 mr-2"
+                        />
+                        <p className="text-xs pr-1">{eventData.status}</p>
                       </div>
+                    )}
+
+                    {eventData.status === "activo" && (
+                      <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
+                        <Image
+                          src="/assets/svg/play.svg"
+                          className="w-52 h-4 mr-2"
+                        />
+                        <p className="text-xs pr-1">{eventData.status}</p>
+                      </div>
+                    )}
+
+                    {eventData.status === "cancelado" && (
+                      <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                        <Image
+                          src="/assets/svg/close-circle.svg"
+                          className="w-52 h-4 mr-2"
+                        />
+                        <p className="text-xs pr-1">{eventData.status}</p>
+                      </div>
+                    )}
+
+                    {eventData.status === "pendiente" && (
+                      <div className="flex flex-row border border-slate-950 p-1 w-2/4 rounded-full items-center">
+                        <Image
+                          src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"
+                          className="w-10 h-4 mr-2"
+                        />
+                        <p className="text-xs w-full pr-1">
+                          {eventData.status}
+                        </p>
+                      </div>
+                    )}
+
+                    <p className="text-black text-sm font-bold mt-2 pb-2">
+                      Detalle del evento:{" "}
+                    </p>
+
+                    {/* <div className="columns-1 lg:columns-3  text-black flex"> */}
+                    {/* <div className="grid grid-cols-1 md:grid-cols-1 gap-4"> */}
+                    <div className="flex flex-col md:flex-row ">
+                      <ul className="list-none mr-9 ">
+                        <div className="flex  items-center gap-1">
+                          <Image
+                            src="/assets/svg/calendar_client.svg"
+                            className="mr-1 w-4 h-6 md:mr-3"
+                          />
+                          <li className="md:text-xs">
+                            Fecha: {eventData.date}
+                          </li>
+                        </div>
+                        <div className="flex items-center gap-1 md:gap-0">
+                          <Image
+                            src="/assets/svg/timer.svg"
+                            className="w-4 h-6 mr-1 md:w-3"
+                          />
+                          <li className="md:text-xs ">
+                            Inicio: {eventData.startHour}{" "}
+                          </li>
+                        </div>
+                        <div className="flex items-center gap-1 md:gap:0">
+                          <Image
+                            src="/assets/svg/SvgClock.svg"
+                            className="w-4 h-6 mr-1 md:w-3 md:mr-0"
+                          />
+                          <li className="md:text-xs">
+                            Final: {eventData.endHour}
+                          </li>
+                        </div>
+                      </ul>
+
+                      <ul className="list-none mr-9 ">
+                        <div className="flex items-center">
+                          <Image
+                            src="/assets/svg/flash-sharp.svg"
+                            className="w-4 h-6 mr-2 md:w-4"
+                          />
+                          <li className="md:text-xs">{eventData.eventType}</li>
+                        </div>
+                        {/* <li className="text-xs">Contact:</li> */}
+                        <div className="flex items-center gap-1">
+                          <Image
+                            src="/assets/svg/call.svg"
+                            className="w-4 h-6 mr-2  md:w-4 hover:border-slate-400"
+                          />
+                          {eventData.status === "activo" ||
+                            (eventData.status === "finalizado" && (
+                              <li className="text-xs">
+                                {eventData.phoneClient}
+                              </li>
+                            ))}
+                        </div>
+                      </ul>
+
+                      <ul className="list-none ">
+                        <div className="flex items-center gap-1">
+                          <Image
+                            src="/assets/svg/calendar_client.svg"
+                            className="w-4 h-6 mr-2 md:w-4"
+                          />
+                          <li className="md:text-xs">
+                            Horas: {eventData.horas_contratadas_evento}
+                          </li>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Image
+                            src="/assets/svg/cash-outline.svg"
+                            className="w-4 h-6 mr-2 md:w-4"
+                          />
+                          <li className="md:text-xs">
+                            Costo:${eventData.eventFee}
+                          </li>
+                        </div>
+                        <div className="flex  gap-1">
+                          <Image
+                            src="/assets/svg/card-sharp.svg"
+                            className="w-4 h-6 mr-2 md:w-4"
+                          />
+                          <li className="md:text-xs pt-1">
+                            {" "}
+                            {eventData.status}
+                          </li>
+                        </div>
+                      </ul>
                     </div>
                   </div>
-                ))}
+                </div>
 
-                {eventosPendientes.map((evento, index) => (
-                  <Card key={index} className="mt-1">
-                    <CardBody>
-                      <div className="flex items-center gap-2">
-                        <Image
-                          src="/assets/svg/ubicacion.svg"
-                          className="w-6 h-6 mr-2"
-                        />
-                        <p className="md:text-xs">{evento.direccion_evento}</p>
-                      </div>
-                    </CardBody>
-                  </Card>
-                ))}
+                <Card className="mt-1">
+                  <CardBody>
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src="/assets/svg/ubicacion.svg"
+                        className="w-6 h-6 mr-2"
+                      />
+                      <p className="md:text-xs">
+                        {eventData?.address?.street} #
+                        {eventData?.address?.exteriorNumber}, Colonia{" "}
+                        {eventData?.address?.neighborhood},{" "}
+                        {eventData?.address?.country},{" "}
+                        {eventData?.address?.city}, C.P.{" "}
+                        {eventData?.address?.zipCode}
+                      </p>
+                    </div>
+                  </CardBody>
+                </Card>
 
                 <p className="text-black text-sm font-bold pb-2 pt-4 hidden">
                   Setlist del evento
@@ -297,55 +290,53 @@ export default function ModalCliente() {
                 </div>
                 {/* className={` ${eventosPendientes.estado === 'pendiente' && hidden} `} */}
 
-                {eventosPendientes.length > 0 &&
-                  eventosPendientes[0].estado === "activo" && (
-                    <div>
-                      <p className="text-black text-sm font-bold pb-2">
-                        Código de evento
-                      </p>
-                      <p className="text-black text-sm f pb-2">
-                        Comparte el código recibido por SMS al músico para
-                        iniciar el evento.
-                      </p>
-                      {/* <Input
+                {eventData.status === "activo" && (
+                  <div>
+                    <p className="text-black text-sm font-bold pb-2">
+                      Código de evento
+                    </p>
+                    <p className="text-black text-sm f pb-2">
+                      Comparte el código recibido por SMS al músico para iniciar
+                      el evento.
+                    </p>
+                    {/* <Input
                         type="email"
                         label="Introducir Codigo"
                         variant="bordered"
                         className="pb-4 w-full text-black"
                       /> */}
 
-                      <Button color="danger" className="w-full">
-                        Solicitar código para incio de tu evento
-                      </Button>
-                    </div>
-                  )}
+                    <Button color="danger" className="w-full">
+                      Solicitar código para incio de tu evento
+                    </Button>
+                  </div>
+                )}
 
-                {eventosPendientes.length > 0 &&
-                  eventosPendientes[0].estado === "finalizado" && (
-                    <div>
-                      <div className="flex flex-row">
-                        <p className="text-black text-sm font-bold pb-2 mr-3 items-center">
-                          Escribir reseña:
-                        </p>
-                        <Rating
-                          className="pb-3"
-                          style={{ maxWidth: 100 }}
-                          value={rating}
-                          onChange={setRating}
-                        />
-                      </div>
-                      <Input
-                        type="email"
-                        label="Tu opinion es importante..."
-                        variant="bordered"
-                        className="pb-4 w-full text-black"
+                {eventData.status === "finalizado" && (
+                  <div>
+                    <div className="flex flex-row">
+                      <p className="text-black text-sm font-bold pb-2 mr-3 items-center">
+                        Escribir reseña:
+                      </p>
+                      <Rating
+                        className="pb-3"
+                        style={{ maxWidth: 100 }}
+                        value={rating}
+                        onChange={setRating}
                       />
-
-                      <Button color="danger" className="w-full">
-                        Enviar
-                      </Button>
                     </div>
-                  )}
+                    <Input
+                      type="email"
+                      label="Tu opinion es importante..."
+                      variant="bordered"
+                      className="pb-4 w-full text-black"
+                    />
+
+                    <Button color="danger" className="w-full">
+                      Enviar
+                    </Button>
+                  </div>
+                )}
               </ModalBody>
               <ModalFooter>
                 {/* <Button color="primary d-none" onPress={onClose}>

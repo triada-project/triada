@@ -219,7 +219,12 @@ export default function EventsTable() {
         return (
           <div className="relative flex  items-start p-0">
             {/* <ModalCliente></ModalCliente> */}
-            <ModalMusico eventData={event} />
+            {tokenObject.role === "musico" ? (
+              <ModalMusico eventData={event} />
+            ) : (
+              <ModalCliente eventData={event} />
+            )}
+            {/* <ModalMusico eventData={event} /> */}
 
             {/* <Dropdown>
               <DropdownTrigger>
