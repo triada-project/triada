@@ -36,6 +36,7 @@ export default function EventForm() {
     },
   });
   const onSubmit = async (data) => {
+    const phonePrefix = "+52" + data.phone;
     const fecha = new Date(data.date.year, data.date.month - 1, data.date.day);
     const fechaFormateada = fecha.toLocaleDateString();
     console.log(data);
@@ -57,7 +58,7 @@ export default function EventForm() {
           endHour: data.endHour,
           eventName: data.eventName,
           eventType: data.eventType,
-          phoneClient: data.phone,
+          phoneClient: phonePrefix,
           startHour: data.startHour,
           totalHours: getTotalHours(),
           payment: totalRes(),
