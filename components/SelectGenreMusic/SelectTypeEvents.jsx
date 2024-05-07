@@ -2,27 +2,34 @@ import React from "react";
 import { Select, SelectItem, Avatar, Chip } from "@nextui-org/react";
 import { musicalGenre, typeEvents } from "./data";
 
-export default function SelectTypeEvents(props) {
+export default function SelectTypeEvents({
+  selectType,
+  width,
+  onChange,
+  selectedKeys,
+}) {
   return (
     <Select
       isRequired
+      onChange={onChange}
+      selectedKeys={selectedKeys}
       items={typeEvents}
-      label={props.selectType === "home" ? "Tipo de evento" : "Tipos de evento"}
-      className={props.selectType === "home" ? ` text-[#29FEFD] dark ` : ""}
+      label={selectType === "home" ? "Tipo de evento" : "Tipos de evento"}
+      className={selectType === "home" ? ` text-[#29FEFD] dark ` : ""}
       variant="bordered"
       isMultiline={true}
-      selectionMode={props.selectType === "home" ? "single" : "multiple"}
+      selectionMode={selectType === "home" ? "single" : "multiple"}
       placeholder={
-        props.selectType === "home"
+        selectType === "home"
           ? "Selecciona el tipo de tu evento"
           : "Selecciona uno o más tipos de evento"
       }
       //labelPlacement="outside"
       classNames={{
-        base: `${props.width}`,
+        base: `${width}`,
         trigger: "min-h-unit-12 py-2",
       }}
-      // className={` h-16 ${props.width}`}
+      // className={` h-16 ${width}`}
       renderValue={(items) => {
         return (
           <div className="flex flex-wrap gap-2">

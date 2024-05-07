@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from "react";
 
 const createCheckoutSession = async () => {
@@ -62,91 +61,5 @@ export default function App() {
     <ProductDisplay />
   );
 }
-/*
-import React, { useState, useEffect } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Button } from "@nextui-org/react";
-import Events from "../../objects/events.json";
-
-const stripePromise = loadStripe("tu_clave_publica_de_stripe");
-
-const createCheckoutSession = async () => {
-  const res = await fetch('http://localhost:3000/create-checkout-session', { // Asegúrate de utilizar el puerto correcto
-    method:'POST',
-  });
-  const data = await res.json();
-  return data.url;
-};
-
-export default function StripePayments() {
-  const [loading, setLoading] = useState(false);
-  const { events } = Events;
-  const eventosPendientes = events.filter((evento) => evento.estado === 'finalizado');
-
-  const handleCheckout = async () => {
-    setLoading(true);
-    try {
-      const url = await createCheckoutSession();
-      window.location.href = url;
-    } catch (error) {
-      console.error('Error:', error);
-      setLoading(false);
-    }
-  };
-
-  return (
-    <main className="max-w-[1440px] items-center m-auto">
-      <Button onClick={handleCheckout} loading={loading}>
-        Pagar
-      </Button>
-    </main>
-  );
-}
-
-*/
 
 
-
-
-/*
-
-import React, { useState,useEffect } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import { CardElement } from "@stripe/react-stripe-js";
-import { Button } from "@nextui-org/react";
-import Events from "../../objects/events.json";
-
-const stripePromise = loadStripe("tu_clave_publica_de_stripe");
-
-export default function StripePayments() {
-  const [loading, setLoading] = useState(false);
-  const { events } = Events;
-  const eventosPendientes = events.filter((evento) => evento.estado === 'finalizado');
-
-  const handleCheckout = async () => {
-    setLoading(true);
-    const stripe = await stripePromise;
-    const response = fetch('http://localhost:3000/create-checkout-session', {
-    method: 'POST',
-})
-    const session = await response.json();
-    const result = await stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-    if (result.error) {
-      console.error(result.error.message);
-      setLoading(false);
-    }
-  };
-
-  return (
-    <main className="max-w-[1440px] items-center m-auto">
-      <Button onClick={handleCheckout} loading={loading}>
-        Pagar
-      </Button>
-    </main>
-  );
-}
-
-*/

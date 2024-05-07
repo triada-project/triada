@@ -1,29 +1,42 @@
 import React from "react";
 import {
   Navbar,
-  NavbarBrand,
   NavbarContent,
-  NavbarItem,
-  Link,
-  Button,
   NavbarMenuToggle,
   NavbarMenu,
-  NavbarMenuItem,
 } from "@nextui-org/react";
-import ButtonNavbar1 from "./HomeComponents/NavbarComponents/ButtonNavbar1";
-import ButtonNavbar2 from "./HomeComponents/NavbarComponents/ButtonNavbar2";
 import AnchorNavbar from "./HomeComponents/NavbarComponents/AnchorNavbar";
-import { Josefin_Sans, Lato } from "next/font/google";
 import AnchorToggleMenu from "./HomeComponents/NavbarComponents/AnchorToggleMenu";
 
-const josefine = Josefin_Sans({
-  weight: ["300", "400", "600", "700"],
-  subsets: ["latin"],
-});
-const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
+import LogInModal from "./HomeComponents/NavbarComponents/LogInModal";
+import LogInModalToggle from "./HomeComponents/NavbarComponents/LogInModalToggle";
+import RegisterModal from "./HomeComponents/NavbarComponents/RegisterModal";
+import RegisterModalToggle from "./HomeComponents/NavbarComponents/RegisterModalToggle";
+import clsx from "clsx";
+import { useEffect, useState } from "react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Avatar,
+} from "@nextui-org/react";
+import UserLogOutNavbar from "./HomeComponents/NavbarComponents/UserLogOutNavbar";
+
+const TOKEN_KEY = "token";
+
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = window.localStorage.getItem(TOKEN_KEY);
+    if (token) {
+      console.log("este es el token", token);
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <Navbar
@@ -47,26 +60,27 @@ export default function NavBar() {
         <AnchorNavbar href="#" nameAnchor="NOSOTROS"></AnchorNavbar>
         <AnchorNavbar href="#" nameAnchor="MÚSICOS"></AnchorNavbar>
       </div>
-      <div id="buttons" className="flex gap-[24px]" justify="end">
-        <ButtonNavbar1 href="#" nameButton="ACCEDE"></ButtonNavbar1>
-        <ButtonNavbar2 href="#" nameButton="REGISTRO"></ButtonNavbar2>
+      <div
+        id="buttons"
+        className={clsx("flex gap-[24px]", { hidden: isLoggedIn })}
+        justify="end"
+      >
+
+        <LogInModal />
+        <RegisterModal />
       </div>
+
+      <UserLogOutNavbar />
+
       <NavbarMenu id="menu" className=" pt-5 w-[245px] bg-[#081540]  ">
         <AnchorToggleMenu href="#" nameAnchor="INICIO"></AnchorToggleMenu>
         <AnchorToggleMenu href="#" nameAnchor="NOSOTROS"></AnchorToggleMenu>
         <AnchorToggleMenu href="#" nameAnchor="MÚSICOS"></AnchorToggleMenu>
-        <button
-          href="#"
-          className={` lg:hidden rounded-md px-8 font-normal border border-[#29FEFD] bg-inherit text-[#29FEFD] hover:bg-[#29FEFD] hover:text-black ${josefine.className}`}
-        >
-          <h2 className="pt-1">ACCEDE</h2>
-        </button>
-        <button
-          href="#"
-          className={`lg:hidden font-semibold rounded-md  px-8 bg-[#29FEFD] text-[#081540] hover:bg-[#EF107D] hover:text-white ${josefine.className} `}
-        >
-          <h2 className="pt-1">REGISTRO</h2>
-        </button>
+        <div className={clsx("flex flex-col gap-2", { hidden: isLoggedIn })}>
+          <LogInModalToggle />
+          <RegisterModalToggle />
+        </div>
+
       </NavbarMenu>
     </Navbar>
   );

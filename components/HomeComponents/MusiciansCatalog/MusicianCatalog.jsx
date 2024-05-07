@@ -1,8 +1,7 @@
 import { Josefin_Sans, Lato } from "next/font/google";
-import OptionalInputs from "./OptionalInputs";
-import MusicianCard from "./MusicianCard";
 import MusiciansCardsContainer from "./MusiciansCardsContainer";
 import SelectHomeEvents from "../SelectHomeEvents";
+import SelectGenreMusicianCatalog from "./SelectGenreMusicianCatalog";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -34,8 +33,8 @@ export default function MusicianCatalog() {
           id="inputsContainer"
           className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-[744px] sm:px-[56px] sm:pt-[35px] sm:flex-row lg:w-[1440px] lg:px-[183px]"
         >
-          <SelectHomeEvents selectType="home" />
-          <SelectHomeEvents selectType="home" />
+          <SelectHomeEvents typeItems="typeEvents" selectType="home" />
+          <SelectGenreMusicianCatalog selectType="home" />
           <SelectHomeEvents selectType="home" />
 
           <div

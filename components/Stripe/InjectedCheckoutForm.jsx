@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 
 export default function InjectedCheckoutForm() {
@@ -18,3 +19,4 @@ export default function InjectedCheckoutForm() {
     </>
   )
 }
+

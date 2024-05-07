@@ -1,52 +1,66 @@
 import React from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
-import { Card, CardHeader, CardBody, CardFooter, Image, Chip } from "@nextui-org/react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Image,
+  Chip,
+} from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import Events from "../../objects/events.json";
 
-import { Josefin_Sans, Lato, } from "next/font/google";
+import { Josefin_Sans, Lato } from "next/font/google";
 
-const josefine = Josefin_Sans({ weight: ["300", "400", "600", "700"], subsets: ["latin"] });
+const josefine = Josefin_Sans({
+  weight: ["300", "400", "600", "700"],
+  subsets: ["latin"],
+});
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-
-
 export default function ModalClientePendiente() {
-  const {isOpen, onOpen, onClose} = useDisclosure();
-  const [size, setSize] = React.useState('3xl')
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [size, setSize] = React.useState("3xl");
 
   const { events } = Events;
 
-  
   const handleOpen = (size) => {
-    setSize(size)
+    setSize(size);
     onOpen();
-  }
+  };
 
-  const eventosPendientes = events.filter((evento) => evento.estado === 'cancelado');
+  const eventosPendientes = events.filter((evento) => evento.estado === 'activo');
 
   return (
     <>
       <div className="flex flex-wrap gap-3 p-5">
-
-               
-        <Button key={size} onPress={() => handleOpen(size)}>Detalle evento pendiente </Button>
-      
+        <Button key={size} onPress={() => handleOpen(size)}>
+          Detalle evento pendiente{" "}
+        </Button>
       </div>
-      <Modal 
-        size={size} 
-        isOpen={isOpen} 
-        onClose={onClose} 
+      <Modal
+        size={size}
+        isOpen={isOpen}
+        onClose={onClose}
         scrollBehavior="inside"
       >
         <ModalContent>
           {(onClose) => (
             <>
-              
               <ModalHeader className="flex flex-col gap-1 text-black "></ModalHeader>
-               
+
               <ModalBody className=" h-[600px] sm:flex sm:gap-3   ">
+
               {/* <ModalBody className="sm:flex sm:gap-3 "> */}
               {eventosPendientes.map((evento, index) => (
               <Card className=" p-10 overflow-auto">
@@ -76,6 +90,7 @@ export default function ModalClientePendiente() {
                     </div>
                     )}
 
+
                     {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'pendiente por confirmar' && (
                     <div className="bg-red-200  rounded-md h-22 w-full mt-4  p-4 "  >
                       <h2 className="text-center">Nueva solicitud de evento</h2>
@@ -102,6 +117,7 @@ export default function ModalClientePendiente() {
                         className="rounded-full w-20 h-20"
                       />
                       <div className="flex flex-col gap-2">
+
                         <p className=" md:text-lg font-semibold">{evento.titulo_evento}</p>
                         
                         {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'finalizado' && (
@@ -134,12 +150,34 @@ export default function ModalClientePendiente() {
                       </div>
                     
 
-                    </div>
-                  
 
-                    <div>                    
-                      <p className="mt-2 mb-1 font-semibold">Detalle del evento</p>
-                    </div>
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'activo' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
+                            <Image src="/assets/svg/play.svg"  className="w-52 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'cancelado' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                            <Image src="/assets/svg/close-circle.svg"  className="w-52 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'pendiente' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                            <Image src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"  className="w-52 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+                      </div>
+
+                      <div>
+                        <p className="mt-2 mb-1 font-semibold">
+                          Detalle del evento
+                        </p>
+                      </div>
 
                     <div className="flex flex-col sm:flex-row gap-10">
                   
@@ -166,55 +204,67 @@ export default function ModalClientePendiente() {
                      
 
 
-                      <div className="flex flex-col  ">                  
-                        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
-                          <div>
-                            <p className="text-sm font-semibold">Tipo de evento</p>
-                          </div>
-                          <div>
-                            <div className="flex items-center">
-                              <Image src="/assets/svg/flash-sharp.svg" className="w-6 h-6 mr-2" />
-                              <p>{evento.tipo_evento}</p>
+                        <div className="flex flex-col  ">
+                          <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+                            <div>
+                              <p className="text-sm font-semibold">
+                                Tipo de evento
+                              </p>
                             </div>
-                          </div>                    
+                            <div>
+                              <div className="flex items-center">
+                                <Image
+                                  src="/assets/svg/flash-sharp.svg"
+                                  className="w-6 h-6 mr-2"
+                                />
+                                <p>{evento.tipo_evento}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col ">
+                          <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+                            <div>
+                              <p className="text-sm font-semibold">Contacto</p>
+                            </div>
+                            <div>
+                              <div className="flex items-center">
+                                <Image
+                                  src="/assets/svg/call.svg"
+                                  className="w-6 h-6 mr-2"
+                                />
+                                {evento.estado === "activo" ||
+                                  (evento.estado === "finalizado" && (
+                                    <p className="">{evento.telefono_evento}</p>
+                                  ))}
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-
-                      
-
-
-                      <div className="flex flex-col ">                  
-                        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
-                          <div>
-                            <p className="text-sm font-semibold">Contacto</p>
-                          </div>
-                          <div>
-                            <div className="flex items-center">
-                              <Image src="/assets/svg/call.svg" className="w-6 h-6 mr-2"  />
-                              {evento.estado === 'activo' || evento.estado === 'finalizado' &&  <p className="">{evento.telefono_evento}</p>}
-                            </div>
-                          </div>                    
-                        </div>
-                      </div>
-
-
                     </div>
-                </div>
-               
-                <div className="mt-8 ">
-                  <p className="text-sm font-semibold">Dirección</p>
-                  <br />
-                  <div className="flex  items-center bg-slate-200 rounded-lg p-2">
-                    <Image src="/assets/svg/ubicacion.svg" className="w-6 h-6 mr-2" />
-                    <p className="text-sm">Juárez #650,  Colonia San Agustín, C.P. 68188 Monterrey, Nuevo León</p>
-                  </div>
-                </div>
-                <br />
 
-                <div className="mt-4">
-                  <p className="text-sm font-semibold">Detalle de pago</p>
-                  <div>
-                    <p className="text-sm font-semibold">Resumen</p>
+                    <div className="mt-8 ">
+                      <p className="text-sm font-semibold">Dirección</p>
+                      <br />
+                      <div className="flex  items-center bg-slate-200 rounded-lg p-2">
+                        <Image
+                          src="/assets/svg/ubicacion.svg"
+                          className="w-6 h-6 mr-2"
+                        />
+                        <p className="text-sm">
+                          Juárez #650, Colonia San Agustín, C.P. 68188
+                          Monterrey, Nuevo León
+                        </p>
+                      </div>
+                    </div>
+                    <br />
+
+                    <div className="mt-4">
+                      <p className="text-sm font-semibold">Detalle de pago</p>
+                      <div>
+                        <p className="text-sm font-semibold">Resumen</p>
 
                     <div className="grid grid-cols-1 md:grid-cols-1 gap-4 mt-4">
                       
@@ -269,11 +319,13 @@ export default function ModalClientePendiente() {
 
               </Card>
                 ))}
-               
-                 
               </ModalBody>
               <ModalFooter>
-                <Button color="primary d-none " className="hidden" onPress={onClose}>
+                <Button
+                  color="primary d-none "
+                  className="hidden"
+                  onPress={onClose}
+                >
                   Action
                 </Button>
                 <Button color="danger" variant="light" onPress={onClose}>

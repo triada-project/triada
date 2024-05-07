@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@/components/Stripe/CheckoutForm";
@@ -169,3 +170,4 @@ function Payment() {
 }
 
 export default Payment;
+

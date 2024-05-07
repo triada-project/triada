@@ -15,6 +15,8 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
+//quitar absolute y realative
+
 export default function MainFooter() {
   return (
     <>
@@ -22,7 +24,7 @@ export default function MainFooter() {
         id="footerContainer"
         className="bg-[#081540] relative pt-[28px] lg:w-[1440px]  "
         style={{
-          zIndex: -1,
+          zIndex: 0,
         }}
       >
         <Image
