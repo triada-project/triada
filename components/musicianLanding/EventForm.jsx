@@ -362,6 +362,7 @@ export default function EventForm() {
           <Checkbox isRequired {...register("isChecked")}>
             Acepto términos y condiciones
           </Checkbox>
+          {/* if !token then modal iniciar sesión */}
           <ButtonPink
             width="w-[280px] lg:w-[30rem]"
             text="Pagar"
