@@ -12,8 +12,7 @@ import {
   Link,
 } from "@nextui-org/react";
 import { Josefin_Sans, Lato } from "next/font/google";
-import LogInForm from "./LogInForm";
-import RegisterForm from "./RegisterForm";
+import NewUserForm from "./NewUserForm";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -79,7 +78,9 @@ export default function RegisterModalToggle() {
                       ¡Es hora de crear conexiones musicales para crear eventos
                       inovidables!
                     </h3>
-                    <RegisterForm />
+
+                    <NewUserForm />
+
                   </div>
                 </div>
 

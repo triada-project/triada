@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from "react";
 
-export default function InjectedCheckoutForm() {
+export default function StripeSuccess() {
   return ( 
     <>
       <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto pt-20 ">
@@ -9,7 +8,7 @@ export default function InjectedCheckoutForm() {
         <div class="px-6 py-4">
           <div class="font-bold text-xl mb-2 text-center">Evento Juan</div>
           <p class="text-gray-700 text-base text-center">
-            ...... El eproceso de pago se cancelo .......
+            El eproceso de pago se realizo con éxito 
           </p>
         </div>
         <div className="text-center p-5">
@@ -19,4 +18,3 @@ export default function InjectedCheckoutForm() {
     </>
   )
 }
-

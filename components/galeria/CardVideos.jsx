@@ -12,7 +12,7 @@ export default function CardPics() {
           key={url.index}
           className="rounded shadow hover:outline outline-[#EF107D] object-fit cursor-pointer"
         >
-          <YouTube src={url} alt={`Picture ${url}`} width={300} height={200} />
+          <YouTube src={url} alt={`Picture ${url}`} />
           <div className="">
             <label
               htmlFor=""
