@@ -36,6 +36,7 @@ export default function EventForm() {
     },
   });
   const onSubmit = async (data) => {
+
     const phonePrefix = "+52" + data.phone;
     const fecha = new Date(data.date.year, data.date.month - 1, data.date.day);
     const fechaFormateada = fecha.toLocaleDateString();
@@ -124,6 +125,7 @@ export default function EventForm() {
             className="ml-2 mt-2 mr-5"
           />
         </div>
+
         <div className="flex">
           <p className="text-blue-700 flex-auto text-center p-2">Disponible:</p>
           {users.availability.map((slot) => (
@@ -152,6 +154,7 @@ export default function EventForm() {
                   <DatePicker
                     isRequired
                     onChange={onChange}
+
                     format="mm/dd/yyyy"
                     label="Mes / Día / Año"
                     variant="bordered"
@@ -251,6 +254,7 @@ export default function EventForm() {
               radius="sm"
               label="Colonia"
               onChange={(e) => setValue(e.target.value)}
+
               {...register("neigbourhood", { maxLength: 30 })}
               className="sm:w-1/2"
             />
@@ -274,6 +278,7 @@ export default function EventForm() {
               onChange={(e) => setValue(e.target.value)}
               {...register("street", { maxLength: 80 })}
             />
+
             <div className="sm:flex items-center gap-4 w-full">
               <Input
                 isRequired
@@ -309,6 +314,7 @@ export default function EventForm() {
               radius="sm"
               label="Teléfono"
               onChange={(e) => setValue(e.target.value)}
+
               {...register("phone", { pattern: /^[0-9]{10}$/ })}
               className="mt-5 sm:mt-0"
             />

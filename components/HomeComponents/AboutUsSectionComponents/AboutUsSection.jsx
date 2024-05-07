@@ -13,7 +13,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function AboutUsSection() {
   return (
-    <section className="container ">
+    <section id="idUsSection" className="container ">
       <div
         id="usContainer"
         className="w-screen bg-[#081540] grid sm:grid sm:grid-cols-2 sm:bg-[#9E1056] lg:bg-[#081540] lg:w-[1440px]   ">
