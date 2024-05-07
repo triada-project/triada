@@ -11,11 +11,17 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function MusicianCatalog() {
+  const scrollUp = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       <section
         id="musicianCatalog"
-        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-[1440px] "
+        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-[1440px] lg:pb-[81px] "
       >
         <div id="titleContainer ">
           <h1
@@ -77,6 +83,7 @@ export default function MusicianCatalog() {
           src="/assets/images/GradientCircle.png"
           alt=""
           className="w-[48px] h-[48px] "
+          onClick={scrollUp}
         />
       </div>
     </>
