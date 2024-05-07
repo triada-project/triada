@@ -110,7 +110,6 @@ export default function NavBar() {
       <UserLogOutNavbar />
 
       <NavbarMenu id="menu" className=" pt-5 w-[245px] bg-[#081540]  ">
-        {/* <AnchorToggleMenu href="#" nameAnchor="INICIO"></AnchorToggleMenu> */}
         <div
           onClick={scrollUpToBeginSection}
           className="text-white hover:underline "
