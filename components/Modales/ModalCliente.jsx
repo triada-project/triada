@@ -48,9 +48,31 @@ export default function ModalCliente({ eventData }) {
     onOpen();
   };
 
-  const eventosPendientes = events.filter(
-    (evento) => evento.estado === "activo"
-  );
+  const handleSolicitarCodigo = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:4000/events/${eventData._id}/solicitar-codigo-confirmacion`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(eventData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Error al solicitar el código");
+      }
+
+      const data = await response.json();
+      console.log("Código solicitado:", data);
+      // Manejar la respuesta aquí, si es necesario
+    } catch (error) {
+      console.error("Error al solicitar el código:", error.message);
+      // Manejar errores aquí, si es necesario
+    }
+  };
 
   return (
     <>
@@ -306,7 +328,11 @@ export default function ModalCliente({ eventData }) {
                         className="pb-4 w-full text-black"
                       /> */}
 
-                    <Button color="danger" className="w-full">
+                    <Button
+                      onPress={handleSolicitarCodigo}
+                      color="danger"
+                      className="w-full"
+                    >
                       Solicitar código para incio de tu evento
                     </Button>
                   </div>
