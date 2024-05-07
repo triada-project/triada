@@ -58,6 +58,8 @@ export default function EventForm() {
           eventType: data.eventType,
           phoneClient: data.phone,
           startHour: data.startHour,
+          totalHours: getTotalHours(),
+          payment: totalRes(),
         }),
         headers: {
           "Content-Type": "application/json",
@@ -293,11 +295,7 @@ export default function EventForm() {
               radius="sm"
               label="Teléfono"
               onChange={(e) => setValue(e.target.value)}
-              {...register("phone", {
-                //minLength: 10,
-                //maxLength: 10,
-                //pattern: /(\(\d{3}\)[.-]?|\d{3}[.-]?)?\d{3}[.-]?\d{4}/,
-              })}
+              {...register("phone", { pattern: /^[0-9]{10}$/ })}
               className="mt-5 sm:mt-0"
             />
           </div>
