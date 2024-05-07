@@ -1,5 +1,5 @@
 const columns = [
-  { name: "ID", uid: "id", sortable: true },
+  { name: "_id", uid: "_id", sortable: true },
   { name: "EVENTO", uid: "evento", sortable: true },
   { name: "FECHA", uid: "fecha", sortable: true },
   { name: "HORARIO", uid: "horario", sortable: true },
@@ -18,7 +18,7 @@ const statusOptions = [
 
 const users = [
   {
-    id: 1,
+    _id: 1,
     name: "Tony Reichert",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -29,7 +29,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 2,
+    _id: 2,
     name: "Zoey Lang",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -40,7 +40,7 @@ const users = [
     costo: 6000,
   },
   {
-    id: 3,
+    _id: 3,
     name: "Jane Fisher",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -51,7 +51,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 4,
+    _id: 4,
     name: "William Howard",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -62,7 +62,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 5,
+    _id: 5,
     name: "Kristen Copper",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -73,7 +73,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 6,
+    _id: 6,
     name: "Brian Kim",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -84,7 +84,7 @@ const users = [
     estatus: "activo",
   },
   {
-    id: 7,
+    _id: 7,
     name: "Michael Hunt",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -95,7 +95,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 8,
+    _id: 8,
     name: "Samantha Brooks",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -106,7 +106,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 9,
+    _id: 9,
     name: "Frank Harrison",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -117,7 +117,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 10,
+    _id: 10,
     name: "Emma Adams",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -128,7 +128,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 11,
+    _id: 11,
     name: "Brandon Stevens",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -139,7 +139,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 12,
+    _id: 12,
     name: "Megan Richards",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -150,7 +150,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 13,
+    _id: 13,
     name: "Oliver Scott",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -161,7 +161,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 14,
+    _id: 14,
     name: "Grace Allen",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -172,7 +172,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 15,
+    _id: 15,
     name: "Noah Carter",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -183,7 +183,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 16,
+    _id: 16,
     name: "Ava Perez",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -194,7 +194,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 17,
+    _id: 17,
     name: "Liam Johnson",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -205,7 +205,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 18,
+    _id: 18,
     name: "Sophia Taylor",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -216,7 +216,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 19,
+    _id: 19,
     name: "Lucas Harris",
     horaInicio: "20:00",
     horaFinal: "21:00",
@@ -227,7 +227,7 @@ const users = [
     costo: 5000,
   },
   {
-    id: 20,
+    _id: 20,
     name: "Mia Robinson",
     horaInicio: "20:00",
     horaFinal: "21:00",

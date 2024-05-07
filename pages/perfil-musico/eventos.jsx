@@ -2,6 +2,9 @@ import MenuMobileMusician from "@/components/profile-musician/MenuMobileMusician
 import AsideMusico from "@/components/profile-musician/AsideMusico.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
 import EventsTable from "@/components/table-eventos/EventsTable.jsx";
+import useTokenStore from "@/stores/tokenStore";
+import { useEffect } from "react";
+import { Spinner } from "@nextui-org/react";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -10,6 +13,20 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function PerfilMusico() {
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+  }, []);
+
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+  console.log(tokenObject);
+
   return (
     <>
       <MenuMobileMusician page="eventos" role="musico" />
@@ -21,7 +38,17 @@ export default function PerfilMusico() {
           >
             Todos tus eventos
           </h1>
-          <EventsTable />
+          {!tokenObject ? (
+            <div className="flex justify-center items-center h-screen">
+              <Spinner
+                label="Cargando..."
+                color="secondary"
+                labelColor="secondary"
+              />
+            </div>
+          ) : (
+            <EventsTable />
+          )}
         </section>
       </main>
     </>
