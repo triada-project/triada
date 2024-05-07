@@ -100,7 +100,7 @@ export default function ModalMusico({ eventData }) {
                         src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"
                         className="w-6 h-6 mr-2"
                       />
-                      Evento {eventData.status}
+                      Evento {eventData.status} por confirmar
                     </div>
                   )}
 
