@@ -12,8 +12,10 @@ import {
   Link,
 } from "@nextui-org/react";
 import { Josefin_Sans, Lato } from "next/font/google";
-import LogInForm from "./LogInForm";
-import RegisterForm from "./RegisterForm";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import NewUserForm from "./NewUserForm";
+
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -79,7 +81,9 @@ export default function RegisterModal() {
                       ¡Es hora de crear conexiones musicales para crear eventos
                       inovidables!
                     </h3>
-                    <RegisterForm />
+                    {/* <RegisterForm /> */}
+                    <NewUserForm />
+
                   </div>
                 </div>
 
@@ -89,6 +93,8 @@ export default function RegisterModal() {
                       label: "text-small text-white",
                     }}
                   >
+
+
                     Recuerdame
                   </Checkbox>
                   <Link color="primary" href="#" size="sm">

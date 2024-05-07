@@ -5,13 +5,11 @@ import { Input } from "@nextui-org/react";
 import ButtonPink from "@/components/perfil-cliente/ButtonPink";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import dataMusician from "@/objects/musicianObject.json";
 import RequestCard from "@/components/RequestCard";
 import { Toaster, toast } from "sonner";
-
-//console.log(dataMusician.users.repertory);
-const repertory = dataMusician.users.repertory;
-//console.log(repertory);
+import useTokenStore from "@/stores/tokenStore";
+import { useEffect } from "react";
+import { Spinner } from "@nextui-org/react";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -20,17 +18,82 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Requerimientos() {
-  const [requests, setRequests] = useState([]);
+  const [requests, setRequests] = useState(() => {
+    if (typeof window !== "undefined") {
+      // Retrieve requests from localStorage (if available)
+      const storedRequests = localStorage.getItem("storedRequests");
+      try {
+        return storedRequests ? JSON.parse(storedRequests) : [];
+      } catch (error) {
+        console.error("Error parsing stored requests:", error);
+        return [];
+      }
+    } else {
+      // Handle server-side rendering (optional)
+      return [];
+    }
+  });
   const [text, setText] = useState("");
-  const onInputChange = (event) => {
-    setText(event.target.value);
+
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (tokenObject) {
+      // Verifica si tokenObject es válido
+      fetchRequests();
+    }
+  }, [tokenObject]);
+
+  useEffect(() => {
+    localStorage.setItem("storedRequests", JSON.stringify(requests));
+  }, [requests]);
+
+  const fetchRequests = async () => {
+    //if (!tokenObject) return;
+    console.log(tokenObject);
+    try {
+      const response = await fetch(
+        `http://localhost:4000/users/${tokenObject?._id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenObject?.accessToken}`,
+          },
+        }
+      );
+
+      const responseData = await response.json();
+      console.log(responseData?.data?.requirements);
+
+      if (response.status === 200 || 201) {
+        setRequests(responseData?.data?.requirements || []);
+        // Optional: Display success message
+      } else {
+        toast.error("Ocurrió un error al obtener los requerimientos.");
+        console.error(
+          "Error en la respuesta de la API:",
+          responseData.message || response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Error al obtener los requerimientos:", error);
+      toast.error("Ocurrió un error al obtener los requerimientos.");
+    }
   };
 
-  //console.log(requests);
-  const updateRequest = (index, newText) => {
-    const updatedRequests = [...requests];
-    updatedRequests[index] = newText;
-    setRequests(updatedRequests);
+  const onInputChange = (event) => {
+    setText(event.target.value);
   };
 
   const addRequest = () => {
@@ -39,7 +102,6 @@ export default function Requerimientos() {
       setText("");
     } else if (requests.length >= 5) {
       toast.warning("Ya has alcanzado el límite de 5 requerimientos.");
-      // alert("Ya has alcanzado el límite de 5 requerimientos.");
     } else {
       toast.warning("Ingresa un texto.");
     }
@@ -57,15 +119,57 @@ export default function Requerimientos() {
     setRequests(newRequests);
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const handleSaveRequests = async () => {
+    if (!requests.length) return; // Manejar el escenario de solicitudes vacías
 
-  //console.log(errors);
+    try {
+      const response = await fetch(
+        `http://localhost:4000/users/${tokenObject?._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenObject?.accessToken}`, // Incluir encabezado de autorización
+          },
+          body: JSON.stringify({ requirements: requests }),
+        }
+      );
 
-  const onSubmit = (data) => console.log(data);
+      const responseData = await response.json();
+
+      if (response.status === 201) {
+        toast.success("¡Requerimientos guardados con éxito!");
+        // Opcional: Borrar las solicitudes después de guardarlas correctamente
+      } else {
+        toast.error("Ocurrió un error al guardar los requerimientos.");
+        console.error(
+          "Error en la respuesta de la API:",
+          responseData.message || response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Error al guardar las solicitudes:", error);
+      toast.error("Ocurrió un error al guardar los requerimientos.");
+    }
+  };
+
+  //console.log(requests);
+  const updateRequest = (index, newText) => {
+    const updatedRequests = [...requests];
+    updatedRequests[index] = newText;
+    setRequests(updatedRequests);
+  };
+
+  if (!tokenObject) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
+      </div>
+    );
+  }
+
+  console.log(requests);
+
   return (
     <>
       <MenuMobileMusician page="requerimientos" role="musico" />
@@ -94,7 +198,7 @@ export default function Requerimientos() {
             </div>
           </div>
           <form
-            onSubmit={handleSubmit(onSubmit)}
+            // onSubmit={handleSubmit(onSubmit)}
             className=" flex flex-col items-center gap-5 sm:w-full lg:flex-row lg:w-full"
           >
             <Input
@@ -138,6 +242,13 @@ export default function Requerimientos() {
               />
             ))} */}
             {/* <RepertoryCard /> */}
+            {/* <button onClick={handleSaveRequests}>Guardar Requerimientos</button> */}
+            <ButtonPink
+              width="w-full "
+              mtop="mt-4"
+              text="Guardar Requerimientos"
+              onClick={handleSaveRequests}
+            />
           </article>
         </section>
       </main>

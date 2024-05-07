@@ -1,5 +1,5 @@
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
-import estados from "../../data/estados.json";
+import states from "../../data/estados.json";
 import useSelectedStateStore from "@/stores/selectedStateStore";
 
 //console.log(estados);
@@ -24,12 +24,12 @@ export default function EstadoSelect({ onChange, onBlur, selectedKeys }) {
       // onBlur={onBlur}
       selectedKeys={selectedKeys}
     >
-      {estados.map((estado) => (
+      {states.map((state) => (
         <SelectItem
-          key={estado.nombre}
-          onClick={() => handleEstadoChange(estado.nombre)}
+          key={state.nombre}
+          onClick={() => handleEstadoChange(state.nombre)}
         >
-          {estado.nombre}
+          {state.nombre}
         </SelectItem>
       ))}
     </Select>
