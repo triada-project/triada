@@ -60,59 +60,45 @@ export default function ModalClientePendiente() {
               <ModalHeader className="flex flex-col gap-1 text-black "></ModalHeader>
 
               <ModalBody className=" h-[600px] sm:flex sm:gap-3   ">
-                {/* <ModalBody className="sm:flex sm:gap-3 "> */}
-                {eventosPendientes.map((evento, index) => (
-                  <Card className=" p-10 overflow-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
-                      {eventosPendientes.length > 0 &&
-                        eventosPendientes[0].estado === "activo" && (
-                          <div className="flex flex-row bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full  p-4 ">
-                            <Image
-                              src="/assets/svg/play.svg"
-                              className="w-6 h-6 mr-2"
-                            />
-                            Evento {evento.estado}
-                          </div>
-                        )}
-                      {eventosPendientes.length > 0 &&
-                        eventosPendientes[0].estado === "finalizado" && (
-                          <div className="flex flex-row bg-lime-200 hover:bg-lime-300  rounded-md h-22 w-full  p-4 ">
-                            <Image
-                              src="/assets/svg/checkmark-circle.svg"
-                              className="w-6 h-6 mr-2"
-                            />
-                            Evento {evento.estado}
-                          </div>
-                        )}
-                      {eventosPendientes.length > 0 &&
-                        eventosPendientes[0].estado === "cancelado" && (
-                          <div className="flex flex-row bg-red-200 hover:bg-red-300  rounded-md h-22 w-full  p-4 ">
-                            <Image
-                              src="/assets/svg/close-circle.svg"
-                              className="w-6 h-6 mr-2"
-                            />
-                            Evento {evento.estado}
-                          </div>
-                        )}
-                      {eventosPendientes.length > 0 &&
-                        eventosPendientes[0].estado === "pendiente" && (
-                          <div className="flex flex-row bg-amber-200 hover:bg-amber-300  rounded-md h-22 w-full  p-4 ">
-                            <Image
-                              src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"
-                              className="w-6 h-6 mr-2"
-                            />
-                            Evento {evento.estado}
-                          </div>
-                        )}
 
-                    {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'pendiente' && (
+              {/* <ModalBody className="sm:flex sm:gap-3 "> */}
+              {eventosPendientes.map((evento, index) => (
+              <Card className=" p-10 overflow-auto">
+                <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+                    {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'activo' && (
+                    <div className="flex flex-row bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full  p-4 "  >
+                      <Image src="/assets/svg/play.svg"  className="w-6 h-6 mr-2" />
+                      Evento {evento.estado}
+                    </div>
+                    )}
+                    {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'finalizado' && (
+                    <div className="flex flex-row bg-lime-200 hover:bg-lime-300  rounded-md h-22 w-full  p-4 "  >
+                      <Image src="/assets/svg/checkmark-circle.svg"  className="w-6 h-6 mr-2" />
+                      Evento {evento.estado}
+                    </div>
+                    )}
+                    {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'cancelado' && (
+                    <div className="flex flex-row bg-red-200 hover:bg-red-300  rounded-md h-22 w-full  p-4 "  >
+                      <Image src="/assets/svg/close-circle.svg"  className="w-6 h-6 mr-2" />
+                      Evento {evento.estado}
+                    </div>
+                    )}
+                    {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'pendiente por confirmar' && (
+                    <div className="flex flex-row bg-amber-200 hover:bg-amber-300  rounded-md h-22 w-full  p-4 "  >
+                      <Image src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"  className="w-6 h-6 mr-2" />
+                      Evento {evento.estado}
+                    </div>
+                    )}
+
+
+                    {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'pendiente por confirmar' && (
                     <div className="bg-red-200  rounded-md h-22 w-full mt-4  p-4 "  >
                       <h2 className="text-center">Nueva solicitud de evento</h2>
                       <p>Esta es una nueva solicitud de evento, analiza la propuesta para aceptarla
                          o declinarla
                       </p>
                       <div className="flex flex-row gap-4 mt-5">
-                        <Button color="danger" className="w-full">
+                        <Button color="danger" variant="ghost" className="w-full text-dark">
                             Rechazar Evento
                         </Button>   
                         <Button color="danger" className="w-full">
@@ -131,14 +117,39 @@ export default function ModalClientePendiente() {
                         className="rounded-full w-20 h-20"
                       />
                       <div className="flex flex-col gap-2">
-                        <p className="text-center md:text-lg font-semibold">{evento.titulo_evento}</p>
+
+                        <p className=" md:text-lg font-semibold">{evento.titulo_evento}</p>
                         
                         {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'finalizado' && (
-                        <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
-                          <Image src="/assets/svg/checkmark-circle.svg"  className="w-52 h-4 mr-2" />
+                        <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center mt-2">
+                          <Image src="/assets/svg/checkmark-circle.svg"  className="w-60 h-4 mr-2" />
                           <p className="text-xs pr-1">{evento.estado}</p>
                         </div>
                         )}
+
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'activo' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
+                            <Image src="/assets/svg/play.svg"  className="w-52 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'cancelado' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
+                            <Image src="/assets/svg/close-circle.svg"  className="w-60 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+
+                        {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'pendiente por confirmar' && (
+                          <div className="flex flex-row border border-slate-950 p-1 w-full rounded-full items-center">
+                            <Image src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"  className="w-30 h-4 mr-2" />
+                            <p className="text-xs pr-1">{evento.estado}</p>
+                          </div>
+                        )}
+                      </div>
+                    
+
 
                         {eventosPendientes.length > 0 && eventosPendientes[0].estado === 'activo' && (
                           <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
