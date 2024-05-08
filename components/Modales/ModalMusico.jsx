@@ -18,6 +18,7 @@ import {
 } from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
+import { useForm } from "react-hook-form";
 import Events from "../../objects/events.json";
 import More from "../../public/assets/svg/add-circle";
 
@@ -34,12 +35,34 @@ export default function ModalMusico({ eventData }) {
   const [size, setSize] = React.useState("3xl");
   console.log(eventData);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const { events } = Events;
 
   const handleOpen = (size) => {
     setSize(size);
     onOpen();
   };
+
+  async function onSubmit(data) {
+    const response = await fetch(
+      `http://localhost:4000/events/${eventData._id}/confirmar-codigo-evento`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventId: eventData._id,
+          codigoEvento: data.codigoEvento,
+        }),
+      }
+    );
+  }
 
   //const eventData = events.filter((evento) => evento.estado === "activo");
 
@@ -337,18 +360,22 @@ export default function ModalMusico({ eventData }) {
                   )}
 
                   {eventData.status === "activo" && (
-                    <div className=" mt-5 pt-4 flex flex-col gap-3">
+                    <form
+                      onSubmit={handleSubmit(onSubmit)}
+                      className=" mt-5 pt-4 flex flex-col gap-3"
+                    >
                       <Input
                         className=" w-full h-14 rounded-none"
                         isRequired
                         variant="bordered"
                         radius="sm"
                         label="Ingresa el código compartido por el cliente"
+                        {...register("codigoEvento")}
                       />
-                      <Button color="danger" className="w-full">
-                        Enviar código
+                      <Button color="danger" className="w-full" type="submit">
+                        Confirmar código
                       </Button>
-                    </div>
+                    </form>
                   )}
                 </div>
                 {/* <ModalBody className="sm:flex sm:gap-3 "> */}

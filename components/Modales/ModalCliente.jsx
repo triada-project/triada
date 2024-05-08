@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Toaster, toast } from "sonner";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
@@ -66,6 +67,7 @@ export default function ModalCliente({ eventData }) {
       }
 
       const data = await response.json();
+      toast.success("¡Código enviado con éxito!");
       console.log("Código solicitado:", data);
       // Manejar la respuesta aquí, si es necesario
     } catch (error) {
@@ -76,6 +78,7 @@ export default function ModalCliente({ eventData }) {
 
   return (
     <>
+      <Toaster richColors closeButton />
       <div className="flex flex-wrap gap-3 p-5">
         <Button
           className="bg-white  p-0"
