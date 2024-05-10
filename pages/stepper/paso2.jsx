@@ -1,8 +1,10 @@
 import { Lato, Josefin_Sans } from "next/font/google";
 import ButtonsStepper from "@/components/stepperComponents/buttonsStepper";
 import StepperLayout from "@/components/stepperComponents/StepperLayout";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
+import LocalidadSelect from "@/components/SelectsLocation/LocalidadSelect";
+import EstadoSelect from "@/components/SelectsLocation/EstadoSelect";
 import { Spinner } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
@@ -22,8 +24,15 @@ export default function Step2() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onBlur",
+    defaultValues: {
+      state: "",
+      city: "",
+    },
+  });
 
   useEffect(() => {
     const tokenFromLocalStorage = localStorage.getItem("token");
@@ -46,8 +55,8 @@ export default function Step2() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        state: data.estado,
-        city: data.localidad,
+        city: data.city,
+        state: data.state,
       }),
     });
   };
@@ -78,8 +87,33 @@ export default function Step2() {
           localidad
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className=" flex flex-col items-center mt-11">
-            <Select
+          <div className=" flex flex-col items-center mt-11 gap-4">
+            <Controller
+              name="state"
+              control={control}
+              rules={{ required: true }} // Add your validation rules here
+              render={({ field: { onChange, onBlur, value } }) => (
+                <EstadoSelect
+                  // onBlur={onBlur}
+                  onChange={onChange}
+                  selectedKeys={value ? [value] : []}
+                />
+              )}
+            />
+
+            <Controller
+              name="city"
+              control={control}
+              rules={{ required: true }}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <LocalidadSelect
+                  // onBlur={onBlur}
+                  onChange={onChange}
+                  selectedKeys={value ? [value] : []}
+                />
+              )}
+            />
+            {/* <Select
               label="Estado de residencia"
               isRequired
               //autoFocus={true}
@@ -105,7 +139,7 @@ export default function Step2() {
               <SelectItem key={"Monterrey"}>Monterrey</SelectItem>
               <SelectItem key={"Santa Catarina"}>Santa Catarina</SelectItem>
               <SelectItem key={"San Pedro"}>San Pedro</SelectItem>
-            </Select>
+            </Select> */}
             <ButtonsStepper
               mTop={"mt-[60px]"}
               step={"2"}
