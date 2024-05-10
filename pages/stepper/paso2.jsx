@@ -3,6 +3,10 @@ import ButtonsStepper from "@/components/stepperComponents/buttonsStepper";
 import StepperLayout from "@/components/stepperComponents/StepperLayout";
 import { useForm } from "react-hook-form";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
+import { Spinner } from "@nextui-org/react";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import useTokenStore from "@/stores/tokenStore";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -11,15 +15,54 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Step2() {
+  const router = useRouter();
+  const [route, setRoute] = useState();
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+  }, []);
+
+  const onSubmit = (data) => {
+    // e.preventDefault();
+    setRoute(router.push("/stepper/paso3"));
+    console.log(data);
+    const response = fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        state: data.estado,
+        city: data.localidad,
+      }),
+    });
+  };
+
+  if (!tokenObject) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
+      </div>
+    );
+  }
+
   //console.log(errors);
 
-  const onSubmit = (data) => console.log(data);
+  //const onSubmit = (data) => console.log(data);
   return (
     <StepperLayout>
       <section className=" w-[330px] mt-14 md:w-[404px] flex flex-col items-center">
