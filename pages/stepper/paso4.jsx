@@ -6,14 +6,11 @@ import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import ButtonPink from "@/components/perfil-cliente/ButtonPink";
 import RepertoryCard from "@/components/RepertoryCard";
-import dataMusician from "@/objects/musicianObject.json";
 import { Spinner } from "@nextui-org/react";
 import { Toaster, toast } from "sonner";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useTokenStore from "@/stores/tokenStore";
-
-const repertory = dataMusician.users.repertory;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -193,8 +190,8 @@ export default function Step4() {
           interpretas a las personas que buscan contratarte.
           <b>Agrega mínimo 5</b> , podrás agregar mas en tu perfil.
         </p>
-        <form>
-          <div className=" flex flex-col items-center mt-8 ">
+        <section className="w-[330px] md:w-[500px] lg:w-[690px]">
+          <form className=" flex flex-col items-center mt-8 w-full ">
             <Input
               label="Nombre de la canción"
               isRequired
@@ -218,8 +215,9 @@ export default function Step4() {
               onKeyDown={handleKeyDown}
               //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
             />
-          </div>
-          <ButtonPink width="w-full" text="Agregar" onClick={addSong} />
+            <ButtonPink width="w-full" text="Agregar" onClick={addSong} />
+          </form>
+
           <article className=" flex flex-col items-center mt-10 gap-7 md:flex-row md:flex-wrap lg:w-full lg:flex-row lg:flex-wrap lg:gap-[5px]">
             {repertoire.map((repertory, index) => (
               <RepertoryCard
@@ -232,7 +230,7 @@ export default function Step4() {
             ))}
             {/* <RepertoryCard /> */}
           </article>
-        </form>
+        </section>
         <ButtonsStepper
           mTop={"mt-[60px]"}
           step={"4"}
