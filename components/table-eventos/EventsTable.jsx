@@ -34,7 +34,7 @@ import ModalMusico from "../Modales/ModalMusico";
 import useTokenStore from "@/stores/tokenStore";
 
 const statusColorMap = {
-  activo: Active,
+  aceptado: Active,
   pendiente: Alert,
   finalizado: Finalized,
   rechazado: Rejected,
@@ -155,7 +155,7 @@ export default function EventsTable() {
       case "evento":
         return (
           <User
-            avatarProps={{ radius: "lg", src: event.avatar }}
+            avatarProps={{ radius: "lg", src: event.clientPicture }}
             //description={event.email}
             name={event.clientName}
           >

@@ -109,7 +109,7 @@ export default function ModalCliente({ eventData }) {
                   <div className="">
                     <Image
                       alt="NextUI hero Image"
-                      src={eventData.url_imagen}
+                      src={eventData.clientPicture}
                       className="max-w[150px] h-200"
                     />
                   </div>
@@ -130,7 +130,7 @@ export default function ModalCliente({ eventData }) {
                       </div>
                     )}
 
-                    {eventData.status === "activo" && (
+                    {eventData.status === "aceptado" && (
                       <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
                         <Image
                           src="/assets/svg/play.svg"
@@ -213,7 +213,7 @@ export default function ModalCliente({ eventData }) {
                             src="/assets/svg/call.svg"
                             className="w-4 h-6 mr-2  md:w-4 hover:border-slate-400"
                           />
-                          {eventData.status === "activo" ||
+                          {eventData.status === "aceptado" ||
                             (eventData.status === "finalizado" && (
                               <li className="text-xs">
                                 {eventData.phoneClient}
@@ -315,7 +315,7 @@ export default function ModalCliente({ eventData }) {
                 </div>
                 {/* className={` ${eventosPendientes.estado === 'pendiente' && hidden} `} */}
 
-                {eventData.status === "activo" && (
+                {eventData.status === "aceptado" && (
                   <div>
                     <p className="text-black text-sm font-bold pb-2">
                       Código de evento
