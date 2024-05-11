@@ -5,7 +5,10 @@ import { useForm } from "react-hook-form";
 import { Input } from "@nextui-org/react";
 import ButtonPink from "@/components/perfil-cliente/ButtonPink";
 import RequestCard from "@/components/RequestCard";
-import { useState } from "react";
+import { Spinner } from "@nextui-org/react";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import useTokenStore from "@/stores/tokenStore";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -14,11 +17,26 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Step5() {
+  const router = useRouter();
+  const [route, setRoute] = useState();
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+
   const [requests, setRequests] = useState([]);
   const [text, setText] = useState("");
   const onInputChange = (event) => {
     setText(event.target.value);
   };
+
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+  }, []);
 
   //console.log(requests);
 
@@ -51,7 +69,30 @@ export default function Step5() {
 
   //console.log(errors);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    // e.preventDefault();
+    setRoute(router.push("/stepper/paso6"));
+    console.log(data);
+    const response = fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        eventFee: data.eventFee,
+        maximumHoursEvent: data.maximumHoursEvent,
+      }),
+    });
+  };
+
+  if (!tokenObject) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
+      </div>
+    );
+  }
+
   return (
     <StepperLayout>
       <section className=" w-[330px] mt-14 md:w-[404px] lg:w-[500px] flex flex-col items-center">
@@ -76,7 +117,7 @@ export default function Step5() {
               variant="bordered"
               radius="sm"
               className={`w-[328px] h-14 md:w-[404px] lg:w-full`}
-              {...register("song", { required: true })}
+              {...register("eventFee", { required: true })}
               startContent={
                 <div className="pointer-events-none flex items-center">
                   <span className="text-default-400 text-small">$</span>
@@ -100,7 +141,7 @@ export default function Step5() {
               variant="bordered"
               radius="sm"
               className={`w-[328px] h-14 md:w-[404px] lg:w-full`}
-              {...register("song", { required: true })}
+              {...register("maximumHoursEvent", { required: true })}
             />
 
             <p
@@ -117,7 +158,7 @@ export default function Step5() {
               onKeyDown={handleKeyDown}
               label="Escribe aquí el requerimiento"
               description="Límite 100 carateres por requerimiento."
-              isRequired
+              // isRequired
               //autoFocus={true}
               variant="bordered"
               radius="sm"
