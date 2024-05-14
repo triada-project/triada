@@ -54,12 +54,12 @@ export default function AsideMusico({ page, hidden }) {
 
   return (
     <aside
-      className={`bg-[#081540] fixed w-[245px] h-screen  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-1 `}
+      className={`bg-[#081540] fixed top-0  w-[245px] h-full  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-1 `}
     >
       <Link href="/">
         <Image src={triadaLogo} className={`pt-12 ${hidden}`} />
       </Link>
-      <section className=" pt-[120px] flex flex-col gap-10 items-center">
+      <section className=" pt-[120px] flex flex-col gap-10 items-center pb-[60px]">
         <Link href="/perfil-musico">
           <Button
             className={` w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ${
@@ -168,7 +168,7 @@ export default function AsideMusico({ page, hidden }) {
       <Button
         onPress={onOpen}
         variant="bordered"
-        className={` text-white w-[213px] h-12 rounded text-base mt-[60px] ${lato.className}`}
+        className={` text-white w-[213px] h-12 rounded text-base  ${lato.className}`}
       >
         <p>Cerrar sesión</p>
       </Button>

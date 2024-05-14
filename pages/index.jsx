@@ -12,7 +12,6 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <>
-
       <main className="bg-[#081540] max-w-[1440px] items-center m-auto">
         <NavBar />
         <ImgSection />

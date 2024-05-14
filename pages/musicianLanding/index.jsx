@@ -8,9 +8,9 @@ import Image from "next/image";
 import CarouselVideos from "../..//components/musicianLanding/CarouselVideos";
 import CarouselFotos from "../../components/musicianLanding/CarouselFotos";
 import AsideLeft from "@/components/musicianLanding/AsideLeft";
-import MainFooter from "../../components/mainFooter/MainFooter";
 import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
+import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import FooterMain from "@/components/footer/footer";
 
 const josefin = Josefin_Sans({
@@ -24,14 +24,13 @@ const lato = Lato({
 
 export default function musicianDetail() {
   const { users } = dataMusician;
-  console.log(users.musicalGenere);
 
   const musicalGeneres = users.musicalGenere;
   const eventType = users.eventType;
 
   return (
     <>
-      <main className="max-w-[1440px] m-auto bg-white">
+      <main className=" shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50 max-w-[1440px] m-auto bg-white">
         <NavBar />
         <div className="lg:ml-[80px] lg:mr-[80px] ">
           <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-4 md:grid-rows-7 grid-flow-col  ">
@@ -94,48 +93,64 @@ export default function musicianDetail() {
                   ))}
                 </div>
               </div>
-              <div className="md:flex md:flex-row md:gap-4">
+              <div className="md:gap-4">
                 <span>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                     Videos
                   </h2>
+
                   <CarouselVideos />
                 </span>
                 <span>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                     Fotos
                   </h2>
-                  <CarouselFotos />
+                  <CarouselFotos classname="" />
                 </span>
               </div>
-              {
-                //<div className="md:flex md:flex-row md:gap-56">
-              }
+
               <div>
                 <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                   Requerimientos
                 </h2>
-                <div className="text-black">
+                <div className="text-black ">
                   <ul>
-                    <div className="flex items-center ">
+                    <div className="flex items-center mt-4">
                       <Image src={check} alt="check" width={20} height={20} />
                       <li className="ml-2">Piano de 88 teclas afinado</li>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center mt-4">
                       <Image src={check} alt="check" width={20} height={20} />
                       <li className="ml-2">
                         Camerino con iluminación y espejo
                       </li>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center mt-4">
                       <Image src={check} alt="check" width={20} height={20} />
                       <li className="ml-2">Catering ligero</li>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center mt-4">
                       <Image src={check} alt="check" width={20} height={20} />
                       <li className="ml-2">Agua</li>
                     </div>
                   </ul>
+                  <div className="border border-blue-700 bg-blue-100 rounded-md mt-5 flex">
+                    <div>
+                      <Image
+                        src={info_FILL1}
+                        alt="info"
+                        width={20}
+                        height={20}
+                        className="ml-2 mt-2 mr-5"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-blue-700 flex-auto text-center p-2">
+                        Consulta con el artista si hay requerimientos
+                        adicionales.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div>
@@ -166,9 +181,6 @@ export default function musicianDetail() {
                   </Chip>
                 </div>
               </div>
-              {
-                //</div>
-              }
               <div className="mt-5 shadow-xl">
                 <EventForm />
               </div>
@@ -179,10 +191,6 @@ export default function musicianDetail() {
           </div>
         </div>
         <FooterMain marginT={"mt-[100px]"} />
-
-        {/* <div className="">
-          <MainFooter />
-        </div> */}
       </main>
     </>
   );

@@ -1,38 +1,38 @@
 export const musicalGenre = [
   {
-    id: 1,
+    id: "Acústico",
     musicalGenre: "Acústico",
   },
   {
-    id: 2,
+    id: "Banda",
     musicalGenre: "Banda",
   },
   {
-    id: 3,
+    id: "Blues",
     musicalGenre: "Blues",
   },
   {
-    id: 4,
+    id: "Clásica",
     musicalGenre: "Clásica",
   },
   {
-    id: 5,
+    id: "Electrónica",
     musicalGenre: "Electrónica",
   },
   {
-    id: 6,
+    id: "Folk",
     musicalGenre: "Folk",
   },
   {
-    id: 7,
+    id: "Jazz",
     musicalGenre: "Jazz",
   },
   {
-    id: 8,
+    id: "Pop",
     musicalGenre: "Pop",
   },
   {
-    id: 9,
+    id: "Rock",
     musicalGenre: "Rock",
   },
   { id: 10, musicalGenre: "Salsa" },
@@ -51,13 +51,13 @@ export const musicalGenre = [
 ];
 
 export const typeEvents = [
-  { id: 1, typeEvents: "Boda" },
-  { id: 2, typeEvents: "Cenas" },
-  { id: 3, typeEvents: "Concierto en recinto" },
-  { id: 4, typeEvents: "Corporativos" },
-  { id: 5, typeEvents: "Fiestas" },
-  { id: 6, typeEvents: "Servicios Religiosos" },
-  { id: 7, typeEvents: "Bares" },
+  { id: "Boda", typeEvents: "Boda" },
+  { id: "Cenas", typeEvents: "Cenas" },
+  { id: "Concierto en recinto", typeEvents: "Concierto en recinto" },
+  { id: "Corporativos", typeEvents: "Corporativos" },
+  { id: "Fiestas", typeEvents: "Fiestas" },
+  { id: "Servicios Religiosos", typeEvents: "Servicios Religiosos" },
+  { id: "Bares", typeEvents: "Bares" },
 ];
 
 export const users = [

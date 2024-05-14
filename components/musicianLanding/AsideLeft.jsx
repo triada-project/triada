@@ -22,7 +22,7 @@ export default function AsideLeft() {
         <h2
           className={`${josefin.classname} text-[#37474F] text-center font-semibold md:text-[20px]`}
         >
-          Temas más representativos Temas más representativos
+          Temas más representativos
         </h2>
         <div className="mt-2 flex flex-row items-center">
           <span>
