@@ -44,7 +44,31 @@ export default function Home() {
                   const { account, error } = json;
 
                   if (account) {
-                    setConnectedAccountId(account);
+                    // setConnectedAccountId(account);
+                    setAccountLinkCreatePending(true);
+                    setError(false);
+                    fetch("http://localhost:4000/account_link", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        account: account,
+                      }),
+                    })
+                      .then((response) => response.json())
+                      .then((json) => {
+                        setAccountLinkCreatePending(false);
+
+                        const { url, error } = json;
+                        if (url) {
+                          window.location.href = url;
+                        }
+
+                        if (error) {
+                          setError(true);
+                        }
+                      });
                   }
 
                   if (error) {
