@@ -59,13 +59,6 @@ export default function RepertoryCard({
           : "rounded-xl w-56 h-36 border border-[#EAEAEA] px-4 py-4 shadow-lg"
       }
     >
-    <div
-      className={
-        page === "repertory"
-          ? " rounded-xl w-56 h-36 border border-[#EAEAEA] px-4 py-4 shadow-lg hover:-translate-y-1 hover:scale-110 duration-300 "
-          : "rounded-xl w-56 h-36 border border-[#EAEAEA] px-4 py-4 shadow-lg"
-      }
-    >
       <section className=" flex flex-col gap-3">
         <div className=" flex justify-between items-center">
           {isEditing ? (

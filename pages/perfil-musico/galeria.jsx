@@ -3,8 +3,6 @@ import AsideMusico from "@/components/profile-musician/AsideMusico.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
 import GalleryPhotos from "@/components/galeria/GaleryPhotos";
 import GalleryVideos from "@/components/galeria/GaleryVideos";
-import GalleryPhotos from "@/components/galeria/GaleryPhotos";
-import GalleryVideos from "@/components/galeria/GaleryVideos";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
