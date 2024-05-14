@@ -1,5 +1,5 @@
 import { Lato, Josefin_Sans } from "next/font/google";
-import ButtonsStepper from "@/components/stepperComponents/buttonsStepper";
+import ButtonsStepper from "@/components/stepperComponents/ButtonsStepper";
 import StepperLayout from "@/components/stepperComponents/StepperLayout";
 import { useForm } from "react-hook-form";
 import Image from "next/image";

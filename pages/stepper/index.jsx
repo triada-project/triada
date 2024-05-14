@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Lato, Josefin_Sans } from "next/font/google";
 import UpdateCardPicture from "@/components/UpdateCardPicture";
-import ButtonsStepper from "@/components/stepperComponents/buttonsStepper";
+import ButtonsStepper from "@/components/stepperComponents/ButtonsStepper";
 import FooterMain from "@/components/footer/footer";
 import StepperLayout from "@/components/stepperComponents/StepperLayout";
 
