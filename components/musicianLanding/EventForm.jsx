@@ -194,7 +194,6 @@ export default function EventForm({ userData, musicianId }) {
             <div className="sm:flex items-center gap-4 w-full">
               <Select
                 id="startHour"
-                ref="startHour"
                 label="Hora de inicio"
                 isRequired
                 variant="bordered"
@@ -218,7 +217,6 @@ export default function EventForm({ userData, musicianId }) {
               </Select>
               <Select
                 id="endHour"
-                ref="endHour"
                 label="Hora de fin"
                 isRequired
                 variant="bordered"
