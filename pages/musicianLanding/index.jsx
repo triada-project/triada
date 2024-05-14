@@ -58,6 +58,7 @@ export default function musicianDetail() {
                 <div className="gap gap-1 flex flex-nowrap">
                   {musicalGeneres.map((nombre, index) => (
                     <Chip
+                      key={index}
                       classNames={{
                         base: "bg-[#081540] h-[32px] mt-2",
                         content: "text-[#29FEFD] ",
@@ -83,6 +84,7 @@ export default function musicianDetail() {
                 <div className="gap gap-1 flex flex-nowrap">
                   {eventType.map((nombre, index) => (
                     <Chip
+                      key={index}
                       classNames={{
                         base: "bg-[#081540] h-[32px] mt-2",
                         content: "text-[#29FEFD] ",
