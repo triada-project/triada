@@ -73,6 +73,16 @@ export default function Step5() {
                 setError(true);
               }
             });
+
+          fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id_stripe: account,
+            }),
+          });
         }
 
         if (error) {
