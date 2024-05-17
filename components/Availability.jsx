@@ -8,7 +8,9 @@ import { Toaster, toast } from "sonner";
 
 // ... tus importaciones de componentes ...
 
-export default function Availability() {
+export default function Availability({ data }) {
+  const idUser = data._id;
+  //console.log(idUser, "data desde componente");
   const daysOfWeek = [
     "lunes",
     "martes",
@@ -38,23 +40,58 @@ export default function Availability() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  //   const onSubmit = (data) => {
+  //     if (validateAvailability()) {
+  //       // Transformar el objeto availability en un array de objetos
+  //       const formattedAvailability = daysOfWeek.reduce((acc, day) => {
+  //         if (availability[day].isChecked) {
+  //           acc.push({
+  //             day,
+  //             start: availability[day].start,
+  //             end: availability[day].end,
+  //           });
+  //         }
+  //         return acc;
+  //       }, []);
+
+  //       console.log("Disponibilidad formateada:", formattedAvailability);
+
+  //     }
+  //   };
+  const onSubmit = async (data) => {
     if (validateAvailability()) {
       // Transformar el objeto availability en un array de objetos
       const formattedAvailability = daysOfWeek.reduce((acc, day) => {
         if (availability[day].isChecked) {
           acc.push({
             day,
-            start: availability[day].start,
-            end: availability[day].end,
+            start: availability[day].start?.currentKey,
+            end: availability[day].end?.currentKey,
           });
         }
         return acc;
       }, []);
 
-      console.log("Disponibilidad formateada:", formattedAvailability);
+      try {
+        const response = await fetch(`http://localhost:4000/users/${idUser}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ availability: formattedAvailability }),
+        });
 
-      // Ahora puedes enviar formattedAvailability al backend
+        // Manejo de la respuesta del servidor
+        if (response.ok) {
+          const data = await response.json(); // Obtiene los datos de respuesta (opcional)
+          toast.success("Disponibilidad actualizada con éxito");
+        } else {
+          toast.error("Error al actualizar disponibilidad");
+        }
+      } catch (error) {
+        console.error("Error al enviar datos al servidor:", error);
+        toast.error("Error al enviar datos al servidor");
+      }
     }
   };
 
