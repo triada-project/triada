@@ -19,11 +19,12 @@ export default function Stepper() {
   const [userData, setUserData] = useState(null);
 
   console.log(userId);
+  console.log(userData);
 
   useEffect(() => {
     if (userId) {
       // Realiza la solicitud fetch para obtener los datos del usuario
-      fetch(`http://localhost:3500/users/${userId}`)
+      fetch(`http://localhost:4000/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           // Almacena los datos del usuario en el estado local
@@ -36,7 +37,60 @@ export default function Stepper() {
     }
   }, [userId]); // Ejecuta el efecto solo cuando cambia userId
 
-  // ... resto de tu componente
+  // useEffect(() => {
+  //   if (userData) {
+  //     const response = fetch(`http://localhost:3500/auth/login`, {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         email: userData.email,
+  //         password: userData.password,
+  //       }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     if (response.json()?.token) {
+  //       localStorage.setItem("token", response.json()?.token);
+  //     } else {
+  //       setError("root", {
+  //         message: "Información incorrecta, prueba de nuevo.",
+  //       });
+  //     }
+  //   }
+  // }, [userData]);
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/auth/login", {
+        // Corrección en la ruta
+        method: "POST",
+        body: JSON.stringify({
+          email: userData.email,
+          password: userData.password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        // Redirigir a otra página después del login exitoso (opcional)
+      } else {
+        console.error("Credenciales incorrectas"); // Establecer mensaje de error
+      }
+    } catch (error) {
+      console.error("Error en el login:", error);
+      // setError("Error al iniciar sesión"); // Establecer mensaje de error
+    }
+  };
+
+  useEffect(() => {
+    if (userData) {
+      handleLogin(); // Llama a la función de login cuando se cargan los datos
+    }
+  }, [userData]);
 
   if (!userData) {
     return <div>Cargando...</div>; // Muestra un mensaje de carga mientras se obtienen los datos

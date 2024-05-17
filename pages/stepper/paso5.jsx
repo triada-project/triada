@@ -71,7 +71,7 @@ export default function Step5() {
 
   const onSubmit = (data) => {
     // e.preventDefault();
-    setRoute(router.push("/stepper/paso6"));
+    setRoute(router.push("/stepper/paso7"));
     console.log(data);
     const response = fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
       method: "PUT",

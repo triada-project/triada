@@ -8,6 +8,9 @@ import SelectGenreMusic from "@/components/SelectGenreMusic/SelectGenreMusic";
 import { Input } from "@nextui-org/react";
 import ButtonPink from "@/components/perfil-cliente/ButtonPink";
 import SelectTypeEvents from "@/components/SelectGenreMusic/SelectTypeEvents";
+import useTokenStore from "@/stores/tokenStore";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -15,7 +18,12 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function Step5() {
+export default function Finalizar() {
+  const router = useRouter();
+  const [route, setRoute] = useState();
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+  const userId = router.query.id;
+
   const {
     register,
     handleSubmit,
