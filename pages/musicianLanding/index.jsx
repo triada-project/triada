@@ -13,6 +13,7 @@ import EventForm from "@/components/musicianLanding/EventForm";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import FooterMain from "@/components/footer/footer";
 
+
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
@@ -24,6 +25,8 @@ const lato = Lato({
 
 export default function musicianDetail() {
   const { users } = dataMusician;
+
+  
 
   const musicalGeneres = users.musicalGenere;
   const eventType = users.eventType;
