@@ -71,7 +71,7 @@ export default function Step5() {
 
   const onSubmit = (data) => {
     // e.preventDefault();
-    setRoute(router.push("/stepper/paso7"));
+    setRoute(router.push("/stepper/paso6"));
     console.log(data);
     const response = fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
       method: "PUT",
@@ -192,8 +192,8 @@ export default function Step5() {
             <ButtonsStepper
               mTop={"mt-[60px]"}
               step={"5"}
-              stepBack={"/stepper/paso2"}
-              stepNext={"/stepper/paso4"}
+              stepBack={"/stepper/paso4"}
+              stepNext={"/stepper/paso6"}
             />
           </div>
         </form>
