@@ -4,6 +4,7 @@ import { Checkbox } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import ButtonPink from "./perfil-cliente/ButtonPink";
+import { Toaster, toast } from "sonner";
 
 // ... tus importaciones de componentes ...
 
@@ -67,9 +68,10 @@ export default function Availability() {
       if (dayAvailability.isChecked) {
         atLeastOneDayChecked = true;
 
+        // Verificar si se han seleccionado AMBOS horarios
         if (!dayAvailability.start || !dayAvailability.end) {
-          alert(
-            `Por favor, selecciona las horas de inicio y fin para ${
+          toast.warning(
+            `Por favor, selecciona tanto la hora de inicio como la de fin para ${
               day[0].toUpperCase() + day.slice(1)
             }.`
           );
@@ -78,75 +80,34 @@ export default function Availability() {
         }
 
         // Verificar si la hora de inicio es estrictamente anterior a la hora de fin
-        if (
-          typeof dayAvailability.start === "string" &&
-          typeof dayAvailability.end === "string"
-        ) {
-          const startHour = parseInt(dayAvailability.start.split(":")[0]);
-          const endHour = parseInt(dayAvailability.end.split(":")[0]);
-          if (startHour >= endHour) {
-            alert(
-              `La hora de fin debe ser posterior a la hora de inicio para ${
-                day[0].toUpperCase() + day.slice(1)
-              }.`
-            );
-            isValid = false;
-            break;
-          }
+        const startHour = parseInt(
+          dayAvailability.start?.currentKey.split(":")[0],
+          10
+        );
+        const endHour = parseInt(
+          dayAvailability.end?.currentKey.split(":")[0],
+          10
+        );
+
+        if (startHour >= endHour) {
+          toast.warning(
+            `La hora de fin debe ser posterior a la hora de inicio para ${
+              day[0].toUpperCase() + day.slice(1)
+            }.`
+          );
+          isValid = false;
+          break;
         }
       }
     }
 
     if (!atLeastOneDayChecked) {
-      alert("Por favor, selecciona al menos un día de la semana.");
+      toast.warning("Por favor, selecciona al menos un día de la semana.");
       isValid = false;
     }
 
     return isValid;
   };
-
-  //   const validateAvailability = () => {
-  //     let isValid = true;
-  //     let atLeastOneDayChecked = false;
-
-  //     for (const day of daysOfWeek) {
-  //       const dayAvailability = availability[day];
-
-  //       if (dayAvailability.isChecked) {
-  //         atLeastOneDayChecked = true;
-
-  //         if (!dayAvailability.start || !dayAvailability.end) {
-  //           alert(
-  //             `Por favor, selecciona las horas de inicio y fin para ${
-  //               day[0].toUpperCase() + day.slice(1)
-  //             }.`
-  //           );
-  //           isValid = false;
-  //           break;
-  //         }
-
-  //         // Verificar si la hora de inicio es estrictamente anterior a la hora de fin
-  //         const startHour = parseInt(dayAvailability.start.split(":")[0]);
-  //         const endHour = parseInt(dayAvailability.end.split(":")[0]);
-  //         if (startHour >= endHour) {
-  //           alert(
-  //             `La hora de fin debe ser posterior a la hora de inicio para ${
-  //               day[0].toUpperCase() + day.slice(1)
-  //             }.`
-  //           );
-  //           isValid = false;
-  //           break;
-  //         }
-  //       }
-  //     }
-
-  //     if (!atLeastOneDayChecked) {
-  //       alert("Por favor, selecciona al menos un día de la semana.");
-  //       isValid = false;
-  //     }
-
-  //     return isValid;
-  //   };
 
   const handleChangeCheckbox = (day) => {
     setAvailability((prevAvailability) => ({
@@ -168,6 +129,7 @@ export default function Availability() {
   return (
     // ... (estructura principal del componente)
     <form onSubmit={handleSubmit(onSubmit)}>
+      <Toaster richColors closeButton />
       <div className="border-2 rounded-lg p-5 flex flex-col lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py- lg:border-opacity-25 lg:shadow-lg lg:items-start lg:mt-[67px]">
         {daysOfWeek.map((day) => (
           <div key={day} className="flex mb-2 items-center gap-4">
