@@ -39,8 +39,21 @@ export default function Availability() {
 
   const onSubmit = (data) => {
     if (validateAvailability()) {
-      // Lógica para enviar la disponibilidad al backend
-      console.log("Disponibilidad:", availability);
+      // Transformar el objeto availability en un array de objetos
+      const formattedAvailability = daysOfWeek.reduce((acc, day) => {
+        if (availability[day].isChecked) {
+          acc.push({
+            day,
+            start: availability[day].start,
+            end: availability[day].end,
+          });
+        }
+        return acc;
+      }, []);
+
+      console.log("Disponibilidad formateada:", formattedAvailability);
+
+      // Ahora puedes enviar formattedAvailability al backend
     }
   };
 
