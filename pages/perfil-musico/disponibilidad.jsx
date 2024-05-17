@@ -3,6 +3,7 @@ import AsideMusico from "@/components/profile-musician/AsideMusico.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Checkbox } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
+import Availability from "@/components/Availability";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import ButtonPink from "../../components/musicianLanding/ButtonPink";
 
@@ -35,7 +36,8 @@ export default function PerfilMusico() {
             Selecciona tus horarios de trabajo para que los clientes puedan
             verlos y reservarlos.
           </p>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <Availability />
+          {/* <form onSubmit={handleSubmit(onSubmit)}>
             <div className="border-2 rounded-lg p-5 flex flex-col  lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py- lg:border-opacity-25 lg:shadow-lg lg:items-start lg:mt-[67px]">
               <div className="flex mb-2 items-center gap-4">
                 <div className="w-24">
@@ -154,7 +156,7 @@ export default function PerfilMusico() {
                 <ButtonPink text="Actualizar" />
               </div>
             </div>
-          </form>
+          </form> */}
         </section>
       </main>
     </>
