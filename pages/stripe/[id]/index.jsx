@@ -18,6 +18,8 @@ function Payment() {
 
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
+  console.log(clientSecret,'codigo secreto');
+  const [idEvent,setIdEvent] = useState("");
   const [eventFee,setEventFee] = useState();
   console.log(eventFee, 'this eventFee stripe');
   
@@ -30,6 +32,7 @@ function Payment() {
       })   
       const responseData = await response.json()
       console.log(responseData, 'responseData');
+      setIdEvent(responseData.data._id);
       setEventFee(responseData.data.eventFee);
        
     }catch(error){
@@ -81,6 +84,7 @@ function Payment() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        _id:idEvent,
         eventFee:eventFee
       }),
     }).then(async (result) => {
