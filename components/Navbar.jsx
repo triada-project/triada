@@ -39,6 +39,12 @@ export default function NavBar() {
       behavior: "smooth",
     });
   };
+  const scrollUpToUsSection3 = () => {
+    window.scrollTo({
+      top: 800,
+      behavior: "smooth",
+    });
+  };
 
   const scrollUpToMusicianSection = () => {
     window.scrollTo({
@@ -49,6 +55,12 @@ export default function NavBar() {
   const scrollUpToMusicianSection2 = () => {
     window.scrollTo({
       top: 1900,
+      behavior: "smooth",
+    });
+  };
+  const scrollUpToMusicianSection3 = () => {
+    window.scrollTo({
+      top: 2125,
       behavior: "smooth",
     });
   };
@@ -118,13 +130,25 @@ export default function NavBar() {
         </div>
         <div
           onClick={scrollUpToUsSection2}
-          className="text-white hover:underline"
+          className="text-white hidden sm:flex hover:underline"
+        >
+          NOSOTROS
+        </div>
+        <div
+          onClick={scrollUpToUsSection3}
+          className="text-white sm:hidden hover:underline"
         >
           NOSOTROS
         </div>
         <div
           onClick={scrollUpToMusicianSection2}
-          className="text-white hover:underline"
+          className="text-white hidden sm:flex hover:underline"
+        >
+          MÚSICOS
+        </div>
+        <div
+          onClick={scrollUpToMusicianSection3}
+          className="text-white sm:hidden hover:underline"
         >
           MÚSICOS
         </div>
