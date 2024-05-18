@@ -7,28 +7,63 @@ import {
 } from "@nextui-org/react";
 import AnchorNavbar from "./HomeComponents/NavbarComponents/AnchorNavbar";
 import AnchorToggleMenu from "./HomeComponents/NavbarComponents/AnchorToggleMenu";
-
 import LogInModal from "./HomeComponents/NavbarComponents/LogInModal";
 import LogInModalToggle from "./HomeComponents/NavbarComponents/LogInModalToggle";
 import RegisterModal from "./HomeComponents/NavbarComponents/RegisterModal";
 import RegisterModalToggle from "./HomeComponents/NavbarComponents/RegisterModalToggle";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Avatar,
-} from "@nextui-org/react";
 import UserLogOutNavbar from "./HomeComponents/NavbarComponents/UserLogOutNavbar";
 
 const TOKEN_KEY = "token";
 
-
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const scrollUpToBeginSection = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const scrollUpToUsSection = () => {
+    window.scrollTo({
+      top: 1000,
+      behavior: "smooth",
+    });
+  };
+  const scrollUpToUsSection2 = () => {
+    window.scrollTo({
+      top: 870,
+      behavior: "smooth",
+    });
+  };
+  const scrollUpToUsSection3 = () => {
+    window.scrollTo({
+      top: 800,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollUpToMusicianSection = () => {
+    window.scrollTo({
+      top: 2750,
+      behavior: "smooth",
+    });
+  };
+  const scrollUpToMusicianSection2 = () => {
+    window.scrollTo({
+      top: 1900,
+      behavior: "smooth",
+    });
+  };
+  const scrollUpToMusicianSection3 = () => {
+    window.scrollTo({
+      top: 2125,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     const token = window.localStorage.getItem(TOKEN_KEY);
@@ -56,16 +91,30 @@ export default function NavBar() {
         </div>
       </NavbarContent>
       <div id="anchors" className=" ps-[230px] hidden gap-10  lg:flex ">
-        <AnchorNavbar href="#" nameAnchor="INICIO"></AnchorNavbar>
-        <AnchorNavbar href="#" nameAnchor="NOSOTROS"></AnchorNavbar>
-        <AnchorNavbar href="#" nameAnchor="MÚSICOS"></AnchorNavbar>
+        <div
+          onClick={scrollUpToBeginSection}
+          className="text-blue hover:underline "
+        >
+          INICIO
+        </div>
+        <div
+          onClick={scrollUpToUsSection}
+          className="text-blue hover:underline "
+        >
+          NOSOTROS
+        </div>
+        <div
+          onClick={scrollUpToMusicianSection}
+          className="text-blue hover:underline "
+        >
+          MÚSICOS
+        </div>
       </div>
       <div
         id="buttons"
         className={clsx("flex gap-[24px]", { hidden: isLoggedIn })}
         justify="end"
       >
-
         <LogInModal />
         <RegisterModal />
       </div>
@@ -73,14 +122,40 @@ export default function NavBar() {
       <UserLogOutNavbar />
 
       <NavbarMenu id="menu" className=" pt-5 w-[245px] bg-[#081540]  ">
-        <AnchorToggleMenu href="#" nameAnchor="INICIO"></AnchorToggleMenu>
-        <AnchorToggleMenu href="#" nameAnchor="NOSOTROS"></AnchorToggleMenu>
-        <AnchorToggleMenu href="#" nameAnchor="MÚSICOS"></AnchorToggleMenu>
+        <div
+          onClick={scrollUpToBeginSection}
+          className="text-white hover:underline "
+        >
+          INICIO
+        </div>
+        <div
+          onClick={scrollUpToUsSection2}
+          className="text-white hidden sm:flex hover:underline"
+        >
+          NOSOTROS
+        </div>
+        <div
+          onClick={scrollUpToUsSection3}
+          className="text-white sm:hidden hover:underline"
+        >
+          NOSOTROS
+        </div>
+        <div
+          onClick={scrollUpToMusicianSection2}
+          className="text-white hidden sm:flex hover:underline"
+        >
+          MÚSICOS
+        </div>
+        <div
+          onClick={scrollUpToMusicianSection3}
+          className="text-white sm:hidden hover:underline"
+        >
+          MÚSICOS
+        </div>
         <div className={clsx("flex flex-col gap-2", { hidden: isLoggedIn })}>
           <LogInModalToggle />
           <RegisterModalToggle />
         </div>
-
       </NavbarMenu>
     </Navbar>
   );
