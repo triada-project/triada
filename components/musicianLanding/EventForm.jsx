@@ -61,7 +61,7 @@ export default function EventForm() {
           phoneClient: phonePrefix,
           startHour: data.startHour,
           totalHours: getTotalHours(),
-          payment: totalRes(),
+          eventFee: totalRes(),
           isChecked: data.isChecked,
         }),
         headers: {
@@ -124,8 +124,7 @@ export default function EventForm() {
             className="ml-2 mt-2 mr-5"
           />
         </div>
-
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row ">
           <p className="text-blue-700 flex-auto text-center p-2">Disponible:</p>
           {users.availability.map((slot) => (
             <p
@@ -275,7 +274,6 @@ export default function EventForm() {
               onChange={(e) => setValue(e.target.value)}
               {...register("street", { maxLength: 80 })}
             />
-
             <div className="sm:flex items-center gap-4 w-full">
               <Input
                 isRequired
