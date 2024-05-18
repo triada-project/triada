@@ -1,16 +1,60 @@
-
 import { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@/components/Stripe/CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { Card, CardHeader, CardBody, CardFooter, Image, Chip } from "@nextui-org/react";
-import Events from "../../objects/events.json";
+import Events from "../../../objects/events.json";
 import NavBar from "@/components/Navbar";
 import FooterMain from "@/components/footer/footer";
+import { useRouter } from "next/router";
+
+
 
 function Payment() {
+  const router = useRouter();
+  const eventId = router.query.id;  
+  console.log('this is',eventId);
+  
+
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
+  console.log(clientSecret,'codigo secreto');
+  const [idEvent,setIdEvent] = useState("");
+  const [eventFee,setEventFee] = useState();
+  console.log(eventFee, 'this eventFee stripe');
+  
+  const fetchrequest= async()=>{
+    try {
+      const response = await fetch(`http://localhost:3005/events/${eventId}`, {
+        headers:{
+          "Content-Type": "application/json",
+        }
+      })   
+      const responseData = await response.json()
+      console.log(responseData, 'responseData');
+      setIdEvent(responseData.data._id);
+      setEventFee(responseData.data.eventFee);
+       
+    }catch(error){
+      console.error(error);
+    }
+    
+  };
+
+  useEffect(() => {
+    
+    if(eventId){
+      fetchrequest();
+    }
+
+
+  },[eventId]);
+
+  
+  // if (!eventId) {
+  //  alert('crack')
+  // };
+
 
   useEffect(() => {
     fetch("http://localhost:3005/config").then(async (r) => {
@@ -18,16 +62,36 @@ function Payment() {
       setStripePromise(loadStripe('pk_test_51P4oMODoqexf69WmTXJ9qRi28ldWZyj70NFDyWovRCxykhJAIOuKdWtWq0rfsEaWZNOG5iTn80UZ0bR6Lw8cVeph00y7A00xJX'));
     });
   }, []);
-
+  
+  // useEffect(() => {
+  //   fetch("http://localhost:3005/create-payment-intent", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ eventFee }),
+  //   }).then(async (result) => {
+  //     const data = await result.json();
+  //     console.log(data); // Verificar la respuesta recibida
+  //     const { clientSecret } = data; // Extraer clientSecret de la respuesta
+  //     setClientSecret(clientSecret); // Establecer clientSecret en el estado
+  //   })
+  // }, [eventFee]);
   useEffect(() => {
     fetch("http://localhost:3005/create-payment-intent", {
       method: "POST",
-      body: JSON.stringify({}),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id:idEvent,
+        eventFee:eventFee
+      }),
     }).then(async (result) => {
       var { clientSecret } = await result.json();
       setClientSecret(clientSecret);
     });
-  }, []);
+  }, [eventFee]);
   
   const { events } = Events;
   //pendiente por confirmar
@@ -36,14 +100,14 @@ function Payment() {
   return (
     <>
 
-    <NavBar />
-    <main className="max-w-[1440px]  bg-white mt-10">
+    <main className="  bg-white m-auto w-full">
+        <NavBar />
 
       
 
         {eventosPendientes.map((evento, index) => (
         // <div key={index} class="flex flex-col sm:flex-row ">                
-          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4">             
+          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">             
                           
                           {/* class=" w-full sm:w-unit-6xl" */}
               <div className="m-auto" >
@@ -143,7 +207,7 @@ function Payment() {
 
 
         {eventosPendientes.map((evento, index) => (
-          <Card key={index} className="mt-10">
+          <Card key={index} className="w-3/4 m-auto mt-10 ">
           <CardBody>
             <div className="flex items-center gap-2">
               <Image src="/assets/svg/ubicacion.svg" className="w-5 h-6 mr-2" />
@@ -155,16 +219,16 @@ function Payment() {
         
 
       
-      <div className="w-full">
+      <div className="w-3/4 m-auto pb-10 mt-10">
         {clientSecret && stripePromise && (
           <Elements stripe={stripePromise} options={{ clientSecret }} >
-            <CheckoutForm />
+            <CheckoutForm/>
           </Elements>
         )}
       </div>
 
-    </main>
     <FooterMain  />
+    </main>
     </>
   );
 }
