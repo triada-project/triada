@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
-import { Josefin_Sans } from "next/font/google";
+import { Josefin_Sans, Lato } from "next/font/google";
 import ClientOrMusician from "./ClientOrMusician";
+import React, { useState } from "react";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
 });
+const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function NewUserForm() {
   const {
@@ -14,6 +16,8 @@ export default function NewUserForm() {
     formState: { errors },
   } = useForm();
 
+  const [tipoDeCuenta, setTipoDeCuenta] = useState("");
+
   async function onSubmit(data) {
     const response = await fetch("http://localhost:3007/users", {
       method: "POST",
@@ -21,6 +25,7 @@ export default function NewUserForm() {
         email: data.email,
         password: data.password,
         password2: data.password2,
+        role: data.role,
       }),
       headers: { "Content-Type": "application/json" },
     });
@@ -40,11 +45,41 @@ export default function NewUserForm() {
         >
           <div className="flex flex-col  ">
             <div
-              className={`flex flex-col justify-start items-center text-[24px]   font-bold lg:text-[32px] lg:items-start ${josefine.className} `}
+              className={`flex flex-col justify-start items-center text-[24px] font-bold lg:text-[32px] lg:items-start`}
             >
               Crea una cuenta
             </div>
-            <ClientOrMusician />
+            <p className={`text-[16px] font-bold flex`}>Tipo de cuenta</p>
+
+            <div className="flex gap-5">
+              <div className="flex gap-2">
+                <input
+                  type="radio"
+                  id="Cliente"
+                  name="role"
+                  value="Cliente"
+                  onChange={(e) => setTipoDeCuenta(e.target.value)}
+                  {...register("role", { required: true })}
+                />
+                <label htmlFor="Cliente" className={`text-[16px]`}>
+                  Cliente
+                </label>
+              </div>
+              <div className="flex gap-2">
+                <input
+                  type="radio"
+                  id="Musician"
+                  name="role"
+                  value="Musician"
+                  onChange={(e) => setTipoDeCuenta(e.target.value)}
+                  {...register("role", { required: true })}
+                />
+                <label htmlFor="Músico" className={`text-[16px]`}>
+                  Músico
+                </label>
+              </div>
+            </div>
+            {errors.role && <span>Este campo es obligatorio</span>}
             <label
               className={`pb-[8px] font-bold text-[16px] ${josefine.className}`}
             >
