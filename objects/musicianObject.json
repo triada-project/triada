@@ -24,33 +24,55 @@
       }
     ],
     "ranking": 5,
-    "eventType": ["Conciertos en recintos", "Coorporativos"],
-    "musicalGenere": ["Clásico", "Piano", "Música tradicional mexicana"],
+    "eventType": [
+      "Conciertos en recintos",
+      "Coorporativos"
+    ],
+    "musicalGenere": [
+      "Clásico",
+      "Piano",
+      "Música tradicional mexicana"
+    ],
     "repertory": [
       {
         "title": "Piano Concerto No. 1",
         "author": "Frederich Chopin",
-        "eventType": ["Conciertos en recintos", "Coorporativos"]
+        "eventType": [
+          "Conciertos en recintos",
+          "Coorporativos"
+        ]
       },
       {
         "title": "Hungarian Rhapsody No. 2",
         "author": "Franz Liszt",
-        "eventType": ["Conciertos en recintos", "Coorporativos"]
+        "eventType": [
+          "Conciertos en recintos",
+          "Coorporativos"
+        ]
       },
       {
         "title": "Moonlight Sonata",
         "author": "Ludwig van Beethoven",
-        "eventType": ["Conciertos en recintos", "Coorporativos"]
+        "eventType": [
+          "Conciertos en recintos",
+          "Coorporativos"
+        ]
       },
       {
         "title": "Liebestraum No. 3",
         "author": "Franz Liszt",
-        "eventType": ["Conciertos en recintos", "Coorporativos"]
+        "eventType": [
+          "Conciertos en recintos",
+          "Coorporativos"
+        ]
       },
       {
         "title": "Piano Sonata No. 18 in C Major",
         "author": "Wolfgang Amadeus Mozart",
-        "eventType": ["Conciertos en recintos", "Coorporativos"]
+        "eventType": [
+          "Conciertos en recintos",
+          "Coorporativos"
+        ]
       }
     ],
     "description": "Con una carrera que abarca décadas, Argentina Durán ha establecido su reputación como una de las principales intérpretes de música clásica. Su habilidad técnica y su capacidad para transmitir emociones a través de las teclas del piano la han convertido en una figura destacada en el mundo de la música.",
@@ -68,7 +90,6 @@
         "https://www.youtube.com/watch?v=VqN8X0RGp-c"
       ]
     },
-
     "eventFee": 7000,
     "maxHours": 2,
     "idStripeConnect": "kL4s8n",

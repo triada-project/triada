@@ -28,11 +28,15 @@ export default function LoginFormDB() {
       },
     });
 
+    const redirection = () => {
+      location.reload();
+    };
+
     const responseData = await response.json();
     if (responseData?.token) {
       localStorage.setItem("token", responseData.token);
       //   navigate("/");
-      alert("Login exitoso");
+      redirection();
     } else {
       setError("root", { message: "Información incorrecta, prueba de nuevo." });
     }
