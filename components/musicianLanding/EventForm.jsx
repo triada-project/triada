@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Contrail_One, Josefin_Sans, Lato } from "next/font/google";
 import {
@@ -14,6 +14,7 @@ import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
 import dataMusician from "../../objects/musicianObject.json";
+import { useRouter } from "next/router";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -21,6 +22,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 const { users } = dataMusician;
+
 
 export default function EventForm() {
   const {
@@ -35,10 +37,24 @@ export default function EventForm() {
       date: "",
     },
   });
+  const [totalEvent, setTotalEvent] = useState('') ;
+  console.log(totalEvent,'this is totalevent');
+  const router = useRouter();
+  const [route, setRoute] = useState('');
+
+  useEffect(()=>{
+
+    let result = users.eventFee * getTotalHours();
+    console.log(result,'hola')
+    setTotalEvent(result);
+    
+  },[])
+
   const onSubmit = async (data) => {
     const phonePrefix = "+52" + data.phone;
     const fecha = new Date(data.date.year, data.date.month - 1, data.date.day);
     const fechaFormateada = fecha.toLocaleDateString();
+   
     console.log(data);
     try {
       const response = await fetch("http://localhost:3005/events", {
@@ -52,6 +68,8 @@ export default function EventForm() {
             zipCode: data.zipCode,
             exteriorNumber: data.exteriorNumber,
             interiorNumber: data.interiorNumber,
+            exteriorNumber: data.exteriorNumber,
+            interiorNumber: data.interiorNumber,
             reference: data.reference,
           },
           date: fechaFormateada,
@@ -59,7 +77,11 @@ export default function EventForm() {
           eventName: data.eventName,
           eventType: data.eventType,
           phoneClient: phonePrefix,
+          phoneClient: phonePrefix,
           startHour: data.startHour,
+          totalHours: getTotalHours(),
+          eventFee: totalRes(),
+          isChecked: data.isChecked,
           totalHours: getTotalHours(),
           eventFee: totalRes(),
           isChecked: data.isChecked,
@@ -68,7 +90,13 @@ export default function EventForm() {
           "Content-Type": "application/json",
         },
       });
-      if (!response.ok) {
+      if(response.ok){
+        const eventData = await response.json();
+        console.log(eventData);
+        setRoute(router.push(`/stripe/${eventData.data.events._id}`));
+      }
+      
+      if(!response.ok) {
         throw new Error(response.statusText);
       }
       const eventData = await response.json();
@@ -106,7 +134,7 @@ export default function EventForm() {
   };
 
   const totalRes = () => {
-    return users.eventFee * getTotalHours();
+    return users.eventFee * getTotalHours();      
   };
 
   return (
@@ -124,7 +152,7 @@ export default function EventForm() {
             className="ml-2 mt-2 mr-5"
           />
         </div>
-        <div className="flex flex-col sm:flex-row ">
+        <div className="flex">
           <p className="text-blue-700 flex-auto text-center p-2">Disponible:</p>
           {users.availability.map((slot) => (
             <p
@@ -165,6 +193,7 @@ export default function EventForm() {
             <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 mb-2 sm:text-[20px]">
               Elige el horario
             </h2>
+            
             <div className="sm:flex items-center gap-4 w-full">
               <Select
                 id="startHour"
@@ -252,6 +281,7 @@ export default function EventForm() {
               label="Colonia"
               onChange={(e) => setValue(e.target.value)}
               {...register("neigbourhood", { maxLength: 30 })}
+              {...register("neigbourhood", { maxLength: 30 })}
               className="sm:w-1/2"
             />
             <Input
@@ -293,6 +323,25 @@ export default function EventForm() {
                 className="mt-5 sm:mt-0"
               />
             </div>
+            <div className="sm:flex items-center gap-4 w-full">
+              <Input
+                isRequired
+                variant="bordered"
+                radius="sm"
+                label="Número exterior"
+                onChange={(e) => setValue(e.target.value)}
+                {...register("exteriorNumber", {})}
+                className="mt-5 sm:mt-0"
+              />
+              <Input
+                variant="bordered"
+                radius="sm"
+                label="Número interior"
+                onChange={(e) => setValue(e.target.value)}
+                {...register("interiorNumber")}
+                className="mt-5 sm:mt-0"
+              />
+            </div>
           </div>
           <div className="sm:flex items-center gap-4 w-full">
             <Input
@@ -309,6 +358,7 @@ export default function EventForm() {
               radius="sm"
               label="Teléfono"
               onChange={(e) => setValue(e.target.value)}
+              {...register("phone", { pattern: /^[0-9]{10}$/ })}
               {...register("phone", { pattern: /^[0-9]{10}$/ })}
               className="mt-5 sm:mt-0"
             />
@@ -359,6 +409,10 @@ export default function EventForm() {
               <p className="w-1/3 text-right">${totalRes()}</p>
             </div>
           </div>
+          <Checkbox isRequired {...register("isChecked")}>
+            Acepto términos y condiciones
+          </Checkbox>
+          {/* if !token then modal iniciar sesión */}
           <Checkbox isRequired {...register("isChecked")}>
             Acepto términos y condiciones
           </Checkbox>

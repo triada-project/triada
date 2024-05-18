@@ -381,4 +381,4 @@ export default function ModalCliente({ eventData }) {
       </Modal>
     </>
   );
-}
+}}
