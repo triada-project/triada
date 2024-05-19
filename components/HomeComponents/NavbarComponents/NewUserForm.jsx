@@ -19,7 +19,7 @@ export default function NewUserForm() {
   const password2 = watch("password2");
 
   async function onSubmit(data) {
-    const response = await fetch("http://localhost:3007/users", {
+    const response = await fetch("http://localhost:4000/users", {
       method: "POST",
       body: JSON.stringify({
         email: data.email,

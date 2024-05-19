@@ -24,7 +24,7 @@ export default function MainFooter() {
         id="footerContainer"
         className="bg-[#081540] relative pt-[28px] lg:w-[1440px]  "
         style={{
-          zIndex: 0,
+          zIndex: -1,
         }}
       >
         <Image

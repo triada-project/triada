@@ -13,6 +13,44 @@ const ScrollLink = ({ position, children, extraClasses = "" }) => (
 );
 
 export default function FooterMain({ marginT }) {
+  const scrollUpToUsSection = () => {
+    window.scrollTo({
+      top: 1000,
+      behavior: "smooth",
+    });
+  };
+  const scrollUpToUsSection2 = () => {
+    window.scrollTo({
+      top: 870,
+      behavior: "smooth",
+    });
+  };
+  const scrollUpToUsSection3 = () => {
+    window.scrollTo({
+      top: 800,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollUpToMusicianSection = () => {
+    window.scrollTo({
+      top: 2750,
+      behavior: "smooth",
+    });
+  };
+  const scrollUpToMusicianSection2 = () => {
+    window.scrollTo({
+      top: 1900,
+      behavior: "smooth",
+    });
+  };
+  const scrollUpToMusicianSection3 = () => {
+    window.scrollTo({
+      top: 2125,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <footer
       className={`w-full bg-cover bg-center flex flex-col items-center pt-14 sm:pt-36 ${marginT}`}

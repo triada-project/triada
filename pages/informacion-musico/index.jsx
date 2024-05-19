@@ -5,13 +5,14 @@ import NavBar from "@/components/Navbar";
 import dataMusician from "../../objects/musicianObject.json";
 import check from "../../public/assets/svg/check.svg";
 import Image from "next/image";
-import CarouselVideos from "../..//components/musicianLanding/CarouselVideos";
+import CarouselVideos from "../../components/musicianLanding/CarouselVideos";
 import CarouselFotos from "../../components/musicianLanding/CarouselFotos";
 import AsideLeft from "@/components/musicianLanding/AsideLeft";
 import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import FooterMain from "@/components/footer/footer";
+
 
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -24,6 +25,8 @@ const lato = Lato({
 
 export default function musicianDetail() {
   const { users } = dataMusician;
+
+  
 
   const musicalGeneres = users.musicalGenere;
   const eventType = users.eventType;
