@@ -12,7 +12,8 @@ import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import FooterMain from "@/components/footer/footer";
-
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -24,10 +25,34 @@ const lato = Lato({
 });
 
 export default function musicianDetail() {
+  const router = useRouter();
+  const userId = router.query.id;
+  const [userData, setUserData] = useState(null);
+
+  console.log(userId);
+  console.log(userData);
+
+  useEffect(() => {
+    if (userId) {
+      // Realiza la solicitud fetch para obtener los datos del usuario
+      fetch(`http://localhost:4000/users/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          // Almacena los datos del usuario en el estado local
+          setUserData(data.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+          // Maneja el error si la solicitud falla
+        });
+    }
+  }, [userId]);
+
+  if (!userData) {
+    return <div>Cargando...</div>; // Muestra un mensaje de carga mientras se obtienen los datos
+  }
+
   const { users } = dataMusician;
-
-  
-
   const musicalGeneres = users.musicalGenere;
   const eventType = users.eventType;
 
@@ -39,7 +64,7 @@ export default function musicianDetail() {
           <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-4 md:grid-rows-7 grid-flow-col  ">
             <div className="p-5 col-start-1 sm:col-span-2 md:col-span-1 flex justify-center ">
               <Avatar
-                src={users.profilePicture[0].url}
+                src={userData.profilePicture}
                 alt="profile picture"
                 className="w-80 h-60 rounded-lg shadow-xl  "
               />
@@ -50,17 +75,18 @@ export default function musicianDetail() {
                 <h1
                   className={`${josefin.classname} text-black text-3xl font-semibold sm:mt-0 sm:text-[28px]`}
                 >
-                  {users.name}
+                  {userData.name}
                 </h1>
                 <h3 className="text-[#455A64]">
-                  {users.location[0].city}, {users.location[0].state}
+                  {userData.city}, {userData.state}
                 </h3>
                 <div className="flex items-centerflex items-center">
                   <Ranking />
                 </div>
                 <div className="gap gap-1 flex flex-nowrap">
-                  {musicalGeneres.map((nombre, index) => (
+                  {userData.musicalGenre.map((nombre, index) => (
                     <Chip
+                      key={index}
                       classNames={{
                         base: "bg-[#081540] h-[32px] mt-2",
                         content: "text-[#29FEFD] ",
@@ -76,7 +102,7 @@ export default function musicianDetail() {
                   Descripción
                 </h2>
                 <p className="{`${josefin.classname} text-[#455A64]">
-                  {users.description}
+                  {userData.description}
                 </p>
               </div>
               <div>
@@ -84,8 +110,9 @@ export default function musicianDetail() {
                   Eventos en los que toca
                 </h2>
                 <div className="gap gap-1 flex flex-nowrap">
-                  {eventType.map((nombre, index) => (
+                  {userData.eventType.map((nombre, index) => (
                     <Chip
+                      key={index}
                       classNames={{
                         base: "bg-[#081540] h-[32px] mt-2",
                         content: "text-[#29FEFD] ",
@@ -167,7 +194,7 @@ export default function musicianDetail() {
                       content: "text-[#29FEFD]",
                     }}
                   >
-                    {users.maxHours} horas
+                    {userData.maximumHoursEvent} horas
                   </Chip>
                 </div>
                 <div>
@@ -180,7 +207,7 @@ export default function musicianDetail() {
                       content: "text-[#29FEFD]",
                     }}
                   >
-                    {users.eventFee}
+                    $ {userData.eventFee} MXN
                   </Chip>
                 </div>
               </div>
