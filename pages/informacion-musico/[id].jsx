@@ -216,7 +216,7 @@ export default function musicianDetail() {
               </div>
             </main>
             <div className="col-start-1 sm:col-span-2 md:col-span-1 p-5 sm:row-start-2 sm:row-span-9 ">
-              <AsideLeft />
+              <AsideLeft userData={userData} />
             </div>
           </div>
         </div>
