@@ -64,7 +64,7 @@ export default function FooterMain({ marginT }) {
           </p>
           <p
             onClick={scrollUpToUsSection2}
-            className="cursor-pointer hidden sm:flex"
+            className="cursor-pointer hidden sm:flex md:hidden"
           >
             Nosotros
           </p>
