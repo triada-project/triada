@@ -1,11 +1,14 @@
 import { useForm } from "react-hook-form";
-import { Josefin_Sans } from "next/font/google";
+import { Josefin_Sans, Lato } from "next/font/google";
+import { Checkbox } from "@nextui-org/react";
 import ClientOrMusician from "./ClientOrMusician";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
 });
+
+const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function NewUserForm() {
   const {
@@ -24,7 +27,8 @@ export default function NewUserForm() {
       body: JSON.stringify({
         email: data.email,
         password: data.password,
-        password2: data.password2,
+        role: data.role,
+        name: data.name,
       }),
       headers: { "Content-Type": "application/json" },
     });
@@ -42,13 +46,75 @@ export default function NewUserForm() {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-[20px] w-[331px] lg:w-[387px]"
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-2">
             <div
               className={`flex flex-col justify-start items-center text-[24px] font-bold lg:text-[32px] lg:items-start ${josefine.className}`}
             >
               Crea una cuenta
             </div>
-            <ClientOrMusician />
+            <section
+              htmlFor="TipoDeCuenta"
+              className="flex flex-col justify-center items-center py-[15px] sm:items-start"
+            >
+              <p
+                className={`text-[16px] font-bold flex  ${josefine.className}`}
+              >
+                Tipo de cuenta
+              </p>
+              <div className="flex gap-5">
+                <div className="flex gap-2">
+                  <input
+                    type="radio"
+                    id="Cliente"
+                    name="tipoDeCuenta"
+                    value="cliente"
+                    {...register("role", { required: true })}
+                  />
+                  <label
+                    htmlFor="Cliente"
+                    className={`text-[16px] ${lato.className}`}
+                  >
+                    Cliente
+                  </label>
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    type="radio"
+                    id="Musician"
+                    name="tipoDeCuenta"
+                    value="musico"
+                    {...register("role", { required: true })}
+                  />
+                  <label
+                    htmlFor="Musician"
+                    className={`text-[16px] ${lato.className}`}
+                  >
+                    Músico
+                  </label>
+                </div>
+              </div>
+              {errors.role?.type === "required" && (
+                <p>Necesitamos saber el tipo de cuenta</p>
+              )}
+            </section>
+            {/* <ClientOrMusician /> */}
+            <label
+              className={`pb-[8px] font-bold text-[16px] ${josefine.className}`}
+            >
+              Dinos tu nombre
+            </label>
+            <input
+              id="name"
+              type="text"
+              className="text-black w-[310px] sm:w-[365px] pl-2 h-[40px] rounded-xl"
+              {...register("name", {
+                required: true,
+              })}
+            />
+            {errors.name?.type === "required" && (
+              <p>Necesitamos tu nombre para continuar</p>
+            )}
+
             <label
               className={`pb-[8px] font-bold text-[16px] ${josefine.className}`}
             >
