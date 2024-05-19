@@ -145,24 +145,19 @@ export default function musicianDetail() {
                 </h2>
                 <div className="text-black ">
                   <ul>
-                    <div className="flex items-center mt-4">
-                      <Image src={check} alt="check" width={20} height={20} />
-                      <li className="ml-2">Piano de 88 teclas afinado</li>
-                    </div>
-                    <div className="flex items-center mt-4">
-                      <Image src={check} alt="check" width={20} height={20} />
-                      <li className="ml-2">
-                        Camerino con iluminación y espejo
-                      </li>
-                    </div>
-                    <div className="flex items-center mt-4">
-                      <Image src={check} alt="check" width={20} height={20} />
-                      <li className="ml-2">Catering ligero</li>
-                    </div>
-                    <div className="flex items-center mt-4">
-                      <Image src={check} alt="check" width={20} height={20} />
-                      <li className="ml-2">Agua</li>
-                    </div>
+                    {userData.requirements.map((requirement, index) => {
+                      return (
+                        <div key={index} className="flex items-center mt-4">
+                          <Image
+                            src={check}
+                            alt="check"
+                            width={20}
+                            height={20}
+                          />
+                          <li className="ml-2">{requirement}</li>
+                        </div>
+                      );
+                    })}
                   </ul>
                   <div className="border border-blue-700 bg-blue-100 rounded-md mt-5 flex">
                     <div>
