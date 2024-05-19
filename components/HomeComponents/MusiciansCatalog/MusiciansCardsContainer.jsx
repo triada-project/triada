@@ -8,7 +8,7 @@ export default function MusiciansCardsContainer() {
   useEffect(() => {
     async function fetchMusicians() {
       try {
-        const response = await fetch("http://localhost:3007/users");
+        const response = await fetch("http://localhost:4000/users");
         const data = await response.json();
 
         console.log("Fetched data:", data); // Log the fetched data
@@ -92,6 +92,7 @@ export default function MusiciansCardsContainer() {
                 ? musician.musicalGenre[1]
                 : "Genero no disponible"
             }
+            id={musician._id}
           />
         </div>
       ))}

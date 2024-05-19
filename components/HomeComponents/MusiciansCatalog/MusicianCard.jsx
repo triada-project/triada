@@ -1,4 +1,5 @@
 import { Josefin_Sans, Lato } from "next/font/google";
+import Link from "next/link";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -46,13 +47,15 @@ export default function MusicianCard(props) {
         id="pinkButton"
         className=" px-[16px] pb-[36px] flex  sm:w-[200px] sm:ps-2 md:ps-3 md:w-96   "
       >
-        <button className="text-white rounded-lg bg-[#EE0075] w-[168px] h-[25px]  pb-[36px] flex flex-row justify-center sm:w-[180px] lg:w-[292px]  lg:px-[16px]  ">
-          <h2
-            className={` text-[14px] font-normal sm:pt-2 sm:px-2 ${lato.className} `}
-          >
-            INFORMACIÓN
-          </h2>
-        </button>
+        <Link href={`/informacion-musico/${props.id}`}>
+          <button className="text-white rounded-lg bg-[#EE0075] w-[168px] h-[25px]  pb-[36px] flex flex-row justify-center sm:w-[180px] lg:w-[292px]  lg:px-[16px]  ">
+            <h2
+              className={` text-[14px] font-normal sm:pt-2 sm:px-2 ${lato.className} `}
+            >
+              INFORMACIÓN
+            </h2>
+          </button>
+        </Link>
       </div>
     </div>
   );
