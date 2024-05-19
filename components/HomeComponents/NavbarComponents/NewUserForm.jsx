@@ -11,8 +11,12 @@ export default function NewUserForm() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
+
+  const password = watch("password");
+  const password2 = watch("password2");
 
   async function onSubmit(data) {
     const response = await fetch("http://localhost:3007/users", {
@@ -25,9 +29,9 @@ export default function NewUserForm() {
       headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
-      alert("Usuario creado con exito");
+      alert("Usuario creado con éxito");
     } else {
-      alert("Usuario no creado, intentalo de nuevo");
+      alert("Usuario no creado, inténtalo de nuevo");
     }
   }
 
@@ -38,9 +42,9 @@ export default function NewUserForm() {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-[20px] w-[331px] lg:w-[387px]"
         >
-          <div className="flex flex-col  ">
+          <div className="flex flex-col">
             <div
-              className={`flex flex-col justify-start items-center text-[24px]   font-bold lg:text-[32px] lg:items-start ${josefine.className} `}
+              className={`flex flex-col justify-start items-center text-[24px] font-bold lg:text-[32px] lg:items-start ${josefine.className}`}
             >
               Crea una cuenta
             </div>
@@ -60,15 +64,11 @@ export default function NewUserForm() {
               })}
             />
             {errors.email?.type === "required" && (
-              <p className="text-lime-500 text-xs">
-                {" "}
-                El campo correo Electronico es requerido
-              </p>
+              <p>El campo correo electrónico es requerido</p>
             )}
             {errors.email?.type === "pattern" && (
-              <p className="text-lime-500 text-xs">
-                {" "}
-                El formato del correo electronico es incorrecto
+              <p className="">
+                El formato del correo electrónico es incorrecto
               </p>
             )}
           </div>
@@ -81,7 +81,7 @@ export default function NewUserForm() {
             <input
               id="password1"
               type="password"
-              className="text-black  pl-2 w-[310px] sm:w-[365px] h-[40px] rounded-xl"
+              className="text-black pl-2 w-[310px] sm:w-[365px] h-[40px] rounded-xl"
               {...register("password", {
                 required: true,
                 pattern: /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/,
@@ -90,20 +90,19 @@ export default function NewUserForm() {
               })}
             />
             {errors.password?.type === "required" && (
-              <p> El campo contraseña es requerido</p>
+              <p>El campo contraseña es requerido</p>
             )}
             {errors.password?.type === "pattern" && (
               <p>
-                {" "}
                 La contraseña requiere al menos un dígito, una minúscula y una
                 mayúscula
               </p>
             )}
             {errors.password?.type === "minLength" && (
-              <p> La contraseña requiere al menos 6 caracteres</p>
+              <p>La contraseña requiere al menos 6 caracteres</p>
             )}
             {errors.password?.type === "maxLength" && (
-              <p> La contraseña solo puede incluir hasta 12 caracteres</p>
+              <p>La contraseña solo puede incluir hasta 12 caracteres</p>
             )}
           </div>
           <div id="containerPassword2" className="flex flex-col">
@@ -115,36 +114,40 @@ export default function NewUserForm() {
             <input
               id="password2"
               type="password"
-              className="text-black  pl-2 w-[310px] sm:w-[365px] h-[40px] rounded-xl"
+              className="text-black pl-2 w-[310px] sm:w-[365px] h-[40px] rounded-xl"
               {...register("password2", {
                 required: true,
+                validate: (value) =>
+                  value === password || "Las contraseñas no coinciden",
                 pattern: /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/,
                 minLength: 6,
                 maxLength: 12,
               })}
             />
             {errors.password2?.type === "required" && (
-              <p> El campo confirmar contraseña es requerido</p>
+              <p>El campo confirmar contraseña es requerido</p>
+            )}
+            {errors.password2?.type === "validate" && (
+              <p>Las contraseñas no coinciden</p>
             )}
             {errors.password2?.type === "pattern" && (
               <p>
-                {" "}
                 La contraseña requiere al menos un dígito, una minúscula y una
                 mayúscula
               </p>
             )}
             {errors.password2?.type === "minLength" && (
-              <p> La contraseña requiere al menos 6 caracteres</p>
+              <p>La contraseña requiere al menos 6 caracteres</p>
             )}
             {errors.password2?.type === "maxLength" && (
-              <p> La contraseña solo puede incluir hasta 12 caracteres</p>
+              <p>La contraseña solo puede incluir hasta 12 caracteres</p>
             )}
           </div>
 
           <input
             type="submit"
             value="CREAR PERFIL"
-            className={`bg-[#EE0075] rounded-xl font-semibold text-[18px] w-[310px] sm:w-[365px] h-[42px] ${josefine.className} `}
+            className={`bg-[#EE0075] rounded-xl font-semibold text-[18px] w-[310px] sm:w-[365px] h-[42px] ${josefine.className}`}
           />
         </form>
       </div>
