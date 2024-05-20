@@ -10,48 +10,48 @@
 // export default function ClientOrMusician() {
 //   const [tipoDeCuenta, setTipoDeCuenta] = useState("");
 
-//   return (
-//     <>
-//       <form
-//         htmlFor="TipoDeCuenta"
-//         className="flex flex-col justify-center items-center py-[15px] sm:items-start"
-//       >
-//         <p className={`text-[16px] font-bold flex  ${josefine.className}`}>
-//           Tipo de cuenta
-//         </p>
-//         <div className="flex gap-5">
-//           <div className="flex gap-2">
-//             <input
-//               type="radio"
-//               id="Cliente"
-//               name="tipoDeCuenta"
-//               value="Cliente"
-//               onChange={(e) => setTipoDeCuenta(e.target)}
-//             />
-//             <label
-//               htmlFor="Cliente"
-//               className={`text-[16px] ${lato.className}`}
-//             >
-//               Cliente
-//             </label>
-//           </div>
-//           <div className="flex gap-2">
-//             <input
-//               type="radio"
-//               id="Musician"
-//               name="tipoDeCuenta"
-//               value="Musician"
-//               onChange={(e) => setTipoDeCuenta(e.target)}
-//             />
-//             <label
-//               htmlFor="Musician"
-//               className={`text-[16px] ${lato.className}`}
-//             >
-//               Músico
-//             </label>
-//           </div>
-//         </div>
-//       </form>
-//     </>
-//   );
-// }
+  return (
+    <>
+      <form
+        htmlFor="TipoDeCuenta"
+        className="flex flex-col justify-center items-center py-[15px] sm:items-start"
+      >
+        <p className={`text-[16px] font-bold flex  ${josefine.className}`}>
+          Tipo de cuenta
+        </p>
+        <div className="flex gap-5">
+          <div className="flex gap-2">
+            <input
+              type="radio"
+              id="Cliente"
+              name="tipoDeCuenta"
+              value="cliente"
+              onChange={(e) => setTipoDeCuenta(e.target)}
+            />
+            <label
+              htmlFor="Cliente"
+              className={`text-[16px] ${lato.className}`}
+            >
+              Cliente
+            </label>
+          </div>
+          <div className="flex gap-2">
+            <input
+              type="radio"
+              id="Musician"
+              name="tipoDeCuenta"
+              value="musico"
+              onChange={(e) => setTipoDeCuenta(e.target)}
+            />
+            <label
+              htmlFor="Musician"
+              className={`text-[16px] ${lato.className}`}
+            >
+              Músico
+            </label>
+          </div>
+        </div>
+      </form>
+    </>
+  );
+}

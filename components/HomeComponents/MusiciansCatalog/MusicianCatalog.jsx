@@ -2,6 +2,7 @@ import { Josefin_Sans, Lato } from "next/font/google";
 import MusiciansCardsContainer from "./MusiciansCardsContainer";
 import SelectHomeEvents from "../SelectHomeEvents";
 import SelectGenreMusicianCatalog from "./SelectGenreMusicianCatalog";
+import SelectUbicationEvents from "../SelectUbicationEvents";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -35,7 +36,7 @@ export default function MusicianCatalog() {
         >
           <SelectHomeEvents typeItems="typeEvents" selectType="home" />
           <SelectGenreMusicianCatalog selectType="home" />
-          <SelectHomeEvents selectType="home" />
+          <SelectUbicationEvents selectType="home" />
 
           <div
             id="pinkButton"

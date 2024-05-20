@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Contrail_One, Josefin_Sans, Lato } from "next/font/google";
 import {
@@ -14,6 +14,8 @@ import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
 import dataMusician from "../../objects/musicianObject.json";
+import IdCatcher from "./IdCatcher";
+import { useRouter } from "next/router";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -21,12 +23,15 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 const { users } = dataMusician;
+const { users } = dataMusician;
 
-export default function EventForm() {
+export default function EventForm({ userData, musicianId }) {
   const {
     register,
     watch,
+    watch,
     handleSubmit,
+    control,
     control,
     formState: { errors },
   } = useForm({
@@ -35,13 +40,25 @@ export default function EventForm() {
       date: "",
     },
   });
+  const [totalEvent, setTotalEvent] = useState("");
+  console.log(totalEvent, "this is totalevent");
+  const router = useRouter();
+  const [route, setRoute] = useState("");
+
+  useEffect(() => {
+    let result = users.eventFee * getTotalHours();
+    console.log(result, "hola");
+    setTotalEvent(result);
+  }, []);
+
   const onSubmit = async (data) => {
     const phonePrefix = "+52" + data.phone;
     const fecha = new Date(data.date.year, data.date.month - 1, data.date.day);
     const fechaFormateada = fecha.toLocaleDateString();
+
     console.log(data);
     try {
-      const response = await fetch("http://localhost:3005/events", {
+      const response = await fetch("http://localhost:4000/events", {
         method: "POST",
         body: JSON.stringify({
           address: {
@@ -52,6 +69,8 @@ export default function EventForm() {
             zipCode: data.zipCode,
             exteriorNumber: data.exteriorNumber,
             interiorNumber: data.interiorNumber,
+            exteriorNumber: data.exteriorNumber,
+            interiorNumber: data.interiorNumber,
             reference: data.reference,
           },
           date: fechaFormateada,
@@ -59,15 +78,24 @@ export default function EventForm() {
           eventName: data.eventName,
           eventType: data.eventType,
           phoneClient: phonePrefix,
+          phoneClient: phonePrefix,
           startHour: data.startHour,
           totalHours: getTotalHours(),
-          payment: totalRes(),
+          eventFee: totalRes(),
           isChecked: data.isChecked,
+          musician: musicianId,
+          client: userData._id,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
+      if (response.ok) {
+        const eventData = await response.json();
+        console.log(eventData);
+        setRoute(router.push(`/stripe/${eventData.data.events._id}`));
+      }
+
       if (!response.ok) {
         throw new Error(response.statusText);
       }
@@ -124,8 +152,7 @@ export default function EventForm() {
             className="ml-2 mt-2 mr-5"
           />
         </div>
-
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row ">
           <p className="text-blue-700 flex-auto text-center p-2">Disponible:</p>
           {users.availability.map((slot) => (
             <p
@@ -160,21 +187,41 @@ export default function EventForm() {
                   />
                 )}
               />
+
+            <div className="w-full max-w-xl flex flex-row gap-4">
+              <Controller
+                name="date"
+                control={control}
+                rules={{ required: true }} // Add your validation rules here
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <DatePicker
+                    isRequired
+                    onChange={onChange}
+                    format="mm/dd/yyyy"
+                    label="Mes / Día / Año"
+                    variant="bordered"
+                    radius="sm"
+                  />
+                )}
+              />
             </div>
           </span>
           <span className="items-center gap-2 w-1/2">
             <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 mb-2 sm:text-[20px]">
               Elige el horario
             </h2>
+
             <div className="sm:flex items-center gap-4 w-full">
               <Select
                 id="startHour"
+                ref="startHour"
                 label="Hora de inicio"
                 isRequired
                 variant="bordered"
                 radius="sm"
                 {...register("startHour", { required: true })}
               >
+                <SelectItem key={"09:00"}>09:00</SelectItem>
                 <SelectItem key={"09:00"}>09:00</SelectItem>
                 <SelectItem key={"10:00"}>10:00</SelectItem>
                 <SelectItem key={"11:00"}>11:00</SelectItem>
@@ -192,10 +239,12 @@ export default function EventForm() {
               </Select>
               <Select
                 id="endHour"
+                ref="endHour"
                 label="Hora de fin"
                 isRequired
                 variant="bordered"
                 radius="sm"
+                {...register("endHour", { required: true })}
                 {...register("endHour", { required: true })}
               >
                 <SelectItem key={"10:00"}>10:00</SelectItem>
@@ -248,8 +297,32 @@ export default function EventForm() {
               isRequired
               variant="bordered"
               radius="sm"
+              label="Estado"
+              onChange={(e) => setValue(e.target.value)}
+              {...register("state", { maxLength: 30, required: false })}
+              className="sm:w-1/2"
+            />
+
+            <Input
+              isRequired
+              variant="bordered"
+              radius="sm"
+              label="Ciudad"
+              onChange={(e) => setValue(e.target.value)}
+              {...register("city", {
+                required: false,
+              })}
+              className="sm:w-1/2 mt-5 sm:mt-0"
+            />
+          </div>
+          <div className="sm:flex gap-4 w-full">
+            <Input
+              isRequired
+              variant="bordered"
+              radius="sm"
               label="Colonia"
               onChange={(e) => setValue(e.target.value)}
+              {...register("neigbourhood", { maxLength: 30 })}
               {...register("neigbourhood", { maxLength: 30 })}
               className="sm:w-1/2"
             />
@@ -257,6 +330,10 @@ export default function EventForm() {
               variant="bordered"
               radius="sm"
               label="Código postal"
+              onChange={(e) => setValue(e.target.value)}
+              {...register("zipCode", {
+                required: false,
+              })}
               onChange={(e) => setValue(e.target.value)}
               {...register("zipCode", {
                 required: false,
@@ -273,7 +350,6 @@ export default function EventForm() {
               onChange={(e) => setValue(e.target.value)}
               {...register("street", { maxLength: 80 })}
             />
-
             <div className="sm:flex items-center gap-4 w-full">
               <Input
                 isRequired
@@ -302,6 +378,8 @@ export default function EventForm() {
               label="Referencia"
               onChange={(e) => setValue(e.target.value)}
               {...register("reference", { maxLength: 80 })}
+              onChange={(e) => setValue(e.target.value)}
+              {...register("reference", { maxLength: 80 })}
             />
             <Input
               isRequired
@@ -309,6 +387,7 @@ export default function EventForm() {
               radius="sm"
               label="Teléfono"
               onChange={(e) => setValue(e.target.value)}
+              {...register("phone", { pattern: /^[0-9]{10}$/ })}
               {...register("phone", { pattern: /^[0-9]{10}$/ })}
               className="mt-5 sm:mt-0"
             />
@@ -321,12 +400,16 @@ export default function EventForm() {
               label="Nombre de evento"
               onChange={(e) => setValue(e.target.value)}
               {...register("eventName", { maxLength: 50 })}
+              onChange={(e) => setValue(e.target.value)}
+              {...register("eventName", { maxLength: 50 })}
             />
+            <Select
             <Select
               isRequired
               variant="bordered"
               radius="sm"
               label="Tipo de evento"
+              onChange={(e) => setValue(e.target.value)}
               onChange={(e) => setValue(e.target.value)}
               {...register("eventType")}
               className="mt-5 sm:mt-0"
@@ -345,20 +428,45 @@ export default function EventForm() {
                 Servicio religioso
               </SelectItem>
             </Select>
+            >
+              <SelectItem key={"Boda"}>Boda</SelectItem>
+              <SelectItem key={"Cena"}>Cena</SelectItem>
+              <SelectItem key={"Concierto en recinto"}>
+                Concierto en recinto
+              </SelectItem>
+              <SelectItem key={"Coorporativo"}>Coorporativo</SelectItem>
+              <SelectItem key={"Cumpleaños"}>Cumpleaños</SelectItem>
+              <SelectItem key={"Presentación en bar"}>
+                Presentación en bar
+              </SelectItem>
+              <SelectItem key={"Servicio religioso"}>
+                Servicio religioso
+              </SelectItem>
+            </Select>
           </div>
+          <div className="text-[#455A64] w-full divide-y ">
+            <h2 className="{`${josefin.classname} text-[#37474F] font-semibold sm:text-[20px] divide-[#455A64]">
           <div className="text-[#455A64] w-full divide-y ">
             <h2 className="{`${josefin.classname} text-[#37474F] font-semibold sm:text-[20px] divide-[#455A64]">
               Resumen
             </h2>
             <div className="flex mt-4">
+            <div className="flex mt-4">
               <p className="w-1/2">Horas contratadas</p>
+              <p className="w-1/2 text-right">{getTotalHours()} horas</p>
               <p className="w-1/2 text-right">{getTotalHours()} horas</p>
             </div>
             <div className="flex mt-4">
+            <div className="flex mt-4">
               <p className="w-2/3">Total de reservación</p>
+              <p className="w-1/3 text-right">${totalRes()}</p>
               <p className="w-1/3 text-right">${totalRes()}</p>
             </div>
           </div>
+          <Checkbox isRequired {...register("isChecked")}>
+            Acepto términos y condiciones
+          </Checkbox>
+          {/* if !token then modal iniciar sesión */}
           <Checkbox isRequired {...register("isChecked")}>
             Acepto términos y condiciones
           </Checkbox>

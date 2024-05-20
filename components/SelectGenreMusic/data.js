@@ -1,37 +1,46 @@
 export const musicalGenre = [
   {
     id: "Acústico",
+    id: "Acústico",
     musicalGenre: "Acústico",
   },
   {
+    id: "Banda",
     id: "Banda",
     musicalGenre: "Banda",
   },
   {
     id: "Blues",
+    id: "Blues",
     musicalGenre: "Blues",
   },
   {
+    id: "Clásica",
     id: "Clásica",
     musicalGenre: "Clásica",
   },
   {
     id: "Electrónica",
+    id: "Electrónica",
     musicalGenre: "Electrónica",
   },
   {
+    id: "Folk",
     id: "Folk",
     musicalGenre: "Folk",
   },
   {
     id: "Jazz",
+    id: "Jazz",
     musicalGenre: "Jazz",
   },
   {
     id: "Pop",
+    id: "Pop",
     musicalGenre: "Pop",
   },
   {
+    id: "Rock",
     id: "Rock",
     musicalGenre: "Rock",
   },
@@ -58,6 +67,41 @@ export const typeEvents = [
   { id: "Fiestas", typeEvents: "Fiestas" },
   { id: "Servicios Religiosos", typeEvents: "Servicios Religiosos" },
   { id: "Bares", typeEvents: "Bares" },
+];
+
+export const MexicanStates = [
+  { clave: "AGS", nombre: "Aguascalientes" },
+  { clave: "BC", nombre: "Baja California" },
+  { clave: "BCS", nombre: "Baja California Sur" },
+  { clave: "CHI", nombre: "Chihuahua" },
+  { clave: "CHS", nombre: "Chiapas" },
+  { clave: "CMP", nombre: "Campeche" },
+  { clave: "CMX", nombre: "Ciudad de México" },
+  { clave: "COA", nombre: "Coahuila" },
+  { clave: "COL", nombre: "Colima" },
+  { clave: "DGO", nombre: "Durango" },
+  { clave: "GRO", nombre: "Guerrero" },
+  { clave: "GTO", nombre: "Guanajuato" },
+  { clave: "HGO", nombre: "Hidalgo" },
+  { clave: "JAL", nombre: "Jalisco" },
+  { clave: "MCH", nombre: "Michoacán" },
+  { clave: "MEX", nombre: "Estado de México" },
+  { clave: "MOR", nombre: "Morelos" },
+  { clave: "NAY", nombre: "Nayarit" },
+  { clave: "NL", nombre: "Nuevo León" },
+  { clave: "OAX", nombre: "Oaxaca" },
+  { clave: "PUE", nombre: "Puebla" },
+  { clave: "QR", nombre: "Quinta Roo" },
+  { clave: "QRO", nombre: "Queretaro" },
+  { clave: "SIN", nombre: "Sinaloa" },
+  { clave: "SLP", nombre: "San Luis Potosi" },
+  { clave: "SON", nombre: "Sonora" },
+  { clave: "TAB", nombre: "Tabasco" },
+  { clave: "TLX", nombre: "Tlaxcala" },
+  { clave: "TMS", nombre: "Tamaulipas" },
+  { clave: "VER", nombre: "Veracruz" },
+  { clave: "YUC", nombre: "Yucatán" },
+  { clave: "ZAC", nombre: "Zacatecas" },
 ];
 
 export const users = [

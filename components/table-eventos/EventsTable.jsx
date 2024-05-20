@@ -21,8 +21,10 @@ import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { SearchIcon } from "./SearchIcon";
 import { ChevronDownIcon } from "./ChevronDownIcon";
 import { columns, events, statusOptions } from "./data";
+import { columns, events, statusOptions } from "./data";
 import { capitalize } from "./utils";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import { useState, useEffect } from "react";
 import Active from "../../public/assets/svg/active.svg";
 import Alert from "../../public/assets/svg/alert-circle.svg";
@@ -32,9 +34,11 @@ import More from "../../public/assets/svg/add-circle.svg";
 import ModalCliente from "../Modales/ModalCliente";
 import ModalMusico from "../Modales/ModalMusico";
 import useTokenStore from "@/stores/tokenStore";
+import ModalMusico from "../Modales/ModalMusico";
+import useTokenStore from "@/stores/tokenStore";
 
 const statusColorMap = {
-  activo: Active,
+  aceptado: Active,
   pendiente: Alert,
   finalizado: Finalized,
   rechazado: Rejected,
@@ -51,6 +55,20 @@ const INITIAL_VISIBLE_COLUMNS = [
 ];
 
 export default function EventsTable() {
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+  }, []);
+
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+  console.log(tokenObject);
+  const [events, setEvents] = useState([]);
   useEffect(() => {
     const tokenFromLocalStorage = localStorage.getItem("token");
     if (tokenFromLocalStorage) {
@@ -98,6 +116,26 @@ export default function EventsTable() {
 
   console.log(events);
 
+  useEffect(() => {
+    async function fetchEvents() {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/events/${tokenObject._id}/events`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch events");
+        }
+        const data = await response.json();
+        setEvents(data.data);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    }
+    fetchEvents();
+  }, []);
+
+  console.log(events);
+
   const hasSearchFilter = Boolean(filterValue);
 
   const headerColumns = React.useMemo(() => {
@@ -109,6 +147,7 @@ export default function EventsTable() {
   }, [visibleColumns]);
 
   const filteredItems = React.useMemo(() => {
+    let filteredUsers = [...events];
     let filteredUsers = [...events];
 
     if (hasSearchFilter) {
@@ -126,6 +165,7 @@ export default function EventsTable() {
     }
 
     return filteredUsers;
+  }, [events, filterValue, statusFilter]);
   }, [events, filterValue, statusFilter]);
 
   const pages = Math.ceil(filteredItems.length / rowsPerPage);
@@ -150,15 +190,19 @@ export default function EventsTable() {
   const renderCell = React.useCallback((event, columnKey) => {
     const cellValue = event[columnKey];
     //console.log(event);
+  const renderCell = React.useCallback((event, columnKey) => {
+    const cellValue = event[columnKey];
+    //console.log(event);
 
     switch (columnKey) {
       case "evento":
         return (
           <User
-            avatarProps={{ radius: "lg", src: event.avatar }}
+            avatarProps={{ radius: "lg", src: event.clientPicture }}
             //description={event.email}
             name={event.clientName}
           >
+            {event.email}
             {event.email}
           </User>
         );
@@ -167,8 +211,10 @@ export default function EventsTable() {
           <div className="flex flex-col">
             <p className="text-bold text-small">
               {event.startHour} a {event.endHour}
+              {event.startHour} a {event.endHour}
             </p>
             {/* <p className="text-bold text-tiny capitalize text-default-400">
+              {event.team}
               {event.team}
             </p> */}
           </div>
@@ -195,7 +241,27 @@ export default function EventsTable() {
         return (
           <div className="flex flex-col">
             <p className="text-bold text-small">{event?.address?.city}</p>
+            <p className="text-bold text-small">$ {event.eventFee} MXN</p>
             {/* <p className="text-bold text-tiny capitalize text-default-400">
+              {event.team}
+            </p> */}
+          </div>
+        );
+      case "fecha":
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-small">{event.date}</p>
+            {/* <p className="text-bold text-tiny capitalize text-default-400">
+              {event.team}
+            </p> */}
+          </div>
+        );
+      case "ubicación":
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-small">{event?.address?.city}</p>
+            {/* <p className="text-bold text-tiny capitalize text-default-400">
+              {event.team}
               {event.team}
             </p> */}
           </div>
@@ -205,9 +271,12 @@ export default function EventsTable() {
           <div className=" flex items-center gap-2 capitalize">
             <Image src={statusColorMap[event.status]} width={20} height={20} />
             <p>{event.status}</p>
+            <Image src={statusColorMap[event.status]} width={20} height={20} />
+            <p>{event.status}</p>
           </div>
           // <Chip
           //   className="capitalize"
+          //   color={statusColorMap[event.estatus]}
           //   color={statusColorMap[event.estatus]}
           //   size="sm"
           //   variant="flat"
@@ -218,6 +287,14 @@ export default function EventsTable() {
       case "más":
         return (
           <div className="relative flex  items-start p-0">
+            {/* <ModalCliente></ModalCliente> */}
+            {tokenObject.role === "musico" ? (
+              <ModalMusico eventData={event} />
+            ) : (
+              <ModalCliente eventData={event} />
+            )}
+            {/* <ModalMusico eventData={event} /> */}
+
             {/* <ModalCliente></ModalCliente> */}
             {tokenObject.role === "musico" ? (
               <ModalMusico eventData={event} />
@@ -344,6 +421,7 @@ export default function EventsTable() {
         <div className="flex justify-between items-center">
           <span className="text-default-400 text-small">
             Total {events.length} eventos
+            Total {events.length} eventos
           </span>
           <label className="flex items-center text-default-400 text-small">
             Filas por página:
@@ -364,6 +442,7 @@ export default function EventsTable() {
     statusFilter,
     visibleColumns,
     onRowsPerPageChange,
+    events.length,
     events.length,
     onSearchChange,
     hasSearchFilter,
@@ -442,7 +521,9 @@ export default function EventsTable() {
         )}
       </TableHeader>
       <TableBody emptyContent={"No se encontraron eventos"} items={sortedItems}>
+      <TableBody emptyContent={"No se encontraron eventos"} items={sortedItems}>
         {(item) => (
+          <TableRow key={item._id}>
           <TableRow key={item._id}>
             {(columnKey) => (
               <TableCell>{renderCell(item, columnKey)}</TableCell>
