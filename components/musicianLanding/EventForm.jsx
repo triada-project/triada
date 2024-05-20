@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import { React } from "react";
 import ReactDOM from "react-dom";
 import { Contrail_One, Josefin_Sans, Lato } from "next/font/google";
 import {
@@ -14,7 +14,7 @@ import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
 import dataMusician from "../../objects/musicianObject.json";
-import { useRouter } from "next/router";
+import IdCatcher from "./IdCatcher";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -54,7 +54,7 @@ export default function EventForm() {
     const phonePrefix = "+52" + data.phone;
     const fecha = new Date(data.date.year, data.date.month - 1, data.date.day);
     const fechaFormateada = fecha.toLocaleDateString();
-   
+
     console.log(data);
     try {
       const response = await fetch("http://localhost:3005/events", {
@@ -82,9 +82,8 @@ export default function EventForm() {
           totalHours: getTotalHours(),
           eventFee: totalRes(),
           isChecked: data.isChecked,
-          totalHours: getTotalHours(),
-          eventFee: totalRes(),
-          isChecked: data.isChecked,
+          musician: <IdCatcher />,
+          client: tokenObject._id,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -152,7 +151,7 @@ export default function EventForm() {
             className="ml-2 mt-2 mr-5"
           />
         </div>
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row ">
           <p className="text-blue-700 flex-auto text-center p-2">Disponible:</p>
           {users.availability.map((slot) => (
             <p
@@ -304,25 +303,6 @@ export default function EventForm() {
               onChange={(e) => setValue(e.target.value)}
               {...register("street", { maxLength: 80 })}
             />
-            <div className="sm:flex items-center gap-4 w-full">
-              <Input
-                isRequired
-                variant="bordered"
-                radius="sm"
-                label="Número exterior"
-                onChange={(e) => setValue(e.target.value)}
-                {...register("exteriorNumber", {})}
-                className="mt-5 sm:mt-0"
-              />
-              <Input
-                variant="bordered"
-                radius="sm"
-                label="Número interior"
-                onChange={(e) => setValue(e.target.value)}
-                {...register("interiorNumber")}
-                className="mt-5 sm:mt-0"
-              />
-            </div>
             <div className="sm:flex items-center gap-4 w-full">
               <Input
                 isRequired
