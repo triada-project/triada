@@ -25,7 +25,7 @@ export default function ClientOrMusician() {
               type="radio"
               id="Cliente"
               name="tipoDeCuenta"
-              value="Cliente"
+              value="cliente"
               onChange={(e) => setTipoDeCuenta(e.target)}
             />
             <label
@@ -40,7 +40,7 @@ export default function ClientOrMusician() {
               type="radio"
               id="Musician"
               name="tipoDeCuenta"
-              value="Musician"
+              value="musico"
               onChange={(e) => setTipoDeCuenta(e.target)}
             />
             <label
