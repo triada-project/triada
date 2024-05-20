@@ -1,57 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   NavbarContent,
   NavbarMenuToggle,
   NavbarMenu,
 } from "@nextui-org/react";
-import AnchorNavbar from "./HomeComponents/NavbarComponents/AnchorNavbar";
-import AnchorToggleMenu from "./HomeComponents/NavbarComponents/AnchorToggleMenu";
+import clsx from "clsx";
 import LogInModal from "./HomeComponents/NavbarComponents/LogInModal";
 import LogInModalToggle from "./HomeComponents/NavbarComponents/LogInModalToggle";
 import RegisterModal from "./HomeComponents/NavbarComponents/RegisterModal";
 import RegisterModalToggle from "./HomeComponents/NavbarComponents/RegisterModalToggle";
-import clsx from "clsx";
-import { useEffect, useState } from "react";
 import UserLogOutNavbar from "./HomeComponents/NavbarComponents/UserLogOutNavbar";
 
 const TOKEN_KEY = "token";
 
+const ScrollLink = ({ position, children, extraClasses = "" }) => (
+  <div
+    onClick={() => window.scrollTo({ top: position, behavior: "smooth" })}
+    className={`cursor-pointer hover:underline ${extraClasses}`}
+  >
+    {children}
+  </div>
+);
+
 export default function NavBar() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const scrollUpToBeginSection = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-  const scrollUpToUsSection = () => {
-    window.scrollTo({
-      top: 1000,
-      behavior: "smooth",
-    });
-  };
-  const scrollUpToUsSection2 = () => {
-    window.scrollTo({
-      top: 870,
-      behavior: "smooth",
-    });
-  };
-
-  const scrollUpToMusicianSection = () => {
-    window.scrollTo({
-      top: 2750,
-      behavior: "smooth",
-    });
-  };
-  const scrollUpToMusicianSection2 = () => {
-    window.scrollTo({
-      top: 1900,
-      behavior: "smooth",
-    });
-  };
 
   useEffect(() => {
     const token = window.localStorage.getItem(TOKEN_KEY);
@@ -64,39 +38,48 @@ export default function NavBar() {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      className=" bg-[#081540] dark text-foreground lg:w-[1440px]"
+      className="bg-[#081540] dark text-foreground lg:w-[1440px]"
     >
-      <NavbarContent className="">
+      <NavbarContent>
         <NavbarMenuToggle
           id="img&MenuToogle"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="dark md:hidden "
+          className="dark md:hidden"
         />
-        <div className=" lg:-ms-[20px] xl:-ms-[140px]">
+        <div className="lg:-ms-[20px] xl:-ms-[140px]">
           <a href="/">
             <img src="assets/images/PngLogoNavBar.png" alt="logoImg" />
           </a>
         </div>
       </NavbarContent>
-      <div id="anchors" className=" ps-[230px] hidden gap-10  lg:flex ">
-        <div
-          onClick={scrollUpToBeginSection}
-          className="text-blue hover:underline "
-        >
+      <div id="anchors" className="ps-[230px] hidden gap-10 lg:flex">
+        <ScrollLink position={0} extraClasses="text-blue">
           INICIO
-        </div>
-        <div
-          onClick={scrollUpToUsSection}
-          className="text-blue hover:underline "
+        </ScrollLink>
+        <ScrollLink position={1000} extraClasses="text-blue hidden md:flex">
+          NOSOTROS
+        </ScrollLink>
+        <ScrollLink
+          position={870}
+          extraClasses="text-blue hidden sm:flex md:hidden"
         >
           NOSOTROS
-        </div>
-        <div
-          onClick={scrollUpToMusicianSection}
-          className="text-blue hover:underline "
+        </ScrollLink>
+        <ScrollLink position={800} extraClasses="text-blue sm:hidden">
+          NOSOTROS
+        </ScrollLink>
+        <ScrollLink position={2750} extraClasses="text-blue hidden md:flex">
+          MÚSICOS
+        </ScrollLink>
+        <ScrollLink
+          position={1900}
+          extraClasses="text-blue hidden sm:flex md:hidden"
         >
           MÚSICOS
-        </div>
+        </ScrollLink>
+        <ScrollLink position={2125} extraClasses="text-blue sm:hidden">
+          MÚSICOS
+        </ScrollLink>
       </div>
       <div
         id="buttons"
@@ -109,25 +92,22 @@ export default function NavBar() {
 
       <UserLogOutNavbar />
 
-      <NavbarMenu id="menu" className=" pt-5 w-[245px] bg-[#081540]  ">
-        <div
-          onClick={scrollUpToBeginSection}
-          className="text-white hover:underline "
-        >
+      <NavbarMenu id="menu" className="pt-5 w-[245px] bg-[#081540]">
+        <ScrollLink position={0} extraClasses="text-white">
           INICIO
-        </div>
-        <div
-          onClick={scrollUpToUsSection2}
-          className="text-white hover:underline"
-        >
+        </ScrollLink>
+        <ScrollLink position={870} extraClasses="text-white hidden sm:flex">
           NOSOTROS
-        </div>
-        <div
-          onClick={scrollUpToMusicianSection2}
-          className="text-white hover:underline"
-        >
+        </ScrollLink>
+        <ScrollLink position={800} extraClasses="text-white sm:hidden">
+          NOSOTROS
+        </ScrollLink>
+        <ScrollLink position={1900} extraClasses="text-white hidden sm:flex">
           MÚSICOS
-        </div>
+        </ScrollLink>
+        <ScrollLink position={2125} extraClasses="text-white sm:hidden">
+          MÚSICOS
+        </ScrollLink>
         <div className={clsx("flex flex-col gap-2", { hidden: isLoggedIn })}>
           <LogInModalToggle />
           <RegisterModalToggle />

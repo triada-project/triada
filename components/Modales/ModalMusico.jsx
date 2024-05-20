@@ -18,6 +18,7 @@ import {
 } from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
+import { useForm } from "react-hook-form";
 import Events from "../../objects/events.json";
 import More from "../../public/assets/svg/add-circle";
 
@@ -34,6 +35,12 @@ export default function ModalMusico({ eventData }) {
   const [size, setSize] = React.useState("3xl");
   console.log(eventData);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const { events } = Events;
 
   const handleOpen = (size) => {
@@ -41,7 +48,23 @@ export default function ModalMusico({ eventData }) {
     onOpen();
   };
 
-  //const eventData = events.filter((evento) => evento.estado === "activo");
+  async function onSubmit(data) {
+    const response = await fetch(
+      `http://localhost:4000/events/${eventData._id}/confirmar-codigo-evento`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventId: eventData._id,
+          codigoEvento: data.codigoEvento,
+        }),
+      }
+    );
+  }
+
+  //const eventData = events.filter((evento) => evento.estado === "aceptado");
 
   return (
     <>
@@ -67,7 +90,7 @@ export default function ModalMusico({ eventData }) {
 
               <ModalBody className=" h-[600px] sm:flex sm:gap-3   ">
                 <div key={eventData._id} className="  overflow-auto">
-                  {eventData.status === "activo" && (
+                  {eventData.status === "aceptado" && (
                     <div className="flex flex-row bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full  p-4 ">
                       <Image
                         src="/assets/svg/play.svg"
@@ -100,7 +123,7 @@ export default function ModalMusico({ eventData }) {
                         src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"
                         className="w-6 h-6 mr-2"
                       />
-                      Evento {eventData.status} por confirmar
+                      Evento {eventData.status}
                     </div>
                   )}
 
@@ -127,7 +150,7 @@ export default function ModalMusico({ eventData }) {
                     <div className="flex gap-6 items-center">
                       <Image
                         alt="card-background"
-                        src={eventData.url_imagen}
+                        src={eventData.clientPicture}
                         className="rounded-full w-20 h-20"
                       />
                       <p className="text-center text-xl md:text-lg font-semibold">
@@ -148,7 +171,7 @@ export default function ModalMusico({ eventData }) {
                           )}
 
                         {eventData.length > 0 &&
-                          eventData[0].estado === "activo" && (
+                          eventData[0].estado === "aceptado" && (
                             <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
                               <Image
                                 src="/assets/svg/play.svg"
@@ -247,7 +270,7 @@ export default function ModalMusico({ eventData }) {
                                 src="/assets/svg/call.svg"
                                 className="w-6 h-6 mr-2"
                               />
-                              {eventData.estado === "activo" ||
+                              {eventData.estado === "aceptado" ||
                                 (eventData.estado === "finalizado" && (
                                   <p className="">{eventData.phoneClient}</p>
                                 ))}
@@ -315,7 +338,7 @@ export default function ModalMusico({ eventData }) {
                   </div>
 
                   <br />
-                  {eventData.status === "activo" && (
+                  {eventData.status === "aceptado" && (
                     <div className="bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full mt-4  p-4 ">
                       El pago se depositara en tu cuenta en automático al
                       terminar el evento, recuerda compartir el código de inicio
@@ -336,19 +359,23 @@ export default function ModalMusico({ eventData }) {
                     </div>
                   )}
 
-                  {eventData.status === "activo" && (
-                    <div className=" mt-5 pt-4 flex flex-col gap-3">
+                  {eventData.status === "aceptado" && (
+                    <form
+                      onSubmit={handleSubmit(onSubmit)}
+                      className=" mt-5 pt-4 flex flex-col gap-3"
+                    >
                       <Input
                         className=" w-full h-14 rounded-none"
                         isRequired
                         variant="bordered"
                         radius="sm"
                         label="Ingresa el código compartido por el cliente"
+                        {...register("codigoEvento")}
                       />
-                      <Button color="danger" className="w-full">
-                        Enviar código
+                      <Button color="danger" className="w-full" type="submit">
+                        Confirmar código
                       </Button>
-                    </div>
+                    </form>
                   )}
                 </div>
                 {/* <ModalBody className="sm:flex sm:gap-3 "> */}

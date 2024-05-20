@@ -19,15 +19,23 @@ export default function CheckoutForm() {
     }  
 
     setIsProcessing(true);
-
+    
     const { error} = await stripe.confirmPayment({
       elements,
       confirmParams: {
+        
         // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/completion`,
+        return_url: `${window.location.origin}/`,
       },
+      // redirect:"if_required",
     });
-
+    // if(error){
+    //   setMessage(error.message);
+    // }else if (paymentIntent && paymentIntent.status === "succeeded"){
+    //   setMessage("Payment status: " +paymentIntent.status + "bien");
+    // } else {
+    //   setMessage("Tu pago se realizo con exito ");
+    // };
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
     } else {
@@ -38,16 +46,18 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit} >
-      <PaymentElement id="payment-element" />
-      <button disabled={isProcessing || !stripe || !elements } id="submit">
-        <span id="button-text">
-          {isProcessing ? "Processing ... " : "Pagar"}
-        </span>
-      </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
-    </form>
+    
+      <form id="payment-form" onSubmit={handleSubmit} >
+        <PaymentElement id="payment-element" />
+        <button disabled={isProcessing || !stripe || !elements } id="submit" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mt-5 w-full">
+          <span id="button-text">
+            {isProcessing ? "Processing ... " : "Pagar"}
+          </span>
+        </button>
+        {/* Show any error or success messages */}
+        {message && <div id="payment-message">{message}</div>}
+      </form>
+  
   );
 }
 
