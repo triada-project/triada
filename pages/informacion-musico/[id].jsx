@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Avatar, AvatarIcon, Chip } from "@nextui-org/react";
 import NavBar from "@/components/Navbar";
@@ -12,6 +12,8 @@ import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import FooterMain from "@/components/footer/footer";
+import { useRouter } from "next/router";
+import useTokenStore from "@/stores/tokenStore";
 
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -23,6 +25,19 @@ const lato = Lato({
 });
 
 export default function musicianDetail() {
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+  }, []);
+  console.log(tokenObject);
+
   const { users } = dataMusician;
 
   const musicalGeneres = users.musicalGenere;

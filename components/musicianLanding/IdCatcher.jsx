@@ -5,11 +5,7 @@ const IdCatcher = () => {
   const router = useRouter();
   const { id } = router.query; // Aquí obtenemos el id del query param
 
-  return (
-    <div>
-      <h1>User ID: {id}</h1>
-    </div>
-  );
+  return id;
 };
 
 export default IdCatcher;

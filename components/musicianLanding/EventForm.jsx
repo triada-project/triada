@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 import ReactDOM from "react-dom";
 import { Contrail_One, Josefin_Sans, Lato } from "next/font/google";
 import {
@@ -14,6 +14,7 @@ import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
 import dataMusician from "../../objects/musicianObject.json";
+import IdCatcher from "./IdCatcher";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -39,6 +40,7 @@ export default function EventForm() {
     const phonePrefix = "+52" + data.phone;
     const fecha = new Date(data.date.year, data.date.month - 1, data.date.day);
     const fechaFormateada = fecha.toLocaleDateString();
+
     console.log(data);
     try {
       const response = await fetch("http://localhost:3005/events", {
@@ -63,6 +65,8 @@ export default function EventForm() {
           totalHours: getTotalHours(),
           eventFee: totalRes(),
           isChecked: data.isChecked,
+          musician: <IdCatcher />,
+          mlient: tokenObject._id,
         }),
         headers: {
           "Content-Type": "application/json",
