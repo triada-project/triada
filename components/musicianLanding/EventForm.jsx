@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
+=======
+import { React } from "react";
+>>>>>>> 9c814f080e0209538a90ff850c3c80b397be43de
 import ReactDOM from "react-dom";
 import { Contrail_One, Josefin_Sans, Lato } from "next/font/google";
 import {
@@ -14,7 +18,7 @@ import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
 import dataMusician from "../../objects/musicianObject.json";
-import { useRouter } from "next/router";
+import IdCatcher from "./IdCatcher";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -76,6 +80,11 @@ export default function EventForm() {
           totalHours: getTotalHours(),
           eventFee: totalRes(),
           isChecked: data.isChecked,
+<<<<<<< HEAD
+=======
+          musician: <IdCatcher />,
+          client: tokenObject._id,
+>>>>>>> 9c814f080e0209538a90ff850c3c80b397be43de
         }),
         headers: {
           "Content-Type": "application/json",
@@ -143,7 +152,7 @@ export default function EventForm() {
             className="ml-2 mt-2 mr-5"
           />
         </div>
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row ">
           <p className="text-blue-700 flex-auto text-center p-2">Disponible:</p>
           {users.availability.map((slot) => (
             <p
