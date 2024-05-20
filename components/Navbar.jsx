@@ -88,6 +88,11 @@ export default function NavBar() {
         className={clsx("flex gap-[24px]", { hidden: isLoggedIn })}
         justify="end"
       >
+      <div
+        id="buttons"
+        className={clsx("flex gap-[24px]", { hidden: isLoggedIn })}
+        justify="end"
+      >
         <LogInModal />
         <RegisterModal />
       </div>

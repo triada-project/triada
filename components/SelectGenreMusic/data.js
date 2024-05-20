@@ -1,37 +1,46 @@
 export const musicalGenre = [
   {
     id: "Acústico",
+    id: "Acústico",
     musicalGenre: "Acústico",
   },
   {
+    id: "Banda",
     id: "Banda",
     musicalGenre: "Banda",
   },
   {
     id: "Blues",
+    id: "Blues",
     musicalGenre: "Blues",
   },
   {
+    id: "Clásica",
     id: "Clásica",
     musicalGenre: "Clásica",
   },
   {
     id: "Electrónica",
+    id: "Electrónica",
     musicalGenre: "Electrónica",
   },
   {
+    id: "Folk",
     id: "Folk",
     musicalGenre: "Folk",
   },
   {
     id: "Jazz",
+    id: "Jazz",
     musicalGenre: "Jazz",
   },
   {
     id: "Pop",
+    id: "Pop",
     musicalGenre: "Pop",
   },
   {
+    id: "Rock",
     id: "Rock",
     musicalGenre: "Rock",
   },
