@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Josefin_Sans, Lato } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import ClientOrMusician from "./ClientOrMusician";
 
 const josefine = Josefin_Sans({
@@ -25,9 +25,9 @@ export default function NewUserForm() {
       headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
-      alert("User was created");
+      alert("Usuario creado con exito");
     } else {
-      alert("User was not created, try again");
+      alert("Usuario no creado, intentalo de nuevo");
     }
   }
 

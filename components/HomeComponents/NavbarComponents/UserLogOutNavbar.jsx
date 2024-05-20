@@ -37,7 +37,7 @@ export default function UserLogOutNavbar() {
               src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
             />
           </DropdownTrigger>
-          <DropdownMenu aria-label="Profile Actions" variant="flat">
+          <DropdownMenu aria-label="Profile Actions">
             <DropdownItem isReadOnly="true" className="h-14 gap-2">
               <p className="font-semibold">Sesión iniciada como</p>
               <p className="font-semibold">zoey@mail.com</p>
