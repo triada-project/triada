@@ -2,6 +2,7 @@ import Camera from "../public/assets/svg/camera.svg";
 import Image from "next/image";
 import { Lato } from "next/font/google";
 import ButtonPink from "./perfil-cliente/ButtonPink";
+import { Button } from "@nextui-org/react";
 
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
@@ -19,7 +20,22 @@ export default function UpdateCardPicture() {
           </p>
         </figure>
       </div>
-      <ButtonPink width={"w-[150px]"} text={"Cargar imagen"} mtop="mt-5" />
+      <Button
+        htmlFor="archivo"
+        className={`bg-[#EF107D] text-white w-[150px] h-[50px] rounded text-base ${lato.className} mt-5 cursor-pointer`}
+      >
+        <label htmlFor="archivo" className=" text-sm text-white cursor-pointer">
+          Cambiar foto de perfil
+        </label>
+        <input type="file" id="archivo" name="archivo" className="hidden" />
+      </Button>
+
+      {/* <ButtonPink
+        width={"w-[150px]"}
+        text={"Cargar imagen"}
+        mtop="mt-5"
+        type="file"
+      /> */}
     </section>
   );
 }

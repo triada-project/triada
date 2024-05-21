@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Contrail_One, Josefin_Sans, Lato } from "next/font/google";
 import {
@@ -14,6 +14,7 @@ import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
 import dataMusician from "../../objects/musicianObject.json";
+import IdCatcher from "./IdCatcher";
 import { useRouter } from "next/router";
 
 const josefine = Josefin_Sans({
@@ -23,8 +24,7 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 const { users } = dataMusician;
 
-
-export default function EventForm() {
+export default function EventForm({ userData, musicianId }) {
   const {
     register,
     watch,
@@ -37,34 +37,32 @@ export default function EventForm() {
       date: "",
     },
   });
-  const [totalEvent, setTotalEvent] = useState('') ;
-  console.log(totalEvent,'this is totalevent');
+  const [totalEvent, setTotalEvent] = useState("");
+  console.log(totalEvent, "this is totalevent");
   const router = useRouter();
-  const [route, setRoute] = useState('');
+  const [route, setRoute] = useState("");
 
-  useEffect(()=>{
-
+  useEffect(() => {
     let result = users.eventFee * getTotalHours();
-    console.log(result,'hola')
+    console.log(result, "hola");
     setTotalEvent(result);
-    
-  },[])
+  }, []);
 
   const onSubmit = async (data) => {
     const phonePrefix = "+52" + data.phone;
     const fecha = new Date(data.date.year, data.date.month - 1, data.date.day);
     const fechaFormateada = fecha.toLocaleDateString();
-   
+
     console.log(data);
     try {
-      const response = await fetch("http://localhost:3005/events", {
+      const response = await fetch("http://localhost:4000/events", {
         method: "POST",
         body: JSON.stringify({
           address: {
             state: data.state,
             city: data.city,
             street: data.street,
-            neigbourhood: data.neigbourhood,
+            neighborhood: data.neighborhood,
             zipCode: data.zipCode,
             exteriorNumber: data.exteriorNumber,
             interiorNumber: data.interiorNumber,
@@ -82,21 +80,20 @@ export default function EventForm() {
           totalHours: getTotalHours(),
           eventFee: totalRes(),
           isChecked: data.isChecked,
-          totalHours: getTotalHours(),
-          eventFee: totalRes(),
-          isChecked: data.isChecked,
+          musician: musicianId,
+          client: userData._id,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
-      if(response.ok){
+      if (response.ok) {
         const eventData = await response.json();
         console.log(eventData);
         setRoute(router.push(`/stripe/${eventData.data.events._id}`));
       }
-      
-      if(!response.ok) {
+
+      if (!response.ok) {
         throw new Error(response.statusText);
       }
       const eventData = await response.json();
@@ -193,7 +190,7 @@ export default function EventForm() {
             <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 mb-2 sm:text-[20px]">
               Elige el horario
             </h2>
-            
+
             <div className="sm:flex items-center gap-4 w-full">
               <Select
                 id="startHour"
@@ -280,8 +277,7 @@ export default function EventForm() {
               radius="sm"
               label="Colonia"
               onChange={(e) => setValue(e.target.value)}
-              {...register("neigbourhood", { maxLength: 30 })}
-              {...register("neigbourhood", { maxLength: 30 })}
+              {...register("neighborhood", { maxLength: 30 })}
               className="sm:w-1/2"
             />
             <Input

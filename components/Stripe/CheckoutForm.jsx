@@ -16,11 +16,11 @@ export default function CheckoutForm() {
       // Stripe.js has not yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
-    }  
+    }
 
     setIsProcessing(true);
-    
-    const { error} = await stripe.confirmPayment({
+
+    const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         
@@ -46,29 +46,22 @@ export default function CheckoutForm() {
   };
 
   return (
-    
-      <form id="payment-form" onSubmit={handleSubmit} >
-        <PaymentElement id="payment-element" />
-        <button disabled={isProcessing || !stripe || !elements } id="submit" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mt-5 w-full">
-          <span id="button-text">
-            {isProcessing ? "Processing ... " : "Pagar"}
-          </span>
-        </button>
-        {/* Show any error or success messages */}
-        {message && <div id="payment-message">{message}</div>}
-      </form>
-  
+    <form id="payment-form" onSubmit={handleSubmit}>
+      <PaymentElement id="payment-element" />
+      <button
+        disabled={isProcessing || !stripe || !elements}
+        id="submit"
+        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mt-5 w-full"
+      >
+        <span id="button-text">
+          {isProcessing ? "Processing ... " : "Pagar"}
+        </span>
+      </button>
+      {/* Show any error or success messages */}
+      {message && <div id="payment-message">{message}</div>}
+    </form>
   );
 }
-
-
-
-
-
-
-
-
-
 
 // import React, { useEffect, useState } from "react";
 // import {
