@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Contrail_One, Josefin_Sans, Lato } from "next/font/google";
 import {
@@ -15,6 +15,7 @@ import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
 import dataMusician from "../../objects/musicianObject.json";
 import IdCatcher from "./IdCatcher";
+import { useRouter } from "next/router";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -66,7 +67,7 @@ export default function EventForm() {
           eventFee: totalRes(),
           isChecked: data.isChecked,
           musician: <IdCatcher />,
-          mlient: tokenObject._id,
+          client: tokenObject._id,
         }),
         headers: {
           "Content-Type": "application/json",
