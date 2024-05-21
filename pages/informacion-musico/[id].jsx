@@ -11,7 +11,6 @@ import AsideLeft from "@/components/musicianLanding/AsideLeft";
 import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
-import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import FooterMain from "@/components/footer/footer";
 import { useRouter } from "next/router";
 import useTokenStore from "@/stores/tokenStore";
@@ -72,7 +71,6 @@ export default function musicianDetail() {
   return (
     <>
       <main className=" shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50 max-w-[1440px] m-auto bg-white">
-      <main className=" shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50 max-w-[1440px] m-auto bg-white">
         <NavBar />
         <div className="lg:ml-[80px] lg:mr-[80px] ">
           <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-4 md:grid-rows-7 grid-flow-col  ">
@@ -101,7 +99,6 @@ export default function musicianDetail() {
                   {userData.musicalGenre.map((nombre, index) => (
                     <Chip
                       key={index}
-                      key={index}
                       classNames={{
                         base: "bg-[#081540] h-[32px] mt-2",
                         content: "text-[#29FEFD] ",
@@ -128,7 +125,6 @@ export default function musicianDetail() {
                   {userData.eventType.map((nombre, index) => (
                     <Chip
                       key={index}
-                      key={index}
                       classNames={{
                         base: "bg-[#081540] h-[32px] mt-2",
                         content: "text-[#29FEFD] ",
@@ -140,12 +136,10 @@ export default function musicianDetail() {
                 </div>
               </div>
               <div className="md:gap-4">
-              <div className="md:gap-4">
                 <span>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                     Videos
                   </h2>
-
 
                   <CarouselVideos />
                 </span>
@@ -154,16 +148,13 @@ export default function musicianDetail() {
                     Fotos
                   </h2>
                   <CarouselFotos classname="" />
-                  <CarouselFotos classname="" />
                 </span>
               </div>
-
 
               <div>
                 <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                   Requerimientos
                 </h2>
-                <div className="text-black ">
                 <div className="text-black ">
                   <ul>
                     {userData.requirements.map((requirement, index) => {
