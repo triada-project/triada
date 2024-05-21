@@ -1,3 +1,4 @@
+
 import { React, useEffect } from "react";
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Avatar, AvatarIcon, Chip } from "@nextui-org/react";
@@ -14,6 +15,7 @@ import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import FooterMain from "@/components/footer/footer";
 import { useRouter } from "next/router";
 import useTokenStore from "@/stores/tokenStore";
+
 
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -39,7 +41,6 @@ export default function musicianDetail() {
   console.log(tokenObject);
 
   const { users } = dataMusician;
-
   const musicalGeneres = users.musicalGenere;
   const eventType = users.eventType;
 
@@ -210,3 +211,4 @@ export default function musicianDetail() {
     </>
   );
 }
+

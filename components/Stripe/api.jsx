@@ -5,7 +5,7 @@ export async function capturePayment(paymentIntentId) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ paymentIntentId: 'pi_3PDdZIDoqexf69Wm4q7xt9zR' }),
+        body: JSON.stringify({ paymentIntentId: 'pi_3PDzYoDoqexf69Wm0Lpctt7I' }),
       });
   
       if (!response.ok) {

@@ -3,11 +3,10 @@ import ButtonsStepper from "@/components/stepperComponents/buttonsStepper";
 import StepperLayout from "@/components/stepperComponents/StepperLayout";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
-import { Select, SelectSection, SelectItem } from "@nextui-org/react";
-import SelectGenreMusic from "@/components/SelectGenreMusic/SelectGenreMusic";
-import { Input } from "@nextui-org/react";
-import ButtonPink from "@/components/perfil-cliente/ButtonPink";
-import SelectTypeEvents from "@/components/SelectGenreMusic/SelectTypeEvents";
+import { Spinner } from "@nextui-org/react";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import useTokenStore from "@/stores/tokenStore";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -16,15 +15,90 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Step5() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const router = useRouter();
+  const [route, setRoute] = useState();
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+  const [accountCreatePending, setAccountCreatePending] = useState(false);
+  const [accountLinkCreatePending, setAccountLinkCreatePending] =
+    useState(false);
+  const [error, setError] = useState(false);
+  const [connectedAccountId, setConnectedAccountId] = useState();
 
-  //console.log(errors);
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+  }, []);
 
-  const onSubmit = (data) => console.log(data);
+  const handleCreateAccountStripe = async () => {
+    setAccountCreatePending(true);
+    setError(false);
+    fetch("http://localhost:4000/account", {
+      method: "POST",
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        setAccountCreatePending(false);
+
+        const { account, error } = json;
+
+        if (account) {
+          setConnectedAccountId(account);
+          setAccountLinkCreatePending(true);
+          setError(false);
+          fetch("http://localhost:4000/account_link", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              account: account,
+            }),
+          })
+            .then((response) => response.json())
+            .then((json) => {
+              setAccountLinkCreatePending(false);
+
+              const { url, error } = json;
+              if (url) {
+                window.location.href = url;
+              }
+
+              if (error) {
+                setError(true);
+              }
+            });
+
+          fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id_stripe: account,
+            }),
+          });
+        }
+
+        if (error) {
+          setError(true);
+        }
+      });
+  };
+
+  if (!tokenObject) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
+      </div>
+    );
+  }
+
   return (
     <StepperLayout>
       <section className=" w-[330px] mt-14 md:w-[404px] lg:w-[500px] flex flex-col items-center">
@@ -41,11 +115,38 @@ export default function Step5() {
           height={300}
           className=" sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px]"
         />
+        {error && <p className="  text-xl text-[#455A64]">Algo salió mal!</p>}
+        {(connectedAccountId ||
+          accountCreatePending ||
+          accountLinkCreatePending) && (
+          <div className="dev-callout">
+            {connectedAccountId && (
+              <Spinner
+                label="En un momento te redirigiremos a Stripe para la creación de tu
+              cuenta."
+                color="secondary"
+                labelColor="secondary"
+              />
+            )}
+            {accountCreatePending && (
+              <Spinner
+                label="En un momento te redirigiremos a Stripe para la creación de tu
+            cuenta."
+                color="secondary"
+                labelColor="secondary"
+              />
+            )}
+            {/* {accountLinkCreatePending && (
+              <p>Creando un nuevo enlace de cuenta...</p>
+            )} */}
+          </div>
+        )}
         <ButtonsStepper
           mTop={"mt-[60px]"}
           step={"7"}
           stepBack={"/stepper/paso6"}
-          stepNext={"/stepper/paso8"}
+          // stepNext={"/stepper/finalizar"}
+          onClick={handleCreateAccountStripe}
         />
         {/* <form onSubmit={handleSubmit(onSubmit)}>
           <div className=" flex flex-col items-center mt-5">
