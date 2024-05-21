@@ -62,10 +62,8 @@ export default function EventForm({ userData, musicianId }) {
             state: data.state,
             city: data.city,
             street: data.street,
-            neigbourhood: data.neigbourhood,
+            neighborhood: data.neighborhood,
             zipCode: data.zipCode,
-            exteriorNumber: data.exteriorNumber,
-            interiorNumber: data.interiorNumber,
             exteriorNumber: data.exteriorNumber,
             interiorNumber: data.interiorNumber,
             reference: data.reference,
@@ -74,7 +72,6 @@ export default function EventForm({ userData, musicianId }) {
           endHour: data.endHour,
           eventName: data.eventName,
           eventType: data.eventType,
-          phoneClient: phonePrefix,
           phoneClient: phonePrefix,
           startHour: data.startHour,
           totalHours: getTotalHours(),
@@ -277,8 +274,7 @@ export default function EventForm({ userData, musicianId }) {
               radius="sm"
               label="Colonia"
               onChange={(e) => setValue(e.target.value)}
-              {...register("neigbourhood", { maxLength: 30 })}
-              {...register("neigbourhood", { maxLength: 30 })}
+              {...register("neighborhood", { maxLength: 30 })}
               className="sm:w-1/2"
             />
             <Input
