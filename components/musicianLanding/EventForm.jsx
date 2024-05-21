@@ -23,12 +23,15 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 const { users } = dataMusician;
+const { users } = dataMusician;
 
 export default function EventForm({ userData, musicianId }) {
   const {
     register,
     watch,
+    watch,
     handleSubmit,
+    control,
     control,
     formState: { errors },
   } = useForm({
@@ -66,12 +69,15 @@ export default function EventForm({ userData, musicianId }) {
             zipCode: data.zipCode,
             exteriorNumber: data.exteriorNumber,
             interiorNumber: data.interiorNumber,
+            exteriorNumber: data.exteriorNumber,
+            interiorNumber: data.interiorNumber,
             reference: data.reference,
           },
           date: fechaFormateada,
           endHour: data.endHour,
           eventName: data.eventName,
           eventType: data.eventType,
+          phoneClient: phonePrefix,
           phoneClient: phonePrefix,
           startHour: data.startHour,
           totalHours: getTotalHours(),
@@ -181,6 +187,23 @@ export default function EventForm({ userData, musicianId }) {
                   />
                 )}
               />
+
+            <div className="w-full max-w-xl flex flex-row gap-4">
+              <Controller
+                name="date"
+                control={control}
+                rules={{ required: true }} // Add your validation rules here
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <DatePicker
+                    isRequired
+                    onChange={onChange}
+                    format="mm/dd/yyyy"
+                    label="Mes / Día / Año"
+                    variant="bordered"
+                    radius="sm"
+                  />
+                )}
+              />
             </div>
           </span>
           <span className="items-center gap-2 w-1/2">
@@ -198,6 +221,7 @@ export default function EventForm({ userData, musicianId }) {
                 radius="sm"
                 {...register("startHour", { required: true })}
               >
+                <SelectItem key={"09:00"}>09:00</SelectItem>
                 <SelectItem key={"09:00"}>09:00</SelectItem>
                 <SelectItem key={"10:00"}>10:00</SelectItem>
                 <SelectItem key={"11:00"}>11:00</SelectItem>
@@ -220,6 +244,7 @@ export default function EventForm({ userData, musicianId }) {
                 isRequired
                 variant="bordered"
                 radius="sm"
+                {...register("endHour", { required: true })}
                 {...register("endHour", { required: true })}
               >
                 <SelectItem key={"10:00"}>10:00</SelectItem>
@@ -272,6 +297,29 @@ export default function EventForm({ userData, musicianId }) {
               isRequired
               variant="bordered"
               radius="sm"
+              label="Estado"
+              onChange={(e) => setValue(e.target.value)}
+              {...register("state", { maxLength: 30, required: false })}
+              className="sm:w-1/2"
+            />
+
+            <Input
+              isRequired
+              variant="bordered"
+              radius="sm"
+              label="Ciudad"
+              onChange={(e) => setValue(e.target.value)}
+              {...register("city", {
+                required: false,
+              })}
+              className="sm:w-1/2 mt-5 sm:mt-0"
+            />
+          </div>
+          <div className="sm:flex gap-4 w-full">
+            <Input
+              isRequired
+              variant="bordered"
+              radius="sm"
               label="Colonia"
               onChange={(e) => setValue(e.target.value)}
               {...register("neighborhood", { maxLength: 30 })}
@@ -281,6 +329,10 @@ export default function EventForm({ userData, musicianId }) {
               variant="bordered"
               radius="sm"
               label="Código postal"
+              onChange={(e) => setValue(e.target.value)}
+              {...register("zipCode", {
+                required: false,
+              })}
               onChange={(e) => setValue(e.target.value)}
               {...register("zipCode", {
                 required: false,
@@ -325,6 +377,8 @@ export default function EventForm({ userData, musicianId }) {
               label="Referencia"
               onChange={(e) => setValue(e.target.value)}
               {...register("reference", { maxLength: 80 })}
+              onChange={(e) => setValue(e.target.value)}
+              {...register("reference", { maxLength: 80 })}
             />
             <Input
               isRequired
@@ -345,12 +399,16 @@ export default function EventForm({ userData, musicianId }) {
               label="Nombre de evento"
               onChange={(e) => setValue(e.target.value)}
               {...register("eventName", { maxLength: 50 })}
+              onChange={(e) => setValue(e.target.value)}
+              {...register("eventName", { maxLength: 50 })}
             />
+            <Select
             <Select
               isRequired
               variant="bordered"
               radius="sm"
               label="Tipo de evento"
+              onChange={(e) => setValue(e.target.value)}
               onChange={(e) => setValue(e.target.value)}
               {...register("eventType")}
               className="mt-5 sm:mt-0"
@@ -369,20 +427,45 @@ export default function EventForm({ userData, musicianId }) {
                 Servicio religioso
               </SelectItem>
             </Select>
+            >
+              <SelectItem key={"Boda"}>Boda</SelectItem>
+              <SelectItem key={"Cena"}>Cena</SelectItem>
+              <SelectItem key={"Concierto en recinto"}>
+                Concierto en recinto
+              </SelectItem>
+              <SelectItem key={"Coorporativo"}>Coorporativo</SelectItem>
+              <SelectItem key={"Cumpleaños"}>Cumpleaños</SelectItem>
+              <SelectItem key={"Presentación en bar"}>
+                Presentación en bar
+              </SelectItem>
+              <SelectItem key={"Servicio religioso"}>
+                Servicio religioso
+              </SelectItem>
+            </Select>
           </div>
+          <div className="text-[#455A64] w-full divide-y ">
+            <h2 className="{`${josefin.classname} text-[#37474F] font-semibold sm:text-[20px] divide-[#455A64]">
           <div className="text-[#455A64] w-full divide-y ">
             <h2 className="{`${josefin.classname} text-[#37474F] font-semibold sm:text-[20px] divide-[#455A64]">
               Resumen
             </h2>
             <div className="flex mt-4">
+            <div className="flex mt-4">
               <p className="w-1/2">Horas contratadas</p>
+              <p className="w-1/2 text-right">{getTotalHours()} horas</p>
               <p className="w-1/2 text-right">{getTotalHours()} horas</p>
             </div>
             <div className="flex mt-4">
+            <div className="flex mt-4">
               <p className="w-2/3">Total de reservación</p>
+              <p className="w-1/3 text-right">${totalRes()}</p>
               <p className="w-1/3 text-right">${totalRes()}</p>
             </div>
           </div>
+          <Checkbox isRequired {...register("isChecked")}>
+            Acepto términos y condiciones
+          </Checkbox>
+          {/* if !token then modal iniciar sesión */}
           <Checkbox isRequired {...register("isChecked")}>
             Acepto términos y condiciones
           </Checkbox>
