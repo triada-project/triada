@@ -20,23 +20,6 @@ import {
   Image,
   Chip,
 } from "@nextui-org/react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-  useDisclosure,
-} from "@nextui-org/react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Image,
-  Chip,
-} from "@nextui-org/react";
 
 import { Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
@@ -45,13 +28,8 @@ import Events from "../../objects/events.json";
 
 // condicional rendering
 import { Josefin_Sans, Lato } from "next/font/google";
-import { Josefin_Sans, Lato } from "next/font/google";
 import More from "../../public/assets/svg/add-circle";
 
-const josefine = Josefin_Sans({
-  weight: ["300", "400", "600", "700"],
-  subsets: ["latin"],
-});
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
@@ -61,17 +39,12 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function ModalCliente({ eventData }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [size, setSize] = React.useState("2xl");
-export default function ModalCliente({ eventData }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [size, setSize] = React.useState("2xl");
   const [rating, setRating] = useState(3); // Initial value
   //const [eventosPendientes, setEventosPendientes] = useState([]);
 
   const { events } = Events;
 
-
   const handleOpen = (size) => {
-    setSize(size);
     setSize(size);
     onOpen();
   };
@@ -114,19 +87,7 @@ export default function ModalCliente({ eventData }) {
         >
           <More /> <p> Detalles </p>
         </Button>
-        <Button
-          className="bg-white  p-0"
-          key={size}
-          onPress={() => handleOpen(size)}
-        >
-          <More /> <p> Detalles </p>
-        </Button>
       </div>
-      <Modal
-        size={size}
-        isOpen={isOpen}
-        onClose={onClose}
-        scrollBehavior="outside"
       <Modal
         size={size}
         isOpen={isOpen}
@@ -136,10 +97,6 @@ export default function ModalCliente({ eventData }) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-black">
-                Detalle Evento
-              </ModalHeader>
-              <ModalBody>
               <ModalHeader className="flex flex-col gap-1 text-black">
                 Detalle Evento
               </ModalHeader>
@@ -192,64 +149,7 @@ export default function ModalCliente({ eventData }) {
                         <p className="text-xs pr-1">{eventData.status}</p>
                       </div>
                     )}
-                    {eventData.status === "cancelado" && (
-                      <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
-                        <Image
-                          src="/assets/svg/close-circle.svg"
-                          className="w-52 h-4 mr-2"
-                        />
-                        <p className="text-xs pr-1">{eventData.status}</p>
-                      </div>
-                    )}
 
-                    {eventData.status === "pendiente" && (
-                      <div className="flex flex-row border border-slate-950 p-1 w-2/4 rounded-full items-center">
-                        <Image
-                          src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"
-                          className="w-10 h-4 mr-2"
-                        />
-                        <p className="text-xs w-full pr-1">
-                          {eventData.status}
-                        </p>
-                      </div>
-                    )}
-
-                    <p className="text-black text-sm font-bold mt-2 pb-2">
-                      Detalle del evento:{" "}
-                    </p>
-
-                    {/* <div className="columns-1 lg:columns-3  text-black flex"> */}
-                    {/* <div className="grid grid-cols-1 md:grid-cols-1 gap-4"> */}
-                    <div className="flex flex-col md:flex-row ">
-                      <ul className="list-none mr-9 ">
-                        <div className="flex  items-center gap-1">
-                          <Image
-                            src="/assets/svg/calendar_client.svg"
-                            className="mr-1 w-4 h-6 md:mr-3"
-                          />
-                          <li className="md:text-xs">
-                            Fecha: {eventData.date}
-                          </li>
-                        </div>
-                        <div className="flex items-center gap-1 md:gap-0">
-                          <Image
-                            src="/assets/svg/timer.svg"
-                            className="w-4 h-6 mr-1 md:w-3"
-                          />
-                          <li className="md:text-xs ">
-                            Inicio: {eventData.startHour}{" "}
-                          </li>
-                        </div>
-                        <div className="flex items-center gap-1 md:gap:0">
-                          <Image
-                            src="/assets/svg/SvgClock.svg"
-                            className="w-4 h-6 mr-1 md:w-3 md:mr-0"
-                          />
-                          <li className="md:text-xs">
-                            Final: {eventData.endHour}
-                          </li>
-                        </div>
-                      </ul>
                     {eventData.status === "pendiente" && (
                       <div className="flex flex-row border border-slate-950 p-1 w-2/4 rounded-full items-center">
                         <Image
@@ -354,38 +254,6 @@ export default function ModalCliente({ eventData }) {
                       </ul>
                     </div>
                   </div>
-                      <ul className="list-none ">
-                        <div className="flex items-center gap-1">
-                          <Image
-                            src="/assets/svg/calendar_client.svg"
-                            className="w-4 h-6 mr-2 md:w-4"
-                          />
-                          <li className="md:text-xs">
-                            Horas: {eventData.horas_contratadas_evento}
-                          </li>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Image
-                            src="/assets/svg/cash-outline.svg"
-                            className="w-4 h-6 mr-2 md:w-4"
-                          />
-                          <li className="md:text-xs">
-                            Costo:${eventData.eventFee}
-                          </li>
-                        </div>
-                        <div className="flex  gap-1">
-                          <Image
-                            src="/assets/svg/card-sharp.svg"
-                            className="w-4 h-6 mr-2 md:w-4"
-                          />
-                          <li className="md:text-xs pt-1">
-                            {" "}
-                            {eventData.status}
-                          </li>
-                        </div>
-                      </ul>
-                    </div>
-                  </div>
                 </div>
 
                 <Card className="mt-1">
@@ -410,63 +278,7 @@ export default function ModalCliente({ eventData }) {
                 <p className="text-black text-sm font-bold pb-2 pt-4 hidden">
                   Setlist del evento
                 </p>
-                <Card className="mt-1">
-                  <CardBody>
-                    <div className="flex items-center gap-2">
-                      <Image
-                        src="/assets/svg/ubicacion.svg"
-                        className="w-6 h-6 mr-2"
-                      />
-                      <p className="md:text-xs">
-                        {eventData?.address?.street} #
-                        {eventData?.address?.exteriorNumber}, Colonia{" "}
-                        {eventData?.address?.neighborhood},{" "}
-                        {eventData?.address?.country},{" "}
-                        {eventData?.address?.city}, C.P.{" "}
-                        {eventData?.address?.zipCode}
-                      </p>
-                    </div>
-                  </CardBody>
-                </Card>
 
-                <p className="text-black text-sm font-bold pb-2 pt-4 hidden">
-                  Setlist del evento
-                </p>
-
-                <div className=" grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-black  mx-auto hidden">
-                  <Card className="mr-5">
-                    <CardBody>
-                      <ul className="list-none mr-5 ">
-                        <li className="text-xs">Enter Sandman</li>
-                        <li className="text-xs">Metallica</li>
-                      </ul>
-                    </CardBody>
-                  </Card>
-                  <Card className="mr-5">
-                    <CardBody>
-                      <ul className="list-none mr-5 ">
-                        <li className="text-xs">Enter Sandman</li>
-                        <li className="text-xs">Metallica</li>
-                      </ul>
-                    </CardBody>
-                  </Card>
-                  <Card className="mr-5">
-                    <CardBody>
-                      <ul className="list-none mr-5 ">
-                        <li className="text-xs">Enter Sandman</li>
-                        <li className="text-xs">Metallica</li>
-                      </ul>
-                    </CardBody>
-                  </Card>
-                  <Card className="mr-5">
-                    <CardBody>
-                      <ul className="list-none mr-5 ">
-                        <li className="text-xs">Enter Sandman</li>
-                        <li className="text-xs">Metallica</li>
-                      </ul>
-                    </CardBody>
-                  </Card>
-                </div>
                 <div className=" grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-black  mx-auto hidden">
                   <Card className="mr-5">
                     <CardBody>
@@ -550,30 +362,7 @@ export default function ModalCliente({ eventData }) {
                     />
 
                     <Button color="danger" className="w-full">
-                {eventData.status === "finalizado" && (
-                  <div>
-                    <div className="flex flex-row">
-                      <p className="text-black text-sm font-bold pb-2 mr-3 items-center">
-                        Escribir reseña:
-                      </p>
-                      <Rating
-                        className="pb-3"
-                        style={{ maxWidth: 100 }}
-                        value={rating}
-                        onChange={setRating}
-                      />
-                    </div>
-                    <Input
-                      type="email"
-                      label="Tu opinion es importante..."
-                      variant="bordered"
-                      className="pb-4 w-full text-black"
-                    />
-
-                    <Button color="danger" className="w-full">
                       Enviar
-                    </Button>
-                  </div>
                     </Button>
                   </div>
                 )}
