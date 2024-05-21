@@ -1,15 +1,17 @@
-import React from 'react';
-import { capturePayment } from '../../components/Stripe/api.jsx'; // Importa la función capturePayment desde tu módulo de API
+import React from "react";
+import { capturePayment } from "../../components/Stripe/api.jsx"; // Importa la función capturePayment desde tu módulo de API
 
 const PaymentPage = () => {
   const handleCapturePayment = async () => {
     try {
-      const paymentIntentId = { paymentIntentId: 'pi_3PDzYoDoqexf69Wm0Lpctt7I' }; // ID del PaymentIntent
+      const paymentIntentId = {
+        paymentIntentId: "pi_3PDzYoDoqexf69Wm0Lpctt7I",
+      }; // ID del PaymentIntent
       const capturedPayment = await capturePayment(paymentIntentId);
-      console.log('Payment captured successfully:', capturedPayment);
+      console.log("Payment captured successfully:", capturedPayment);
       // Realizar cualquier acción adicional después de capturar el pago
     } catch (error) {
-      console.error('Failed to capture payment:', error);
+      console.error("Failed to capture payment:", error);
       // Manejar el error de captura de pago
     }
   };

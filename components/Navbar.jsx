@@ -11,6 +11,8 @@ import LogInModalToggle from "./HomeComponents/NavbarComponents/LogInModalToggle
 import RegisterModal from "./HomeComponents/NavbarComponents/RegisterModal";
 import RegisterModalToggle from "./HomeComponents/NavbarComponents/RegisterModalToggle";
 import UserLogOutNavbar from "./HomeComponents/NavbarComponents/UserLogOutNavbar";
+import Image from "next/image";
+import TiradaLogo from "../public/assets/svg/triada-logo.svg";
 
 const TOKEN_KEY = "token";
 
@@ -48,7 +50,7 @@ export default function NavBar() {
         />
         <div className="lg:-ms-[20px] xl:-ms-[140px]">
           <a href="/">
-            <img src="assets/images/PngLogoNavBar.png" alt="logoImg" />
+            <Image src={TiradaLogo} width={60} height={50} alt="logoImg" />
           </a>
         </div>
       </NavbarContent>

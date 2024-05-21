@@ -4,7 +4,7 @@ export default function AddPhoto() {
       <div className="mt-5 ">
         <label
           htmlFor="archivo"
-          className="bg-[#37474F] w-[196px] h-[196px] rounded-lg flex flex-col justify-center hover:bg-[#EE0075] text-white py-2 px-4 rounded cursor-pointer items-center"
+          className="bg-[#37474F] w-[196px] h-[196px] rounded-lg flex flex-col justify-center hover:bg-[#EE0075] text-white py-2 px-4  cursor-pointer items-center"
         >
           <svg
             width="32"
