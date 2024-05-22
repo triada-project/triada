@@ -1,4 +1,3 @@
-
 import { React, useEffect, useState } from "react";
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Avatar, AvatarIcon, Chip } from "@nextui-org/react";
@@ -16,7 +15,6 @@ import FooterMain from "@/components/footer/footer";
 import { useRouter } from "next/router";
 import useTokenStore from "@/stores/tokenStore";
 
-
 const josefin = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
@@ -30,6 +28,18 @@ export default function musicianDetail() {
   const router = useRouter();
   const userId = router.query.id;
   const [userData, setUserData] = useState(null);
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+  }, []);
+  console.log(tokenObject);
 
   console.log(userId);
   console.log(userData);
@@ -53,19 +63,6 @@ export default function musicianDetail() {
   if (!userData) {
     return <div>Cargando...</div>; // Muestra un mensaje de carga mientras se obtienen los datos
   }
-
-  const tokenObject = useTokenStore((state) => state.tokenObject);
-  useEffect(() => {
-    const tokenFromLocalStorage = localStorage.getItem("token");
-    if (tokenFromLocalStorage) {
-      const [encodedHeader, encodedPayload, encodedSignature] =
-        tokenFromLocalStorage.split(".");
-      const decodedPayload = atob(encodedPayload);
-      const payloadObject = JSON.parse(decodedPayload);
-      useTokenStore.setState({ tokenObject: payloadObject });
-    }
-  }, []);
-  console.log(tokenObject);
 
   const { users } = dataMusician;
   const musicalGeneres = users.musicalGenere;
@@ -222,7 +219,7 @@ export default function musicianDetail() {
                 </div>
               </div>
               <div className="mt-5 shadow-xl">
-                <EventForm />
+                <EventForm userData={tokenObject} musicianId={userId} />
               </div>
             </main>
             <div className="col-start-1 sm:col-span-2 md:col-span-1 p-5 sm:row-start-2 sm:row-span-9 ">
@@ -235,4 +232,3 @@ export default function musicianDetail() {
     </>
   );
 }
-

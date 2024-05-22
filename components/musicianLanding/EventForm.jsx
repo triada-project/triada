@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-=======
-import { React } from "react";
->>>>>>> 9c814f080e0209538a90ff850c3c80b397be43de
+import { React, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Contrail_One, Josefin_Sans, Lato } from "next/font/google";
 import {
@@ -19,6 +15,7 @@ import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
 import dataMusician from "../../objects/musicianObject.json";
 import IdCatcher from "./IdCatcher";
+import { useRouter } from "next/router";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -27,7 +24,7 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 const { users } = dataMusician;
 
-export default function EventForm() {
+export default function EventForm({ userData, musicianId }) {
   const {
     register,
     watch,
@@ -65,7 +62,7 @@ export default function EventForm() {
             state: data.state,
             city: data.city,
             street: data.street,
-            neigbourhood: data.neigbourhood,
+            neighborhood: data.neighborhood,
             zipCode: data.zipCode,
             exteriorNumber: data.exteriorNumber,
             interiorNumber: data.interiorNumber,
@@ -80,11 +77,8 @@ export default function EventForm() {
           totalHours: getTotalHours(),
           eventFee: totalRes(),
           isChecked: data.isChecked,
-<<<<<<< HEAD
-=======
-          musician: <IdCatcher />,
-          client: tokenObject._id,
->>>>>>> 9c814f080e0209538a90ff850c3c80b397be43de
+          musician: musicianId,
+          client: userData._id,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -193,6 +187,7 @@ export default function EventForm() {
             <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 mb-2 sm:text-[20px]">
               Elige el horario
             </h2>
+
             <div className="sm:flex items-center gap-4 w-full">
               <Select
                 id="startHour"
@@ -279,7 +274,7 @@ export default function EventForm() {
               radius="sm"
               label="Colonia"
               onChange={(e) => setValue(e.target.value)}
-              {...register("neigbourhood", { maxLength: 30 })}
+              {...register("neighborhood", { maxLength: 30 })}
               className="sm:w-1/2"
             />
             <Input

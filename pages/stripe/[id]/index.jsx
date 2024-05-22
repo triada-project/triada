@@ -65,7 +65,7 @@ function Payment() {
   }, []);
 
   // useEffect(() => {
-  //   fetch("http://localhost:3005/create-payment-intent", {
+  //   fetch("http://localhost:4000/create-payment-intent", {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",

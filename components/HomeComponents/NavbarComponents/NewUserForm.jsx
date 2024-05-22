@@ -101,7 +101,7 @@ export default function NewUserForm() {
             <label
               className={`pb-[8px] font-bold text-[16px] ${josefine.className}`}
             >
-              Nombre cliente / proyecto musical
+              Nombre del cliente / Proyecto musical
             </label>
             <input
               id="name"
