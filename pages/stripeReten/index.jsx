@@ -4,9 +4,8 @@ import { capturePayment } from "../../components/Stripe/api.jsx"; // Importa la 
 const PaymentPage = () => {
   const handleCapturePayment = async () => {
     try {
-      const paymentIntentId = {
-        paymentIntentId: "pi_3PDzYoDoqexf69Wm0Lpctt7I",
-      }; // ID del PaymentIntent
+      const paymentIntentId = "pi_3PJPelP5DUIoEtib0O1mQwku";
+      // ID del PaymentIntent
       const capturedPayment = await capturePayment(paymentIntentId);
       console.log("Payment captured successfully:", capturedPayment);
       // Realizar cualquier acción adicional después de capturar el pago
