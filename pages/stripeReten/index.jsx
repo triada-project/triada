@@ -1,10 +1,10 @@
 import React from "react";
 import { capturePayment } from "../../components/Stripe/api.jsx"; // Importa la función capturePayment desde tu módulo de API
 
-const PaymentPage = () => {
+const PaymentPage = ({ paymentIntent }) => {
   const handleCapturePayment = async () => {
     try {
-      const paymentIntentId = "pi_3PJPelP5DUIoEtib0O1mQwku";
+      const paymentIntentId = { paymentIntent };
       // ID del PaymentIntent
       const capturedPayment = await capturePayment(paymentIntentId);
       console.log("Payment captured successfully:", capturedPayment);
