@@ -21,6 +21,7 @@ import { Input } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import Events from "../../objects/events.json";
 import More from "../../public/assets/svg/add-circle";
+import { capturePayment } from "../Stripe/api";
 
 import { Josefin_Sans, Lato } from "next/font/google";
 
@@ -49,19 +50,40 @@ export default function ModalMusico({ eventData }) {
   };
 
   async function onSubmit(data) {
-    const response = await fetch(
-      `http://localhost:4000/events/${eventData._id}/confirmar-codigo-evento`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          eventId: eventData._id,
-          codigoEvento: data.codigoEvento,
-        }),
+    try {
+      const response = await fetch(
+        `http://localhost:4000/events/${eventData._id}/confirmar-codigo-evento`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            eventId: eventData._id,
+            codigoEvento: data.codigoEvento,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        // Si la respuesta no es exitosa (código 4xx o 5xx)
+        const errorData = await response.json(); // Intenta obtener detalles del error del backend
+        throw new Error(errorData.message || "Error al confirmar el código"); // Lanza un error con el mensaje del backend o uno genérico
       }
-    );
+      const completeSecretClient = eventData.idStripePayment;
+      const startPi = completeSecretClient.indexOf("pi_"); // Encontrar la posición de inicio de "pi_"
+      const endPi = completeSecretClient.indexOf("_secret");
+      const resultOnlyPi = completeSecretClient.substring(startPi, endPi);
+      console.log(resultOnlyPi);
+      // Si la respuesta es exitosa, puedes hacer algo aquí (por ejemplo, cerrar el modal)
+      await capturePayment(resultOnlyPi);
+      onClose();
+    } catch (error) {
+      // Manejo de errores generales (problemas de red, errores del servidor, etc.)
+      console.error("Error en la solicitud:", error);
+      // Puedes mostrar un mensaje de error al usuario aquí
+      alert(error.message); // O usar un componente más amigable para mostrar el error
+    }
   }
 
   //const eventData = events.filter((evento) => evento.estado === "aceptado");
