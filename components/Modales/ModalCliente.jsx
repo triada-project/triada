@@ -315,7 +315,7 @@ export default function ModalCliente({ eventData }) {
                 </div>
                 {/* className={` ${eventosPendientes.estado === 'pendiente' && hidden} `} */}
 
-                {eventData.status === "aceptado" && (
+                {eventData.status === "en_curso" && (
                   <div>
                     <p className="text-black text-sm font-bold pb-2">
                       Código de evento
