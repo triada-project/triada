@@ -23,7 +23,6 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-
 export default function EventForm({ userData, tokenObject, musicianId }) {
   const {
     register,
@@ -78,7 +77,7 @@ export default function EventForm({ userData, tokenObject, musicianId }) {
           eventFee: totalRes(),
           isChecked: data.isChecked,
           musician: musicianId,
-          client: tokenObject._id,
+          client: userData._id,
         }),
         headers: {
           "Content-Type": "application/json",

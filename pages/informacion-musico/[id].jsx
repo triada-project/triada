@@ -214,11 +214,18 @@ export default function musicianDetail() {
                 </div>
               </div>
               <div className="mt-5 shadow-xl">
-                <EventForm
-                  userData={userData}
-                  tokenObject={tokenObject}
-                  musicianId={userId}
-                />
+                {tokenObject ? (
+                  <EventForm
+                    userData={userData}
+                    tokenObject={tokenObject}
+                    musicianId={userId}
+                  />
+                ) : (
+                  <p>
+                    Registrate o inica sesión para poder contratar a este
+                    músico.
+                  </p>
+                )}
               </div>
             </main>
             <div className="col-start-1 sm:col-span-2 md:col-span-1 p-5 sm:row-start-2 sm:row-span-9 ">
