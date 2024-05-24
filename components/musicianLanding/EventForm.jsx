@@ -24,7 +24,7 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 const { users } = dataMusician;
 
-export default function EventForm({ userData, musicianId }) {
+export default function EventForm({ userData, musicianId, eventFee }) {
   const {
     register,
     watch,
@@ -43,7 +43,7 @@ export default function EventForm({ userData, musicianId }) {
   const [route, setRoute] = useState("");
 
   useEffect(() => {
-    let result = users.eventFee * getTotalHours();
+    let result = eventFee * getTotalHours();
     console.log(result, "hola");
     setTotalEvent(result);
   }, []);
@@ -128,7 +128,7 @@ export default function EventForm({ userData, musicianId }) {
   };
 
   const totalRes = () => {
-    return users.eventFee * getTotalHours();
+    return eventFee * getTotalHours();
   };
 
   return (
