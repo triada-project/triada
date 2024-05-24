@@ -116,7 +116,7 @@ export default function AsideMusico({ page, hidden }) {
             </p>
           </Button>
         </Link>
-        <Link href="/perfil-musico/galeria">
+        {/*<Link href="/perfil-musico/galeria">
           <Button
             className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
               page === "galeria" ? "bg-[#312971]" : ""
@@ -131,7 +131,7 @@ export default function AsideMusico({ page, hidden }) {
               Galería
             </p>
           </Button>
-        </Link>
+            </Link>*/}
         <Link href="/perfil-musico/repertorio">
           <Button
             className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
