@@ -3,9 +3,26 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import YouTube from "react-youtube";
 
+const options = {
+  height: "390",
+  width: "640",
+  playerVars: {
+    autoplay: 1,
+    controls: 1,
+  },
+};
+
 export default function CarouselVideos() {
   const videos = () => {
-    return <YouTube videoId="00TLrFv8ppI" className="w-" />;
+    const options = {
+      height: "460",
+      width: "100%",
+      // playerVars: {
+      //   autoplay: 1,
+      //   controls: 1,
+      // },
+    };
+    return <YouTube videoId="00TLrFv8ppI" opts={options} />;
   };
 
   const Images = [
@@ -25,7 +42,11 @@ export default function CarouselVideos() {
 
   return (
     <>
-      <ImageGallery items={Images} />
+      <ImageGallery
+        items={Images}
+        showFullscreenButton={false}
+        showPlayButton={false}
+      />
     </>
   );
 }

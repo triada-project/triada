@@ -333,7 +333,6 @@ export default function EventForm({ userData, musicianId }) {
               label="Teléfono"
               onChange={(e) => setValue(e.target.value)}
               {...register("phone", { pattern: /^[0-9]{10}$/ })}
-              {...register("phone", { pattern: /^[0-9]{10}$/ })}
               className="mt-5 sm:mt-0"
             />
           </div>
