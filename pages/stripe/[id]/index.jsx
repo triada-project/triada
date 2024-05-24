@@ -92,7 +92,11 @@ function Payment() {
   useEffect(() => {
     fetch("http://localhost:4000/config").then(async (r) => {
       const { publishableKey } = await r.json();
-      setStripePromise(loadStripe('pk_test_51P4oMODoqexf69WmTXJ9qRi28ldWZyj70NFDyWovRCxykhJAIOuKdWtWq0rfsEaWZNOG5iTn80UZ0bR6Lw8cVeph00y7A00xJX'));
+      setStripePromise(
+        loadStripe(
+          "pk_test_51PF8FkP5DUIoEtibkQ7hKJlmrXyrYWr2IcsQSRY7rsnnQcozBZQ53CdO7mcW1NOmpExTMh0rtYFOm6wnm2KdwERL00LUcjh3r9"
+        )
+      );
     });
   }, []);
   

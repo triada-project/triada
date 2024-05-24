@@ -126,6 +126,15 @@ export default function ModalMusico({ eventData }) {
                       Evento {eventData.status}
                     </div>
                   )}
+                  {eventData.status === "en_curso" && (
+                    <div className="flex flex-row bg-lime-200 hover:bg-lime-300  rounded-md h-22 w-full  p-4 ">
+                      <Image
+                        src="/assets/svg/play.svg"
+                        className="w-6 h-6 mr-2"
+                      />
+                      Evento {eventData.status}
+                    </div>
+                  )}
 
                   {eventData.status === "pendiente" && (
                     <div className="bg-red-200  rounded-md h-22 w-full mt-4  p-4 ">
@@ -345,6 +354,12 @@ export default function ModalMusico({ eventData }) {
                       de evento al cliente antes de inicar tú presentación..
                     </div>
                   )}
+                  {eventData.status === "en_curso" && (
+                    <div className="bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full mt-4  p-4 ">
+                      Al finalizar tu presentacion pidele al contacto que te
+                      comparta el código para finalziar el pago.
+                    </div>
+                  )}
                   {eventData.status === "cancelado" && (
                     <div className="bg-red-200 hover:bg-red-300  rounded-md h-22 w-full mt-4  p-4 ">
                       Lamentamos informar que la realización de este evento no
@@ -359,7 +374,7 @@ export default function ModalMusico({ eventData }) {
                     </div>
                   )}
 
-                  {eventData.status === "aceptado" && (
+                  {eventData.status === "en_curso" && (
                     <form
                       onSubmit={handleSubmit(onSubmit)}
                       className=" mt-5 pt-4 flex flex-col gap-3"
