@@ -22,6 +22,7 @@ import { useForm } from "react-hook-form";
 import Events from "../../objects/events.json";
 import More from "../../public/assets/svg/add-circle";
 import { capturePayment } from "../Stripe/api";
+import { useRouter } from "next/router";
 
 import { Josefin_Sans, Lato } from "next/font/google";
 
@@ -85,6 +86,68 @@ export default function ModalMusico({ eventData }) {
       alert(error.message); // O usar un componente más amigable para mostrar el error
     }
   }
+
+  const handleAcceptClick = async () => {
+    try {
+      const updatedStatus = "aceptado"; // Change to desired status
+
+      const response = await fetch(
+        `http://localhost:4000/events/${eventData._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: updatedStatus }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error updating event status");
+      }
+      onClose();
+      //router.refresh();
+      window.location.reload();
+
+      // Update local state or refetch event data to reflect the change
+      // onClose(); // Consider closing the modal if needed
+    } catch (error) {
+      console.error("Error updating status:", error);
+      alert(error.message);
+    }
+  };
+
+  const handleRejectedClick = async () => {
+    try {
+      const updatedStatus = "rechazado"; // Change to desired status
+
+      const response = await fetch(
+        `http://localhost:4000/events/${eventData._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: updatedStatus }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error updating event status");
+      }
+      onClose();
+      //router.refresh();
+      window.location.reload();
+
+      // Update local state or refetch event data to reflect the change
+      // onClose(); // Consider closing the modal if needed
+    } catch (error) {
+      console.error("Error updating status:", error);
+      alert(error.message);
+    }
+  };
 
   //const eventData = events.filter((evento) => evento.estado === "aceptado");
 
@@ -166,10 +229,18 @@ export default function ModalMusico({ eventData }) {
                         propuesta para aceptarla o declinarla
                       </p>
                       <div className="flex flex-row gap-4 mt-5">
-                        <Button color="danger" className="w-full">
+                        <Button
+                          color="danger"
+                          className="w-full"
+                          onClick={handleRejectedClick}
+                        >
                           Rechazar Evento
                         </Button>
-                        <Button color="danger" className="w-full">
+                        <Button
+                          color="danger"
+                          className="w-full"
+                          onClick={handleAcceptClick}
+                        >
                           Aceptar
                         </Button>
                       </div>
