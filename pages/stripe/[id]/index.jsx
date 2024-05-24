@@ -240,7 +240,7 @@ function Payment() {
                     <li className="md:text-l">{eventData.eventType}</li>
                   </div>
                   {/* <li className="text-xs">Contact:</li> */}
-                  <div className="flex items-center gap-1">
+                  <div className="items-center gap-1 hidden">
                     <Image
                       src="/assets/svg/call.svg"
                       className="w-4 h-6 mr-2  md:w-5 hover:border-slate-400"
@@ -250,9 +250,7 @@ function Payment() {
                         <li className="text-xs">{evento.telefono_evento}</li>
                       ))}
                   </div>
-                </ul>
 
-                <ul class="list-none ">
                   <div className="flex items-center gap-1 mb-2">
                     <Image
                       src="/assets/svg/calendar_client.svg"
@@ -268,6 +266,10 @@ function Payment() {
                     {/* <li className="md:text-l">Costo:${evento.costo_evento}</li> */}
                     <li className="md:text-l">Costo:${eventData.eventFee}</li>
                   </div>
+                </ul>
+
+                <ul class="list-none ">
+                  
                   <div className="flex  gap-1 mb-2">
                     <Image
                       src="/assets/svg/card-sharp.svg"

@@ -54,6 +54,7 @@ export default function EventForm({ userData, musicianId, eventFee }) {
     const fechaFormateada = fecha.toLocaleDateString();
 
     console.log(data);
+  
     try {
       const response = await fetch("http://localhost:4000/events", {
         method: "POST",
