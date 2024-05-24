@@ -13,7 +13,7 @@ import { useForm, Controller } from "react-hook-form";
 import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
-import dataMusician from "../../objects/musicianObject.json";
+//import dataMusician from "../../objects/musicianObject.json";
 import IdCatcher from "./IdCatcher";
 import { useRouter } from "next/router";
 
@@ -22,9 +22,8 @@ const josefine = Josefin_Sans({
   subsets: ["latin"],
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
-const { users } = dataMusician;
 
-export default function EventForm({ userData, musicianId, eventFee }) {
+export default function EventForm({ userData, tokenObject, musicianId }) {
   const {
     register,
     watch,
@@ -38,13 +37,13 @@ export default function EventForm({ userData, musicianId, eventFee }) {
     },
   });
   const [totalEvent, setTotalEvent] = useState("");
-  console.log(totalEvent, "this is totalevent");
+  //console.log(totalEvent, "this is totalevent");
   const router = useRouter();
   const [route, setRoute] = useState("");
 
   useEffect(() => {
-    let result = eventFee * getTotalHours();
-    console.log(result, "hola");
+    let result = userData.eventFee * getTotalHours();
+    //console.log(result, "hola");
     setTotalEvent(result);
   }, []);
 
@@ -52,9 +51,8 @@ export default function EventForm({ userData, musicianId, eventFee }) {
     const phonePrefix = "+52" + data.phone;
     const fecha = new Date(data.date.year, data.date.month - 1, data.date.day);
     const fechaFormateada = fecha.toLocaleDateString();
+    //console.log(data);
 
-    console.log(data);
-  
     try {
       const response = await fetch("http://localhost:4000/events", {
         method: "POST",
@@ -87,7 +85,7 @@ export default function EventForm({ userData, musicianId, eventFee }) {
       });
       if (response.ok) {
         const eventData = await response.json();
-        console.log(eventData);
+        //console.log(eventData);
         setRoute(router.push(`/stripe/${eventData.data.events._id}`));
       }
 
@@ -95,7 +93,7 @@ export default function EventForm({ userData, musicianId, eventFee }) {
         throw new Error(response.statusText);
       }
       const eventData = await response.json();
-      console.log(eventData);
+      //console.log(eventData);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -129,7 +127,7 @@ export default function EventForm({ userData, musicianId, eventFee }) {
   };
 
   const totalRes = () => {
-    return eventFee * getTotalHours();
+    return userData.eventFee * getTotalHours();
   };
 
   return (
@@ -149,12 +147,12 @@ export default function EventForm({ userData, musicianId, eventFee }) {
         </div>
         <div className="flex">
           <p className="text-blue-700 flex-auto text-center p-2">Disponible:</p>
-          {users.availability.map((slot) => (
+          {userData.availability.map((slot) => (
             <p
               className="text-blue-700 flex-auto text-center p-2"
               key={slot.day}
             >
-              {slot.day}: {slot.hours}
+              {slot.day}: {slot.start} - {slot.end}
             </p>
           ))}
         </div>
