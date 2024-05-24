@@ -66,15 +66,12 @@ export default function EventForm({ userData, musicianId }) {
             zipCode: data.zipCode,
             exteriorNumber: data.exteriorNumber,
             interiorNumber: data.interiorNumber,
-            exteriorNumber: data.exteriorNumber,
-            interiorNumber: data.interiorNumber,
             reference: data.reference,
           },
           date: fechaFormateada,
           endHour: data.endHour,
           eventName: data.eventName,
           eventType: data.eventType,
-          phoneClient: phonePrefix,
           phoneClient: phonePrefix,
           startHour: data.startHour,
           totalHours: getTotalHours(),
@@ -300,25 +297,7 @@ export default function EventForm({ userData, musicianId }) {
               onChange={(e) => setValue(e.target.value)}
               {...register("street", { maxLength: 80 })}
             />
-            <div className="sm:flex items-center gap-4 w-full">
-              <Input
-                isRequired
-                variant="bordered"
-                radius="sm"
-                label="Número exterior"
-                onChange={(e) => setValue(e.target.value)}
-                {...register("exteriorNumber", {})}
-                className="mt-5 sm:mt-0"
-              />
-              <Input
-                variant="bordered"
-                radius="sm"
-                label="Número interior"
-                onChange={(e) => setValue(e.target.value)}
-                {...register("interiorNumber")}
-                className="mt-5 sm:mt-0"
-              />
-            </div>
+
             <div className="sm:flex items-center gap-4 w-full">
               <Input
                 isRequired
@@ -405,10 +384,7 @@ export default function EventForm({ userData, musicianId }) {
               <p className="w-1/3 text-right">${totalRes()}</p>
             </div>
           </div>
-          <Checkbox isRequired {...register("isChecked")}>
-            Acepto términos y condiciones
-          </Checkbox>
-          {/* if !token then modal iniciar sesión */}
+         
           <Checkbox isRequired {...register("isChecked")}>
             Acepto términos y condiciones
           </Checkbox>
