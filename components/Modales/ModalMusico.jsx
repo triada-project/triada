@@ -21,6 +21,8 @@ import { Input } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import Events from "../../objects/events.json";
 import More from "../../public/assets/svg/add-circle";
+import { capturePayment } from "../Stripe/api";
+import { useRouter } from "next/router";
 
 import { Josefin_Sans, Lato } from "next/font/google";
 
@@ -49,20 +51,103 @@ export default function ModalMusico({ eventData }) {
   };
 
   async function onSubmit(data) {
-    const response = await fetch(
-      `http://localhost:4000/events/${eventData._id}/confirmar-codigo-evento`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          eventId: eventData._id,
-          codigoEvento: data.codigoEvento,
-        }),
+    try {
+      const response = await fetch(
+        `http://localhost:4000/events/${eventData._id}/confirmar-codigo-evento`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            eventId: eventData._id,
+            codigoEvento: data.codigoEvento,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        // Si la respuesta no es exitosa (código 4xx o 5xx)
+        const errorData = await response.json(); // Intenta obtener detalles del error del backend
+        throw new Error(errorData.message || "Error al confirmar el código"); // Lanza un error con el mensaje del backend o uno genérico
       }
-    );
+      const completeSecretClient = eventData.idStripePayment;
+      const startPi = completeSecretClient.indexOf("pi_"); // Encontrar la posición de inicio de "pi_"
+      const endPi = completeSecretClient.indexOf("_secret");
+      const resultOnlyPi = completeSecretClient.substring(startPi, endPi);
+      console.log(resultOnlyPi);
+      // Si la respuesta es exitosa, puedes hacer algo aquí (por ejemplo, cerrar el modal)
+      await capturePayment(resultOnlyPi);
+      onClose();
+    } catch (error) {
+      // Manejo de errores generales (problemas de red, errores del servidor, etc.)
+      console.error("Error en la solicitud:", error);
+      // Puedes mostrar un mensaje de error al usuario aquí
+      alert(error.message); // O usar un componente más amigable para mostrar el error
+    }
   }
+
+  const handleAcceptClick = async () => {
+    try {
+      const updatedStatus = "aceptado"; // Change to desired status
+
+      const response = await fetch(
+        `http://localhost:4000/events/${eventData._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: updatedStatus }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error updating event status");
+      }
+      onClose();
+      //router.refresh();
+      window.location.reload();
+
+      // Update local state or refetch event data to reflect the change
+      // onClose(); // Consider closing the modal if needed
+    } catch (error) {
+      console.error("Error updating status:", error);
+      alert(error.message);
+    }
+  };
+
+  const handleRejectedClick = async () => {
+    try {
+      const updatedStatus = "rechazado"; // Change to desired status
+
+      const response = await fetch(
+        `http://localhost:4000/events/${eventData._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: updatedStatus }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error updating event status");
+      }
+      onClose();
+      //router.refresh();
+      window.location.reload();
+
+      // Update local state or refetch event data to reflect the change
+      // onClose(); // Consider closing the modal if needed
+    } catch (error) {
+      console.error("Error updating status:", error);
+      alert(error.message);
+    }
+  };
 
   //const eventData = events.filter((evento) => evento.estado === "aceptado");
 
@@ -126,6 +211,15 @@ export default function ModalMusico({ eventData }) {
                       Evento {eventData.status}
                     </div>
                   )}
+                  {eventData.status === "en_curso" && (
+                    <div className="flex flex-row bg-lime-200 hover:bg-lime-300  rounded-md h-22 w-full  p-4 ">
+                      <Image
+                        src="/assets/svg/play.svg"
+                        className="w-6 h-6 mr-2"
+                      />
+                      Evento {eventData.status}
+                    </div>
+                  )}
 
                   {eventData.status === "pendiente" && (
                     <div className="bg-red-200  rounded-md h-22 w-full mt-4  p-4 ">
@@ -135,10 +229,18 @@ export default function ModalMusico({ eventData }) {
                         propuesta para aceptarla o declinarla
                       </p>
                       <div className="flex flex-row gap-4 mt-5">
-                        <Button color="danger" className="w-full">
+                        <Button
+                          color="danger"
+                          className="w-full"
+                          onClick={handleRejectedClick}
+                        >
                           Rechazar Evento
                         </Button>
-                        <Button color="danger" className="w-full">
+                        <Button
+                          color="danger"
+                          className="w-full"
+                          onClick={handleAcceptClick}
+                        >
                           Aceptar
                         </Button>
                       </div>
@@ -345,6 +447,12 @@ export default function ModalMusico({ eventData }) {
                       de evento al cliente antes de inicar tú presentación..
                     </div>
                   )}
+                  {eventData.status === "en_curso" && (
+                    <div className="bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full mt-4  p-4 ">
+                      Al finalizar tu presentacion pidele al contacto que te
+                      comparta el código para finalziar el pago.
+                    </div>
+                  )}
                   {eventData.status === "cancelado" && (
                     <div className="bg-red-200 hover:bg-red-300  rounded-md h-22 w-full mt-4  p-4 ">
                       Lamentamos informar que la realización de este evento no
@@ -359,7 +467,7 @@ export default function ModalMusico({ eventData }) {
                     </div>
                   )}
 
-                  {eventData.status === "aceptado" && (
+                  {eventData.status === "en_curso" && (
                     <form
                       onSubmit={handleSubmit(onSubmit)}
                       className=" mt-5 pt-4 flex flex-col gap-3"

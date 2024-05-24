@@ -1,11 +1,11 @@
 export async function capturePayment(paymentIntentId) {
   try {
-    const response = await fetch("http://localhost:3005/capture-payment", {
+    const response = await fetch("http://localhost:4000/capture-payment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ paymentIntentId: "pi_3PDzYoDoqexf69Wm0Lpctt7I" }),
+      body: JSON.stringify({ paymentIntentId }),
     });
 
     if (!response.ok) {

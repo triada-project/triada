@@ -29,6 +29,7 @@ export default function CarouselVideos({ userData }) {
       //   controls: 1,
       // },
     };
+
     const videoId = extractVideoId(url);
     return <YouTube videoId={videoId} opts={options} />;
   };
