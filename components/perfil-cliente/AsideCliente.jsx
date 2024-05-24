@@ -14,7 +14,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function AsideCliente({ page }) {
+export default function AsideCliente({ page, hidden }) {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
 
@@ -44,7 +44,9 @@ export default function AsideCliente({ page }) {
     <aside
       className={`bg-[#081540] fixed top-0  w-[245px] h-full  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-1 `}
     >
-      <Image src={triadaLogo} className=" pt-12" />
+      <Link href="/">
+        <Image src={triadaLogo} className={`pt-12 ${hidden}`} />
+      </Link>
       <section className=" pt-[120px] flex flex-col gap-10 items-center">
         <Link href="/perfil-cliente">
           <Button
