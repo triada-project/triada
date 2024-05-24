@@ -2,24 +2,20 @@ import { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@/components/Stripe/CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Image,
-  Chip,
-} from "@nextui-org/react";
+import { Card, CardHeader, CardBody, CardFooter, Image, Chip } from "@nextui-org/react";
 import Events from "../../../objects/events.json";
 import NavBar from "@/components/Navbar";
 import FooterMain from "@/components/footer/footer";
 import { useRouter } from "next/router";
 import { Spinner } from "@nextui-org/react";
 
+
+
 function Payment() {
   const router = useRouter();
-  const eventId = router.query.id;
-  console.log("this is", eventId);
+  const eventId = router.query.id;  
+  console.log('this is',eventId);
+  
 
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
@@ -36,10 +32,10 @@ function Payment() {
       const response = await fetch(`http://localhost:4000/events/${eventId}`, {
         headers:{
           "Content-Type": "application/json",
-        },
-      });
-      const responseData = await response.json();
-      console.log(responseData, "responseData");
+        }
+      })   
+      const responseData = await response.json()
+      console.log(responseData, 'responseData');
       setIdEvent(responseData.data._id);
       setEventFee(responseData.data.eventFee);
       setEventData(responseData.data);
@@ -65,13 +61,14 @@ function Payment() {
     }catch(error){
       console.error(error);
     }
+    
   };
 
   useEffect(() => {
-    if (eventId) {
+    
+    if(eventId){
       fetchrequest();
     }
-  }, [eventId]);
 
 
   },[eventId]);
@@ -91,6 +88,7 @@ function Payment() {
   //  alert('crack')
   // };
 
+
   useEffect(() => {
     fetch("http://localhost:4000/config").then(async (r) => {
       const { publishableKey } = await r.json();
@@ -101,9 +99,9 @@ function Payment() {
       );
     });
   }, []);
-
+  
   // useEffect(() => {
-  //   fetch("http://localhost:4000/create-payment-intent", {
+  //   fetch("http://localhost:3005/create-payment-intent", {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -123,20 +121,18 @@ function Payment() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        _id: idEvent,
-        eventFee: eventFee,
+        _id:idEvent,
+        eventFee:eventFee
       }),
     }).then(async (result) => {
       var { clientSecret } = await result.json();
       setClientSecret(clientSecret);
     });
   }, [eventFee]);
-
+  
   const { events } = Events;
   //pendiente por confirmar
-  const eventosPendientes = events.filter(
-    (evento) => evento.estado === "activo"
-  );
+  const eventosPendientes = events.filter((evento) => evento.estado === 'activo');
 
   if (!eventData) {
     return (
@@ -159,6 +155,8 @@ function Payment() {
 
     <main className="max-w-[1440px] items-center m-auto bg-white">
     <NavBar />
+
+      
 
         {eventosPendientes.map((evento, index) => (
         // <div key={index} class="flex flex-col sm:flex-row ">                
@@ -260,91 +258,8 @@ function Payment() {
           </div>
         ))}
 
+       
 
-              {/* <div class="columns-1 lg:columns-3  text-black flex"> */}
-              {/* <div className="grid grid-cols-1 md:grid-cols-1 gap-4"> */}
-              <div className="flex flex-col md:flex-row ">
-                <ul class="list-none mr-9 ">
-                  <div className="flex  items-center gap-1 mb-2">
-                    <Image
-                      src="/assets/svg/calendar_client.svg"
-                      className="mr-1 w-4 h-6 md:w-5 "
-                    />
-                    <li className="md:text-l"> Fecha:{evento.fecha_evento} </li>
-                  </div>
-                  <div className="flex items-center gap-1 md:gap-0 mb-2">
-                    <Image
-                      src="/assets/svg/timer.svg"
-                      className="w-4 h-6 mr-1 md:w-5 md:mr-2 "
-                    />
-                    <li className="md:text-l ">
-                      Inicio: {evento.inicio_evento}{" "}
-                    </li>
-                  </div>
-                  <div className="flex items-center gap-1 md:gap:0 mb-2">
-                    <Image
-                      src="/assets/svg/SvgClock.svg"
-                      className="w-4 h-6 mr-1 md:w-5 md:mr-1"
-                    />
-                    <li className="md:text-l">
-                      Final: {evento.termino_evento}
-                    </li>
-                  </div>
-                </ul>
-
-                <ul class="list-none mr-9 ">
-                  <div className="flex items-center mb-2">
-                    <Image
-                      src="/assets/svg/flash-sharp.svg"
-                      className="w-4 h-6 mr-2 md:w-5"
-                    />
-                    <li className="md:text-l">{evento.tipo_evento}</li>
-                  </div>
-                  {/* <li className="text-xs">Contact:</li> */}
-                  <div className="flex items-center gap-1">
-                    <Image
-                      src="/assets/svg/call.svg"
-                      className="w-4 h-6 mr-2  md:w-5 hover:border-slate-400"
-                    />
-                    {evento.estado === "activo" ||
-                      (evento.estado === "finalizado" && (
-                        <li className="text-xs">{evento.telefono_evento}</li>
-                      ))}
-                  </div>
-                </ul>
-
-                <ul class="list-none ">
-                  <div className="flex items-center gap-1 mb-2">
-                    <Image
-                      src="/assets/svg/calendar_client.svg"
-                      className="w-4 h-6 mr-2 md:w-5"
-                    />
-                    <li className="md:text-l">
-                      Horas: {evento.horas_contratadas_evento}
-                    </li>
-                  </div>
-                  <div className="flex items-center gap-1 mb-2">
-                    <Image
-                      src="/assets/svg/cash-outline.svg"
-                      className="w-4 h-6 mr-2 md:w-5"
-                    />
-                    <li className="md:text-l">Costo:${evento.costo_evento}</li>
-                  </div>
-                  <div className="flex  gap-1 mb-2">
-                    <Image
-                      src="/assets/svg/card-sharp.svg"
-                      className="w-4 h-6 mr-2 md:w-5 "
-                    />
-                    <li className="md:text-l md:pt-0  pt-1 ">
-                      {" "}
-                      {evento.estatus_evento}
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-          </div>
-        ))}
 
         {eventosPendientes.map((evento, index) => (
           <Card key={index} className="w-3/4 m-auto mt-10 ">
