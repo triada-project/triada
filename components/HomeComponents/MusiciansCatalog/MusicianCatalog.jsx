@@ -47,8 +47,11 @@ export default function MusicianCatalog() {
 
         console.log("Filtered musicians:", filteredMusicians); // Log the filtered musicians
 
-        setMusicians(filteredMusicians);
-        setFilteredMusicians(filteredMusicians); // Set the initial filtered musicians
+        // Barajar los músicos antes de establecer el estado
+        const shuffledMusicians = shuffleArray(filteredMusicians);
+
+        setMusicians(shuffledMusicians);
+        setFilteredMusicians(shuffledMusicians); // Set the initial filtered musicians
       } catch (error) {
         console.error("Error fetching musicians:", error);
       }

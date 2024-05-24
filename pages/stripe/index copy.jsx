@@ -1,3 +1,4 @@
+
 import StripePayments from "@/components/Stripe/StripePayments";
 import InjectedCheckoutForm from "@/components/Stripe/InjectedCheckoutForm";
 
