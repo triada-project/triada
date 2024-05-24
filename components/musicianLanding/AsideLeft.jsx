@@ -2,7 +2,7 @@ import React from "react";
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Avatar, Chip } from "@nextui-org/react";
 import { Rating } from "@smastrom/react-rating";
-import dataMusician from "../../objects/musicianObject.json";
+//import dataMusician from "../../objects/musicianObject.json";
 import play from "./play.webp";
 import Image from "next/image";
 import ButtonPink from "@/components/musicianLanding/ButtonPink";
@@ -14,7 +14,7 @@ const josefin = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function AsideLeft({ userData }) {
-  const { user } = dataMusician;
+  //const { user } = dataMusician;
 
   return (
     <aside className="text-black ms:w-1/4 lg:w-1/4git ">
@@ -34,7 +34,7 @@ export default function AsideLeft({ userData }) {
                 <p
                   className={`font-semibold text-inherit sm:text-[16px] ${lato.className}`}
                 >
-                  {title.song}
+                  {title.title}
                 </p>
                 <p>{title.artist}</p>
               </span>
