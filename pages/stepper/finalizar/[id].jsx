@@ -1,5 +1,5 @@
 import { Lato, Josefin_Sans } from "next/font/google";
-import ButtonsStepper from "@/components/stepperComponents/buttonsStepper";
+import ButtonsStepper from "@/components/stepperComponents/ButtonsStepper";
 import StepperLayout from "@/components/stepperComponents/StepperLayout";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
@@ -67,7 +67,7 @@ export default function Finalizar() {
         >
           ¡Listo! Ya formas parte de <b>TRIADA</b> . Si necesitas actualizar
           estos datos, puedes hacerlo en el perfil de tu cuenta. Haz clic en
-          'Finalizar' y te redirigiremos a tu perfil.
+          Finalizar y te redirigiremos a tu perfil.
         </p>
         <Image
           src={"/assets/images/music-festival.webp"}
