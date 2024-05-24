@@ -130,6 +130,7 @@ export default function musicianDetail() {
                   ))}
                 </div>
               </div>
+              {/*}
               <div className="md:gap-4">
                 <span>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
@@ -145,7 +146,7 @@ export default function musicianDetail() {
                   <CarouselFotos userData={userData} />
                 </span>
               </div>
-
+*/}
               <div>
                 <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                   Requerimientos
