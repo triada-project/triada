@@ -125,7 +125,8 @@ export default function Step2() {
               className={`${lato.className} text-start text-[#455A64] w-[328px] mt-3 md:w-full md:text-center`}
             >
               Esto nos ayudará a facilitar tu contacto al cliente que te
-              contrate para la comunicación contigo.
+              contrate para la comunicación contigo.{" "}
+              <b>*Número celular a 10 dígitos </b>
             </p>
             <Input
               isRequired
