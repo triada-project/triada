@@ -24,7 +24,7 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-export default function musicianDetail() {
+export default function MusicianDetail() {
   const router = useRouter();
   const userId = router.query.id;
   const [userData, setUserData] = useState(null);
@@ -215,7 +215,6 @@ export default function musicianDetail() {
                 </div>
               </div>
               <div className="mt-5 shadow-xl">
-
                 {tokenObject ? (
                   <EventForm
                     userData={userData}
