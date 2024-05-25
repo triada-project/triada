@@ -26,7 +26,7 @@ const lato = Lato({
 
 export default function MusicianDetail() {
   const router = useRouter();
-  const userId = router.query.id;
+  const { id: userId } = router.query;
   const [userData, setUserData] = useState(null);
   const tokenObject = useTokenStore((state) => state.tokenObject);
 
@@ -219,7 +219,7 @@ export default function MusicianDetail() {
                     </div>
                     <div>
                       <p className="text-yellow-700 flex-auto text-center p-2">
-                        Registrate o inica sesión para poder contratar a este
+                        Regístrate o inicia sesión para poder contratar a este
                         músico.
                       </p>
                     </div>

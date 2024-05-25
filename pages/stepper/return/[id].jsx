@@ -11,7 +11,7 @@ export default function Return() {
       </div>
       <div className="content">
         <h2>Details submitted</h2>
-        <p>That's everything we need for now</p>
+        <p>Thats everything we need for now</p>
       </div>
       <div className="info-callout">
         <p>

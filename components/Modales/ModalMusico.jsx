@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -68,7 +68,6 @@ export default function ModalMusico({ eventData }) {
     } catch (error) {
       console.error(error);
     }
-    
   };
 
   useEffect(() => {
@@ -76,9 +75,6 @@ export default function ModalMusico({ eventData }) {
       fetchrequestusers();
     }
   }, [eventData]);
-
-
-
 
   async function onSubmit(data) {
     try {
@@ -233,8 +229,6 @@ export default function ModalMusico({ eventData }) {
                     </div>
                   )}
 
-                 
-                  
                   {eventData.status === "pendiente" && (
                     <div className="flex flex-row bg-amber-200 hover:bg-amber-300  rounded-md h-22 w-full  p-4 ">
                       <Image
@@ -290,7 +284,7 @@ export default function ModalMusico({ eventData }) {
                         className="rounded-full w-20 h-20"
                       />
                       <p className="text-center text-xl md:text-lg font-semibold">
-                      {userData.name}
+                        {userData.name}
                       </p>
                     </div>
 
@@ -398,37 +392,33 @@ export default function ModalMusico({ eventData }) {
                       <div className="flex flex-col ">
                         <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
                           <div>
-                          {eventData.status === "en curso" && (
-                            <p className="text-sm font-semibold">Contacto</p>
-                          )}
-                          {eventData.status === "aceptado" && (
-                            <p className="text-sm font-semibold">Contacto</p>
-                          )}
-                           
+                            {eventData.status === "en curso" && (
+                              <p className="text-sm font-semibold">Contacto</p>
+                            )}
+                            {eventData.status === "aceptado" && (
+                              <p className="text-sm font-semibold">Contacto</p>
+                            )}
                           </div>
                           <div>
                             <div className="flex items-center">
-
-                            {eventData.status === "aceptado" && (
-                              <Image
-                              src="/assets/svg/call.svg"
-                              className="w-6 h-6 mr-2"
-                              />
-                            )}
-                            {eventData.status === "en curso" && (
-                              <Image
-                              src="/assets/svg/call.svg"
-                              className="w-6 h-6 mr-2"
-                              />
-                            )}
-                            {eventData.status === "aceptado" && (
-                              <p className="">{eventData.phoneClient}</p>
-                            )}
-                            {eventData.status === "en curso" && (
-                              <p className="">{eventData.phoneClient}</p>
-                            )}
-                                                       
-                              
+                              {eventData.status === "aceptado" && (
+                                <Image
+                                  src="/assets/svg/call.svg"
+                                  className="w-6 h-6 mr-2"
+                                />
+                              )}
+                              {eventData.status === "en curso" && (
+                                <Image
+                                  src="/assets/svg/call.svg"
+                                  className="w-6 h-6 mr-2"
+                                />
+                              )}
+                              {eventData.status === "aceptado" && (
+                                <p className="">{eventData.phoneClient}</p>
+                              )}
+                              {eventData.status === "en curso" && (
+                                <p className="">{eventData.phoneClient}</p>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -495,9 +485,10 @@ export default function ModalMusico({ eventData }) {
                   <br />
                   {eventData.status === "en curso" && (
                     <div className="bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full mt-4  p-4 ">
-                      Al finalizar tu presentación pidele al contacto cliente que te
-                      comparta el código para introducirlo y validarlo una vez hecho esto tu pago 
-                      se te depositará en automatico.</div>
+                      Al finalizar tu presentación pidele al contacto cliente
+                      que te comparta el código para introducirlo y validarlo
+                      una vez hecho esto tu pago se te depositará en automatico.
+                    </div>
                   )}
                   {eventData.status === "cancelado" && (
                     <div className="bg-red-200 hover:bg-red-300  rounded-md h-22 w-full mt-4  p-4 ">
