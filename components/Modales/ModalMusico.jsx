@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect,useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -36,6 +37,7 @@ export default function ModalMusico({ eventData }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [size, setSize] = React.useState("3xl");
   console.log(eventData);
+  const [userData, setUserData] = useState();
 
   const {
     register,
@@ -49,6 +51,34 @@ export default function ModalMusico({ eventData }) {
     setSize(size);
     onOpen();
   };
+
+  const fetchrequestusers = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:4000/users/${eventData.musician}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const responseData = await response.json();
+      console.log(responseData), "datausuario";
+      setUserData(responseData.data);
+    } catch (error) {
+      console.error(error);
+    }
+    
+  };
+
+  useEffect(() => {
+    if (eventData) {
+      fetchrequestusers();
+    }
+  }, [eventData]);
+
+
+
 
   async function onSubmit(data) {
     try {
@@ -175,7 +205,7 @@ export default function ModalMusico({ eventData }) {
 
               <ModalBody className=" h-[600px] sm:flex sm:gap-3   ">
                 <div key={eventData._id} className="  overflow-auto">
-                  {eventData.status === "aceptado" && (
+                  {eventData.status === "en curso" && (
                     <div className="flex flex-row bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full  p-4 ">
                       <Image
                         src="/assets/svg/play.svg"
@@ -202,6 +232,9 @@ export default function ModalMusico({ eventData }) {
                       Evento {eventData.status}
                     </div>
                   )}
+
+                 
+                  
                   {eventData.status === "pendiente" && (
                     <div className="flex flex-row bg-amber-200 hover:bg-amber-300  rounded-md h-22 w-full  p-4 ">
                       <Image
@@ -211,8 +244,9 @@ export default function ModalMusico({ eventData }) {
                       Evento {eventData.status}
                     </div>
                   )}
-                  {eventData.status === "en_curso" && (
-                    <div className="flex flex-row bg-lime-200 hover:bg-lime-300  rounded-md h-22 w-full  p-4 ">
+
+                  {eventData.status === "aceptado" && (
+                    <div className="flex flex-row bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full  p-4 ">
                       <Image
                         src="/assets/svg/play.svg"
                         className="w-6 h-6 mr-2"
@@ -252,11 +286,11 @@ export default function ModalMusico({ eventData }) {
                     <div className="flex gap-6 items-center">
                       <Image
                         alt="card-background"
-                        src={eventData.clientPicture}
+                        src={userData.profilePicture}
                         className="rounded-full w-20 h-20"
                       />
                       <p className="text-center text-xl md:text-lg font-semibold">
-                        {eventData.clientName}
+                      {userData.name}
                       </p>
                     </div>
 
@@ -364,18 +398,37 @@ export default function ModalMusico({ eventData }) {
                       <div className="flex flex-col ">
                         <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
                           <div>
+                          {eventData.status === "en curso" && (
                             <p className="text-sm font-semibold">Contacto</p>
+                          )}
+                          {eventData.status === "aceptado" && (
+                            <p className="text-sm font-semibold">Contacto</p>
+                          )}
+                           
                           </div>
                           <div>
                             <div className="flex items-center">
+
+                            {eventData.status === "aceptado" && (
                               <Image
-                                src="/assets/svg/call.svg"
-                                className="w-6 h-6 mr-2"
+                              src="/assets/svg/call.svg"
+                              className="w-6 h-6 mr-2"
                               />
-                              {eventData.estado === "aceptado" ||
-                                (eventData.estado === "finalizado" && (
-                                  <p className="">{eventData.phoneClient}</p>
-                                ))}
+                            )}
+                            {eventData.status === "en curso" && (
+                              <Image
+                              src="/assets/svg/call.svg"
+                              className="w-6 h-6 mr-2"
+                              />
+                            )}
+                            {eventData.status === "aceptado" && (
+                              <p className="">{eventData.phoneClient}</p>
+                            )}
+                            {eventData.status === "en curso" && (
+                              <p className="">{eventData.phoneClient}</p>
+                            )}
+                                                       
+                              
                             </div>
                           </div>
                         </div>
@@ -440,18 +493,11 @@ export default function ModalMusico({ eventData }) {
                   </div>
 
                   <br />
-                  {eventData.status === "aceptado" && (
+                  {eventData.status === "en curso" && (
                     <div className="bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full mt-4  p-4 ">
-                      El pago se depositara en tu cuenta en automático al
-                      terminar el evento, recuerda compartir el código de inicio
-                      de evento al cliente antes de inicar tú presentación..
-                    </div>
-                  )}
-                  {eventData.status === "en_curso" && (
-                    <div className="bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full mt-4  p-4 ">
-                      Al finalizar tu presentacion pidele al contacto que te
-                      comparta el código para finalziar el pago.
-                    </div>
+                      Al finalizar tu presentación pidele al contacto cliente que te
+                      comparta el código para introducirlo y validarlo una vez hecho esto tu pago 
+                      se te depositará en automatico.</div>
                   )}
                   {eventData.status === "cancelado" && (
                     <div className="bg-red-200 hover:bg-red-300  rounded-md h-22 w-full mt-4  p-4 ">
@@ -467,7 +513,7 @@ export default function ModalMusico({ eventData }) {
                     </div>
                   )}
 
-                  {eventData.status === "en_curso" && (
+                  {eventData.status === "en curso" && (
                     <form
                       onSubmit={handleSubmit(onSubmit)}
                       className=" mt-5 pt-4 flex flex-col gap-3"

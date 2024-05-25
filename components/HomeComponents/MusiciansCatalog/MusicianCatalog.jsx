@@ -47,8 +47,11 @@ export default function MusicianCatalog() {
 
         console.log("Filtered musicians:", filteredMusicians); // Log the filtered musicians
 
-        setMusicians(filteredMusicians);
-        setFilteredMusicians(filteredMusicians); // Set the initial filtered musicians
+        // Barajar los músicos antes de establecer el estado
+        const shuffledMusicians = shuffleArray(filteredMusicians);
+
+        setMusicians(shuffledMusicians);
+        setFilteredMusicians(shuffledMusicians); // Set the initial filtered musicians
       } catch (error) {
         console.error("Error fetching musicians:", error);
       }
@@ -294,9 +297,9 @@ export default function MusicianCatalog() {
             >
               <MusicianCard
                 name={musician.name}
-                imgProfile={
-                  musician.imgProfile
-                    ? musician.imgProfile
+                profilePicture={
+                  musician.profilePicture
+                    ? musician.profilePicture
                     : "https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=" // URL de la imagen por defecto
                 }
                 state={
