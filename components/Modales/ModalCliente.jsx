@@ -41,6 +41,7 @@ export default function ModalCliente({ eventData }) {
   const [size, setSize] = React.useState("2xl");
   const [rating, setRating] = useState(3); // Initial value
   //const [eventosPendientes, setEventosPendientes] = useState([]);
+  const [userData, setUserData] = useState();
 
   const { events } = Events;
 
@@ -48,6 +49,34 @@ export default function ModalCliente({ eventData }) {
     setSize(size);
     onOpen();
   };
+
+  const fetchrequestusers = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:4000/users/${eventData.musician}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const responseData = await response.json();
+      console.log(responseData), "datausuario";
+      setUserData(responseData.data);
+    } catch (error) {
+      console.error(error);
+    }
+    
+  };
+
+  useEffect(() => {
+    if (eventData) {
+      fetchrequestusers();
+    }
+  }, [eventData]);
+
+
+
 
   const handleSolicitarCodigo = async () => {
     try {
@@ -109,14 +138,14 @@ export default function ModalCliente({ eventData }) {
                   <div className="">
                     <Image
                       alt="NextUI hero Image"
-                      src={eventData.clientPicture}
+                      src={userData.profilePicture}
                       className="max-w[150px] h-200"
                     />
                   </div>
 
                   <div className=" p-0 ">
                     <p className="text-black font-bold text-xl mb-1">
-                      {eventData.clientName}{" "}
+                    {userData.name}{" "}
                     </p>
                     {/* <Chip className="text-sm p-2 outline outline-offset-2 outline-1 bg-inherit "> </Chip> */}
 
@@ -209,16 +238,26 @@ export default function ModalCliente({ eventData }) {
                         </div>
                         {/* <li className="text-xs">Contact:</li> */}
                         <div className="flex items-center gap-1">
-                          <Image
-                            src="/assets/svg/call.svg"
-                            className="w-4 h-6 mr-2  md:w-4 hover:border-slate-400"
-                          />
-                          {eventData.status === "aceptado" ||
-                            (eventData.status === "finalizado" && (
-                              <li className="text-xs">
-                                {eventData.phoneClient}
-                              </li>
-                            ))}
+                            {eventData.status === "aceptado" && (
+                              <Image
+                              src="/assets/svg/call.svg"
+                              className="w-6 h-6 mr-2"
+                              />
+                            )}
+                            {eventData.status === "en curso" && (
+                              <Image
+                              src="/assets/svg/call.svg"
+                              className="w-6 h-6 mr-2"
+                              />
+                            )}
+
+                            {eventData.status === "aceptado" && (
+                              <p className="">{eventData.phoneClient}</p>
+                            )}
+                            {eventData.status === "en curso" && (
+                              <p className="">{eventData.phoneClient}</p>
+                            )}
+                          
                         </div>
                       </ul>
 
@@ -315,7 +354,7 @@ export default function ModalCliente({ eventData }) {
                 </div>
                 {/* className={` ${eventosPendientes.estado === 'pendiente' && hidden} `} */}
 
-                {eventData.status === "en_curso" && (
+                {eventData.status === "en curso" && (
                   <div>
                     <p className="text-black text-sm font-bold pb-2">
                       Código de evento
@@ -341,7 +380,7 @@ export default function ModalCliente({ eventData }) {
                   </div>
                 )}
 
-                {eventData.status === "finalizado" && (
+                {eventData.status === "" && (
                   <div>
                     <div className="flex flex-row">
                       <p className="text-black text-sm font-bold pb-2 mr-3 items-center">

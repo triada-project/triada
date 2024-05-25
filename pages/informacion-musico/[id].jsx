@@ -39,7 +39,7 @@ export default function musicianDetail() {
       useTokenStore.setState({ tokenObject: payloadObject });
     }
   }, []);
-  console.log(tokenObject);
+
   //console.log(userId);
   //console.log(userData);
 

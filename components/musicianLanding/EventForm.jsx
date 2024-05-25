@@ -23,7 +23,6 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-
 export default function EventForm({ userData, tokenObject, musicianId }) {
   const {
     register,
@@ -52,8 +51,8 @@ export default function EventForm({ userData, tokenObject, musicianId }) {
     const phonePrefix = "+52" + data.phone;
     const fecha = new Date(data.date.year, data.date.month - 1, data.date.day);
     const fechaFormateada = fecha.toLocaleDateString();
-
     //console.log(data);
+
     try {
       const response = await fetch("http://localhost:4000/events", {
         method: "POST",
@@ -146,7 +145,7 @@ export default function EventForm({ userData, tokenObject, musicianId }) {
             className="ml-2 mt-2 mr-5"
           />
         </div>
-        <div className="flex flex-col sm:flex-row ">
+        <div className="flex">
           <p className="text-blue-700 flex-auto text-center p-2">Disponible:</p>
           {userData.availability.map((slot) => (
             <p
@@ -297,6 +296,7 @@ export default function EventForm({ userData, tokenObject, musicianId }) {
               onChange={(e) => setValue(e.target.value)}
               {...register("street", { maxLength: 80 })}
             />
+
             <div className="sm:flex items-center gap-4 w-full">
               <Input
                 isRequired
@@ -382,6 +382,7 @@ export default function EventForm({ userData, tokenObject, musicianId }) {
               <p className="w-1/3 text-right">${totalRes()}</p>
             </div>
           </div>
+         
           <Checkbox isRequired {...register("isChecked")}>
             Acepto términos y condiciones
           </Checkbox>
