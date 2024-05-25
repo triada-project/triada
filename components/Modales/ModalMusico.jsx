@@ -244,6 +244,7 @@ export default function ModalMusico({ eventData }) {
                       Evento {eventData.status}
                     </div>
                   )}
+
                   {eventData.status === "aceptado" && (
                     <div className="flex flex-row bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full  p-4 ">
                       <Image
@@ -494,11 +495,10 @@ export default function ModalMusico({ eventData }) {
                   <br />
                   {eventData.status === "en curso" && (
                     <div className="bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full mt-4  p-4 ">
-                      Al finalizar tu presentación pidele al contacto que te
+                      Al finalizar tu presentación pidele al contacto cliente que te
                       comparta el código para introducirlo y validarlo una vez hecho esto tu pago 
                       se te depositará en automatico.</div>
                   )}
-                 
                   {eventData.status === "cancelado" && (
                     <div className="bg-red-200 hover:bg-red-300  rounded-md h-22 w-full mt-4  p-4 ">
                       Lamentamos informar que la realización de este evento no

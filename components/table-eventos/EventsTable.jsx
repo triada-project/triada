@@ -35,6 +35,7 @@ import useTokenStore from "@/stores/tokenStore";
 
 const statusColorMap = {
   aceptado: Active,
+  en_curso: Active,
   pendiente: Alert,
   finalizado: Finalized,
   rechazado: Rejected,
@@ -78,23 +79,79 @@ export default function EventsTable() {
   });
   const [page, setPage] = React.useState(1);
 
-  useEffect(() => {
-    async function fetchEvents() {
-      try {
-        const response = await fetch(
-          `http://localhost:4000/events/${tokenObject._id}/events`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch events");
+  if (tokenObject.role === "musico") {
+    useEffect(() => {
+      async function fetchEvents() {
+        try {
+          const response = await fetch(
+            `http://localhost:4000/events/${tokenObject._id}/events`
+          );
+          if (!response.ok) {
+            throw new Error("Failed to fetch events");
+          }
+          const data = await response.json();
+          setEvents(data.data);
+        } catch (error) {
+          console.error("Error fetching events:", error);
         }
-        const data = await response.json();
-        setEvents(data.data);
-      } catch (error) {
-        console.error("Error fetching events:", error);
       }
-    }
-    fetchEvents();
-  }, []);
+      fetchEvents();
+    }, []);
+  } else {
+    useEffect(() => {
+      async function fetchEvents() {
+        try {
+          const response = await fetch(
+            `http://localhost:4000/events/${tokenObject._id}/eventsClient`
+          );
+          if (!response.ok) {
+            throw new Error("Failed to fetch events");
+          }
+          const data = await response.json();
+          setEvents(data.data);
+        } catch (error) {
+          console.error("Error fetching events:", error);
+        }
+      }
+      fetchEvents();
+    }, []);
+  }
+
+  // useEffect(() => {
+  //   async function fetchEvents() {
+  //     try {
+  //       const response = await fetch(
+  //         `http://localhost:4000/events/${tokenObject._id}/events`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch events");
+  //       }
+  //       const data = await response.json();
+  //       setEvents(data.data);
+  //     } catch (error) {
+  //       console.error("Error fetching events:", error);
+  //     }
+  //   }
+  //   fetchEvents();
+  // }, []);
+
+  // useEffect(() => {
+  //   async function fetchEvents() {
+  //     try {
+  //       const response = await fetch(
+  //         `http://localhost:4000/events/${tokenObject._id}/eventsClient`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch events");
+  //       }
+  //       const data = await response.json();
+  //       setEvents(data.data);
+  //     } catch (error) {
+  //       console.error("Error fetching events:", error);
+  //     }
+  //   }
+  //   fetchEvents();
+  // }, []);
 
   console.log(events);
 

@@ -215,6 +215,7 @@ export default function musicianDetail() {
                 </div>
               </div>
               <div className="mt-5 shadow-xl">
+
                 {tokenObject ? (
                   <EventForm
                     userData={userData}

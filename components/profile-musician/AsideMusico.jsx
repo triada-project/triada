@@ -18,6 +18,7 @@ import CalendarColor from "@/public/assets/svg/CalendarColor.jsx";
 import GaleryColor from "@/public/assets/svg/GaleryColor";
 import RepertorioColor from "@/public/assets/svg/RepertoryColor";
 import RequestColor from "@/public/assets/svg/requestColor";
+import { useRouter } from "next/router";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -26,12 +27,19 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function AsideMusico({ page, hidden }) {
+  const router = useRouter();
+  const [route, setRoute] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
+    if (token) {
+      // console.log("este es el token", token);
+      setIsLoggedIn(true);
+    }
     // if (!token) {
     //   window.location.href = "/login";
     // }
@@ -116,8 +124,7 @@ export default function AsideMusico({ page, hidden }) {
             </p>
           </Button>
         </Link>
-        {/*}
-        <Link href="/perfil-musico/galeria">
+        {/*<Link href="/perfil-musico/galeria">
           <Button
             className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
               page === "galeria" ? "bg-[#312971]" : ""
@@ -132,8 +139,9 @@ export default function AsideMusico({ page, hidden }) {
               Galería
             </p>
           </Button>
-        </Link>
-            */}
+
+            </Link>*/}
+
         <Link href="/perfil-musico/repertorio">
           <Button
             className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
@@ -207,7 +215,15 @@ export default function AsideMusico({ page, hidden }) {
                   </p>
                 </ModalBody> */}
               <ModalFooter>
-                <Button color="danger" onPress={onClose}>
+                <Button
+                  color="danger"
+                  onPress={onClose}
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    sessionStorage.removeItem("token");
+                    setRoute(router.push("/"));
+                  }}
+                >
                   Si
                 </Button>
                 <Button color="primary" onPress={onClose}>
