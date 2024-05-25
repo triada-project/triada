@@ -145,7 +145,7 @@ export default function EventForm({ userData, tokenObject, musicianId }) {
             className="ml-2 mt-2 mr-5"
           />
         </div>
-        <div className="flex flex-col sm:flex-row ">
+        <div className="flex">
           <p className="text-blue-700 flex-auto text-center p-2">Disponible:</p>
           {userData.availability.map((slot) => (
             <p
@@ -296,6 +296,7 @@ export default function EventForm({ userData, tokenObject, musicianId }) {
               onChange={(e) => setValue(e.target.value)}
               {...register("street", { maxLength: 80 })}
             />
+
             <div className="sm:flex items-center gap-4 w-full">
               <Input
                 isRequired
@@ -381,6 +382,7 @@ export default function EventForm({ userData, tokenObject, musicianId }) {
               <p className="w-1/3 text-right">${totalRes()}</p>
             </div>
           </div>
+         
           <Checkbox isRequired {...register("isChecked")}>
             Acepto términos y condiciones
           </Checkbox>
