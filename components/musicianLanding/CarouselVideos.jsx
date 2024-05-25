@@ -12,8 +12,15 @@ const options = {
   },
 };
 
-export default function CarouselVideos() {
-  const videos = () => {
+export default function CarouselVideos({ userData }) {
+  // Función para extraer el ID del video de YouTube
+  const extractVideoId = (url) => {
+    const match = url.match(/v=([^&]+)/);
+    return match ? match[1] : null;
+  };
+
+  // Función para renderizar cada video en el carrusel
+  const renderVideo = (url) => {
     const options = {
       height: "460",
       width: "100%",
@@ -22,31 +29,28 @@ export default function CarouselVideos() {
       //   controls: 1,
       // },
     };
-    return <YouTube videoId="00TLrFv8ppI" opts={options} />;
+
+    const videoId = extractVideoId(url);
+    return <YouTube videoId={videoId} opts={options} />;
   };
 
-  const Images = [
-    {
-      renderItem: videos,
-      showPlayButton: false,
-      showFullscreenButton: false,
-      useBrowserFullscreen: false,
-    },
-    {
-      renderItem: videos,
-      showPlayButton: false,
-      showFullscreenButton: false,
-      useBrowserFullscreen: false,
-    },
-  ];
+  // Verificamos si userData y userData.videos están definidos
+  if (!userData || !Array.isArray(userData.videos)) {
+    return <div>No hay videos disponibles</div>;
+  }
+  // Mapeamos los datos de userData para crear los elementos del carrusel
+  const videoItems = userData.videos.map((url) => ({
+    renderItem: () => renderVideo(url),
+    showPlayButton: false,
+    showFullscreenButton: false,
+    useBrowserFullscreen: false,
+  }));
 
   return (
-    <>
-      <ImageGallery
-        items={Images}
-        showFullscreenButton={false}
-        showPlayButton={false}
-      />
-    </>
+    <ImageGallery
+      items={videoItems}
+      showFullscreenButton={false}
+      showPlayButton={false}
+    />
   );
 }

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
 
+
+
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
@@ -28,6 +30,7 @@ export default function CheckoutForm() {
       },
       // redirect:"if_required",
     });
+
     // if(error){
     //   setMessage(error.message);
     // }else if (paymentIntent && paymentIntent.status === "succeeded"){
@@ -35,6 +38,9 @@ export default function CheckoutForm() {
     // } else {
     //   setMessage("Tu pago se realizo con exito ");
     // };
+
+        
+
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
     } else {
