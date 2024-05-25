@@ -5,7 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import LocalidadSelect from "@/components/SelectsLocation/LocalidadSelect";
 import EstadoSelect from "@/components/SelectsLocation/EstadoSelect";
-import { Spinner } from "@nextui-org/react";
+import { Spinner, Input } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useTokenStore from "@/stores/tokenStore";
@@ -31,6 +31,7 @@ export default function Step2() {
     defaultValues: {
       state: "",
       city: "",
+      phone: "",
     },
   });
 
@@ -47,6 +48,7 @@ export default function Step2() {
 
   const onSubmit = (data) => {
     // e.preventDefault();
+    const phonePrefix = "+52" + data.phone;
     setRoute(router.push("/stepper/paso3"));
     console.log(data);
     const response = fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
@@ -57,6 +59,7 @@ export default function Step2() {
       body: JSON.stringify({
         city: data.city,
         state: data.state,
+        phoneMusician: phonePrefix,
       }),
     });
   };
@@ -112,6 +115,27 @@ export default function Step2() {
                   selectedKeys={value ? [value] : []}
                 />
               )}
+            />
+            <h2
+              className={`${josefine.className} text-xl text-center font-semibold md:text-3xl `}
+            >
+              Compártenos tu número móvil
+            </h2>
+            <p
+              className={`${lato.className} text-start text-[#455A64] w-[328px] mt-3 md:w-full md:text-center`}
+            >
+              Esto nos ayudará a facilitar tu contacto al cliente que te
+              contrate para la comunicación contigo.{" "}
+              <b>*Número celular a 10 dígitos </b>
+            </p>
+            <Input
+              isRequired
+              variant="bordered"
+              radius="sm"
+              label="Teléfono"
+              // onChange={(e) => setValue(e.target.value)}
+              {...register("phone", { pattern: /^[0-9]{10}$/ })}
+              className="mt-5 sm:mt-0"
             />
             {/* <Select
               label="Estado de residencia"
