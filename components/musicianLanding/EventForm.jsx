@@ -77,7 +77,7 @@ export default function EventForm({ userData, tokenObject, musicianId }) {
           eventFee: totalRes(),
           isChecked: data.isChecked,
           musician: musicianId,
-          client: userData._id,
+          client: tokenObject._id,
         }),
         headers: {
           "Content-Type": "application/json",

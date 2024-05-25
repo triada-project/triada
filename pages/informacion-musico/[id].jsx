@@ -2,7 +2,6 @@ import { React, useEffect, useState } from "react";
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Avatar, AvatarIcon, Chip } from "@nextui-org/react";
 import NavBar from "@/components/Navbar";
-//import dataMusician from "../../objects/musicianObject.json";
 import check from "../../public/assets/svg/check.svg";
 import Image from "next/image";
 import CarouselVideos from "../../components/musicianLanding/CarouselVideos";
@@ -11,6 +10,7 @@ import AsideLeft from "@/components/musicianLanding/AsideLeft";
 import Ranking from "@/components/Ranking/Ranking";
 import EventForm from "@/components/musicianLanding/EventForm";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
+import warning from "../../public/assets/images/warning.png";
 import FooterMain from "@/components/footer/footer";
 import { useRouter } from "next/router";
 import useTokenStore from "@/stores/tokenStore";
@@ -39,7 +39,7 @@ export default function musicianDetail() {
       useTokenStore.setState({ tokenObject: payloadObject });
     }
   }, []);
-  //console.log(tokenObject);
+
   //console.log(userId);
   //console.log(userData);
 
@@ -130,6 +130,7 @@ export default function musicianDetail() {
                   ))}
                 </div>
               </div>
+              {/*}
               <div className="md:gap-4">
                 <span>
                   <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
@@ -145,7 +146,7 @@ export default function musicianDetail() {
                   <CarouselFotos userData={userData} />
                 </span>
               </div>
-
+*/}
               <div>
                 <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
                   Requerimientos
@@ -221,10 +222,23 @@ export default function musicianDetail() {
                     musicianId={userId}
                   />
                 ) : (
-                  <p>
-                    Registrate o inica sesión para poder contratar a este
-                    músico.
-                  </p>
+                  <div className="border border-yellow-700 bg-yellow-100 rounded-md mt-5 flex">
+                    <div>
+                      <Image
+                        src={warning}
+                        alt="info"
+                        width={20}
+                        height={20}
+                        className="ml-2 mt-2 mr-5"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-yellow-700 flex-auto text-center p-2">
+                        Registrate o inica sesión para poder contratar a este
+                        músico.
+                      </p>
+                    </div>
+                  </div>
                 )}
               </div>
             </main>
