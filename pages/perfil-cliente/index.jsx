@@ -2,7 +2,7 @@ import AsideCliente from "../../components/perfil-cliente/AsideCliente.jsx";
 import MenuMobileMusician from "@/components/profile-musician/MenuMobileMusician.jsx";
 import UpdateCardPicture from "../../components/UpdateCardPicture.jsx";
 import InformacionForm from "@/components/perfil-cliente/InformacionForm.jsx";
-import NewPasswordForm from "@/components/newPasswordForm.jsx";
+import NewPasswordForm from "../../components/NewPasswordForm.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
 import { useEffect } from "react";
 import useTokenStore from "@/stores/tokenStore";
