@@ -9,7 +9,7 @@ import { Spinner } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useTokenStore from "@/stores/tokenStore";
-import Availability from "@/components/Availability";
+import AvailabilityStepper from "@/components/AvailabilityStepper";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -88,7 +88,7 @@ export default function Step2() {
           y puedar resevar dentro de los días y horarios que manejas.
         </p>
 
-        <Availability data={tokenObject} />
+        <AvailabilityStepper data={tokenObject} />
 
         <ButtonsStepper
           mTop={"mt-[60px]"}
