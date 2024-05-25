@@ -18,6 +18,7 @@
     "clsx": "^2.1.0",
     "framer-motion": "^11.1.7",
     "install": "^0.13.0",
+    "jwt-decode": "^4.0.0",
     "next": "14.1.4",
     "react": "^18",
     "react-calendar": "^4.8.0",
@@ -31,6 +32,7 @@
     "slick-carousel": "^1.8.1",
     "sonner": "^1.4.41",
     "stripe": "^15.1.0",
+    "sweetalert2": "^11.11.0",
     "swiper": "^11.1.0",
     "zustand": "^4.5.2"
   },

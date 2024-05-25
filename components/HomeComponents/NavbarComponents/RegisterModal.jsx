@@ -7,7 +7,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { Josefin_Sans, Lato } from "next/font/google";
-import NewUserForm from "./NewUserForm";
+import NewUserForm from "./NewUserForm"; //checar alert
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
