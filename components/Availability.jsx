@@ -85,6 +85,7 @@ export default function Availability({ data }) {
         if (response.ok) {
           const data = await response.json(); // Obtiene los datos de respuesta (opcional)
           toast.success("Disponibilidad actualizada con éxito");
+          window.location.reload();
         } else {
           toast.error("Error al actualizar disponibilidad");
         }
