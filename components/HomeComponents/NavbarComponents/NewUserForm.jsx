@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Checkbox } from "@nextui-org/react";
+import Swal from "sweetalert2";
 import ClientOrMusician from "./ClientOrMusician";
 
 const josefine = Josefin_Sans({
@@ -33,9 +34,21 @@ export default function NewUserForm() {
       headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
-      alert("Usuario creado con éxito");
+      Swal.fire({
+        icon: "success",
+        title: "Usuario creado con éxito, te hemos enviado un correo y verifica tu cuenta.",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar",
+        
+      });
     } else {
-      alert("Usuario no creado, inténtalo de nuevo");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Usuario no creado, inténtalo de nuevo",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar",
+      });
     }
   }
 

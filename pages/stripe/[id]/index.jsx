@@ -2,14 +2,7 @@ import { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@/components/Stripe/CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Image,
-  Chip,
-} from "@nextui-org/react";
+import { Card, CardHeader, CardBody, CardFooter, Image, Chip } from "@nextui-org/react";
 import Events from "../../../objects/events.json";
 import NavBar from "@/components/Navbar";
 import FooterMain from "@/components/footer/footer";
@@ -18,8 +11,9 @@ import { Spinner } from "@nextui-org/react";
 
 function Payment() {
   const router = useRouter();
-  const eventId = router.query.id;
-  console.log("this is", eventId);
+  const eventId = router.query.id;  
+  console.log('this is',eventId);
+  
 
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
@@ -34,12 +28,12 @@ function Payment() {
   const fetchrequest = async () => {
     try {
       const response = await fetch(`http://localhost:4000/events/${eventId}`, {
-        headers: {
+        headers:{
           "Content-Type": "application/json",
-        },
-      });
-      const responseData = await response.json();
-      console.log(responseData, "responseData");
+        }
+      })   
+      const responseData = await response.json()
+      console.log(responseData, 'responseData');
       setIdEvent(responseData.data._id);
       setEventFee(responseData.data.eventFee);
       setEventData(responseData.data);
@@ -64,10 +58,12 @@ function Payment() {
     } catch (error) {
       console.error(error);
     }
+    
   };
 
   useEffect(() => {
-    if (eventId) {
+    
+    if(eventId){
       fetchrequest();
     }
   }, [eventId]);
@@ -82,6 +78,7 @@ function Payment() {
   //  alert('crack')
   // };
 
+
   useEffect(() => {
     fetch("http://localhost:4000/config").then(async (r) => {
       const { publishableKey } = await r.json();
@@ -92,7 +89,7 @@ function Payment() {
       );
     });
   }, []);
-
+  
   // useEffect(() => {
   //   fetch("http://localhost:3005/create-payment-intent", {
   //     method: "POST",
@@ -114,15 +111,15 @@ function Payment() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        _id: idEvent,
-        eventFee: eventFee,
+        _id:idEvent,
+        eventFee:eventFee
       }),
     }).then(async (result) => {
       var { clientSecret } = await result.json();
       setClientSecret(clientSecret);
     });
   }, [eventFee]);
-
+  
   const { events } = Events;
   //pendiente por confirmar
   const eventosPendientes = events.filter(
@@ -243,7 +240,7 @@ function Payment() {
                     <li className="md:text-l">{eventData.eventType}</li>
                   </div>
                   {/* <li className="text-xs">Contact:</li> */}
-                  <div className="flex items-center gap-1">
+                  <div className="items-center gap-1 hidden">
                     <Image
                       src="/assets/svg/call.svg"
                       className="w-4 h-6 mr-2  md:w-5 hover:border-slate-400"
@@ -253,9 +250,7 @@ function Payment() {
                         <li className="text-xs">{evento.telefono_evento}</li>
                       ))}
                   </div>
-                </ul>
 
-                <ul class="list-none ">
                   <div className="flex items-center gap-1 mb-2">
                     <Image
                       src="/assets/svg/calendar_client.svg"
@@ -271,6 +266,10 @@ function Payment() {
                     {/* <li className="md:text-l">Costo:${evento.costo_evento}</li> */}
                     <li className="md:text-l">Costo:${eventData.eventFee}</li>
                   </div>
+                </ul>
+
+                <ul class="list-none ">
+                  
                   <div className="flex  gap-1 mb-2">
                     <Image
                       src="/assets/svg/card-sharp.svg"
@@ -286,6 +285,9 @@ function Payment() {
             </div>
           </div>
         ))}
+
+       
+
 
         {eventosPendientes.map((evento, index) => (
           <Card key={index} className="w-3/4 m-auto mt-10 ">
@@ -306,19 +308,22 @@ function Payment() {
             </CardBody>
           </Card>
         ))}
+        
 
-        <div className="w-3/4 m-auto pb-10 mt-10">
-          {clientSecret && stripePromise && (
-            <Elements stripe={stripePromise} options={{ clientSecret }}>
-              <CheckoutForm />
-            </Elements>
-          )}
-        </div>
+      
+      <div className="w-3/4 m-auto pb-10 mt-10">
+        {clientSecret && stripePromise && (
+          <Elements stripe={stripePromise} options={{ clientSecret }} >
+            <CheckoutForm/>
+          </Elements>
+        )}
+      </div>
 
-        <FooterMain />
-      </main>
+    <FooterMain/>
+    </main>
     </>
   );
 }
 
 export default Payment;
+
