@@ -73,6 +73,7 @@ export default function PerfilMusico() {
           <p className={`${lato.className} text-[#455A64]`}>
             Selecciona tus horarios de trabajo para que los clientes puedan
             verlos y puedar resevar dentro de los días y horarios que manejas.
+            <b>*Horario formato 24 hrs.</b>
           </p>
           <div className="border border-blue-700 bg-blue-100 rounded-md mt-5 flex w-full mb-8 lg:mb-0 sm:flex-wrap">
             <div>
