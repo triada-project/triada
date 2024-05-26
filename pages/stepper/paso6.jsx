@@ -85,7 +85,8 @@ export default function Step2() {
           className={`${lato.className} text-start text-[#455A64] w-[328px] mt-3 md:w-full md:text-center`}
         >
           Selecciona tus horarios de trabajo para que los clientes puedan verlos
-          y puedar resevar dentro de los días y horarios que manejas.
+          y puedar resevar dentro de los días y horarios que manejas.{" "}
+          <b>*Horario formato 24 hrs.</b>
         </p>
 
         <AvailabilityStepper data={tokenObject} />

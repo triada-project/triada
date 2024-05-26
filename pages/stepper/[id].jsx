@@ -61,7 +61,7 @@ export default function Stepper() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:4000/auth/login", {
+      const response = await fetch("http://localhost:4000/auth/login/verify", {
         // Corrección en la ruta
         method: "POST",
         body: JSON.stringify({
