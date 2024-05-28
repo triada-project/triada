@@ -10,6 +10,7 @@ import SelectTypeEvents from "../SelectGenreMusic/SelectTypeEvents";
 import LocalidadSelect from "../SelectsLocation/LocalidadSelect";
 import EstadoSelect from "../SelectsLocation/EstadoSelect";
 import useTokenStore from "@/stores/tokenStore";
+import { Toaster, toast } from "sonner";
 import { users, musicalGenre } from "../SelectGenreMusic/data";
 import { useState } from "react";
 
@@ -19,8 +20,9 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function InfoFormMusico(props) {
+export default function InfoFormMusico({ userData }) {
   const tokenObject = useTokenStore((state) => state.tokenObject);
+  console.log(userData?.data);
   console.log(tokenObject);
   const {
     register,
@@ -28,12 +30,14 @@ export default function InfoFormMusico(props) {
     control,
     formState: { errors },
   } = useForm({
-    mode: "onBlur",
     defaultValues: {
-      state: "",
-      city: "",
-      musicalGenre: "",
-      eventType: "",
+      // description: userData?.data?.description || "",
+      // eventFee: userData?.data?.eventFee || "",
+      // maximumHours: userData?.data?.maximumHours || "",
+      // state: "",
+      // city: userData?.data?.city || "",
+      // musicalGenre: "",
+      // eventType: "",
     },
   });
 
@@ -67,12 +71,25 @@ export default function InfoFormMusico(props) {
         }),
       }
     );
+    const responseData = await response.json();
+
+    if (response.status === 201) {
+      toast.success("¡Requerimientos guardados con éxito!");
+      window.location.reload();
+      // Opcional: Borrar las solicitudes después de guardarlas correctamente
+    } else {
+      toast.error("Ocurrió un error al guardar los requerimientos.");
+      console.error(
+        "Error en la respuesta de la API:",
+        responseData.message || response.statusText
+      );
+    }
   }
 
   //const onSubmit = (data) => console.log(data);
 
   // Verificar si el tokenObject está listo
-  if (!tokenObject) {
+  if (!userData) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
@@ -90,6 +107,7 @@ export default function InfoFormMusico(props) {
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
+        <Toaster richColors closeButton />
         <div className=" flex flex-col items-center gap-7 pt-11">
           <Input
             className=" w-[328px] h-14 rounded-none lg:w-[30rem]"
@@ -97,6 +115,7 @@ export default function InfoFormMusico(props) {
             variant="bordered"
             radius="sm"
             label="Nombre para mostrar"
+            defaultValue={`${userData?.data?.name}`}
             {...register("name")}
           />
 
@@ -132,9 +151,10 @@ export default function InfoFormMusico(props) {
             variant="bordered"
             isRequired
             label="Descripción"
-            placeholder="Cuentanos sobre ti"
+            // placeholder="Cuentanos sobre ti"
             description="200 caracteres como máximo, solo texto simple."
             className="w-[328px] lg:w-[30rem]"
+            defaultValue={`${userData?.data?.description}`}
             {...register("description")}
           />
 
@@ -181,7 +201,8 @@ export default function InfoFormMusico(props) {
             type="number"
             label="Costo por hora evento"
             isRequired
-            placeholder="0.00"
+            //placeholder="0.00"
+            defaultValue={userData?.data?.eventFee}
             //autoFocus={true}
             variant="bordered"
             radius="sm"
@@ -198,7 +219,8 @@ export default function InfoFormMusico(props) {
             type="number"
             label="Duración máxima de horas por evento"
             isRequired
-            placeholder="0"
+            //placeholder="0"
+            defaultValue={userData?.data?.maximumHoursEvent}
             min={1}
             max={24}
             //autoFocus={true}
