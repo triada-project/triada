@@ -14,6 +14,7 @@ import { Toaster, toast } from "sonner";
 import { users, musicalGenre } from "../SelectGenreMusic/data";
 import { useState } from "react";
 import states from "../../data/estados.json";
+import estadosMunicipios from "../../data/estados-municipios.json";
 import useSelectedStateStore from "@/stores/selectedStateStore";
 
 const josefine = Josefin_Sans({
@@ -24,7 +25,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function InfoFormMusico({ userData }) {
   //const [state, setState] = useState();
-  //const [selectedCity, setSelectedCity] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
   const tokenObject = useTokenStore((state) => state.tokenObject);
   const state = useSelectedStateStore((state) => state.selectedState);
   const setSelectedState = useSelectedStateStore(
@@ -33,6 +34,12 @@ export default function InfoFormMusico({ userData }) {
   const handleEstadoChange = (selectedEstado) => {
     setSelectedState(selectedEstado);
   };
+  const handleLocalidadChange = (e) => {
+    setSelectedCity(e.target.value);
+  };
+  // Filtrar las localidades según el estado seleccionado
+  const localidades = estadosMunicipios[state] || [];
+  console.log(selectedCity);
   console.log(state);
   console.log(userData?.data);
   console.log(tokenObject);
@@ -73,7 +80,7 @@ export default function InfoFormMusico({ userData }) {
         },
         body: JSON.stringify({
           name: data.name,
-          city: data.city,
+          city: selectedCity,
           state: state,
           description: data.description,
           eventFee: data.eventFee,
@@ -173,7 +180,7 @@ export default function InfoFormMusico({ userData }) {
           {/* <div className=" text-tiny text-danger-50">
             Debes elegir un estado
           </div> */}
-          <Controller
+          {/* <Controller
             name="city"
             control={control}
             rules={{ required: true }}
@@ -184,7 +191,22 @@ export default function InfoFormMusico({ userData }) {
                 selectedKeys={value ? [value] : []}
               />
             )}
-          />
+          /> */}
+          <Select
+            label="Localidad"
+            isRequired
+            variant="bordered"
+            radius="sm"
+            className="w-[328px] h-14 lg:w-[30rem]"
+            onChange={handleLocalidadChange}
+            // selectedKeys={selectedKeys}
+            defaultSelectedKeys={[`${userData?.data?.city}`]}
+            //placeholder={[`${userData?.data?.city}`]}
+          >
+            {localidades.map((localidad, index) => (
+              <SelectItem key={localidad}>{localidad}</SelectItem>
+            ))}
+          </Select>
 
           <Textarea
             variant="bordered"

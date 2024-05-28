@@ -7,6 +7,7 @@ import { Spinner } from "@nextui-org/react";
 import { Josefin_Sans, Lato } from "next/font/google";
 import useTokenStore from "@/stores/tokenStore";
 import { useState, useEffect } from "react";
+import useSelectedStateStore from "@/stores/selectedStateStore";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -17,6 +18,9 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function PerfilMusico() {
   const [userData, setUserData] = useState(null);
   const tokenObject = useTokenStore((state) => state.tokenObject);
+  const setSelectedState = useSelectedStateStore(
+    (state) => state.setSelectedState
+  );
 
   useEffect(() => {
     const tokenFromLocalStorage = localStorage.getItem("token");
@@ -37,6 +41,7 @@ export default function PerfilMusico() {
         );
         const data = await response.json();
         setUserData(data); // Almacena los datos del usuario
+        setSelectedState(data.data.state);
       } catch (error) {
         console.error("Error fetching user data:", error);
         // Manejo de errores
