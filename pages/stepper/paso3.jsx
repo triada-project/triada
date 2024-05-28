@@ -5,7 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import SelectGenreMusic from "@/components/SelectGenreMusic/SelectGenreMusic";
 import SelectTypeEvents from "@/components/SelectGenreMusic/SelectTypeEvents";
-import { Spinner } from "@nextui-org/react";
+import { Spinner, Textarea } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useTokenStore from "@/stores/tokenStore";
@@ -31,6 +31,7 @@ export default function Step3() {
     defaultValues: {
       musicalGenre: "",
       eventType: "",
+      description: "",
     },
   });
 
@@ -58,6 +59,7 @@ export default function Step3() {
         eventType: data.eventType.split(","),
         musicalGenre: data.musicalGenre.split(","),
         musicianType: data.musicianType,
+        description: data.description,
       }),
     });
   };
@@ -150,6 +152,21 @@ export default function Step3() {
                   // width="w-[328px] lg:w-[30rem]"
                 />
               )}
+            />
+            <p
+              className={`${lato.className} text-start text-[#455A64] w-[328px] md:w-full md:text-center pb-3 mt-5`}
+            >
+              Danos una descripción de tu proyecto músical, esto aparecerá en la
+              información de tu perfil que verán los clientes
+            </p>
+            <Textarea
+              variant="bordered"
+              isRequired
+              label="Descripción"
+              placeholder="Cuentanos sobre ti"
+              description="200 caracteres como máximo, solo texto simple."
+              className="w-full"
+              {...register("description")}
             />
 
             <ButtonsStepper

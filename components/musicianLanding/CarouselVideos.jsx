@@ -12,6 +12,7 @@ const options = {
   },
 };
 
+
 export default function CarouselVideos({ userData }) {
   // Función para extraer el ID del video de YouTube
   const extractVideoId = (url) => {
@@ -29,7 +30,6 @@ export default function CarouselVideos({ userData }) {
       //   controls: 1,
       // },
     };
-
     const videoId = extractVideoId(url);
     return <YouTube videoId={videoId} opts={options} />;
   };
@@ -47,6 +47,7 @@ export default function CarouselVideos({ userData }) {
   }));
 
   return (
+
     <ImageGallery
       items={videoItems}
       showFullscreenButton={false}
