@@ -13,6 +13,8 @@ import useTokenStore from "@/stores/tokenStore";
 import { Toaster, toast } from "sonner";
 import { users, musicalGenre } from "../SelectGenreMusic/data";
 import { useState } from "react";
+import states from "../../data/estados.json";
+import useSelectedStateStore from "@/stores/selectedStateStore";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -21,7 +23,17 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function InfoFormMusico({ userData }) {
+  //const [state, setState] = useState();
+  //const [selectedCity, setSelectedCity] = useState("");
   const tokenObject = useTokenStore((state) => state.tokenObject);
+  const state = useSelectedStateStore((state) => state.selectedState);
+  const setSelectedState = useSelectedStateStore(
+    (state) => state.setSelectedState
+  );
+  const handleEstadoChange = (selectedEstado) => {
+    setSelectedState(selectedEstado);
+  };
+  console.log(state);
   console.log(userData?.data);
   console.log(tokenObject);
   const {
@@ -62,7 +74,7 @@ export default function InfoFormMusico({ userData }) {
         body: JSON.stringify({
           name: data.name,
           city: data.city,
-          state: data.state,
+          state: state,
           description: data.description,
           eventFee: data.eventFee,
           eventType: data.eventType.split(","),
@@ -72,6 +84,7 @@ export default function InfoFormMusico({ userData }) {
       }
     );
     const responseData = await response.json();
+    console.log(responseData);
 
     if (response.status === 201) {
       toast.success("¡Requerimientos guardados con éxito!");
@@ -119,7 +132,31 @@ export default function InfoFormMusico({ userData }) {
             {...register("name")}
           />
 
-          <Controller
+          <Select
+            label="Estado de residencia"
+            isRequired
+            variant="bordered"
+            radius="sm"
+            className="w-[328px] h-14 lg:w-[30rem]"
+            //onChange={onChange}
+            // onBlur={onBlur}
+            //placeholder="Ciudad de Mexico"
+            defaultSelectedKeys={[`${userData?.data?.state}`]}
+            // selectedKeys={state}
+            // onSelectionChange={setState}
+            //selectedKeys={selectedKeys}
+          >
+            {states.map((state) => (
+              <SelectItem
+                key={state.nombre}
+                onClick={() => handleEstadoChange(state.nombre)}
+              >
+                {state.nombre}
+              </SelectItem>
+            ))}
+          </Select>
+
+          {/* <Controller
             name="state"
             control={control}
             rules={{ required: true }} // Add your validation rules here
@@ -128,9 +165,11 @@ export default function InfoFormMusico({ userData }) {
                 // onBlur={onBlur}
                 onChange={onChange}
                 selectedKeys={value ? [value] : []}
+                data={userData}
               />
             )}
-          />
+          /> */}
+
           {/* <div className=" text-tiny text-danger-50">
             Debes elegir un estado
           </div> */}
