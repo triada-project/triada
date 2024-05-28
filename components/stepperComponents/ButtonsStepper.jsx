@@ -5,7 +5,13 @@ import Link from "next/link";
 
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function ButtonsStepper({ mTop, step, stepBack, stepNext }) {
+export default function ButtonsStepper({
+  mTop,
+  step,
+  stepBack,
+  stepNext,
+  onClick,
+}) {
   //console.log(stepBack);
   return (
     <div
@@ -30,9 +36,11 @@ export default function ButtonsStepper({ mTop, step, stepBack, stepNext }) {
       </Link>
 
       <p className=" font-bold text-sm md:text-lg">{`${step} / 7`}</p>
-      <Link href={`${stepNext}`}>
+
+      {stepNext === undefined ? (
         <Button
           type="submit"
+          onClick={onClick}
           className={`${lato.className} w-[107px] h-8 rounded font-bold bg-[#EE0075] px-2 py-1 shadow-md md:w-[150px] md:h-[50px]`}
         >
           <div className=" flex gap-2 items-center">
@@ -47,7 +55,47 @@ export default function ButtonsStepper({ mTop, step, stepBack, stepNext }) {
             />
           </div>
         </Button>
-      </Link>
+      ) : (
+        <Link href={`${stepNext}`}>
+          <Button
+            type="submit"
+            onClick={onClick}
+            className={`${lato.className} w-[107px] h-8 rounded font-bold bg-[#EE0075] px-2 py-1 shadow-md md:w-[150px] md:h-[50px]`}
+          >
+            <div className=" flex gap-2 items-center">
+              <p className={`${lato.className} text-white font-bold `}>
+                Siguiente
+              </p>
+              <Image
+                src="/assets/svg/next.svg"
+                alt="arrow-right"
+                width={16}
+                height={16}
+              />
+            </div>
+          </Button>
+        </Link>
+      )}
+
+      {/* <Link href={`${stepNext}`}>
+        <Button
+          type="submit"
+          onClick={onClick}
+          className={`${lato.className} w-[107px] h-8 rounded font-bold bg-[#EE0075] px-2 py-1 shadow-md md:w-[150px] md:h-[50px]`}
+        >
+          <div className=" flex gap-2 items-center">
+            <p className={`${lato.className} text-white font-bold `}>
+              Siguiente
+            </p>
+            <Image
+              src="/assets/svg/next.svg"
+              alt="arrow-right"
+              width={16}
+              height={16}
+            />
+          </div>
+        </Button>
+      </Link> */}
     </div>
   );
 }

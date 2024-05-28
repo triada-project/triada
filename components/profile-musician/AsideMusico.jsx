@@ -17,6 +17,8 @@ import PlayCircleColor from "@/public/assets/svg/playCircleColor";
 import CalendarColor from "@/public/assets/svg/CalendarColor.jsx";
 import GaleryColor from "@/public/assets/svg/GaleryColor";
 import RepertorioColor from "@/public/assets/svg/RepertoryColor";
+import RequestColor from "@/public/assets/svg/requestColor";
+import { useRouter } from "next/router";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -25,19 +27,26 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function AsideMusico({ page, hidden }) {
+  const router = useRouter();
+  const [route, setRoute] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
+    if (token) {
+      // console.log("este es el token", token);
+      setIsLoggedIn(true);
+    }
     // if (!token) {
     //   window.location.href = "/login";
     // }
     //console.log(token);
     return () => {};
   });
-  console.log(token);
+  //console.log(token);
 
   const tokenObjet = () => {
     if (token) {
@@ -53,12 +62,12 @@ export default function AsideMusico({ page, hidden }) {
 
   return (
     <aside
-      className={`bg-[#081540] fixed w-[245px] h-screen  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-1 `}
+      className={`bg-[#081540] fixed top-0  w-[245px] h-full  flex flex-col items-center ${josefine.className} hidden sm:flex sm:col-start-1 sm:col-span-1 `}
     >
       <Link href="/">
         <Image src={triadaLogo} className={`pt-12 ${hidden}`} />
       </Link>
-      <section className=" pt-[120px] flex flex-col gap-10 items-center">
+      <section className=" pt-[120px] flex flex-col gap-10 items-center pb-[60px]">
         <Link href="/perfil-musico">
           <Button
             className={` w-[213px] h-[76px] bg-[#0E4466] rounded-2xl flex items-center ${
@@ -115,7 +124,7 @@ export default function AsideMusico({ page, hidden }) {
             </p>
           </Button>
         </Link>
-        <Link href="/perfil-musico/galeria">
+        {/*<Link href="/perfil-musico/galeria">
           <Button
             className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
               page === "galeria" ? "bg-[#312971]" : ""
@@ -130,7 +139,9 @@ export default function AsideMusico({ page, hidden }) {
               Galería
             </p>
           </Button>
-        </Link>
+
+            </Link>*/}
+
         <Link href="/perfil-musico/repertorio">
           <Button
             className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
@@ -147,11 +158,27 @@ export default function AsideMusico({ page, hidden }) {
             </p>
           </Button>
         </Link>
+        <Link href="/perfil-musico/requerimientos">
+          <Button
+            className={` rounded-none bg-[#081540] w-[245px] h-12 flex justify-start items-center gap-[18px] hover:bg-[#312971] pl-8 ${
+              page === "requerimientos" ? "bg-[#312971]" : ""
+            } `}
+          >
+            <RequestColor colorFill={page} />
+            <p
+              className={` text-base ${
+                page === "requerimientos" ? "text-[#29FEFD]" : "text-white"
+              } `}
+            >
+              Requerimientos
+            </p>
+          </Button>
+        </Link>
       </section>
       <Button
         onPress={onOpen}
         variant="bordered"
-        className={` text-white w-[213px] h-12 rounded text-base mt-[60px] ${lato.className}`}
+        className={` text-white w-[213px] h-12 rounded text-base  ${lato.className}`}
       >
         <p>Cerrar sesión</p>
       </Button>
@@ -188,7 +215,15 @@ export default function AsideMusico({ page, hidden }) {
                   </p>
                 </ModalBody> */}
               <ModalFooter>
-                <Button color="danger" onPress={onClose}>
+                <Button
+                  color="danger"
+                  onPress={onClose}
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    sessionStorage.removeItem("token");
+                    setRoute(router.push("/"));
+                  }}
+                >
                   Si
                 </Button>
                 <Button color="primary" onPress={onClose}>

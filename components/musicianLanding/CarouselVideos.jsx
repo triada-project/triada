@@ -1,52 +1,57 @@
 import React from "react";
 import ImageGallery from "react-image-gallery";
-// import stylesheet if you're not already using CSS @import
 import "react-image-gallery/styles/css/image-gallery.css";
 import YouTube from "react-youtube";
 
-export default function CarouselVideos() {
-  const images = [
-    {
-      original: "https://picsum.photos/id/1018/1000/600/",
-    },
-    {
-      original: "https://picsum.photos/id/1015/1000/600/",
-    },
-    {
-      original: "https://picsum.photos/id/1019/1000/600/",
-    },
-  ];
-  return <ImageGallery items={images} />;
-}
+const options = {
+  height: "390",
+  width: "640",
+  playerVars: {
+    autoplay: 1,
+    controls: 1,
+  },
+};
 
-/*import React, { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-//import "./styles.css";
-import { Navigation } from "swiper/modules";
-import dataMusician from "../../objects/musicianObject.json";
-import YouTube from "react-youtube";
 
-export default function CarouselVideos() {
-  const { users } = dataMusician;
+export default function CarouselVideos({ userData }) {
+  // Función para extraer el ID del video de YouTube
+  const extractVideoId = (url) => {
+    const match = url.match(/v=([^&]+)/);
+    return match ? match[1] : null;
+  };
+
+  // Función para renderizar cada video en el carrusel
+  const renderVideo = (url) => {
+    const options = {
+      height: "460",
+      width: "100%",
+      // playerVars: {
+      //   autoplay: 1,
+      //   controls: 1,
+      // },
+    };
+    const videoId = extractVideoId(url);
+    return <YouTube videoId={videoId} opts={options} />;
+  };
+
+  // Verificamos si userData y userData.videos están definidos
+  if (!userData || !Array.isArray(userData.videos)) {
+    return <div>No hay videos disponibles</div>;
+  }
+  // Mapeamos los datos de userData para crear los elementos del carrusel
+  const videoItems = userData.videos.map((url) => ({
+    renderItem: () => renderVideo(url),
+    showPlayButton: false,
+    showFullscreenButton: false,
+    useBrowserFullscreen: false,
+  }));
 
   return (
-    <>
-      <Swiper navigation={true} modules={[Navigation]}>
-        <SwiperSlide>
-          <YouTube videoId="kZKcHnQXksw"  />
-        </SwiperSlide>
-        <SwiperSlide>
-          <YouTube videoId="NsvDK26WvA0" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <YouTube videoId="d6RrGeLrgSk" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <YouTube videoId="VqN8X0RGp-c" />
-        </SwiperSlide>
-      </Swiper>
-    </>
+
+    <ImageGallery
+      items={videoItems}
+      showFullscreenButton={false}
+      showPlayButton={false}
+    />
   );
-}*/
+}

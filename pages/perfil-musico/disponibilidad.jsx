@@ -1,10 +1,12 @@
 import MenuMobileMusician from "@/components/profile-musician/MenuMobileMusician.jsx";
 import AsideMusico from "@/components/profile-musician/AsideMusico.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
-import { Checkbox } from "@nextui-org/react";
-import { useForm } from "react-hook-form";
-import { Select, SelectSection, SelectItem } from "@nextui-org/react";
-import ButtonPink from "../../components/musicianLanding/ButtonPink";
+import Availability from "@/components/Availability";
+import { useEffect, useState } from "react";
+import { Spinner } from "@nextui-org/react";
+import useTokenStore from "@/stores/tokenStore";
+import Image from "next/image";
+import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -13,427 +15,91 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function PerfilMusico() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const onSubmit = (data) => console.log(data);
+  useEffect(() => {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    if (tokenFromLocalStorage) {
+      const [encodedHeader, encodedPayload, encodedSignature] =
+        tokenFromLocalStorage.split(".");
+      const decodedPayload = atob(encodedPayload);
+      const payloadObject = JSON.parse(decodedPayload);
+      useTokenStore.setState({ tokenObject: payloadObject });
+    }
+    setIsLoading(false); // Esto asegura que el token haya sido establecido antes de continuar
+  }, []);
+
+  useEffect(() => {
+    if (tokenObject?._id) {
+      // Realiza la solicitud fetch para obtener los datos del usuario
+      fetch(`http://localhost:4000/users/${tokenObject._id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          // Almacena los datos del usuario en el estado local
+          setUserData(data.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+          // Maneja el error si la solicitud falla
+        });
+    }
+  }, [tokenObject?._id]);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
+      </div>
+    );
+  }
+
+  if (!userData) {
+    return <div>Cargando...</div>; // Muestra un mensaje de carga mientras se obtienen los datos
+  }
+
   return (
     <>
       <MenuMobileMusician page="disponibilidad" role="musico" />
-      <main className="max-w-[1440px] bg-white  flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]">
+      <main className="overflow-y-auto shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50 max-w-[1440px] bg-white flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]">
         <AsideMusico page="disponibilidad" />
-        <section className=" w-[90%] flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-screen sm:w-[80%] sm:ml-11 lg:ml-[72px] lg:items-start ">
+        <section className="w-[90%] flex flex-col items-center sm:col-start-2 sm:col-span-1 h-screen sm:w-[80%] sm:ml-11 lg:ml-[72px] lg:items-start">
           <h1
-            className={`${josefine.className} text-black text-xl font-semibold my-10 sm:text-[28px] lg:mt-[4.5rem] `}
+            className={`${josefine.className} text-black text-xl font-semibold my-10 sm:text-[28px] lg:mt-[4.5rem]`}
           >
             Disponibilidad
           </h1>
           <p className={`${lato.className} text-[#455A64]`}>
             Selecciona tus horarios de trabajo para que los clientes puedan
-            verlos y reservarlos.
+            verlos y puedar resevar dentro de los días y horarios que manejas.
+            <b>*Horario formato 24 hrs.</b>
           </p>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="border-2 rounded-lg p-5 flex flex-col  lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py- lg:border-opacity-25 lg:shadow-lg lg:items-start lg:mt-[67px]">
-              <div className="flex mb-2 items-center gap-4">
-                <div className="w-24">
-                  <Checkbox isDisabled>Lunes</Checkbox>
-                </div>
-                <div className="flex gap-2">
-                  <Select
-                    label="Hora de inicio"
-                    isRequired
-                    //autoFocus={true}
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-                    {...register("startHour", { required: true })}
-                  >
-                    <SelectItem key={"9:00"}>9:00</SelectItem>
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                  </Select>
-
-                  <Select
-                    label="Hora de fin"
-                    isRequired
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    {...register("endHour")}
-                  >
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                    <SelectItem key={"23:00"}>23:00</SelectItem>
-                  </Select>
-                </div>
-              </div>
-              <div className="flex mb-2 items-center gap-4">
-                <div className="w-24">
-                  <Checkbox isDisabled>Martes</Checkbox>
-                </div>
-                <div className="flex gap-2">
-                  <Select
-                    label="Hora de inicio"
-                    isRequired
-                    //autoFocus={true}
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-                    {...register("startHour", { required: true })}
-                  >
-                    <SelectItem key={"9:00"}>9:00</SelectItem>
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                  </Select>
-
-                  <Select
-                    label="Hora de fin"
-                    isRequired
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    {...register("endHour")}
-                  >
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                    <SelectItem key={"23:00"}>23:00</SelectItem>
-                  </Select>
-                </div>
-              </div>
-              <div className="flex mb-2 items-center gap-4">
-                <div className="w-24">
-                  <Checkbox isDisabled>Miércoles</Checkbox>
-                </div>
-                <div className="flex gap-2">
-                  <Select
-                    label="Hora de inicio"
-                    isRequired
-                    //autoFocus={true}
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-                    {...register("startHour", { required: true })}
-                  >
-                    <SelectItem key={"9:00"}>9:00</SelectItem>
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                  </Select>
-
-                  <Select
-                    label="Hora de fin"
-                    isRequired
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    {...register("endHour")}
-                  >
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                    <SelectItem key={"23:00"}>23:00</SelectItem>
-                  </Select>
-                </div>
-              </div>
-              <div className="flex mb-2 items-center gap-4">
-                <div className="w-24">
-                  <Checkbox isDisabled>Jueves</Checkbox>
-                </div>
-                <div className="flex gap-2">
-                  <Select
-                    label="Hora de inicio"
-                    isRequired
-                    //autoFocus={true}
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-                    {...register("startHour", { required: true })}
-                  >
-                    <SelectItem key={"9:00"}>9:00</SelectItem>
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                  </Select>
-
-                  <Select
-                    label="Hora de fin"
-                    isRequired
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    {...register("endHour")}
-                  >
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                    <SelectItem key={"23:00"}>23:00</SelectItem>
-                  </Select>
-                </div>
-              </div>
-              <div className="flex mb-2 items-center gap-4">
-                <div className="w-24">
-                  <Checkbox isDisabled>Viernes</Checkbox>
-                </div>
-                <div className="flex gap-2">
-                  <Select
-                    label="Hora de inicio"
-                    isRequired
-                    //autoFocus={true}
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-                    {...register("startHour", { required: true })}
-                  >
-                    <SelectItem key={"9:00"}>9:00</SelectItem>
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                  </Select>
-
-                  <Select
-                    label="Hora de fin"
-                    isRequired
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    {...register("endHour")}
-                  >
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                    <SelectItem key={"23:00"}>23:00</SelectItem>
-                  </Select>
-                </div>
-              </div>
-              <div className="flex mb-2 items-center gap-4">
-                <div className="w-24">
-                  <Checkbox isDisabled>Sábado</Checkbox>
-                </div>
-                <div className="flex gap-2">
-                  <Select
-                    label="Hora de inicio"
-                    isRequired
-                    //autoFocus={true}
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-                    {...register("startHour", { required: true })}
-                  >
-                    <SelectItem key={"9:00"}>9:00</SelectItem>
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                  </Select>
-
-                  <Select
-                    label="Hora de fin"
-                    isRequired
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    {...register("endHour")}
-                  >
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                    <SelectItem key={"23:00"}>23:00</SelectItem>
-                  </Select>
-                </div>
-              </div>
-              <div className="flex mb-2 items-center gap-4">
-                <div className="w-24">
-                  <Checkbox isDisabled>Domingo</Checkbox>
-                </div>
-                <div className="flex gap-2">
-                  <Select
-                    label="Hora de inicio"
-                    isRequired
-                    //autoFocus={true}
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
-                    {...register("startHour", { required: true })}
-                  >
-                    <SelectItem key={"9:00"}>9:00</SelectItem>
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                  </Select>
-
-                  <Select
-                    label="Hora de fin"
-                    isRequired
-                    variant="bordered"
-                    radius="sm"
-                    className="w-32"
-                    {...register("endHour")}
-                  >
-                    <SelectItem key={"10:00"}>10:00</SelectItem>
-                    <SelectItem key={"11:00"}>11:00</SelectItem>
-                    <SelectItem key={"12:00"}>12:00</SelectItem>
-                    <SelectItem key={"13:00"}>13:00</SelectItem>
-                    <SelectItem key={"14:00"}>14:00</SelectItem>
-                    <SelectItem key={"15:00"}>15:00</SelectItem>
-                    <SelectItem key={"16:00"}>16:00</SelectItem>
-                    <SelectItem key={"17:00"}>17:00</SelectItem>
-                    <SelectItem key={"18:00"}>18:00</SelectItem>
-                    <SelectItem key={"19:00"}>19:00</SelectItem>
-                    <SelectItem key={"20:00"}>20:00</SelectItem>
-                    <SelectItem key={"21:00"}>21:00</SelectItem>
-                    <SelectItem key={"22:00"}>22:00</SelectItem>
-                    <SelectItem key={"23:00"}>23:00</SelectItem>
-                  </Select>
-                </div>
-              </div>
-              <div className="mt-5 w-full flex justify-center">
-                <ButtonPink text="Actualizar" />
-              </div>
+          <div className="border border-blue-700 bg-blue-100 rounded-md mt-5 flex w-full mb-8 lg:mb-0 sm:flex-wrap">
+            <div>
+              <Image
+                src={info_FILL1}
+                alt="info"
+                width={20}
+                height={20}
+                className="ml-2 mt-2 mr-5"
+              />
             </div>
-          </form>
+            <div className="flex flex-col item-center lg:flex-row  ">
+              <p className="text-blue-700 flex-auto text-center p-2">
+                Horarios guardados:
+              </p>
+              {userData.availability.map((slot) => (
+                <p
+                  className="text-blue-700 flex-auto text-center p-2"
+                  key={slot.day}
+                >
+                  {slot.day}: {slot.start} - {slot.end}
+                </p>
+              ))}
+            </div>
+          </div>
+          <Availability data={tokenObject} />
         </section>
       </main>
     </>

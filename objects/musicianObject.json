@@ -48,7 +48,7 @@
         "eventType": ["Conciertos en recintos", "Coorporativos"]
       },
       {
-        "title": "Piano Sonata No. 16 in C Major",
+        "title": "Piano Sonata No. 18 in C Major",
         "author": "Wolfgang Amadeus Mozart",
         "eventType": ["Conciertos en recintos", "Coorporativos"]
       }
@@ -76,15 +76,19 @@
     "availability": [
       {
         "day": "Jueves",
-        "hours": "16:00 - 22:00"
+        "hours": "18:00 - 22:00"
       },
       {
         "day": "Viernes",
-        "hours": "16:00 - 22:00"
+        "hours": "18:00 - 22:00"
       },
       {
         "day": "Sábado",
-        "hours": "16:00 - 22:00"
+        "hours": "18:00 - 22:00"
+      },
+      {
+        "day": "Domingo",
+        "hours": "18:00 - 22:00"
       }
     ],
     "coments": [
