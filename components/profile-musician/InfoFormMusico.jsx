@@ -11,11 +11,12 @@ import LocalidadSelect from "../SelectsLocation/LocalidadSelect";
 import EstadoSelect from "../SelectsLocation/EstadoSelect";
 import useTokenStore from "@/stores/tokenStore";
 import { Toaster, toast } from "sonner";
-import { users, musicalGenre } from "../SelectGenreMusic/data";
 import { useState } from "react";
 import states from "../../data/estados.json";
 import estadosMunicipios from "../../data/estados-municipios.json";
 import useSelectedStateStore from "@/stores/selectedStateStore";
+import React from "react";
+import { users, musicalGenre } from "./../SelectGenreMusic/data";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -26,6 +27,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function InfoFormMusico({ userData }) {
   //const [state, setState] = useState();
   const [selectedCity, setSelectedCity] = useState("");
+  const [selectedGenreMusic, setSelectedGenreMusic] = useState([]);
   const tokenObject = useTokenStore((state) => state.tokenObject);
   const state = useSelectedStateStore((state) => state.selectedState);
   const setSelectedState = useSelectedStateStore(
@@ -37,8 +39,13 @@ export default function InfoFormMusico({ userData }) {
   const handleLocalidadChange = (e) => {
     setSelectedCity(e.target.value);
   };
+  const handleSelectionGenreMusic = (e) => {
+    setSelectedGenreMusic(new Set(e.target.value.split(",")));
+  };
   // Filtrar las localidades según el estado seleccionado
   const localidades = estadosMunicipios[state] || [];
+  const genreMusicString = Array.from(selectedGenreMusic).join(",");
+  console.log(genreMusicString.split(","));
   console.log(selectedCity);
   console.log(state);
   console.log(userData?.data);
@@ -86,7 +93,7 @@ export default function InfoFormMusico({ userData }) {
           eventFee: data.eventFee,
           eventType: data.eventType.split(","),
           maximumHours: data.maximumHours,
-          musicalGenre: data.musicalGenre.split(","),
+          musicalGenre: genreMusicString.split(","),
         }),
       }
     );
@@ -219,7 +226,7 @@ export default function InfoFormMusico({ userData }) {
             {...register("description")}
           />
 
-          <Controller
+          {/* <Controller
             name="musicalGenre"
             control={control}
             rules={{ required: true }}
@@ -236,7 +243,53 @@ export default function InfoFormMusico({ userData }) {
                 width="w-[328px] lg:w-[30rem]"
               />
             )}
-          />
+          /> */}
+          <Select
+            isRequired
+            onChange={handleSelectionGenreMusic}
+            //selectedKeys={selectedKeys}
+            defaultSelectedKeys={userData?.data?.musicalGenre}
+            //className={selectType === "home" ? ` text-[#29FEFD] dark ` : ""}
+            items={musicalGenre}
+            label={"Géneros Musicales"}
+            variant="bordered"
+            isMultiline={true}
+            selectionMode={"multiple"}
+            placeholder={"Selecciona uno o más géneros musicales"}
+            //labelPlacement="outside"
+            classNames={{
+              base: `w-[328px] lg:w-[30rem]`,
+              trigger: "min-h-unit-12 py-2",
+            }}
+            // className={` h-16 ${width}`}
+            renderValue={(items) => {
+              return (
+                <div className="flex flex-wrap gap-2">
+                  {items.map((item) => (
+                    <Chip key={item.key} className=" bg-[#081540] text-white">
+                      {item.data.musicalGenre}
+                    </Chip>
+                  ))}
+                </div>
+              );
+            }}
+          >
+            {(musicalGenre) => (
+              <SelectItem
+                key={musicalGenre.id}
+                textValue={musicalGenre.musicalGenre}
+              >
+                <div className="flex gap-2 items-center">
+                  <div className="flex flex-col">
+                    <span className="text-small">
+                      {musicalGenre.musicalGenre}
+                    </span>
+                    {/* <span className="text-tiny text-default-400">{user.email}</span> */}
+                  </div>
+                </div>
+              </SelectItem>
+            )}
+          </Select>
 
           <Controller
             name="eventType"
