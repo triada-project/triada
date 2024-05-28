@@ -1,20 +1,32 @@
 import React, { useEffect, useState, useRef } from "react";
 import clsx from "clsx";
+import { jwtDecode } from "jwt-decode"; // Importación correcta de jwt-decode
 
 const TOKEN_KEY = "token";
 
 export default function UserLogOutNavbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [userRole, setUserRole] = useState(null);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
     const token = window.localStorage.getItem(TOKEN_KEY);
     if (token) {
-      console.log("este es el token", token);
       setIsLoggedIn(true);
+      try {
+        const decodedToken = jwtDecode(token);
+        console.log("Decoded Token:", decodedToken);
+        setUserRole(decodedToken.role); // Asegurarse de que la ruta del role es correcta
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
     }
   }, []);
+
+  useEffect(() => {
+    console.log("User Role:", userRole);
+  }, [userRole]);
 
   const handleOutsideClick = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -32,6 +44,14 @@ export default function UserLogOutNavbar() {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, [dropdownOpen]);
+
+  const handleProfileClick = () => {
+    if (userRole === "musico") {
+      window.location.href = "/perfil-musico";
+    } else if (userRole === "cliente") {
+      window.location.href = "/perfil-cliente";
+    }
+  };
 
   return (
     <div id="userLogOutMenu" className={clsx("pl-8", { hidden: !isLoggedIn })}>
@@ -60,7 +80,8 @@ export default function UserLogOutNavbar() {
                 zoey@mail.com
               </p>
               <button
-                onClick={() => (window.location.href = "/perfil-musico")}
+                id="buttonPerfil"
+                onClick={handleProfileClick}
                 className="mt-2 w-full px-4 py-1 text-left text-blue-600 hover:bg-gray-100"
               >
                 Ir a perfil
