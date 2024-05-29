@@ -18,7 +18,7 @@ export default function LoginFormDB() {
   } = useForm();
 
   async function onSubmit(data) {
-    const response = await fetch("http://18.119.160.6:4000/auth/login", {
+    const response = await fetch("http://3.145.7.153/auth/login", {
       method: "POST",
       body: JSON.stringify({
         email: data.email,

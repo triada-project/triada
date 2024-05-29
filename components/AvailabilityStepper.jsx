@@ -73,16 +73,13 @@ export default function AvailabilityStepper({ data }) {
       }, []);
 
       try {
-        const response = await fetch(
-          `http://18.119.160.6:4000/users/${idUser}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ availability: formattedAvailability }),
-          }
-        );
+        const response = await fetch(`http://3.145.7.153/users/${idUser}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ availability: formattedAvailability }),
+        });
 
         // Manejo de la respuesta del servidor
         if (response.ok) {

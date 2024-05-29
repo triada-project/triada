@@ -69,7 +69,7 @@ export default function Step5() {
     //if (!tokenObject) return;
     //console.log(tokenObject);
     try {
-      const response = await fetch(`http://18.119.160.6:4000/users/${userId}`, {
+      const response = await fetch(`http://3.145.7.153/users/${userId}`, {
         headers: {
           "Content-Type": "application/json",
           // Authorization: `Bearer ${tokenObject?.accessToken}`,
@@ -138,7 +138,7 @@ export default function Step5() {
     setRoute(router.push(`/stepper/paso6/${userId}`));
     console.log(data);
     try {
-      const response = await fetch(`http://18.119.160.6:4000/users/${userId}`, {
+      const response = await fetch(`http://3.145.7.153/users/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

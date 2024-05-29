@@ -34,7 +34,7 @@ export default function PerfilMusico() {
   useEffect(() => {
     if (tokenObject?._id) {
       // Realiza la solicitud fetch para obtener los datos del usuario
-      fetch(`http://18.119.160.6:4000/users/${tokenObject._id}`)
+      fetch(`http://3.145.7.153/users/${tokenObject._id}`)
         .then((response) => response.json())
         .then((data) => {
           // Almacena los datos del usuario en el estado local

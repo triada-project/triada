@@ -29,7 +29,7 @@ export default function InformacionForm() {
 
   async function onSubmit(data) {
     const response = await fetch(
-      `http://18.119.160.6:4000/users/${tokenObject?._id}`,
+      `http://3.145.7.153/users/${tokenObject?._id}`,
       {
         method: "PUT",
         headers: {

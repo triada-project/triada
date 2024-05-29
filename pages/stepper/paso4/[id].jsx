@@ -61,7 +61,7 @@ export default function Step4() {
 
   const fetchRepertorie = async () => {
     //console.log(tokenObject);
-    const response = await fetch(`http://18.119.160.6:4000/users/${userId}`, {
+    const response = await fetch(`http://3.145.7.153/users/${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -133,7 +133,7 @@ export default function Step4() {
     if (!repertoire.length) return;
 
     try {
-      const response = await fetch(`http://18.119.160.6:4000/users/${userId}`, {
+      const response = await fetch(`http://3.145.7.153/users/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

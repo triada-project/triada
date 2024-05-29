@@ -33,14 +33,11 @@ function Payment() {
 
   const fetchrequest = async () => {
     try {
-      const response = await fetch(
-        `http://18.119.160.6:4000/events/${eventId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`http://3.145.7.153/events/${eventId}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const responseData = await response.json();
       console.log(responseData, "responseData");
       setIdEvent(responseData.data._id);
@@ -54,7 +51,7 @@ function Payment() {
   const fetchrequestusers = async () => {
     try {
       const response = await fetch(
-        `http://18.119.160.6:4000/users/${eventData.musician}`,
+        `http://3.145.7.153/users/${eventData.musician}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -86,7 +83,7 @@ function Payment() {
   // };
 
   useEffect(() => {
-    fetch("http://18.119.160.6:4000/config").then(async (r) => {
+    fetch("http://3.145.7.153/config").then(async (r) => {
       const { publishableKey } = await r.json();
       setStripePromise(
         loadStripe(
@@ -111,7 +108,7 @@ function Payment() {
   //   })
   // }, [eventFee]);
   useEffect(() => {
-    fetch("http://18.119.160.6:4000/create-payment-intent", {
+    fetch("http://3.145.7.153/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

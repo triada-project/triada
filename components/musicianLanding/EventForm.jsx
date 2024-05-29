@@ -59,7 +59,7 @@ export default function EventForm({
     //console.log(data);
 
     try {
-      const response = await fetch("http://18.119.160.6:4000/events", {
+      const response = await fetch("http://3.145.7.153/events", {
         method: "POST",
         body: JSON.stringify({
           address: {

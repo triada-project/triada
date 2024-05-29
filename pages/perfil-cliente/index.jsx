@@ -34,7 +34,7 @@ export default function PerfilCliente() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://18.119.160.6:4000/users/${tokenObject?._id}`
+          `http://3.145.7.153/users/${tokenObject?._id}`
         );
         const data = await response.json();
         setUserData(data); // Almacena los datos del usuario

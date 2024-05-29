@@ -51,7 +51,7 @@ export default function Step2() {
     // e.preventDefault();
     setRoute(router.push(`/stepper/paso7/${userId}`));
     console.log(data);
-    const response = fetch(`http://18.119.160.6:4000/users/${userId}`, {
+    const response = fetch(`http://3.145.7.153/users/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

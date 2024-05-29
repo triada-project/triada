@@ -34,7 +34,7 @@ export default function Home() {
             onClick={async () => {
               setAccountCreatePending(true);
               setError(false);
-              fetch("http://18.119.160.6:4000/account", {
+              fetch("http://3.145.7.153/account", {
                 method: "POST",
               })
                 .then((response) => response.json())
@@ -47,7 +47,7 @@ export default function Home() {
                     // setConnectedAccountId(account);
                     setAccountLinkCreatePending(true);
                     setError(false);
-                    fetch("http://18.119.160.6:4000/account_link", {
+                    fetch("http://3.145.7.153/account_link", {
                       method: "POST",
                       headers: {
                         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export default function Home() {
             onClick={async () => {
               setAccountLinkCreatePending(true);
               setError(false);
-              fetch("http://18.119.160.6:4000/account_link", {
+              fetch("http://3.145.7.153/account_link", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

@@ -40,7 +40,7 @@ export default function Finalizar() {
     // e.preventDefault();
     setRoute(router.push("/"));
 
-    const response = fetch(`http://18.119.160.6:4000/users/${userId}`, {
+    const response = fetch(`http://3.145.7.153/users/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

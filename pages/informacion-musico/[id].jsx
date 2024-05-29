@@ -43,7 +43,7 @@ export default function MusicianDetail() {
 
   useEffect(() => {
     if (userId) {
-      fetch(`http://18.119.160.6:4000/users/${userId}`)
+      fetch(`http://3.145.7.153/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           setUserData(data.data);
