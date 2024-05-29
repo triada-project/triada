@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 // import { useNavigate } from "react-router-dom";
 import { Josefin_Sans } from "next/font/google";
+import Swal from "sweetalert2";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -34,12 +35,37 @@ export default function LoginFormDB() {
 
     const responseData = await response.json();
     if (responseData?.token) {
-      localStorage.setItem("token", responseData.token);
-      //   navigate("/");
-      redirection();
+      Swal.fire({
+        icon: "success",
+        title: "Datos introducidos correctamente , Bienvenido a Triada!!!",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar",
+        
+      }).then((result)=>{
+        if(result.isConfirmed){
+          localStorage.setItem("token", responseData.token)
+          window.location.reload()
+        }
+      });
+      //localStorage.setItem("token", responseData.token);
+    //   //   navigate("/");
+    //   redirection();
     } else {
-      setError("root", { message: "Información incorrecta, prueba de nuevo." });
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Usuario no validado, verifique su correo antes de iniciar sesión ",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar",
+      });
     }
+    // if (responseData?.token) {
+    //   localStorage.setItem("token", responseData.token);
+    //   //   navigate("/");
+    //   redirection();
+    // } else {
+    //   setError("root", { message: "Información incorrecta, prueba de nuevo." });
+    // }
   }
 
   return (
