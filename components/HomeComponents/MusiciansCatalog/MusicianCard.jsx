@@ -12,7 +12,7 @@ export default function MusicianCard(props) {
     <div className="bg-[#312971] flex flex-col w-[200px] sm:w-[200px] md:w-[300px] pb-2 rounded-lg lg:w-[324px]  ">
       <div id="imgContainer" className=" h-[120px]  rounded-lg  ">
         <img
-          src={props.profilePicture}
+          src={props.profilePicture.URLImage}
           alt=""
           className=" rounded-lg w-[250px] h-[250px]  sm:w-[250px] sm:h-[250] md:w-[324px] md:h-[300px] object-cover  pb-4"
         />
