@@ -75,7 +75,7 @@ export default function PerfilMusico() {
             >
               Mi Perfil
             </h1>
-            <UpdateCardPicture />
+            <UpdateCardPicture userData={userData} />
           </div>
           <div className=" flex flex-col gap-8">
             <InfoFormMusico userData={userData} />

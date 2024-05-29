@@ -19,7 +19,7 @@ export default function Stepper() {
   const [userData, setUserData] = useState(null);
 
   console.log(userId);
-  console.log(userData);
+  console.log(userData, "STEPPER");
 
   useEffect(() => {
     if (userId) {
@@ -61,7 +61,7 @@ export default function Stepper() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:4000/auth/login", {
+      const response = await fetch("http://localhost:4000/auth/login/verify", {
         // Corrección en la ruta
         method: "POST",
         body: JSON.stringify({
@@ -109,7 +109,7 @@ export default function Stepper() {
         >
           Esta será la imagen principal que se mostrará al público
         </p>
-        <UpdateCardPicture />
+        <UpdateCardPicture userData={userData} />
         <ButtonsStepper
           mTop={"mt-[60px]"}
           step={"1"}
