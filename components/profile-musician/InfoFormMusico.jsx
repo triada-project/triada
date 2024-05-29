@@ -16,7 +16,7 @@ import states from "../../data/estados.json";
 import estadosMunicipios from "../../data/estados-municipios.json";
 import useSelectedStateStore from "@/stores/selectedStateStore";
 import React from "react";
-import { users, musicalGenre } from "./../SelectGenreMusic/data";
+import { users, musicalGenre, typeEvents } from "./../SelectGenreMusic/data";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -28,6 +28,7 @@ export default function InfoFormMusico({ userData }) {
   //const [state, setState] = useState();
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedGenreMusic, setSelectedGenreMusic] = useState([]);
+  const [selectedTypeEvents, setSelectedTypeEvents] = useState([]);
   const tokenObject = useTokenStore((state) => state.tokenObject);
   const state = useSelectedStateStore((state) => state.selectedState);
   const setSelectedState = useSelectedStateStore(
@@ -42,11 +43,17 @@ export default function InfoFormMusico({ userData }) {
   const handleSelectionGenreMusic = (e) => {
     setSelectedGenreMusic(new Set(e.target.value.split(",")));
   };
+
+  const handleSelectionEventsType = (e) => {
+    setSelectedTypeEvents(new Set(e.target.value.split(",")));
+  };
   // Filtrar las localidades según el estado seleccionado
   const localidades = estadosMunicipios[state] || [];
   const genreMusicString = Array.from(selectedGenreMusic).join(",");
+  const typeEventsString = Array.from(selectedTypeEvents).join(",");
   console.log(genreMusicString.split(","));
   console.log(selectedCity);
+  console.log(selectedTypeEvents);
   console.log(state);
   console.log(userData?.data);
   console.log(tokenObject);
@@ -91,7 +98,7 @@ export default function InfoFormMusico({ userData }) {
           state: state,
           description: data.description,
           eventFee: data.eventFee,
-          eventType: data.eventType.split(","),
+          eventType: typeEventsString.split(","),
           maximumHours: data.maximumHours,
           musicalGenre: genreMusicString.split(","),
         }),
@@ -291,7 +298,7 @@ export default function InfoFormMusico({ userData }) {
             )}
           </Select>
 
-          <Controller
+          {/* <Controller
             name="eventType"
             control={control}
             rules={{ required: true }}
@@ -308,7 +315,53 @@ export default function InfoFormMusico({ userData }) {
                 width="w-[328px] lg:w-[30rem]"
               />
             )}
-          />
+          /> */}
+          <Select
+            isRequired
+            onChange={handleSelectionEventsType}
+            defaultSelectedKeys={userData?.data?.eventType}
+            items={typeEvents}
+            label={"Tipos de evento"}
+            //className={selectType === "home" ? ` text-[#29FEFD] dark ` : ""}
+            variant="bordered"
+            isMultiline={true}
+            selectionMode={"multiple"}
+            placeholder={"Selecciona uno o más tipos de evento"}
+            //labelPlacement="outside"
+            classNames={{
+              base: `w-[328px] lg:w-[30rem]`,
+              trigger: "min-h-unit-12 py-2",
+            }}
+            // className={` h-16 ${width}`}
+            renderValue={(items) => {
+              return (
+                <div className="flex flex-wrap gap-2">
+                  {items.map((item) => (
+                    <Chip key={item.key} className=" bg-[#081540] text-white">
+                      {item.data.typeEvents}
+                    </Chip>
+                  ))}
+                </div>
+              );
+            }}
+          >
+            {(typeEvents) => (
+              <SelectItem key={typeEvents.id} textValue={typeEvents.typeEvents}>
+                <div className="flex gap-2 items-center">
+                  {/* <Avatar
+              alt={user.name}
+              className="flex-shrink-0"
+              size="sm"
+              src={user.avatar}
+            /> */}
+                  <div className="flex flex-col">
+                    <span className="text-small">{typeEvents.typeEvents}</span>
+                    {/* <span className="text-tiny text-default-400">{user.email}</span> */}
+                  </div>
+                </div>
+              </SelectItem>
+            )}
+          </Select>
 
           {/* <SelectTypeEvents width="w-[328px] lg:w-[30rem]" /> */}
           <Input
