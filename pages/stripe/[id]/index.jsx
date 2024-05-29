@@ -156,7 +156,7 @@ function Payment() {
             <div className="m-auto">
               <Image
                 alt="NextUI hero Image"
-                src={userData.profilePicture}
+                src={userData.profilePicture.URLImage}
                 style={{ width: "350px", height: "200px" }}
               />
             </div>
@@ -269,7 +269,7 @@ function Payment() {
                 </ul>
 
                 <ul class="list-none ">
-                  
+
                   <div className="flex  gap-1 mb-2">
                     <Image
                       src="/assets/svg/card-sharp.svg"

@@ -35,7 +35,7 @@ import useTokenStore from "@/stores/tokenStore";
 
 const statusColorMap = {
   aceptado: Active,
-  en_curso: Active,
+  "en curso": Active,
   pendiente: Alert,
   finalizado: Finalized,
   rechazado: Rejected,

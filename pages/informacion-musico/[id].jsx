@@ -66,7 +66,7 @@ export default function MusicianDetail() {
           <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-4 md:grid-rows-7 grid-flow-col">
             <div className="p-5 col-start-1 sm:col-span-2 md:col-span-1 flex justify-center">
               <Avatar
-                src={userData.profilePicture}
+                src={userData.profilePicture.URLImage}
                 alt="profile picture"
                 className="w-80 h-60 rounded-lg shadow-xl"
               />
@@ -200,6 +200,7 @@ export default function MusicianDetail() {
                 </div>
               </div>
               <div className="mt-5 shadow-xl">
+
                 {tokenObject ? (
                   <EventForm
                     userData={userData}
