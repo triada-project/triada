@@ -66,7 +66,6 @@ export default function ModalCliente({ eventData }) {
     } catch (error) {
       console.error(error);
     }
-    
   };
 
   useEffect(() => {
@@ -74,9 +73,6 @@ export default function ModalCliente({ eventData }) {
       fetchrequestusers();
     }
   }, [eventData]);
-
-
-
 
   const handleSolicitarCodigo = async () => {
     try {
@@ -138,14 +134,14 @@ export default function ModalCliente({ eventData }) {
                   <div className="">
                     <Image
                       alt="NextUI hero Image"
-                      src={userData.profilePicture}
+                      src={userData.profilePicture.URLImage}
                       className="max-w[150px] h-200"
                     />
                   </div>
 
                   <div className=" p-0 ">
                     <p className="text-black font-bold text-xl mb-1">
-                    {userData.name}{" "}
+                      {userData.name}{" "}
                     </p>
                     {/* <Chip className="text-sm p-2 outline outline-offset-2 outline-1 bg-inherit "> </Chip> */}
 
@@ -238,26 +234,25 @@ export default function ModalCliente({ eventData }) {
                         </div>
                         {/* <li className="text-xs">Contact:</li> */}
                         <div className="flex items-center gap-1">
-                            {eventData.status === "aceptado" && (
-                              <Image
+                          {eventData.status === "aceptado" && (
+                            <Image
                               src="/assets/svg/call.svg"
                               className="w-6 h-6 mr-2"
-                              />
-                            )}
-                            {eventData.status === "en curso" && (
-                              <Image
+                            />
+                          )}
+                          {eventData.status === "en curso" && (
+                            <Image
                               src="/assets/svg/call.svg"
                               className="w-6 h-6 mr-2"
-                              />
-                            )}
+                            />
+                          )}
 
-                            {eventData.status === "aceptado" && (
-                              <p className="">{eventData.phoneClient}</p>
-                            )}
-                            {eventData.status === "en curso" && (
-                              <p className="">{eventData.phoneClient}</p>
-                            )}
-                          
+                          {eventData.status === "aceptado" && (
+                            <p className="">{eventData.phoneClient}</p>
+                          )}
+                          {eventData.status === "en curso" && (
+                            <p className="">{eventData.phoneClient}</p>
+                          )}
                         </div>
                       </ul>
 
