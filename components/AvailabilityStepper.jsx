@@ -8,7 +8,7 @@ import { Toaster, toast } from "sonner";
 
 // ... tus importaciones de componentes ...
 
-export default function Availability({ data }) {
+export default function AvailabilityStepper({ data }) {
   const idUser = data._id;
   //console.log(idUser, "data desde componente");
   const daysOfWeek = [
@@ -85,7 +85,6 @@ export default function Availability({ data }) {
         if (response.ok) {
           const data = await response.json(); // Obtiene los datos de respuesta (opcional)
           toast.success("Disponibilidad actualizada con éxito");
-          window.location.reload();
         } else {
           toast.error("Error al actualizar disponibilidad");
         }

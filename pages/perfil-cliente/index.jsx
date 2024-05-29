@@ -2,10 +2,12 @@ import AsideCliente from "../../components/perfil-cliente/AsideCliente.jsx";
 import MenuMobileMusician from "@/components/profile-musician/MenuMobileMusician.jsx";
 import UpdateCardPicture from "../../components/UpdateCardPicture.jsx";
 import InformacionForm from "@/components/perfil-cliente/InformacionForm.jsx";
-import NewPasswordForm from "@/components/newPasswordForm.jsx";
+import NewPasswordForm from "../../components/NewPasswordForm.jsx";
 import { Josefin_Sans, Lato } from "next/font/google";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useTokenStore from "@/stores/tokenStore";
+import NewUpdateCard from "@/components/NewUpdatedCard.jsx";
+import { Spinner } from "@nextui-org/react";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -14,7 +16,9 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function PerfilCliente() {
-  // Cargar el token inicialmente cuando se monta el componente
+  const [userData, setUserData] = useState(null);
+  const tokenObject = useTokenStore((state) => state.tokenObject);
+
   useEffect(() => {
     const tokenFromLocalStorage = localStorage.getItem("token");
     if (tokenFromLocalStorage) {
@@ -25,6 +29,36 @@ export default function PerfilCliente() {
       useTokenStore.setState({ tokenObject: payloadObject });
     }
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/users/${tokenObject?._id}`
+        );
+        const data = await response.json();
+        setUserData(data); // Almacena los datos del usuario
+        setSelectedState(data.data.state);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        // Manejo de errores
+      }
+    };
+
+    if (tokenObject) {
+      fetchData();
+    }
+  }, [tokenObject]);
+
+  console.log(userData);
+
+  if (!tokenObject) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -38,7 +72,7 @@ export default function PerfilCliente() {
             >
               Mi Perfil
             </h1>
-            <UpdateCardPicture />
+            <UpdateCardPicture userData={userData} />
           </div>
           <div className=" flex flex-col gap-8">
             <InformacionForm />

@@ -69,7 +69,6 @@ export default function ModalMusico({ eventData }) {
     } catch (error) {
       console.error(error);
     }
-    
   };
 
   useEffect(() => {
@@ -77,9 +76,6 @@ export default function ModalMusico({ eventData }) {
       fetchrequestusers();
     }
   }, [eventData]);
-
-
-
 
   async function onSubmit(data) {
     try {
@@ -247,8 +243,7 @@ export default function ModalMusico({ eventData }) {
                     </div>
                   )}
 
-                 
-                  
+
                   {eventData.status === "pendiente" && (
                     <div className="flex flex-row bg-amber-200 hover:bg-amber-300  rounded-md h-22 w-full  p-4 ">
                       <Image
@@ -258,6 +253,7 @@ export default function ModalMusico({ eventData }) {
                       Evento {eventData.status}
                     </div>
                   )}
+
                   {eventData.status === "aceptado" && (
                     <div className="flex flex-row bg-blue-200 hover:bg-blue-300  rounded-md h-22 w-full  p-4 ">
                       <Image
@@ -303,6 +299,7 @@ export default function ModalMusico({ eventData }) {
                         className="rounded-full w-20 h-20"
                       />
                       <p className="text-center text-xl md:text-lg font-semibold">
+
                       {userData.name}
                       </p>
                     </div>
