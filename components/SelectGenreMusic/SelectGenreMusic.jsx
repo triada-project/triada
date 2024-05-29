@@ -13,6 +13,7 @@ export default function SelectGenreMusic({
       isRequired
       onChange={onChange}
       selectedKeys={selectedKeys}
+      defaultSelectedKeys={["Banda", "Blues", "Folk"]}
       className={selectType === "home" ? ` text-[#29FEFD] dark ` : ""}
       items={musicalGenre}
       label={selectType === "home" ? "Género Musical" : "Géneros Musicales"}

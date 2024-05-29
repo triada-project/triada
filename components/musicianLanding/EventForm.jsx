@@ -23,12 +23,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function EventForm({
-  userData,
-  musicianId,
-  tokenObject,
-  eventFee,
-}) {
+export default function EventForm({ userData, musicianId, tokenObject, eventFee }) {
   const {
     register,
     watch,
@@ -132,7 +127,9 @@ export default function EventForm({
   };
 
   const totalRes = () => {
+
     return userData.eventFee * getTotalHours();
+
   };
 
   return (
