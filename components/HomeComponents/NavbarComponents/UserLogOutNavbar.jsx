@@ -1,20 +1,56 @@
 import React, { useEffect, useState, useRef } from "react";
 import clsx from "clsx";
+import { jwtDecode } from "jwt-decode"; // Importación correcta de jwt-decode
 
 const TOKEN_KEY = "token";
+const DEFAULT_PROFILE_PICTURE =
+  "https://cdn-icons-png.flaticon.com/512/10892/10892514.png";
 
 export default function UserLogOutNavbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [userRole, setUserRole] = useState(null);
+  const [profilePictureUrl, setProfilePictureUrl] = useState(
+    DEFAULT_PROFILE_PICTURE
+  );
   const dropdownRef = useRef(null);
 
   useEffect(() => {
     const token = window.localStorage.getItem(TOKEN_KEY);
     if (token) {
-      console.log("este es el token", token);
       setIsLoggedIn(true);
+      try {
+        const decodedToken = jwtDecode(token);
+        console.log("Decoded Token:", decodedToken);
+        setUserRole(decodedToken.role); // Asegúrate de que la ruta del role es correcta
+
+        const userId = decodedToken._id; // Asegúrate de que la propiedad ID existe en tu token
+        fetchUserProfile(userId);
+        console.log("userId :", userId);
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
     }
   }, []);
+
+  const fetchUserProfile = async (userId) => {
+    try {
+      const response = await fetch(`http://localhost:4000/users/${userId}`);
+      const userData = await response.json();
+      console.log("este es userData haber:", userData);
+
+      const profilePictureUrl =
+        userData.data.profilePicture?.URLImage || DEFAULT_PROFILE_PICTURE;
+      setProfilePictureUrl(profilePictureUrl);
+      console.log("este es la imagen :", profilePictureUrl);
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("User Role:", userRole);
+  }, [userRole]);
 
   const handleOutsideClick = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -33,6 +69,14 @@ export default function UserLogOutNavbar() {
     };
   }, [dropdownOpen]);
 
+  const handleProfileClick = () => {
+    if (userRole === "musico") {
+      window.location.href = "/perfil-musico";
+    } else if (userRole === "cliente") {
+      window.location.href = "/perfil-cliente";
+    }
+  };
+
   return (
     <div id="userLogOutMenu" className={clsx("pl-8", { hidden: !isLoggedIn })}>
       <div className="relative" ref={dropdownRef}>
@@ -41,9 +85,10 @@ export default function UserLogOutNavbar() {
           className="transition-transform"
         >
           <img
-            src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+            id="profilePicture"
+            src={profilePictureUrl}
             alt="Avatar"
-            className="rounded-full border-2"
+            className="rounded-full border-2 object-cover"
             style={{ width: "40px", height: "40px" }}
           />
         </button>
@@ -60,7 +105,8 @@ export default function UserLogOutNavbar() {
                 zoey@mail.com
               </p>
               <button
-                onClick={() => (window.location.href = "/perfil-musico")}
+                id="buttonPerfil"
+                onClick={handleProfileClick}
                 className="mt-2 w-full px-4 py-1 text-left text-blue-600 hover:bg-gray-100"
               >
                 Ir a perfil

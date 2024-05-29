@@ -92,6 +92,7 @@ export default function NavBar() {
         <RegisterModal />
       </div>
 
+      {/* En este componente esta el menu despegable para cerrar sesion de usuario */}
       <UserLogOutNavbar />
 
       <NavbarMenu id="menu" className="pt-5 w-[245px] bg-[#081540]">

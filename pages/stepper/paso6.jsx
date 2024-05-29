@@ -1,5 +1,5 @@
 import { Lato, Josefin_Sans } from "next/font/google";
-import ButtonsStepper from "@/components/stepperComponents/buttonsStepper";
+import ButtonsStepper from "@/components/stepperComponents/ButtonsStepper";
 import StepperLayout from "@/components/stepperComponents/StepperLayout";
 import { useForm, Controller } from "react-hook-form";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
@@ -9,7 +9,7 @@ import { Spinner } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useTokenStore from "@/stores/tokenStore";
-import Availability from "@/components/Availability";
+import AvailabilityStepper from "@/components/AvailabilityStepper";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -85,10 +85,11 @@ export default function Step2() {
           className={`${lato.className} text-start text-[#455A64] w-[328px] mt-3 md:w-full md:text-center`}
         >
           Selecciona tus horarios de trabajo para que los clientes puedan verlos
-          y puedar resevar dentro de los días y horarios que manejas.
+          y puedar resevar dentro de los días y horarios que manejas.{" "}
+          <b>*Horario formato 24 hrs.</b>
         </p>
 
-        <Availability data={tokenObject} />
+        <AvailabilityStepper data={tokenObject} />
 
         <ButtonsStepper
           mTop={"mt-[60px]"}

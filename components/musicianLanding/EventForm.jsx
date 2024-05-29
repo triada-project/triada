@@ -24,7 +24,6 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function EventForm({ userData, musicianId, tokenObject, eventFee }) {
-
   const {
     register,
     watch,
@@ -193,7 +192,7 @@ export default function EventForm({ userData, musicianId, tokenObject, eventFee 
             <div className="sm:flex items-center gap-4 w-full">
               <Select
                 id="startHour"
-                ref="startHour"
+                // ref="startHour"
                 label="Hora de inicio"
                 isRequired
                 variant="bordered"
@@ -217,7 +216,7 @@ export default function EventForm({ userData, musicianId, tokenObject, eventFee 
               </Select>
               <Select
                 id="endHour"
-                ref="endHour"
+                // ref="endHour"
                 label="Hora de fin"
                 isRequired
                 variant="bordered"
@@ -385,7 +384,7 @@ export default function EventForm({ userData, musicianId, tokenObject, eventFee 
               <p className="w-1/3 text-right">${totalRes()}</p>
             </div>
           </div>
-         
+
           <Checkbox isRequired {...register("isChecked")}>
             Acepto términos y condiciones
           </Checkbox>

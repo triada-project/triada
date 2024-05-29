@@ -42,9 +42,9 @@ export default function Refresh() {
         <h2>Triada</h2>
       </div>
       <div className="content">
-        <h2>Add information to start accepting money</h2>
+        <h2>Agrega informacion para empezar a aceptar dinero</h2>
         <p>
-          Triada is the world's leading air travel platform: join our team of
+          Triada is the worlds leading air travel platform: join our team of
           pilots to help people travel faster.
         </p>
         {error && <p className="error">Something went wrong!</p>}
