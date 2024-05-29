@@ -11,7 +11,7 @@ export default function Index() {
         <div class="max-w-2xl p-6 bg-indigo-950 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto mt-20 mb-20 text-white">
           <a href="#">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">
-              Tu pago se realizo con exito:{" "}
+              Tu pago se realizo con exito:
             </h5>
           </a>
           <p class="mt-5 mb-3 font-normal text-white dark:text-gray-400">
@@ -22,8 +22,7 @@ export default function Index() {
           </p>
           <br />
           <span class="font-black">
-            *Nota: Si el artista rechaza la reservación, se te devolverá
-            integro.
+            Nota: Si el artista rechaza la reservación, se te devolverá integro.
           </span>
           <br />
           <a
