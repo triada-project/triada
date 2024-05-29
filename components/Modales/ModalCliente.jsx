@@ -53,7 +53,7 @@ export default function ModalCliente({ eventData }) {
   const fetchrequestusers = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4000/users/${eventData.musician}`,
+        `http://18.119.160.6:4000/users/${eventData.musician}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export default function ModalCliente({ eventData }) {
   const handleSolicitarCodigo = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4000/events/${eventData._id}/solicitar-codigo-confirmacion`,
+        `http://18.119.160.6:4000/events/${eventData._id}/solicitar-codigo-confirmacion`,
         {
           method: "POST",
           headers: {

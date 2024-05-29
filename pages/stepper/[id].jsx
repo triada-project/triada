@@ -24,7 +24,7 @@ export default function Stepper() {
   useEffect(() => {
     if (userId) {
       // Realiza la solicitud fetch para obtener los datos del usuario
-      fetch(`http://localhost:4000/users/${userId}`)
+      fetch(`http://18.119.160.6:4000/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           // Almacena los datos del usuario en el estado local
@@ -61,17 +61,20 @@ export default function Stepper() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:4000/auth/login/verify", {
-        // Corrección en la ruta
-        method: "POST",
-        body: JSON.stringify({
-          email: userData.email,
-          password: userData.password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "http://18.119.160.6:4000/auth/login/verify",
+        {
+          // Corrección en la ruta
+          method: "POST",
+          body: JSON.stringify({
+            email: userData.email,
+            password: userData.password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();

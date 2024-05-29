@@ -61,7 +61,7 @@ export default function Repertorio() {
   const fetchRepertorie = async () => {
     console.log(tokenObject);
     const response = await fetch(
-      `http://localhost:4000/users/${tokenObject?._id}`,
+      `http://18.119.160.6:4000/users/${tokenObject?._id}`,
       {
         method: "GET",
         headers: {
@@ -140,7 +140,7 @@ export default function Repertorio() {
     if (!repertoire.length) return;
     try {
       const response = await fetch(
-        `http://localhost:4000/users/${tokenObject?._id}`,
+        `http://18.119.160.6:4000/users/${tokenObject?._id}`,
         {
           method: "PUT",
           headers: {

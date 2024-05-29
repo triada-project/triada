@@ -43,7 +43,7 @@ export default function MusicianDetail() {
 
   useEffect(() => {
     if (userId) {
-      fetch(`http://localhost:4000/users/${userId}`)
+      fetch(`http://18.119.160.6:4000/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           setUserData(data.data);
@@ -200,7 +200,6 @@ export default function MusicianDetail() {
                 </div>
               </div>
               <div className="mt-5 shadow-xl">
-
                 {tokenObject ? (
                   <EventForm
                     userData={userData}

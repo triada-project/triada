@@ -23,7 +23,7 @@ export default function NewUserForm() {
   const password2 = watch("password2");
 
   async function onSubmit(data) {
-    const response = await fetch("http://localhost:4000/users", {
+    const response = await fetch("http://18.119.160.6:4000/users", {
       method: "POST",
       body: JSON.stringify({
         email: data.email,
@@ -36,10 +36,10 @@ export default function NewUserForm() {
     if (response.ok) {
       Swal.fire({
         icon: "success",
-        title: "Usuario creado con éxito, te hemos enviado un correo y verifica tu cuenta.",
+        title:
+          "Usuario creado con éxito, te hemos enviado un correo y verifica tu cuenta.",
         showConfirmButton: true,
         confirmButtonText: "Aceptar",
-        
       });
     } else {
       Swal.fire({

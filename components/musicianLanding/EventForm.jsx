@@ -23,7 +23,12 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function EventForm({ userData, musicianId, tokenObject, eventFee }) {
+export default function EventForm({
+  userData,
+  musicianId,
+  tokenObject,
+  eventFee,
+}) {
   const {
     register,
     watch,
@@ -54,7 +59,7 @@ export default function EventForm({ userData, musicianId, tokenObject, eventFee 
     //console.log(data);
 
     try {
-      const response = await fetch("http://localhost:4000/events", {
+      const response = await fetch("http://18.119.160.6:4000/events", {
         method: "POST",
         body: JSON.stringify({
           address: {
@@ -127,9 +132,7 @@ export default function EventForm({ userData, musicianId, tokenObject, eventFee 
   };
 
   const totalRes = () => {
-
     return userData.eventFee * getTotalHours();
-
   };
 
   return (

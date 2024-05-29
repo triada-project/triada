@@ -35,7 +35,7 @@ export default function MusicianCatalog() {
   useEffect(() => {
     async function fetchMusicians() {
       try {
-        const response = await fetch("http://localhost:4000/users");
+        const response = await fetch("http://18.119.160.6:4000/users");
         const data = await response.json();
 
         console.log("Fetched data:", data); // Log the fetched data

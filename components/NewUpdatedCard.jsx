@@ -28,7 +28,7 @@ export default function NewUpdateCard({ userData }) {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/images/profile-picture/${userId}`,
+        `http://18.119.160.6:4000/images/profile-picture/${userId}`,
         {
           method: "POST",
           body: formData,

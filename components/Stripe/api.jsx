@@ -1,6 +1,6 @@
 export async function capturePayment(paymentIntentId) {
   try {
-    const response = await fetch("http://localhost:4000/capture-payment", {
+    const response = await fetch("http://18.119.160.6:4000/capture-payment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

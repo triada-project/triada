@@ -86,7 +86,7 @@ export default function InfoFormMusico({ userData }) {
 
   async function onSubmit(data) {
     const response = await fetch(
-      `http://localhost:4000/users/${tokenObject?._id}`,
+      `http://18.119.160.6:4000/users/${tokenObject?._id}`,
       {
         method: "PUT",
         headers: {

@@ -39,7 +39,7 @@ export default function Step5() {
   const handleCreateAccountStripe = async () => {
     setAccountCreatePending(true);
     setError(false);
-    fetch("http://localhost:4000/account", {
+    fetch("http://18.119.160.6:4000/account", {
       method: "POST",
     })
       .then((response) => response.json())
@@ -52,7 +52,7 @@ export default function Step5() {
           setConnectedAccountId(account);
           setAccountLinkCreatePending(true);
           setError(false);
-          fetch("http://localhost:4000/account_link", {
+          fetch("http://18.119.160.6:4000/account_link", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -75,7 +75,7 @@ export default function Step5() {
               }
             });
 
-          fetch(`http://localhost:4000/users/${userId}`, {
+          fetch(`http://18.119.160.6:4000/users/${userId}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

@@ -56,7 +56,7 @@ export default function ModalMusico({ eventData }) {
   const fetchrequestusers = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4000/users/${eventData.musician}`,
+        `http://18.119.160.6:4000/users/${eventData.musician}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export default function ModalMusico({ eventData }) {
   async function onSubmit(data) {
     try {
       const response = await fetch(
-        `http://localhost:4000/events/${eventData._id}/confirmar-codigo-evento`,
+        `http://18.119.160.6:4000/events/${eventData._id}/confirmar-codigo-evento`,
         {
           method: "POST",
           headers: {
@@ -130,7 +130,7 @@ export default function ModalMusico({ eventData }) {
       const updatedStatus = "aceptado"; // Change to desired status
 
       const response = await fetch(
-        `http://localhost:4000/events/${eventData._id}`,
+        `http://18.119.160.6:4000/events/${eventData._id}`,
         {
           method: "PUT",
           headers: {
@@ -161,7 +161,7 @@ export default function ModalMusico({ eventData }) {
       const updatedStatus = "rechazado"; // Change to desired status
 
       const response = await fetch(
-        `http://localhost:4000/events/${eventData._id}`,
+        `http://18.119.160.6:4000/events/${eventData._id}`,
         {
           method: "PUT",
           headers: {

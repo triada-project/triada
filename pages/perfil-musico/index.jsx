@@ -37,7 +37,7 @@ export default function PerfilMusico() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/users/${tokenObject?._id}`
+          `http://18.119.160.6:4000/users/${tokenObject?._id}`
         );
         const data = await response.json();
         setUserData(data); // Almacena los datos del usuario
