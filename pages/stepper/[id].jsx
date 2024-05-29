@@ -28,7 +28,7 @@ export default function Stepper() {
         .then((response) => response.json())
         .then((data) => {
           // Almacena los datos del usuario en el estado local
-          setUserData(data.data);
+          setUserData(data);
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
