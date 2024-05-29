@@ -20,6 +20,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Step4() {
   const router = useRouter();
+  const userId = router.query.id;
   const [route, setRoute] = useState();
   const [repertoire, setRepertoire] = useState(() => {
     if (typeof window !== "undefined") {
@@ -52,24 +53,21 @@ export default function Step4() {
   }, []);
 
   useEffect(() => {
-    if (tokenObject) {
+    if (userId) {
       // Verifica si tokenObject es válido
       fetchRepertorie();
     }
-  }, [tokenObject]);
+  }, [userId]);
 
   const fetchRepertorie = async () => {
-    console.log(tokenObject);
-    const response = await fetch(
-      `http://localhost:4000/users/${tokenObject?._id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${tokenObject?.accessToken}`,
-        },
-      }
-    );
+    //console.log(tokenObject);
+    const response = await fetch(`http://localhost:4000/users/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: `Bearer ${tokenObject?.accessToken}`,
+      },
+    });
 
     const responseData = await response.json();
     console.log(responseData?.data?.repertory);
@@ -135,17 +133,14 @@ export default function Step4() {
     if (!repertoire.length) return;
 
     try {
-      const response = await fetch(
-        `http://localhost:4000/users/${tokenObject?._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${tokenObject?.accessToken}`, // Incluir encabezado de autorización
-          },
-          body: JSON.stringify({ repertory: repertoire }),
-        }
-      );
+      const response = await fetch(`http://localhost:4000/users/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${tokenObject?.accessToken}`, // Incluir encabezado de autorización
+        },
+        body: JSON.stringify({ repertory: repertoire }),
+      });
       const responseData = await response.json();
 
       if (response.status === 201) {
@@ -166,7 +161,7 @@ export default function Step4() {
 
   console.log(repertoire);
 
-  if (!tokenObject) {
+  if (!userId) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
@@ -234,8 +229,8 @@ export default function Step4() {
         <ButtonsStepper
           mTop={"mt-[60px]"}
           step={"4"}
-          stepBack={"/stepper3"}
-          stepNext={"/stepper/paso5"}
+          stepBack={`/stepper/paso3/${userId}`}
+          stepNext={`/stepper/paso5/${userId}`}
           onClick={handleSaveRepertoire}
         />
       </section>

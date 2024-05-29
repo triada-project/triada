@@ -18,6 +18,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Step2() {
   const router = useRouter();
+  const userId = router.query.id;
   const [route, setRoute] = useState();
   const tokenObject = useTokenStore((state) => state.tokenObject);
 
@@ -49,9 +50,9 @@ export default function Step2() {
   const onSubmit = (data) => {
     // e.preventDefault();
     const phonePrefix = "+52" + data.phone;
-    setRoute(router.push("/stepper/paso3"));
+    setRoute(router.push(`/stepper/paso3/${userId}`));
     console.log(data);
-    const response = fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
+    const response = fetch(`http://localhost:4000/users/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +65,7 @@ export default function Step2() {
     });
   };
 
-  if (!tokenObject) {
+  if (!userId) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
@@ -167,8 +168,8 @@ export default function Step2() {
             <ButtonsStepper
               mTop={"mt-[60px]"}
               step={"2"}
-              stepBack={"/stepper"}
-              stepNext={"/stepper/paso3"}
+              stepBack={`/stepper/${userId}`}
+              stepNext={`/stepper/paso3/${userId}`}
             />
           </div>
         </form>

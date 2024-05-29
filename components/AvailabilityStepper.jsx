@@ -9,7 +9,7 @@ import { Toaster, toast } from "sonner";
 // ... tus importaciones de componentes ...
 
 export default function AvailabilityStepper({ data }) {
-  const idUser = data._id;
+  const idUser = data;
   //console.log(idUser, "data desde componente");
   const daysOfWeek = [
     "lunes",

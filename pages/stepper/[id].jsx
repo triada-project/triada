@@ -113,8 +113,8 @@ export default function Stepper() {
         <ButtonsStepper
           mTop={"mt-[60px]"}
           step={"1"}
-          stepBack={"/stepper"}
-          stepNext={"/stepper/paso2"}
+          stepBack={`/stepper/${userId}`}
+          stepNext={`/stepper/paso2/${userId}`}
         />
       </section>
     </StepperLayout>

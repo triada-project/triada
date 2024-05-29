@@ -38,9 +38,9 @@ export default function Finalizar() {
 
   const handleFinalizar = () => {
     // e.preventDefault();
-    setRoute(router.push("/perfil-musico"));
+    setRoute(router.push("/"));
 
-    const response = fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
+    const response = fetch(`http://localhost:4000/users/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export default function Finalizar() {
     });
   };
 
-  if (!tokenObject) {
+  if (!userId) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
@@ -67,7 +67,8 @@ export default function Finalizar() {
         >
           ¡Listo! Ya formas parte de <b>TRIADA</b> . Si necesitas actualizar
           estos datos, puedes hacerlo en el perfil de tu cuenta. Haz clic en
-          Finalizar y te redirigiremos a tu perfil.
+          Finalizar y te redirigiremos a la página principal, iniciar sesión
+          para verificar tus datos.
         </p>
         <Image
           src={"/assets/images/music-festival.webp"}

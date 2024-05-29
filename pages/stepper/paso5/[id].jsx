@@ -19,6 +19,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Step5() {
   const router = useRouter();
+  const userId = router.query.id;
   const [route, setRoute] = useState();
   const tokenObject = useTokenStore((state) => state.tokenObject);
   const [requests, setRequests] = useState(() => {
@@ -54,11 +55,11 @@ export default function Step5() {
     }
   }, []);
   useEffect(() => {
-    if (tokenObject) {
+    if (userId) {
       // Verifica si tokenObject es válido
       fetchRequests();
     }
-  }, [tokenObject]);
+  }, [userId]);
 
   useEffect(() => {
     localStorage.setItem("storedRequests", JSON.stringify(requests));
@@ -66,17 +67,14 @@ export default function Step5() {
 
   const fetchRequests = async () => {
     //if (!tokenObject) return;
-    console.log(tokenObject);
+    //console.log(tokenObject);
     try {
-      const response = await fetch(
-        `http://localhost:4000/users/${tokenObject?._id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${tokenObject?.accessToken}`,
-          },
-        }
-      );
+      const response = await fetch(`http://localhost:4000/users/${userId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${tokenObject?.accessToken}`,
+        },
+      });
 
       const responseData = await response.json();
       console.log(responseData?.data?.requirements);
@@ -137,23 +135,20 @@ export default function Step5() {
       toast.warning("Agrega al meno 1 requerimiento");
       return;
     }
-    setRoute(router.push("/stepper/paso6"));
+    setRoute(router.push(`/stepper/paso6/${userId}`));
     console.log(data);
     try {
-      const response = await fetch(
-        `http://localhost:4000/users/${tokenObject?._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            eventFee: data.eventFee,
-            maximumHoursEvent: data.maximumHoursEvent,
-            requirements: requests,
-          }),
-        }
-      );
+      const response = await fetch(`http://localhost:4000/users/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventFee: data.eventFee,
+          maximumHoursEvent: data.maximumHoursEvent,
+          requirements: requests,
+        }),
+      });
       const responseData = await response.json();
       if (response.status === 201) {
         toast.success("¡Requerimientos guardados con éxito!");
@@ -171,7 +166,7 @@ export default function Step5() {
     }
   };
 
-  if (!tokenObject) {
+  if (!userId) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
@@ -280,8 +275,8 @@ export default function Step5() {
             <ButtonsStepper
               mTop={"mt-[60px]"}
               step={"5"}
-              stepBack={"/stepper/paso4"}
-              stepNext={"/stepper/paso6"}
+              stepBack={`/stepper/paso4/${userId}`}
+              stepNext={`/stepper/paso6/${userId}`}
             />
           </div>
         </form>
