@@ -21,15 +21,11 @@ export default function UserLogOutNavbar() {
       setIsLoggedIn(true);
       try {
         const decodedToken = jwtDecode(token);
-        console.log("Decoded Token:", decodedToken);
         setUserRole(decodedToken.role); // Asegúrate de que la ruta del role es correcta
 
         const userId = decodedToken._id; // Asegúrate de que la propiedad ID existe en tu token
         fetchUserProfile(userId);
-        console.log("userId :", userId);
-      } catch (error) {
-        console.error("Error decoding token:", error);
-      }
+      } catch (error) {}
     }
   }, []);
 
@@ -37,20 +33,14 @@ export default function UserLogOutNavbar() {
     try {
       const response = await fetch(`http://localhost:4000/users/${userId}`);
       const userData = await response.json();
-      console.log("este es userData haber:", userData);
 
       const profilePictureUrl =
         userData.data.profilePicture?.URLImage || DEFAULT_PROFILE_PICTURE;
       setProfilePictureUrl(profilePictureUrl);
-      console.log("este es la imagen :", profilePictureUrl);
-    } catch (error) {
-      console.error("Error fetching user profile:", error);
-    }
+    } catch (error) {}
   };
 
-  useEffect(() => {
-    console.log("User Role:", userRole);
-  }, [userRole]);
+  // useEffect(() => {}, [userRole]);
 
   const handleOutsideClick = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
