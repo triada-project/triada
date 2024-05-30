@@ -1,4 +1,3 @@
-import { Josefin_Sans, Lato } from "next/font/google";
 import InfoCard from "./InfoCard";
 import InfoCard2 from "./InfoCard2";
 import InfoCard3 from "./InfoCard3";
@@ -6,12 +5,6 @@ import InfoCard4 from "./InfoCard4";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-const josefine = Josefin_Sans({
-  weight: ["300", "400", "600", "700"],
-  subsets: ["latin"],
-});
-const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function CardsContainer() {
   const settings = {

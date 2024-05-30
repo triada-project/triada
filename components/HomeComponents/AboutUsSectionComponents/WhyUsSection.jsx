@@ -1,6 +1,4 @@
-import ElementList from "./ElementList";
 import { Josefin_Sans, Lato } from "next/font/google";
-import GradientLogInButton from "./GradientLogInButton";
 import BlueNumbers from "./BlueNumbers";
 
 const josefine = Josefin_Sans({
@@ -69,7 +67,6 @@ export default function WhyUsSection() {
       >
         <img
           className=" hidden sm:flex  w-full  h-60  sm:h-[430px] sm:object-none md: md:mt-5 md:z-10  md:static md:rounded-2xl lg:hidden"
-          // Puede ser esta classname, que opinan ustedes bg-cover
           src="/assets/images/pircture-elegirnos.webp"
           alt="microphoneUsSection"
         ></img>

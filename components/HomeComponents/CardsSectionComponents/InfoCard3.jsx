@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardFooter } from "@nextui-org/react";
+import { Card, CardHeader } from "@nextui-org/react";
 import { Josefin_Sans, Lato } from "next/font/google";
 
 const josefine = Josefin_Sans({
