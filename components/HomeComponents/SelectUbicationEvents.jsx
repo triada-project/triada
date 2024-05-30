@@ -1,10 +1,6 @@
 import React from "react";
-import { Select, SelectItem, Avatar, Chip } from "@nextui-org/react";
-import {
-  musicalGenre,
-  typeEvents,
-  MexicanStates,
-} from "../SelectGenreMusic/data";
+import { Select, SelectItem, Chip } from "@nextui-org/react";
+import { MexicanStates } from "../SelectGenreMusic/data";
 
 export default function SelectUbicationEvents(props) {
   return (
@@ -19,9 +15,7 @@ export default function SelectUbicationEvents(props) {
       placeholder={
         props.selectType === "home" ? "" : "Selecciona una ubicación"
       }
-      //labelPlacement="outside"
       classNames="w-[328px] sm:w-[164px] sm:h-[45px] lg:w-[300px] "
-      // className={` h-16 ${props.width}`}
       renderValue={(items) => {
         return (
           <div className="flex flex-wrap pt-2  gap-2 ">
@@ -37,15 +31,8 @@ export default function SelectUbicationEvents(props) {
       {(MexicanStates) => (
         <SelectItem key={MexicanStates.clave} textValue={MexicanStates.nombre}>
           <div className="flex pt-2 gap-2 items-center">
-            {/* <Avatar
-              alt={user.name}
-              className="flex-shrink-0"
-              size="sm"
-              src={user.avatar}
-            /> */}
             <div className="flex flex-col ">
               <span className="text-small">{MexicanStates.nombre}</span>
-              {/* <span className="text-tiny text-default-400">{user.email}</span> */}
             </div>
           </div>
         </SelectItem>
