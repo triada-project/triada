@@ -1,5 +1,4 @@
 import { Josefin_Sans, Lato } from "next/font/google";
-import MusiciansCardsContainer from "./MusiciansCardsContainer";
 import React, { useEffect, useState } from "react";
 import MusicianCard from "./MusicianCard";
 import { Select, SelectItem, Avatar, Chip } from "@nextui-org/react";
@@ -38,23 +37,17 @@ export default function MusicianCatalog() {
         const response = await fetch("http://localhost:4000/users");
         const data = await response.json();
 
-        console.log("Fetched data:", data); // Log the fetched data
-
         // Filtrar usuarios con rol "musico"
         const filteredMusicians = data.data.filter(
           (user) => user.role === "musico"
         );
-
-        console.log("Filtered musicians:", filteredMusicians); // Log the filtered musicians
 
         // Barajar los músicos antes de establecer el estado
         const shuffledMusicians = shuffleArray(filteredMusicians);
 
         setMusicians(shuffledMusicians);
         setFilteredMusicians(shuffledMusicians); // Set the initial filtered musicians
-      } catch (error) {
-        console.error("Error fetching musicians:", error);
-      }
+      } catch (error) {}
     }
 
     fetchMusicians();
