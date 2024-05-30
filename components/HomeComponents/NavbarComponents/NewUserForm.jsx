@@ -45,7 +45,7 @@ export default function NewUserForm() {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Usuario no creado, inténtalo de nuevo",
+        text: "Usuario no creado, correo electronico registrado previamente",
         showConfirmButton: true,
         confirmButtonText: "Aceptar",
       });
