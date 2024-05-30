@@ -1,12 +1,10 @@
-import Image from "next/image";
-import { Josefin_Sans, Lato } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import GradientButton from "./MainPictureComponents/GradientButton";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
 });
-const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function ImgSection() {
   return (

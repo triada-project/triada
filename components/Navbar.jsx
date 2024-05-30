@@ -32,7 +32,6 @@ export default function NavBar() {
   useEffect(() => {
     const token = window.localStorage.getItem(TOKEN_KEY);
     if (token) {
-      console.log("este es el token", token);
       setIsLoggedIn(true);
     }
   }, []);

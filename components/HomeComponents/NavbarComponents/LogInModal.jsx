@@ -4,22 +4,18 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Button,
   useDisclosure,
   Checkbox,
-  Input,
   Link,
 } from "@nextui-org/react";
 import { Josefin_Sans, Lato } from "next/font/google";
 import LoginFormDB from "./LoginFormDB"; //alert
 
-
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
 });
-const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function LogInModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -53,7 +49,6 @@ export default function LogInModal() {
               </ModalHeader>
               <ModalBody>
                 <LoginFormDB />
-
 
                 <div className="flex py-2 px-1 justify-between">
                   <Checkbox

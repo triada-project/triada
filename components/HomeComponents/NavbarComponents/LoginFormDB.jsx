@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-// import { useNavigate } from "react-router-dom";
 import { Josefin_Sans } from "next/font/google";
 
 const josefine = Josefin_Sans({
@@ -8,7 +7,6 @@ const josefine = Josefin_Sans({
 });
 
 export default function LoginFormDB() {
-  //   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -35,7 +33,6 @@ export default function LoginFormDB() {
     const responseData = await response.json();
     if (responseData?.token) {
       localStorage.setItem("token", responseData.token);
-      //   navigate("/");
       redirection();
     } else {
       setError("root", { message: "Información incorrecta, prueba de nuevo." });
