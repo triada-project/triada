@@ -1,7 +1,7 @@
-import { Josefin_Sans, Lato } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import React, { useEffect, useState } from "react";
 import MusicianCard from "./MusicianCard";
-import { Select, SelectItem, Avatar, Chip } from "@nextui-org/react";
+import { Select, SelectItem, Chip } from "@nextui-org/react";
 import {
   typeEvents,
   musicalGenre,
@@ -12,7 +12,6 @@ const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
 });
-const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function MusicianCatalog() {
   const scrollUp = () => {

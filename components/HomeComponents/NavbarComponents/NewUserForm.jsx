@@ -1,8 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Josefin_Sans, Lato } from "next/font/google";
-import { Checkbox } from "@nextui-org/react";
 import Swal from "sweetalert2";
-import ClientOrMusician from "./ClientOrMusician";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -36,10 +34,10 @@ export default function NewUserForm() {
     if (response.ok) {
       Swal.fire({
         icon: "success",
-        title: "Usuario creado con éxito, te hemos enviado un correo y verifica tu cuenta.",
+        title:
+          "Usuario creado con éxito, te hemos enviado un correo y verifica tu cuenta.",
         showConfirmButton: true,
         confirmButtonText: "Aceptar",
-        
       });
     } else {
       Swal.fire({
@@ -110,7 +108,6 @@ export default function NewUserForm() {
                 <p>Necesitamos saber el tipo de cuenta</p>
               )}
             </section>
-            {/* <ClientOrMusician /> */}
             <label
               className={`pb-[8px] font-bold text-[16px] ${josefine.className}`}
             >
