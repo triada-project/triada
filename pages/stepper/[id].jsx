@@ -24,7 +24,7 @@ export default function Stepper() {
   useEffect(() => {
     if (userId) {
       // Realiza la solicitud fetch para obtener los datos del usuario
-      fetch(`http://3.145.7.153/users/${userId}`)
+      fetch(`https://api-triada-25cba881b624.herokuapp.com/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           // Almacena los datos del usuario en el estado local
@@ -61,17 +61,20 @@ export default function Stepper() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://3.145.7.153/auth/login/verify", {
-        // Corrección en la ruta
-        method: "POST",
-        body: JSON.stringify({
-          email: userData.email,
-          password: userData.password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://api-triada-25cba881b624.herokuapp.com/auth/login/verify",
+        {
+          // Corrección en la ruta
+          method: "POST",
+          body: JSON.stringify({
+            email: userData.email,
+            password: userData.password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();

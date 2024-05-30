@@ -86,7 +86,7 @@ export default function InfoFormMusico({ userData }) {
 
   async function onSubmit(data) {
     const response = await fetch(
-      `http://3.145.7.153/users/${tokenObject?._id}`,
+      `https://api-triada-25cba881b624.herokuapp.com/users/${tokenObject?._id}`,
       {
         method: "PUT",
         headers: {

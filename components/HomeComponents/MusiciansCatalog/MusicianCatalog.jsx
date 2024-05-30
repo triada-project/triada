@@ -35,7 +35,9 @@ export default function MusicianCatalog() {
   useEffect(() => {
     async function fetchMusicians() {
       try {
-        const response = await fetch("http://3.145.7.153/users");
+        const response = await fetch(
+          "https://api-triada-25cba881b624.herokuapp.com/users"
+        );
         const data = await response.json();
 
         console.log("Fetched data:", data); // Log the fetched data

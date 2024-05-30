@@ -34,7 +34,7 @@ export default function Home() {
             onClick={async () => {
               setAccountCreatePending(true);
               setError(false);
-              fetch("http://3.145.7.153/account", {
+              fetch("https://api-triada-25cba881b624.herokuapp.com/account", {
                 method: "POST",
               })
                 .then((response) => response.json())
@@ -47,15 +47,18 @@ export default function Home() {
                     // setConnectedAccountId(account);
                     setAccountLinkCreatePending(true);
                     setError(false);
-                    fetch("http://3.145.7.153/account_link", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({
-                        account: account,
-                      }),
-                    })
+                    fetch(
+                      "https://api-triada-25cba881b624.herokuapp.com/account_link",
+                      {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          account: account,
+                        }),
+                      }
+                    )
                       .then((response) => response.json())
                       .then((json) => {
                         setAccountLinkCreatePending(false);
@@ -85,15 +88,18 @@ export default function Home() {
             onClick={async () => {
               setAccountLinkCreatePending(true);
               setError(false);
-              fetch("http://3.145.7.153/account_link", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  account: connectedAccountId,
-                }),
-              })
+              fetch(
+                "https://api-triada-25cba881b624.herokuapp.com/account_link",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    account: connectedAccountId,
+                  }),
+                }
+              )
                 .then((response) => response.json())
                 .then((json) => {
                   setAccountLinkCreatePending(false);

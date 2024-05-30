@@ -35,7 +35,9 @@ export default function UserLogOutNavbar() {
 
   const fetchUserProfile = async (userId) => {
     try {
-      const response = await fetch(`http://3.145.7.153/users/${userId}`);
+      const response = await fetch(
+        `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`
+      );
       const userData = await response.json();
       console.log("este es userData haber:", userData);
 

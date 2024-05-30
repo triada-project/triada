@@ -28,7 +28,7 @@ export default function NewUpdateCard({ userData }) {
 
     try {
       const response = await fetch(
-        `http://3.145.7.153/images/profile-picture/${userId}`,
+        `https://api-triada-25cba881b624.herokuapp.com/images/profile-picture/${userId}`,
         {
           method: "POST",
           body: formData,

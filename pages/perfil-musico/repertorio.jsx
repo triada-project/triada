@@ -61,7 +61,7 @@ export default function Repertorio() {
   const fetchRepertorie = async () => {
     console.log(tokenObject);
     const response = await fetch(
-      `http://3.145.7.153/users/${tokenObject?._id}`,
+      `https://api-triada-25cba881b624.herokuapp.com/users/${tokenObject?._id}`,
       {
         method: "GET",
         headers: {
@@ -140,7 +140,7 @@ export default function Repertorio() {
     if (!repertoire.length) return;
     try {
       const response = await fetch(
-        `http://3.145.7.153/users/${tokenObject?._id}`,
+        `https://api-triada-25cba881b624.herokuapp.com/users/${tokenObject?._id}`,
         {
           method: "PUT",
           headers: {

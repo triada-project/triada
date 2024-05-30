@@ -33,11 +33,14 @@ function Payment() {
 
   const fetchrequest = async () => {
     try {
-      const response = await fetch(`http://3.145.7.153/events/${eventId}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `https://api-triada-25cba881b624.herokuapp.com/events/${eventId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const responseData = await response.json();
       console.log(responseData, "responseData");
       setIdEvent(responseData.data._id);
@@ -51,7 +54,7 @@ function Payment() {
   const fetchrequestusers = async () => {
     try {
       const response = await fetch(
-        `http://3.145.7.153/users/${eventData.musician}`,
+        `https://api-triada-25cba881b624.herokuapp.com/users/${eventData.musician}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -83,14 +86,16 @@ function Payment() {
   // };
 
   useEffect(() => {
-    fetch("http://3.145.7.153/config").then(async (r) => {
-      const { publishableKey } = await r.json();
-      setStripePromise(
-        loadStripe(
-          "pk_test_51PF8FkP5DUIoEtibkQ7hKJlmrXyrYWr2IcsQSRY7rsnnQcozBZQ53CdO7mcW1NOmpExTMh0rtYFOm6wnm2KdwERL00LUcjh3r9"
-        )
-      );
-    });
+    fetch("https://api-triada-25cba881b624.herokuapp.com/config").then(
+      async (r) => {
+        const { publishableKey } = await r.json();
+        setStripePromise(
+          loadStripe(
+            "pk_test_51PF8FkP5DUIoEtibkQ7hKJlmrXyrYWr2IcsQSRY7rsnnQcozBZQ53CdO7mcW1NOmpExTMh0rtYFOm6wnm2KdwERL00LUcjh3r9"
+          )
+        );
+      }
+    );
   }, []);
 
   // useEffect(() => {
@@ -108,16 +113,19 @@ function Payment() {
   //   })
   // }, [eventFee]);
   useEffect(() => {
-    fetch("http://3.145.7.153/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        _id: idEvent,
-        eventFee: eventFee,
-      }),
-    }).then(async (result) => {
+    fetch(
+      "https://api-triada-25cba881b624.herokuapp.com/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          _id: idEvent,
+          eventFee: eventFee,
+        }),
+      }
+    ).then(async (result) => {
       var { clientSecret } = await result.json();
       setClientSecret(clientSecret);
     });

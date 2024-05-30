@@ -51,16 +51,19 @@ export default function Step2() {
     // e.preventDefault();
     setRoute(router.push(`/stepper/paso7/${userId}`));
     console.log(data);
-    const response = fetch(`http://3.145.7.153/users/${userId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        city: data.city,
-        state: data.state,
-      }),
-    });
+    const response = fetch(
+      `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          city: data.city,
+          state: data.state,
+        }),
+      }
+    );
   };
 
   if (!userId) {

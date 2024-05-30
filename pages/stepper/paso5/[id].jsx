@@ -69,12 +69,15 @@ export default function Step5() {
     //if (!tokenObject) return;
     //console.log(tokenObject);
     try {
-      const response = await fetch(`http://3.145.7.153/users/${userId}`, {
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: `Bearer ${tokenObject?.accessToken}`,
-        },
-      });
+      const response = await fetch(
+        `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${tokenObject?.accessToken}`,
+          },
+        }
+      );
 
       const responseData = await response.json();
       console.log(responseData?.data?.requirements);
@@ -138,17 +141,20 @@ export default function Step5() {
     setRoute(router.push(`/stepper/paso6/${userId}`));
     console.log(data);
     try {
-      const response = await fetch(`http://3.145.7.153/users/${userId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          eventFee: data.eventFee,
-          maximumHoursEvent: data.maximumHoursEvent,
-          requirements: requests,
-        }),
-      });
+      const response = await fetch(
+        `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            eventFee: data.eventFee,
+            maximumHoursEvent: data.maximumHoursEvent,
+            requirements: requests,
+          }),
+        }
+      );
       const responseData = await response.json();
       if (response.status === 201) {
         toast.success("¡Requerimientos guardados con éxito!");

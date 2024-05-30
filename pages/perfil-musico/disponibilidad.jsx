@@ -34,7 +34,9 @@ export default function PerfilMusico() {
   useEffect(() => {
     if (tokenObject?._id) {
       // Realiza la solicitud fetch para obtener los datos del usuario
-      fetch(`http://3.145.7.153/users/${tokenObject._id}`)
+      fetch(
+        `https://api-triada-25cba881b624.herokuapp.com/users/${tokenObject._id}`
+      )
         .then((response) => response.json())
         .then((data) => {
           // Almacena los datos del usuario en el estado local

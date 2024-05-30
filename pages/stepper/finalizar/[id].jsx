@@ -40,15 +40,18 @@ export default function Finalizar() {
     // e.preventDefault();
     setRoute(router.push("/"));
 
-    const response = fetch(`http://3.145.7.153/users/${userId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id_stripe: userId,
-      }),
-    });
+    const response = fetch(
+      `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id_stripe: userId,
+        }),
+      }
+    );
   };
 
   if (!userId) {

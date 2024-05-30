@@ -73,13 +73,16 @@ export default function Availability({ data }) {
       }, []);
 
       try {
-        const response = await fetch(`http://3.145.7.153/users/${idUser}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ availability: formattedAvailability }),
-        });
+        const response = await fetch(
+          `https://api-triada-25cba881b624.herokuapp.com/users/${idUser}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ availability: formattedAvailability }),
+          }
+        );
 
         // Manejo de la respuesta del servidor
         if (response.ok) {

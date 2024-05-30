@@ -53,7 +53,7 @@ export default function ModalCliente({ eventData }) {
   const fetchrequestusers = async () => {
     try {
       const response = await fetch(
-        `http://3.145.7.153/users/${eventData.musician}`,
+        `https://api-triada-25cba881b624.herokuapp.com/users/${eventData.musician}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export default function ModalCliente({ eventData }) {
   const handleSolicitarCodigo = async () => {
     try {
       const response = await fetch(
-        `http://3.145.7.153/events/${eventData._id}/solicitar-codigo-confirmacion`,
+        `https://api-triada-25cba881b624.herokuapp.com/events/${eventData._id}/solicitar-codigo-confirmacion`,
         {
           method: "POST",
           headers: {

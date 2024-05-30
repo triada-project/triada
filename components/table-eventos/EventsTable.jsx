@@ -84,7 +84,7 @@ export default function EventsTable() {
   //     async function fetchEvents() {
   //       try {
   //         const response = await fetch(
-  //           `http://3.145.7.153/events/${tokenObject._id}/events`
+  //           `https://api-triada-25cba881b624.herokuapp.com/events/${tokenObject._id}/events`
   //         );
   //         if (!response.ok) {
   //           throw new Error("Failed to fetch events");
@@ -102,7 +102,7 @@ export default function EventsTable() {
   //     async function fetchEvents() {
   //       try {
   //         const response = await fetch(
-  //           `http://3.145.7.153/events/${tokenObject._id}/eventsClient`
+  //           `https://api-triada-25cba881b624.herokuapp.com/events/${tokenObject._id}/eventsClient`
   //         );
   //         if (!response.ok) {
   //           throw new Error("Failed to fetch events");
@@ -121,8 +121,8 @@ export default function EventsTable() {
       try {
         const endpoint =
           tokenObject.role === "musico"
-            ? `http://3.145.7.153/events/${tokenObject._id}/events`
-            : `http://3.145.7.153/events/${tokenObject._id}/eventsClient`;
+            ? `https://api-triada-25cba881b624.herokuapp.com/events/${tokenObject._id}/events`
+            : `https://api-triada-25cba881b624.herokuapp.com/events/${tokenObject._id}/eventsClient`;
         const response = await fetch(endpoint);
         if (!response.ok) {
           throw new Error("Failed to fetch events");
@@ -142,7 +142,7 @@ export default function EventsTable() {
   //   async function fetchEvents() {
   //     try {
   //       const response = await fetch(
-  //         `http://3.145.7.153/events/${tokenObject._id}/events`
+  //         `https://api-triada-25cba881b624.herokuapp.com/events/${tokenObject._id}/events`
   //       );
   //       if (!response.ok) {
   //         throw new Error("Failed to fetch events");
@@ -160,7 +160,7 @@ export default function EventsTable() {
   //   async function fetchEvents() {
   //     try {
   //       const response = await fetch(
-  //         `http://3.145.7.153/events/${tokenObject._id}/eventsClient`
+  //         `https://api-triada-25cba881b624.herokuapp.com/events/${tokenObject._id}/eventsClient`
   //       );
   //       if (!response.ok) {
   //         throw new Error("Failed to fetch events");

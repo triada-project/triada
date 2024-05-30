@@ -61,13 +61,16 @@ export default function Step4() {
 
   const fetchRepertorie = async () => {
     //console.log(tokenObject);
-    const response = await fetch(`http://3.145.7.153/users/${userId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        // Authorization: `Bearer ${tokenObject?.accessToken}`,
-      },
-    });
+    const response = await fetch(
+      `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${tokenObject?.accessToken}`,
+        },
+      }
+    );
 
     const responseData = await response.json();
     console.log(responseData?.data?.repertory);
@@ -133,14 +136,17 @@ export default function Step4() {
     if (!repertoire.length) return;
 
     try {
-      const response = await fetch(`http://3.145.7.153/users/${userId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: `Bearer ${tokenObject?.accessToken}`, // Incluir encabezado de autorización
-        },
-        body: JSON.stringify({ repertory: repertoire }),
-      });
+      const response = await fetch(
+        `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${tokenObject?.accessToken}`, // Incluir encabezado de autorización
+          },
+          body: JSON.stringify({ repertory: repertoire }),
+        }
+      );
       const responseData = await response.json();
 
       if (response.status === 201) {

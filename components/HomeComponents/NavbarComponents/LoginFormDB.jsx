@@ -18,16 +18,19 @@ export default function LoginFormDB() {
   } = useForm();
 
   async function onSubmit(data) {
-    const response = await fetch("http://3.145.7.153/auth/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email: data.email,
-        password: data.password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://api-triada-25cba881b624.herokuapp.com/auth/login",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const redirection = () => {
       location.reload();

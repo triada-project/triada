@@ -51,18 +51,21 @@ export default function Step3() {
     // e.preventDefault();
     setRoute(router.push(`/stepper/paso4/${userId}`));
     console.log(data);
-    const response = fetch(`http://3.145.7.153/users/${userId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        eventType: data.eventType.split(","),
-        musicalGenre: data.musicalGenre.split(","),
-        musicianType: data.musicianType,
-        description: data.description,
-      }),
-    });
+    const response = fetch(
+      `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventType: data.eventType.split(","),
+          musicalGenre: data.musicalGenre.split(","),
+          musicianType: data.musicianType,
+          description: data.description,
+        }),
+      }
+    );
   };
 
   if (!userId) {

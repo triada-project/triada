@@ -39,7 +39,7 @@ export default function Step5() {
   const handleCreateAccountStripe = async () => {
     setAccountCreatePending(true);
     setError(false);
-    fetch("http://3.145.7.153/account", {
+    fetch("https://api-triada-25cba881b624.herokuapp.com/account", {
       method: "POST",
     })
       .then((response) => response.json())
@@ -52,7 +52,7 @@ export default function Step5() {
           setConnectedAccountId(account);
           setAccountLinkCreatePending(true);
           setError(false);
-          fetch("http://3.145.7.153/account_link", {
+          fetch("https://api-triada-25cba881b624.herokuapp.com/account_link", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -75,15 +75,18 @@ export default function Step5() {
               }
             });
 
-          fetch(`http://3.145.7.153/users/${userId}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              id_stripe: account,
-            }),
-          });
+          fetch(
+            `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                id_stripe: account,
+              }),
+            }
+          );
         }
 
         if (error) {

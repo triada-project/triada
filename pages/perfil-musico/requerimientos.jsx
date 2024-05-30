@@ -64,7 +64,7 @@ export default function Requerimientos() {
     console.log(tokenObject);
     try {
       const response = await fetch(
-        `http://3.145.7.153/users/${tokenObject?._id}`,
+        `https://api-triada-25cba881b624.herokuapp.com/users/${tokenObject?._id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -124,7 +124,7 @@ export default function Requerimientos() {
 
     try {
       const response = await fetch(
-        `http://3.145.7.153/users/${tokenObject?._id}`,
+        `https://api-triada-25cba881b624.herokuapp.com/users/${tokenObject?._id}`,
         {
           method: "PUT",
           headers: {

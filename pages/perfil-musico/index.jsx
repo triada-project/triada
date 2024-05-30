@@ -37,7 +37,7 @@ export default function PerfilMusico() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://3.145.7.153/users/${tokenObject?._id}`
+          `https://api-triada-25cba881b624.herokuapp.com/users/${tokenObject?._id}`
         );
         const data = await response.json();
         setUserData(data); // Almacena los datos del usuario

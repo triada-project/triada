@@ -52,17 +52,20 @@ export default function Step2() {
     const phonePrefix = "+52" + data.phone;
     setRoute(router.push(`/stepper/paso3/${userId}`));
     console.log(data);
-    const response = fetch(`http://3.145.7.153/users/${userId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        city: data.city,
-        state: data.state,
-        phoneMusician: phonePrefix,
-      }),
-    });
+    const response = fetch(
+      `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          city: data.city,
+          state: data.state,
+          phoneMusician: phonePrefix,
+        }),
+      }
+    );
   };
 
   if (!userId) {

@@ -23,16 +23,19 @@ export default function NewUserForm() {
   const password2 = watch("password2");
 
   async function onSubmit(data) {
-    const response = await fetch("http://3.145.7.153/users", {
-      method: "POST",
-      body: JSON.stringify({
-        email: data.email,
-        password: data.password,
-        role: data.role,
-        name: data.name,
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await fetch(
+      "https://api-triada-25cba881b624.herokuapp.com/users",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          role: data.role,
+          name: data.name,
+        }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     if (response.ok) {
       Swal.fire({
         icon: "success",

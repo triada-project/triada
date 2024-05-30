@@ -1,12 +1,15 @@
 export async function capturePayment(paymentIntentId) {
   try {
-    const response = await fetch("http://3.145.7.153/capture-payment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ paymentIntentId }),
-    });
+    const response = await fetch(
+      "https://api-triada-25cba881b624.herokuapp.com/capture-payment",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ paymentIntentId }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to capture payment");
