@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
         <link
           rel="icon"
           type="image/png"
-          href="../public/assets/images/TRIADA-LOGO.png"
+          href="/assets/images/TRIADA-LOGO.png"
         />
       </Head>
       <Component {...pageProps} />
