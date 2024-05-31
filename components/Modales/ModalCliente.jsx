@@ -181,8 +181,8 @@ export default function ModalCliente({ eventData }) {
                           src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"
                           className="w-10 h-4 mr-2"
                         />
-                        <p className="text-xs w-full pr-1">
-                          {eventData.status}
+                        <p className="text-xs w-full">
+                          {eventData.status} por confirmar
                         </p>
                       </div>
                     )}
