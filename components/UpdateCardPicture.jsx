@@ -32,7 +32,7 @@ export default function UpdateCardPicture({ userData }) {
 
     try {
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/images/profile-picture/${userId}`,
+        `https://apitriada.rodolfo-ramirez.com/images/profile-picture/${userId}`,
         {
           method: "POST",
           body: formData,

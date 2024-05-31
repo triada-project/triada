@@ -34,9 +34,7 @@ export default function PerfilMusico() {
   useEffect(() => {
     if (tokenObject?._id) {
       // Realiza la solicitud fetch para obtener los datos del usuario
-      fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/users/${tokenObject._id}`
-      )
+      fetch(`https://apitriada.rodolfo-ramirez.com/users/${tokenObject._id}`)
         .then((response) => response.json())
         .then((data) => {
           // Almacena los datos del usuario en el estado local

@@ -24,7 +24,7 @@ export default function Stepper() {
   useEffect(() => {
     if (userId) {
       // Realiza la solicitud fetch para obtener los datos del usuario
-      fetch(`https://api-triada-25cba881b624.herokuapp.com/users/${userId}`)
+      fetch(`https://apitriada.rodolfo-ramirez.com/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           // Almacena los datos del usuario en el estado local
@@ -62,7 +62,7 @@ export default function Stepper() {
   const handleLogin = async () => {
     try {
       const response = await fetch(
-        "https://api-triada-25cba881b624.herokuapp.com/auth/login/verify",
+        "https://apitriada.rodolfo-ramirez.com/auth/login/verify",
         {
           // Corrección en la ruta
           method: "POST",

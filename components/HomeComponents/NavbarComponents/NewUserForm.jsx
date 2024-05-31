@@ -24,7 +24,7 @@ export default function NewUserForm() {
 
   async function onSubmit(data) {
     const response = await fetch(
-      "https://api-triada-25cba881b624.herokuapp.com/users",
+      "https://apitriada.rodolfo-ramirez.com/users",
       {
         method: "POST",
         body: JSON.stringify({

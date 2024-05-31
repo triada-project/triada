@@ -37,7 +37,7 @@ export default function PerfilMusico() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api-triada-25cba881b624.herokuapp.com/users/${tokenObject?._id}`
+          `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`
         );
         const data = await response.json();
         setUserData(data); // Almacena los datos del usuario

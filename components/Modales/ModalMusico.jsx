@@ -56,7 +56,7 @@ export default function ModalMusico({ eventData }) {
   const fetchrequestusers = async () => {
     try {
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/users/${eventData.musician}`,
+        `https://apitriada.rodolfo-ramirez.com/users/${eventData.musician}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export default function ModalMusico({ eventData }) {
   async function onSubmit(data) {
     try {
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/events/${eventData._id}/confirmar-codigo-evento`,
+        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}/confirmar-codigo-evento`,
         {
           method: "POST",
           headers: {
@@ -130,7 +130,7 @@ export default function ModalMusico({ eventData }) {
       const updatedStatus = "aceptado"; // Change to desired status
 
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/events/${eventData._id}`,
+        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}`,
         {
           method: "PUT",
           headers: {
@@ -161,7 +161,7 @@ export default function ModalMusico({ eventData }) {
       const updatedStatus = "rechazado"; // Change to desired status
 
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/events/${eventData._id}`,
+        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}`,
         {
           method: "PUT",
           headers: {

@@ -19,7 +19,7 @@ export default function LoginFormDB() {
 
   async function onSubmit(data) {
     const response = await fetch(
-      "https://api-triada-25cba881b624.herokuapp.com/auth/login",
+      "https://apitriada.rodolfo-ramirez.com/auth/login",
       {
         method: "POST",
         body: JSON.stringify({

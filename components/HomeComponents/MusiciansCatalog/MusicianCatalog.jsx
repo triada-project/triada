@@ -36,7 +36,7 @@ export default function MusicianCatalog() {
     async function fetchMusicians() {
       try {
         const response = await fetch(
-          "https://api-triada-25cba881b624.herokuapp.com/users"
+          "https://apitriada.rodolfo-ramirez.com/users"
         );
         const data = await response.json();
 

@@ -39,7 +39,7 @@ export default function Step5() {
   const handleCreateAccountStripe = async () => {
     setAccountCreatePending(true);
     setError(false);
-    fetch("https://api-triada-25cba881b624.herokuapp.com/account", {
+    fetch("https://apitriada.rodolfo-ramirez.com/account", {
       method: "POST",
     })
       .then((response) => response.json())
@@ -52,7 +52,7 @@ export default function Step5() {
           setConnectedAccountId(account);
           setAccountLinkCreatePending(true);
           setError(false);
-          fetch("https://api-triada-25cba881b624.herokuapp.com/account_link", {
+          fetch("https://apitriada.rodolfo-ramirez.com/account_link", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -75,18 +75,15 @@ export default function Step5() {
               }
             });
 
-          fetch(
-            `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
-            {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                id_stripe: account,
-              }),
-            }
-          );
+          fetch(`https://apitriada.rodolfo-ramirez.com/users/${userId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id_stripe: account,
+            }),
+          });
         }
 
         if (error) {

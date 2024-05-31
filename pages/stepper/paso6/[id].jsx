@@ -52,7 +52,7 @@ export default function Step2() {
     setRoute(router.push(`/stepper/paso7/${userId}`));
     console.log(data);
     const response = fetch(
-      `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+      `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
       {
         method: "PUT",
         headers: {

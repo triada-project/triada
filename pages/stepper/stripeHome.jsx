@@ -34,7 +34,7 @@ export default function Home() {
             onClick={async () => {
               setAccountCreatePending(true);
               setError(false);
-              fetch("https://api-triada-25cba881b624.herokuapp.com/account", {
+              fetch("https://apitriada.rodolfo-ramirez.com/account", {
                 method: "POST",
               })
                 .then((response) => response.json())
@@ -48,7 +48,7 @@ export default function Home() {
                     setAccountLinkCreatePending(true);
                     setError(false);
                     fetch(
-                      "https://api-triada-25cba881b624.herokuapp.com/account_link",
+                      "https://apitriada.rodolfo-ramirez.com/account_link",
                       {
                         method: "POST",
                         headers: {
@@ -88,18 +88,15 @@ export default function Home() {
             onClick={async () => {
               setAccountLinkCreatePending(true);
               setError(false);
-              fetch(
-                "https://api-triada-25cba881b624.herokuapp.com/account_link",
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    account: connectedAccountId,
-                  }),
-                }
-              )
+              fetch("https://apitriada.rodolfo-ramirez.com/account_link", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  account: connectedAccountId,
+                }),
+              })
                 .then((response) => response.json())
                 .then((json) => {
                   setAccountLinkCreatePending(false);

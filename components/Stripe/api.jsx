@@ -1,7 +1,7 @@
 export async function capturePayment(paymentIntentId) {
   try {
     const response = await fetch(
-      "https://api-triada-25cba881b624.herokuapp.com/capture-payment",
+      "https://apitriada.rodolfo-ramirez.com/capture-payment",
       {
         method: "POST",
         headers: {

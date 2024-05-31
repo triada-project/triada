@@ -70,7 +70,7 @@ export default function Step5() {
     //console.log(tokenObject);
     try {
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+        `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -142,7 +142,7 @@ export default function Step5() {
     console.log(data);
     try {
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+        `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
         {
           method: "PUT",
           headers: {

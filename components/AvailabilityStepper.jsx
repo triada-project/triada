@@ -74,7 +74,7 @@ export default function AvailabilityStepper({ data }) {
 
       try {
         const response = await fetch(
-          `https://api-triada-25cba881b624.herokuapp.com/users/${idUser}`,
+          `https://apitriada.rodolfo-ramirez.com/users/${idUser}`,
           {
             method: "PUT",
             headers: {

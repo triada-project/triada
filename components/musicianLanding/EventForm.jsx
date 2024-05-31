@@ -60,7 +60,7 @@ export default function EventForm({
 
     try {
       const response = await fetch(
-        "https://api-triada-25cba881b624.herokuapp.com/events",
+        "https://apitriada.rodolfo-ramirez.com/events",
         {
           method: "POST",
           body: JSON.stringify({

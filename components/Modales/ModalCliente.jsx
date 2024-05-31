@@ -53,7 +53,7 @@ export default function ModalCliente({ eventData }) {
   const fetchrequestusers = async () => {
     try {
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/users/${eventData.musician}`,
+        `https://apitriada.rodolfo-ramirez.com/users/${eventData.musician}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export default function ModalCliente({ eventData }) {
   const handleSolicitarCodigo = async () => {
     try {
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/events/${eventData._id}/solicitar-codigo-confirmacion`,
+        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}/solicitar-codigo-confirmacion`,
         {
           method: "POST",
           headers: {

@@ -62,7 +62,7 @@ export default function Step4() {
   const fetchRepertorie = async () => {
     //console.log(tokenObject);
     const response = await fetch(
-      `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+      `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
       {
         method: "GET",
         headers: {
@@ -137,7 +137,7 @@ export default function Step4() {
 
     try {
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/users/${userId}`,
+        `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
         {
           method: "PUT",
           headers: {

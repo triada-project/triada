@@ -34,7 +34,7 @@ function Payment() {
   const fetchrequest = async () => {
     try {
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/events/${eventId}`,
+        `https://apitriada.rodolfo-ramirez.com/events/${eventId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -54,7 +54,7 @@ function Payment() {
   const fetchrequestusers = async () => {
     try {
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/users/${eventData.musician}`,
+        `https://apitriada.rodolfo-ramirez.com/users/${eventData.musician}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -86,16 +86,14 @@ function Payment() {
   // };
 
   useEffect(() => {
-    fetch("https://api-triada-25cba881b624.herokuapp.com/config").then(
-      async (r) => {
-        const { publishableKey } = await r.json();
-        setStripePromise(
-          loadStripe(
-            "pk_test_51PF8FkP5DUIoEtibkQ7hKJlmrXyrYWr2IcsQSRY7rsnnQcozBZQ53CdO7mcW1NOmpExTMh0rtYFOm6wnm2KdwERL00LUcjh3r9"
-          )
-        );
-      }
-    );
+    fetch("https://apitriada.rodolfo-ramirez.com/config").then(async (r) => {
+      const { publishableKey } = await r.json();
+      setStripePromise(
+        loadStripe(
+          "pk_test_51PF8FkP5DUIoEtibkQ7hKJlmrXyrYWr2IcsQSRY7rsnnQcozBZQ53CdO7mcW1NOmpExTMh0rtYFOm6wnm2KdwERL00LUcjh3r9"
+        )
+      );
+    });
   }, []);
 
   // useEffect(() => {
@@ -113,19 +111,16 @@ function Payment() {
   //   })
   // }, [eventFee]);
   useEffect(() => {
-    fetch(
-      "https://api-triada-25cba881b624.herokuapp.com/create-payment-intent",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          _id: idEvent,
-          eventFee: eventFee,
-        }),
-      }
-    ).then(async (result) => {
+    fetch("https://apitriada.rodolfo-ramirez.com/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id: idEvent,
+        eventFee: eventFee,
+      }),
+    }).then(async (result) => {
       var { clientSecret } = await result.json();
       setClientSecret(clientSecret);
     });
