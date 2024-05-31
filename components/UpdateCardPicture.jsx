@@ -5,8 +5,6 @@ import ButtonPink from "./perfil-cliente/ButtonPink";
 import { Button } from "@nextui-org/react";
 import React, { useState } from "react";
 import axios from "axios";
-import React, { useState } from "react";
-import axios from "axios";
 
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
