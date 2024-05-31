@@ -1,7 +1,6 @@
 import dataMusician from "../../objects/musicianObject.json";
 
 const picUrl = dataMusician.users.multimedia.pics;
-console.log(picUrl);
 
 export default function CardPics() {
   return (

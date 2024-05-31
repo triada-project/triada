@@ -199,8 +199,22 @@ export default function MusicianDetail() {
                   </Chip>
                 </div>
               </div>
-              <div className="mt-5 shadow-xl">
+              <div className="md:gap-4">
+                <span>
+                  <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
+                    Videos
+                  </h2>
 
+                  <CarouselVideos userData={userData} />
+                </span>
+                <span>
+                  <h2 className="{`${josefin.classname} text-[#37474F] font-semibold mt-5 sm:text-[20px]">
+                    Fotos
+                  </h2>
+                  <CarouselFotos userData={userData} />
+                </span>
+              </div>
+              <div className="mt-5 shadow-xl">
                 {tokenObject ? (
                   <EventForm
                     userData={userData}
