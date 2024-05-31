@@ -13,6 +13,7 @@ export default function UserLogOutNavbar() {
   const [profilePictureUrl, setProfilePictureUrl] = useState(
     DEFAULT_PROFILE_PICTURE
   );
+  const [userName, setUserName] = useState("");
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -44,6 +45,7 @@ export default function UserLogOutNavbar() {
       const profilePictureUrl =
         userData.data.profilePicture?.URLImage || DEFAULT_PROFILE_PICTURE;
       setProfilePictureUrl(profilePictureUrl);
+      setUserName(userData.data.name);
       //console.log("este es la imagen :", profilePictureUrl);
     } catch (error) {
       console.error("Error fetching user profile:", error);
@@ -104,7 +106,7 @@ export default function UserLogOutNavbar() {
                 Sesión iniciada como
               </p>
               <p id="userEmail" className=" px-4 font-semibold text-black">
-                zoey@mail.com
+                {userName}
               </p>
               <button
                 id="buttonPerfil"
