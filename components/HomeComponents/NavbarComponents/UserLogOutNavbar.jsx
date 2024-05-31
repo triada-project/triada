@@ -21,12 +21,12 @@ export default function UserLogOutNavbar() {
       setIsLoggedIn(true);
       try {
         const decodedToken = jwtDecode(token);
-        console.log("Decoded Token:", decodedToken);
+        //console.log("Decoded Token:", decodedToken);
         setUserRole(decodedToken.role); // Asegúrate de que la ruta del role es correcta
 
         const userId = decodedToken._id; // Asegúrate de que la propiedad ID existe en tu token
         fetchUserProfile(userId);
-        console.log("userId :", userId);
+        //console.log("userId :", userId);
       } catch (error) {
         console.error("Error decoding token:", error);
       }
@@ -39,20 +39,20 @@ export default function UserLogOutNavbar() {
         `https://apitriada.rodolfo-ramirez.com/users/${userId}`
       );
       const userData = await response.json();
-      console.log("este es userData haber:", userData);
+      //console.log("este es userData haber:", userData);
 
       const profilePictureUrl =
         userData.data.profilePicture?.URLImage || DEFAULT_PROFILE_PICTURE;
       setProfilePictureUrl(profilePictureUrl);
-      console.log("este es la imagen :", profilePictureUrl);
+      //console.log("este es la imagen :", profilePictureUrl);
     } catch (error) {
       console.error("Error fetching user profile:", error);
     }
   };
 
-  useEffect(() => {
-    console.log("User Role:", userRole);
-  }, [userRole]);
+  // useEffect(() => {
+  //   console.log("User Role:", userRole);
+  // }, [userRole]);
 
   const handleOutsideClick = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {

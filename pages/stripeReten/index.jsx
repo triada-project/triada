@@ -7,7 +7,7 @@ const PaymentPage = ({ paymentIntent }) => {
       const paymentIntentId = { paymentIntent };
       // ID del PaymentIntent
       const capturedPayment = await capturePayment(paymentIntentId);
-      console.log("Payment captured successfully:", capturedPayment);
+      //console.log("Payment captured successfully:", capturedPayment);
       // Realizar cualquier acción adicional después de capturar el pago
     } catch (error) {
       console.error("Failed to capture payment:", error);

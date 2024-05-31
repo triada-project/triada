@@ -92,7 +92,7 @@ export default function AvailabilityStepper({ data }) {
           toast.error("Error al actualizar disponibilidad");
         }
       } catch (error) {
-        console.error("Error al enviar datos al servidor:", error);
+        //console.error("Error al enviar datos al servidor:", error);
         toast.error("Error al enviar datos al servidor");
       }
     }

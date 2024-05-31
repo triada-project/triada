@@ -53,7 +53,7 @@ export default function PerfilMusico() {
     }
   }, [tokenObject]);
 
-  console.log(userData);
+  //console.log(userData);
 
   if (!tokenObject) {
     return (

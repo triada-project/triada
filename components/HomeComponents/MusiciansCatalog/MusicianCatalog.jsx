@@ -40,14 +40,14 @@ export default function MusicianCatalog() {
         );
         const data = await response.json();
 
-        console.log("Fetched data:", data); // Log the fetched data
+        //console.log("Fetched data:", data); // Log the fetched data
 
         // Filtrar usuarios con rol "musico"
         const filteredMusicians = data.data.filter(
           (user) => user.role === "musico"
         );
 
-        console.log("Filtered musicians:", filteredMusicians); // Log the filtered musicians
+        //console.log("Filtered musicians:", filteredMusicians); // Log the filtered musicians
 
         // Barajar los músicos antes de establecer el estado
         const shuffledMusicians = shuffleArray(filteredMusicians);

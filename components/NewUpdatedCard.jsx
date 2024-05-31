@@ -15,7 +15,7 @@ export default function NewUpdateCard({ userData }) {
   };
 
   const userId = userData?.data?._id; // Obtener el ID del usuario
-  console.log(userId);
+  //console.log(userId);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);

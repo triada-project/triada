@@ -80,7 +80,7 @@ export default function Step5() {
       );
 
       const responseData = await response.json();
-      console.log(responseData?.data?.requirements);
+      //console.log(responseData?.data?.requirements);
 
       if (response.status === 200 || 201) {
         setRequests(responseData?.data?.requirements || []);
@@ -93,7 +93,7 @@ export default function Step5() {
         );
       }
     } catch (error) {
-      console.error("Error al obtener los requerimientos:", error);
+      //console.error("Error al obtener los requerimientos:", error);
       toast.error("Ocurrió un error al obtener los requerimientos.");
     }
   };
@@ -139,7 +139,7 @@ export default function Step5() {
       return;
     }
     setRoute(router.push(`/stepper/paso6/${userId}`));
-    console.log(data);
+    //console.log(data);
     try {
       const response = await fetch(
         `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
@@ -167,7 +167,7 @@ export default function Step5() {
         );
       }
     } catch (error) {
-      console.error("Error al guardar las solicitudes:", error);
+      //console.error("Error al guardar las solicitudes:", error);
       toast.error("Ocurrió un error al guardar los requerimientos.");
     }
   };

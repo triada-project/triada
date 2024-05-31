@@ -21,7 +21,7 @@ export default function InformacionForm() {
     formState: { errors },
   } = useForm();
 
-  console.log(tokenObject);
+  //console.log(tokenObject);
 
   //console.log(errors);
 

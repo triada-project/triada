@@ -19,17 +19,17 @@ import { Spinner } from "@nextui-org/react";
 function Payment() {
   const router = useRouter();
   const eventId = router.query.id;
-  console.log("this is", eventId);
+  //console.log("this is", eventId);
 
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
-  console.log(clientSecret, "codigo secreto");
+  //console.log(clientSecret, "codigo secreto");
   const [idEvent, setIdEvent] = useState("");
   const [eventFee, setEventFee] = useState();
   const [eventData, setEventData] = useState();
   const [userData, setUserData] = useState();
-  console.log(eventData, "eventdata");
-  console.log(eventFee, "this eventFee stripe");
+  //console.log(eventData, "eventdata");
+  //console.log(eventFee, "this eventFee stripe");
 
   const fetchrequest = async () => {
     try {
@@ -42,7 +42,7 @@ function Payment() {
         }
       );
       const responseData = await response.json();
-      console.log(responseData, "responseData");
+      //console.log(responseData, "responseData");
       setIdEvent(responseData.data._id);
       setEventFee(responseData.data.eventFee);
       setEventData(responseData.data);
@@ -62,7 +62,7 @@ function Payment() {
         }
       );
       const responseData = await response.json();
-      console.log(responseData), "datausuario";
+      //console.log(responseData), "datausuario";
       setUserData(responseData.data);
     } catch (error) {
       console.error(error);

@@ -59,7 +59,7 @@ export default function Repertorio() {
   }, [tokenObject]);
 
   const fetchRepertorie = async () => {
-    console.log(tokenObject);
+    //console.log(tokenObject);
     const response = await fetch(
       `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`,
       {
@@ -72,12 +72,12 @@ export default function Repertorio() {
     );
 
     const responseData = await response.json();
-    console.log(responseData?.data?.repertory);
+    //console.log(responseData?.data?.repertory);
 
     if (response.status === 200 || 201) {
       setRepertoire(responseData?.data?.repertory || []);
     } else {
-      console.log(responseData);
+      //console.log(responseData);
       toast.error("Error al cargar el repertorio");
     }
   };
@@ -163,12 +163,12 @@ export default function Repertorio() {
         );
       }
     } catch (error) {
-      console.error("Error saving repertoire:", error);
+      //console.error("Error saving repertoire:", error);
       toast.error("Ocurrió un error al guardar el repertorio.");
     }
   };
 
-  console.log(repertoire);
+  //console.log(repertoire);
 
   if (!tokenObject) {
     return (

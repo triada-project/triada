@@ -50,7 +50,7 @@ export default function Step2() {
   const onSubmit = (data) => {
     // e.preventDefault();
     setRoute(router.push(`/stepper/paso7/${userId}`));
-    console.log(data);
+    //console.log(data);
     const response = fetch(
       `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
       {

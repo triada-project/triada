@@ -61,7 +61,7 @@ export default function ModalCliente({ eventData }) {
         }
       );
       const responseData = await response.json();
-      console.log(responseData), "datausuario";
+      //console.log(responseData), "datausuario";
       setUserData(responseData.data);
     } catch (error) {
       console.error(error);
@@ -93,7 +93,7 @@ export default function ModalCliente({ eventData }) {
 
       const data = await response.json();
       toast.success("¡Código enviado con éxito!");
-      console.log("Código solicitado:", data);
+      //console.log("Código solicitado:", data);
       // Manejar la respuesta aquí, si es necesario
     } catch (error) {
       console.error("Error al solicitar el código:", error.message);

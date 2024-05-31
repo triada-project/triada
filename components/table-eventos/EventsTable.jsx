@@ -64,7 +64,7 @@ export default function EventsTable() {
   }, []);
 
   const tokenObject = useTokenStore((state) => state.tokenObject);
-  console.log(tokenObject);
+  //console.log(tokenObject);
   const [events, setEvents] = useState([]);
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
@@ -174,7 +174,7 @@ export default function EventsTable() {
   //   fetchEvents();
   // }, []);
 
-  console.log(events);
+  //console.log(events);
 
   const hasSearchFilter = Boolean(filterValue);
 

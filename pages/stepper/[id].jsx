@@ -18,8 +18,8 @@ export default function Stepper() {
   const userId = router.query.id;
   const [userData, setUserData] = useState(null);
 
-  console.log(userId);
-  console.log(userData, "STEPPER");
+  //console.log(userId);
+  //console.log(userData, "STEPPER");
 
   useEffect(() => {
     if (userId) {

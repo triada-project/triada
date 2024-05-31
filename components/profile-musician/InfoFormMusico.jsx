@@ -51,12 +51,12 @@ export default function InfoFormMusico({ userData }) {
   const localidades = estadosMunicipios[state] || [];
   const genreMusicString = Array.from(selectedGenreMusic).join(",");
   const typeEventsString = Array.from(selectedTypeEvents).join(",");
-  console.log(genreMusicString.split(","));
-  console.log(selectedCity);
-  console.log(selectedTypeEvents);
-  console.log(state);
-  console.log(userData?.data);
-  console.log(tokenObject);
+  // console.log(genreMusicString.split(","));
+  // console.log(selectedCity);
+  // console.log(selectedTypeEvents);
+  // console.log(state);
+  // console.log(userData?.data);
+  // console.log(tokenObject);
   const {
     register,
     handleSubmit,
@@ -105,7 +105,7 @@ export default function InfoFormMusico({ userData }) {
       }
     );
     const responseData = await response.json();
-    console.log(responseData);
+    //console.log(responseData);
 
     if (response.status === 201) {
       toast.success("¡Requerimientos guardados con éxito!");

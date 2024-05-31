@@ -25,7 +25,7 @@ export default function PerfilMusico() {
   }, []);
 
   const tokenObject = useTokenStore((state) => state.tokenObject);
-  console.log(tokenObject);
+  //console.log(tokenObject);
 
   return (
     <>

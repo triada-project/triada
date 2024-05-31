@@ -50,7 +50,7 @@ export default function PerfilCliente() {
     }
   }, [tokenObject]);
 
-  console.log(userData);
+  //console.log(userData);
 
   if (!tokenObject) {
     return (
