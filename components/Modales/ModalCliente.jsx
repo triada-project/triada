@@ -263,7 +263,7 @@ export default function ModalCliente({ eventData }) {
                             className="w-4 h-6 mr-2 md:w-4"
                           />
                           <li className="md:text-xs">
-                            Horas: {eventData.horas_contratadas_evento}
+                            Horas: {eventData.totalHours}
                           </li>
                         </div>
                         <div className="flex items-center gap-1">

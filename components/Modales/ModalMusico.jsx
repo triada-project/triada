@@ -470,10 +470,7 @@ export default function ModalMusico({ eventData }) {
                               src="/assets/svg/calendar_client.svg"
                               className="w-6 h-6 mr-2"
                             />
-                            <p>
-                              Horas contratadas:{" "}
-                              {eventData.horas_contratadas_evento}
-                            </p>
+                            <p>Horas contratadas: {eventData.totalHours}</p>
                           </div>
                         </div>
                         <div className="flex items-center">
