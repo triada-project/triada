@@ -110,7 +110,7 @@ export default function AsideCliente({ page, hidden }) {
       <Button
         onPress={onOpen}
         variant="bordered"
-        className={` text-white w-[213px] h-12 rounded text-base  ${lato.className}`}
+        className={` text-white w-[213px] h-12 rounded text-base mt-[60px] ${lato.className}`}
       >
         <p>Cerrar sesión</p>
       </Button>
