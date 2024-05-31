@@ -156,7 +156,7 @@ export default function ModalCliente({ eventData }) {
                     )}
 
                     {eventData.status === "aceptado" && (
-                      <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
+                      <div className="flex flex-row border border-slate-950 p-1 w-1/4  rounded-full items-center">
                         <Image
                           src="/assets/svg/play.svg"
                           className="w-52 h-4 mr-2"
