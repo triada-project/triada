@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import "@/styles/App_.css";
 import { NextUIProvider } from "@nextui-org/react";
+import { Head } from "next/document";
 import triadaLogo from "../public/assets/images/TRIADA-LOGO.png";
 
 export default function App({ Component, pageProps }) {
