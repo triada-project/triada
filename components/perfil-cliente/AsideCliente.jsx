@@ -7,6 +7,15 @@ import Image from "next/image";
 import { Button } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@nextui-org/react";
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -15,7 +24,10 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function AsideCliente({ page, hidden }) {
+  const router = useRouter();
+  const [route, setRoute] = useState();
   const [token, setToken] = useState("");
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -89,12 +101,51 @@ export default function AsideCliente({ page, hidden }) {
           </Button>
         </Link>
       </section>
-      <Button
+      {/* <Button
         variant="bordered"
         className={` text-white w-[213px] h-12 rounded text-base mt-[60px] ${lato.className}`}
       >
         <p>Cerrar sesión</p>
+      </Button> */}
+      <Button
+        onPress={onOpen}
+        variant="bordered"
+        className={` text-white w-[213px] h-12 rounded text-base  ${lato.className}`}
+      >
+        <p>Cerrar sesión</p>
       </Button>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        isDismissable={false}
+        isKeyboardDismissDisabled={true}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className={`flex flex-col gap-1 ${lato.className}`}>
+                ¿Estas seguro que quieres cerrar sesión?
+              </ModalHeader>
+              <ModalFooter>
+                <Button
+                  color="danger"
+                  onPress={onClose}
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    sessionStorage.removeItem("token");
+                    setRoute(router.push("/"));
+                  }}
+                >
+                  Si
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  No
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </aside>
   );
 }
