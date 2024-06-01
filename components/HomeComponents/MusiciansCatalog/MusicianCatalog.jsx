@@ -34,23 +34,22 @@ export default function MusicianCatalog() {
 
   useEffect(() => {
     async function fetchMusicians() {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       try {
-        const response = await fetch(
-          "https://apitriada.rodolfo-ramirez.com/users"
-        );
+        const response = await fetch(`${apiUrl}/users/musicianHome`);
         const data = await response.json();
 
         //console.log("Fetched data:", data); // Log the fetched data
 
         // Filtrar usuarios con rol "musico"
-        const filteredMusicians = data.data.filter(
-          (user) => user.role === "musico"
-        );
+        // const filteredMusicians = data.data.filter(
+        //   (user) => user.role === "musico"
+        // );
 
         //console.log("Filtered musicians:", filteredMusicians); // Log the filtered musicians
 
         // Barajar los músicos antes de establecer el estado
-        const shuffledMusicians = shuffleArray(filteredMusicians);
+        const shuffledMusicians = shuffleArray(data.data);
 
         setMusicians(shuffledMusicians);
         setFilteredMusicians(shuffledMusicians); // Set the initial filtered musicians
