@@ -38,7 +38,7 @@ export default function PerfilCliente() {
         );
         const data = await response.json();
         setUserData(data); // Almacena los datos del usuario
-        setSelectedState(data.data.state);
+        //setSelectedState(data.data.state);
       } catch (error) {
         console.error("Error fetching user data:", error);
         // Manejo de errores
