@@ -10,7 +10,7 @@ export default function GaleryVideos() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  //const onSubmit = (data) => console.log(data);
 
   return (
     <>
@@ -18,7 +18,7 @@ export default function GaleryVideos() {
         Videos
       </h2>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        //onSubmit={handleSubmit(onSubmit)}
         className="flex gap-2 items-center w-full mt-2 mt-5"
       >
         <Input

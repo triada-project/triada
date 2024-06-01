@@ -18,13 +18,13 @@ export default function Stepper() {
   const userId = router.query.id;
   const [userData, setUserData] = useState(null);
 
-  console.log(userId);
-  console.log(userData, "STEPPER");
+  //console.log(userId);
+  //console.log(userData, "STEPPER");
 
   useEffect(() => {
     if (userId) {
       // Realiza la solicitud fetch para obtener los datos del usuario
-      fetch(`http://localhost:4000/users/${userId}`)
+      fetch(`https://apitriada.rodolfo-ramirez.com/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           // Almacena los datos del usuario en el estado local
@@ -61,17 +61,20 @@ export default function Stepper() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:4000/auth/login/verify", {
-        // Corrección en la ruta
-        method: "POST",
-        body: JSON.stringify({
-          email: userData.email,
-          password: userData.password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://apitriada.rodolfo-ramirez.com/auth/login/verify",
+        {
+          // Corrección en la ruta
+          method: "POST",
+          body: JSON.stringify({
+            email: userData.email,
+            password: userData.password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -113,8 +116,8 @@ export default function Stepper() {
         <ButtonsStepper
           mTop={"mt-[60px]"}
           step={"1"}
-          stepBack={"/stepper"}
-          stepNext={"/stepper/paso2"}
+          stepBack={`/stepper/${userId}`}
+          stepNext={`/stepper/paso2/${userId}`}
         />
       </section>
     </StepperLayout>

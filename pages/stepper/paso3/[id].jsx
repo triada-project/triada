@@ -18,6 +18,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Step3() {
   const router = useRouter();
+  const userId = router.query.id;
   const [route, setRoute] = useState();
   const tokenObject = useTokenStore((state) => state.tokenObject);
 
@@ -48,23 +49,26 @@ export default function Step3() {
 
   const onSubmit = (data) => {
     // e.preventDefault();
-    setRoute(router.push("/stepper/paso4"));
-    console.log(data);
-    const response = fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        eventType: data.eventType.split(","),
-        musicalGenre: data.musicalGenre.split(","),
-        musicianType: data.musicianType,
-        description: data.description,
-      }),
-    });
+    setRoute(router.push(`/stepper/paso4/${userId}`));
+    //console.log(data);
+    const response = fetch(
+      `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventType: data.eventType.split(","),
+          musicalGenre: data.musicalGenre.split(","),
+          musicianType: data.musicianType,
+          description: data.description,
+        }),
+      }
+    );
   };
 
-  if (!tokenObject) {
+  if (!userId) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
@@ -172,8 +176,8 @@ export default function Step3() {
             <ButtonsStepper
               mTop={"mt-[60px]"}
               step={"3"}
-              stepBack={"/stepper/paso2"}
-              stepNext={"/stepper/paso4"}
+              stepBack={`/stepper/paso2/${userId}`}
+              stepNext={`/stepper/paso4/${userId}`}
             />
           </div>
         </form>

@@ -2,7 +2,7 @@ import dataMusician from "../../objects/musicianObject.json";
 import YouTube from "react-youtube";
 
 const videoUrl = dataMusician.users.multimedia.videos;
-console.log(videoUrl);
+//console.log(videoUrl);
 
 export default function CardPics() {
   return (

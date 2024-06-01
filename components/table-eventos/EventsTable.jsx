@@ -64,7 +64,7 @@ export default function EventsTable() {
   }, []);
 
   const tokenObject = useTokenStore((state) => state.tokenObject);
-  console.log(tokenObject);
+  //console.log(tokenObject);
   const [events, setEvents] = useState([]);
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
@@ -84,7 +84,7 @@ export default function EventsTable() {
   //     async function fetchEvents() {
   //       try {
   //         const response = await fetch(
-  //           `http://localhost:4000/events/${tokenObject._id}/events`
+  //           `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/events`
   //         );
   //         if (!response.ok) {
   //           throw new Error("Failed to fetch events");
@@ -102,7 +102,7 @@ export default function EventsTable() {
   //     async function fetchEvents() {
   //       try {
   //         const response = await fetch(
-  //           `http://localhost:4000/events/${tokenObject._id}/eventsClient`
+  //           `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/eventsClient`
   //         );
   //         if (!response.ok) {
   //           throw new Error("Failed to fetch events");
@@ -121,8 +121,8 @@ export default function EventsTable() {
       try {
         const endpoint =
           tokenObject.role === "musico"
-            ? `http://localhost:4000/events/${tokenObject._id}/events`
-            : `http://localhost:4000/events/${tokenObject._id}/eventsClient`;
+            ? `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/events`
+            : `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/eventsClient`;
         const response = await fetch(endpoint);
         if (!response.ok) {
           throw new Error("Failed to fetch events");
@@ -142,7 +142,7 @@ export default function EventsTable() {
   //   async function fetchEvents() {
   //     try {
   //       const response = await fetch(
-  //         `http://localhost:4000/events/${tokenObject._id}/events`
+  //         `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/events`
   //       );
   //       if (!response.ok) {
   //         throw new Error("Failed to fetch events");
@@ -160,7 +160,7 @@ export default function EventsTable() {
   //   async function fetchEvents() {
   //     try {
   //       const response = await fetch(
-  //         `http://localhost:4000/events/${tokenObject._id}/eventsClient`
+  //         `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/eventsClient`
   //       );
   //       if (!response.ok) {
   //         throw new Error("Failed to fetch events");
@@ -174,7 +174,7 @@ export default function EventsTable() {
   //   fetchEvents();
   // }, []);
 
-  console.log(events);
+  //console.log(events);
 
   const hasSearchFilter = Boolean(filterValue);
 

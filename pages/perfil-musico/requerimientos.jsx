@@ -61,10 +61,10 @@ export default function Requerimientos() {
 
   const fetchRequests = async () => {
     //if (!tokenObject) return;
-    console.log(tokenObject);
+    //console.log(tokenObject);
     try {
       const response = await fetch(
-        `http://localhost:4000/users/${tokenObject?._id}`,
+        `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function Requerimientos() {
       );
 
       const responseData = await response.json();
-      console.log(responseData?.data?.requirements);
+      //console.log(responseData?.data?.requirements);
 
       if (response.status === 200 || 201) {
         setRequests(responseData?.data?.requirements || []);
@@ -87,7 +87,7 @@ export default function Requerimientos() {
         );
       }
     } catch (error) {
-      console.error("Error al obtener los requerimientos:", error);
+      //console.error("Error al obtener los requerimientos:", error);
       toast.error("Ocurrió un error al obtener los requerimientos.");
     }
   };
@@ -124,7 +124,7 @@ export default function Requerimientos() {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/users/${tokenObject?._id}`,
+        `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`,
         {
           method: "PUT",
           headers: {
@@ -148,7 +148,7 @@ export default function Requerimientos() {
         );
       }
     } catch (error) {
-      console.error("Error al guardar las solicitudes:", error);
+      //console.error("Error al guardar las solicitudes:", error);
       toast.error("Ocurrió un error al guardar los requerimientos.");
     }
   };
@@ -168,7 +168,7 @@ export default function Requerimientos() {
     );
   }
 
-  console.log(requests);
+  //console.log(requests);
 
   return (
     <>

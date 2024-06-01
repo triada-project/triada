@@ -19,11 +19,11 @@ export default function HoursForm() {
 
   //console.log(errors);
 
-  const onSubmit = (data) => console.log(data);
+  //const onSubmit = (data) => console.log(data);
 
   return (
     <section className="flex flex-center items-center lg:border lg:border-[#717171] lg:rounded lg:px-5 lg:py-5 lg:border-opacity-25 lg:shadow-lg lg:items-start lg:mt-[67px]">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <span className=" flex items-center gap-2 mt-5">
           <Select
             label="Hora de inicio"

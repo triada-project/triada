@@ -54,35 +54,38 @@ export default function EventForm({ userData, musicianId, tokenObject, eventFee 
     //console.log(data);
 
     try {
-      const response = await fetch("http://localhost:4000/events", {
-        method: "POST",
-        body: JSON.stringify({
-          address: {
-            state: data.state,
-            city: data.city,
-            street: data.street,
-            neighborhood: data.neighborhood,
-            zipCode: data.zipCode,
-            exteriorNumber: data.exteriorNumber,
-            interiorNumber: data.interiorNumber,
-            reference: data.reference,
+      const response = await fetch(
+        "https://apitriada.rodolfo-ramirez.com/events",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            address: {
+              state: data.state,
+              city: data.city,
+              street: data.street,
+              neighborhood: data.neighborhood,
+              zipCode: data.zipCode,
+              exteriorNumber: data.exteriorNumber,
+              interiorNumber: data.interiorNumber,
+              reference: data.reference,
+            },
+            date: fechaFormateada,
+            endHour: data.endHour,
+            eventName: data.eventName,
+            eventType: data.eventType,
+            phoneClient: phonePrefix,
+            startHour: data.startHour,
+            totalHours: getTotalHours(),
+            eventFee: totalRes(),
+            isChecked: data.isChecked,
+            musician: musicianId,
+            client: tokenObject._id,
+          }),
+          headers: {
+            "Content-Type": "application/json",
           },
-          date: fechaFormateada,
-          endHour: data.endHour,
-          eventName: data.eventName,
-          eventType: data.eventType,
-          phoneClient: phonePrefix,
-          startHour: data.startHour,
-          totalHours: getTotalHours(),
-          eventFee: totalRes(),
-          isChecked: data.isChecked,
-          musician: musicianId,
-          client: tokenObject._id,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+        }
+      );
       if (response.ok) {
         const eventData = await response.json();
         //console.log(eventData);

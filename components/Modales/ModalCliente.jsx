@@ -53,7 +53,7 @@ export default function ModalCliente({ eventData }) {
   const fetchrequestusers = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4000/users/${eventData.musician}`,
+        `https://apitriada.rodolfo-ramirez.com/users/${eventData.musician}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -61,7 +61,7 @@ export default function ModalCliente({ eventData }) {
         }
       );
       const responseData = await response.json();
-      console.log(responseData), "datausuario";
+      //console.log(responseData), "datausuario";
       setUserData(responseData.data);
     } catch (error) {
       console.error(error);
@@ -77,7 +77,7 @@ export default function ModalCliente({ eventData }) {
   const handleSolicitarCodigo = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4000/events/${eventData._id}/solicitar-codigo-confirmacion`,
+        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}/solicitar-codigo-confirmacion`,
         {
           method: "POST",
           headers: {
@@ -93,7 +93,7 @@ export default function ModalCliente({ eventData }) {
 
       const data = await response.json();
       toast.success("¡Código enviado con éxito!");
-      console.log("Código solicitado:", data);
+      //console.log("Código solicitado:", data);
       // Manejar la respuesta aquí, si es necesario
     } catch (error) {
       console.error("Error al solicitar el código:", error.message);
@@ -156,7 +156,7 @@ export default function ModalCliente({ eventData }) {
                     )}
 
                     {eventData.status === "aceptado" && (
-                      <div className="flex flex-row border border-slate-950 p-1 w-16 rounded-full items-center">
+                      <div className="flex flex-row border border-slate-950 p-1 w-1/4  rounded-full items-center">
                         <Image
                           src="/assets/svg/play.svg"
                           className="w-52 h-4 mr-2"
@@ -181,8 +181,8 @@ export default function ModalCliente({ eventData }) {
                           src="/assets/svg/warning_FILL1_wght400_GRAD0_opsz24 2.svg"
                           className="w-10 h-4 mr-2"
                         />
-                        <p className="text-xs w-full pr-1">
-                          {eventData.status}
+                        <p className="text-xs w-full">
+                          {eventData.status} por confirmar
                         </p>
                       </div>
                     )}
@@ -263,7 +263,7 @@ export default function ModalCliente({ eventData }) {
                             className="w-4 h-6 mr-2 md:w-4"
                           />
                           <li className="md:text-xs">
-                            Horas: {eventData.horas_contratadas_evento}
+                            Horas: {eventData.totalHours}
                           </li>
                         </div>
                         <div className="flex items-center gap-1">

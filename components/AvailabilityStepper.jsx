@@ -9,7 +9,7 @@ import { Toaster, toast } from "sonner";
 // ... tus importaciones de componentes ...
 
 export default function AvailabilityStepper({ data }) {
-  const idUser = data._id;
+  const idUser = data;
   //console.log(idUser, "data desde componente");
   const daysOfWeek = [
     "lunes",
@@ -73,13 +73,16 @@ export default function AvailabilityStepper({ data }) {
       }, []);
 
       try {
-        const response = await fetch(`http://localhost:4000/users/${idUser}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ availability: formattedAvailability }),
-        });
+        const response = await fetch(
+          `https://apitriada.rodolfo-ramirez.com/users/${idUser}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ availability: formattedAvailability }),
+          }
+        );
 
         // Manejo de la respuesta del servidor
         if (response.ok) {
@@ -89,7 +92,7 @@ export default function AvailabilityStepper({ data }) {
           toast.error("Error al actualizar disponibilidad");
         }
       } catch (error) {
-        console.error("Error al enviar datos al servidor:", error);
+        //console.error("Error al enviar datos al servidor:", error);
         toast.error("Error al enviar datos al servidor");
       }
     }

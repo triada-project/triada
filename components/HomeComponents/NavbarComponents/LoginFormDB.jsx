@@ -18,16 +18,19 @@ export default function LoginFormDB() {
   } = useForm();
 
   async function onSubmit(data) {
-    const response = await fetch("http://localhost:4000/auth/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email: data.email,
-        password: data.password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://apitriada.rodolfo-ramirez.com/auth/login",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const redirection = () => {
       location.reload();
@@ -40,16 +43,15 @@ export default function LoginFormDB() {
         title: "Datos introducidos correctamente , Bienvenido a Triada!!!",
         showConfirmButton: true,
         confirmButtonText: "Aceptar",
-        
-      }).then((result)=>{
-        if(result.isConfirmed){
-          localStorage.setItem("token", responseData.token)
-          window.location.reload()
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.setItem("token", responseData.token);
+          window.location.reload();
         }
       });
       //localStorage.setItem("token", responseData.token);
-    //   //   navigate("/");
-    //   redirection();
+      //   //   navigate("/");
+      //   redirection();
     } else {
       Swal.fire({
         icon: "error",

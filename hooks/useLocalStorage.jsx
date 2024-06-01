@@ -8,7 +8,7 @@ export const useLocalStorage = (key) => {
     if (!key) {
       console.log("No key provided");
     }
-    console.log(token);
+    //console.log(token);
     return () => {};
   });
   return token;

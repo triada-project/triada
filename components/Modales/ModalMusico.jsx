@@ -37,7 +37,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function ModalMusico({ eventData }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [size, setSize] = React.useState("3xl");
-  console.log(eventData);
+  //console.log(eventData);
   const [userData, setUserData] = useState();
 
   const {
@@ -56,7 +56,7 @@ export default function ModalMusico({ eventData }) {
   const fetchrequestusers = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4000/users/${eventData.musician}`,
+        `https://apitriada.rodolfo-ramirez.com/users/${eventData.musician}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -64,7 +64,7 @@ export default function ModalMusico({ eventData }) {
         }
       );
       const responseData = await response.json();
-      console.log(responseData), "datausuario";
+      //console.log(responseData), "datausuario";
       setUserData(responseData.data);
     } catch (error) {
       console.error(error);
@@ -80,7 +80,7 @@ export default function ModalMusico({ eventData }) {
   async function onSubmit(data) {
     try {
       const response = await fetch(
-        `http://localhost:4000/events/${eventData._id}/confirmar-codigo-evento`,
+        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}/confirmar-codigo-evento`,
         {
           method: "POST",
           headers: {
@@ -113,7 +113,7 @@ export default function ModalMusico({ eventData }) {
       const startPi = completeSecretClient.indexOf("pi_"); // Encontrar la posición de inicio de "pi_"
       const endPi = completeSecretClient.indexOf("_secret");
       const resultOnlyPi = completeSecretClient.substring(startPi, endPi);
-      console.log(resultOnlyPi);
+      //console.log(resultOnlyPi);
       // Si la respuesta es exitosa, puedes hacer algo aquí (por ejemplo, cerrar el modal)
       await capturePayment(resultOnlyPi);
       onClose();
@@ -130,7 +130,7 @@ export default function ModalMusico({ eventData }) {
       const updatedStatus = "aceptado"; // Change to desired status
 
       const response = await fetch(
-        `http://localhost:4000/events/${eventData._id}`,
+        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}`,
         {
           method: "PUT",
           headers: {
@@ -151,7 +151,7 @@ export default function ModalMusico({ eventData }) {
       // Update local state or refetch event data to reflect the change
       // onClose(); // Consider closing the modal if needed
     } catch (error) {
-      console.error("Error updating status:", error);
+      //console.error("Error updating status:", error);
       alert(error.message);
     }
   };
@@ -161,7 +161,7 @@ export default function ModalMusico({ eventData }) {
       const updatedStatus = "rechazado"; // Change to desired status
 
       const response = await fetch(
-        `http://localhost:4000/events/${eventData._id}`,
+        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}`,
         {
           method: "PUT",
           headers: {
@@ -182,7 +182,7 @@ export default function ModalMusico({ eventData }) {
       // Update local state or refetch event data to reflect the change
       // onClose(); // Consider closing the modal if needed
     } catch (error) {
-      console.error("Error updating status:", error);
+      //console.error("Error updating status:", error);
       alert(error.message);
     }
   };
@@ -470,10 +470,7 @@ export default function ModalMusico({ eventData }) {
                               src="/assets/svg/calendar_client.svg"
                               className="w-6 h-6 mr-2"
                             />
-                            <p>
-                              Horas contratadas:{" "}
-                              {eventData.horas_contratadas_evento}
-                            </p>
+                            <p>Horas contratadas: {eventData.totalHours}</p>
                           </div>
                         </div>
                         <div className="flex items-center">

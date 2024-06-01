@@ -15,7 +15,7 @@ export default function NewUpdateCard({ userData }) {
   };
 
   const userId = userData?.data?._id; // Obtener el ID del usuario
-  console.log(userId);
+  //console.log(userId);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -28,7 +28,7 @@ export default function NewUpdateCard({ userData }) {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/images/profile-picture/${userId}`,
+        `https://apitriada.rodolfo-ramirez.com/images/profile-picture/${userId}`,
         {
           method: "POST",
           body: formData,

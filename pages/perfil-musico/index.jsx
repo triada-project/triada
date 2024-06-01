@@ -37,7 +37,7 @@ export default function PerfilMusico() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/users/${tokenObject?._id}`
+          `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`
         );
         const data = await response.json();
         setUserData(data); // Almacena los datos del usuario
@@ -53,7 +53,7 @@ export default function PerfilMusico() {
     }
   }, [tokenObject]);
 
-  console.log(userData);
+  //console.log(userData);
 
   if (!tokenObject) {
     return (

@@ -16,6 +16,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Step5() {
   const router = useRouter();
+  const userId = router.query.id;
   const [route, setRoute] = useState();
   const tokenObject = useTokenStore((state) => state.tokenObject);
   const [accountCreatePending, setAccountCreatePending] = useState(false);
@@ -38,7 +39,7 @@ export default function Step5() {
   const handleCreateAccountStripe = async () => {
     setAccountCreatePending(true);
     setError(false);
-    fetch("http://localhost:4000/account", {
+    fetch("https://apitriada.rodolfo-ramirez.com/account", {
       method: "POST",
     })
       .then((response) => response.json())
@@ -51,7 +52,7 @@ export default function Step5() {
           setConnectedAccountId(account);
           setAccountLinkCreatePending(true);
           setError(false);
-          fetch("http://localhost:4000/account_link", {
+          fetch("https://apitriada.rodolfo-ramirez.com/account_link", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -74,7 +75,7 @@ export default function Step5() {
               }
             });
 
-          fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
+          fetch(`https://apitriada.rodolfo-ramirez.com/users/${userId}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
@@ -91,7 +92,7 @@ export default function Step5() {
       });
   };
 
-  if (!tokenObject) {
+  if (!userId) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
@@ -144,7 +145,7 @@ export default function Step5() {
         <ButtonsStepper
           mTop={"mt-[60px]"}
           step={"7"}
-          stepBack={"/stepper/paso6"}
+          stepBack={`/stepper/paso6/${userId}`}
           // stepNext={"/stepper/finalizar"}
           onClick={handleCreateAccountStripe}
         />

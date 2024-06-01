@@ -14,14 +14,14 @@ export default function RegisterForm() {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  // };
 
   return (
     <div className="flex ">
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        //onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-[20px] w-[331px] lg:w-[387px]"
       >
         <div className="flex flex-col  ">

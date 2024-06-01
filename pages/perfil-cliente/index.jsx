@@ -34,11 +34,11 @@ export default function PerfilCliente() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/users/${tokenObject?._id}`
+          `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`
         );
         const data = await response.json();
         setUserData(data); // Almacena los datos del usuario
-        setSelectedState(data.data.state);
+        //setSelectedState(data.data.state);
       } catch (error) {
         console.error("Error fetching user data:", error);
         // Manejo de errores
@@ -50,7 +50,7 @@ export default function PerfilCliente() {
     }
   }, [tokenObject]);
 
-  console.log(userData);
+  //console.log(userData);
 
   if (!tokenObject) {
     return (

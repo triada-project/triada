@@ -43,7 +43,7 @@ export default function MusicianDetail() {
 
   useEffect(() => {
     if (userId) {
-      fetch(`http://localhost:4000/users/${userId}`)
+      fetch(`https://apitriada.rodolfo-ramirez.com/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           setUserData(data.data);

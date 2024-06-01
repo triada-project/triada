@@ -21,7 +21,7 @@ export default function InformacionForm() {
     formState: { errors },
   } = useForm();
 
-  console.log(tokenObject);
+  //console.log(tokenObject);
 
   //console.log(errors);
 
@@ -29,7 +29,7 @@ export default function InformacionForm() {
 
   async function onSubmit(data) {
     const response = await fetch(
-      `http://localhost:4000/users/${tokenObject?._id}`,
+      `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`,
       {
         method: "PUT",
         headers: {

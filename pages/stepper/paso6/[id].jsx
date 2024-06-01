@@ -19,6 +19,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Step2() {
   const router = useRouter();
+  const userId = router.query.id;
   const [route, setRoute] = useState();
   const tokenObject = useTokenStore((state) => state.tokenObject);
 
@@ -48,21 +49,24 @@ export default function Step2() {
 
   const onSubmit = (data) => {
     // e.preventDefault();
-    setRoute(router.push("/stepper/paso3"));
-    console.log(data);
-    const response = fetch(`http://localhost:4000/users/${tokenObject?._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        city: data.city,
-        state: data.state,
-      }),
-    });
+    setRoute(router.push(`/stepper/paso7/${userId}`));
+    //console.log(data);
+    const response = fetch(
+      `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          city: data.city,
+          state: data.state,
+        }),
+      }
+    );
   };
 
-  if (!tokenObject) {
+  if (!userId) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Spinner label="Cargando..." color="secondary" labelColor="secondary" />
@@ -89,13 +93,13 @@ export default function Step2() {
           <b>*Horario formato 24 hrs.</b>
         </p>
 
-        <AvailabilityStepper data={tokenObject} />
+        <AvailabilityStepper data={userId} />
 
         <ButtonsStepper
           mTop={"mt-[60px]"}
           step={"6"}
-          stepBack={"/stepper/paso5"}
-          stepNext={"/stepper/paso7"}
+          stepBack={`/stepper/paso5/${userId}`}
+          stepNext={`/stepper/paso7/${userId}`}
         />
       </section>
     </StepperLayout>
