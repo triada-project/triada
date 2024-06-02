@@ -10,6 +10,7 @@ import { Spinner } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useTokenStore from "@/stores/tokenStore";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -69,15 +70,12 @@ export default function Step5() {
     //if (!tokenObject) return;
     //console.log(tokenObject);
     try {
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${tokenObject?.accessToken}`,
-          },
-        }
-      );
+      const response = await fetch(`${urlApi}/users/${userId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${tokenObject?.accessToken}`,
+        },
+      });
 
       const responseData = await response.json();
       //console.log(responseData?.data?.requirements);
@@ -141,20 +139,17 @@ export default function Step5() {
     setRoute(router.push(`/stepper/paso6/${userId}`));
     //console.log(data);
     try {
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            eventFee: data.eventFee,
-            maximumHoursEvent: data.maximumHoursEvent,
-            requirements: requests,
-          }),
-        }
-      );
+      const response = await fetch(`${urlApi}/users/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventFee: data.eventFee,
+          maximumHoursEvent: data.maximumHoursEvent,
+          requirements: requests,
+        }),
+      });
       const responseData = await response.json();
       if (response.status === 201) {
         toast.success("¡Requerimientos guardados con éxito!");

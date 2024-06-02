@@ -4,13 +4,12 @@ import React, { useEffect, useState } from "react";
 export default function MusiciansCardsContainer() {
   const [musicians, setMusicians] = useState([]);
   const [numCardsToShow, setNumCardsToShow] = useState(2); // Default to 2 cards for mobile
+  const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     async function fetchMusicians() {
       try {
-        const response = await fetch(
-          "https://apitriada.rodolfo-ramirez.com/users"
-        );
+        const response = await fetch(`${urlApi}/users`);
         const data = await response.json();
 
         //console.log("Fetched data:", data); // Log the fetched data

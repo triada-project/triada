@@ -6,6 +6,7 @@ export default function Home() {
     useState(false);
   const [error, setError] = useState(false);
   const [connectedAccountId, setConnectedAccountId] = useState();
+  const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
   return (
     <div className="container">
@@ -34,7 +35,7 @@ export default function Home() {
             onClick={async () => {
               setAccountCreatePending(true);
               setError(false);
-              fetch("https://apitriada.rodolfo-ramirez.com/account", {
+              fetch(`${urlApi}/account`, {
                 method: "POST",
               })
                 .then((response) => response.json())
@@ -47,18 +48,15 @@ export default function Home() {
                     // setConnectedAccountId(account);
                     setAccountLinkCreatePending(true);
                     setError(false);
-                    fetch(
-                      "https://apitriada.rodolfo-ramirez.com/account_link",
-                      {
-                        method: "POST",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                          account: account,
-                        }),
-                      }
-                    )
+                    fetch(`${urlApi}/account_link`, {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        account: account,
+                      }),
+                    })
                       .then((response) => response.json())
                       .then((json) => {
                         setAccountLinkCreatePending(false);
@@ -88,7 +86,7 @@ export default function Home() {
             onClick={async () => {
               setAccountLinkCreatePending(true);
               setError(false);
-              fetch("https://apitriada.rodolfo-ramirez.com/account_link", {
+              fetch(`${urlApi}/account_link`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

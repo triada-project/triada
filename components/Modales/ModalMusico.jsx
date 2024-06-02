@@ -27,6 +27,7 @@ import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 
 import { Josefin_Sans, Lato } from "next/font/google";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -55,14 +56,13 @@ export default function ModalMusico({ eventData }) {
 
   const fetchrequestusers = async () => {
     try {
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/users/${eventData.musician}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const tokenFromLocalStorage = localStorage.getItem("token");
+      const response = await fetch(`${urlApi}/users/${eventData.musician}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenFromLocalStorage}`,
+        },
+      });
       const responseData = await response.json();
       //console.log(responseData), "datausuario";
       setUserData(responseData.data);
@@ -79,12 +79,14 @@ export default function ModalMusico({ eventData }) {
 
   async function onSubmit(data) {
     try {
+      const tokenFromLocalStorage = localStorage.getItem("token");
       const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}/confirmar-codigo-evento`,
+        `${urlApi}/events/${eventData._id}/confirmar-codigo-evento`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenFromLocalStorage}`,
           },
           body: JSON.stringify({
             eventId: eventData._id,
@@ -129,16 +131,13 @@ export default function ModalMusico({ eventData }) {
     try {
       const updatedStatus = "aceptado"; // Change to desired status
 
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ status: updatedStatus }),
-        }
-      );
+      const response = await fetch(`${urlApi}/events/${eventData._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: updatedStatus }),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -160,16 +159,13 @@ export default function ModalMusico({ eventData }) {
     try {
       const updatedStatus = "rechazado"; // Change to desired status
 
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ status: updatedStatus }),
-        }
-      );
+      const response = await fetch(`${urlApi}/events/${eventData._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: updatedStatus }),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();

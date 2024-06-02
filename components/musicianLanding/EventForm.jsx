@@ -16,6 +16,7 @@ import ButtonPink from "./ButtonPink";
 //import dataMusician from "../../objects/musicianObject.json";
 import IdCatcher from "./IdCatcher";
 import { useRouter } from "next/router";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -23,7 +24,12 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function EventForm({ userData, musicianId, tokenObject, eventFee }) {
+export default function EventForm({
+  userData,
+  musicianId,
+  tokenObject,
+  eventFee,
+}) {
   const {
     register,
     watch,
@@ -54,38 +60,35 @@ export default function EventForm({ userData, musicianId, tokenObject, eventFee 
     //console.log(data);
 
     try {
-      const response = await fetch(
-        "https://apitriada.rodolfo-ramirez.com/events",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            address: {
-              state: data.state,
-              city: data.city,
-              street: data.street,
-              neighborhood: data.neighborhood,
-              zipCode: data.zipCode,
-              exteriorNumber: data.exteriorNumber,
-              interiorNumber: data.interiorNumber,
-              reference: data.reference,
-            },
-            date: fechaFormateada,
-            endHour: data.endHour,
-            eventName: data.eventName,
-            eventType: data.eventType,
-            phoneClient: phonePrefix,
-            startHour: data.startHour,
-            totalHours: getTotalHours(),
-            eventFee: totalRes(),
-            isChecked: data.isChecked,
-            musician: musicianId,
-            client: tokenObject._id,
-          }),
-          headers: {
-            "Content-Type": "application/json",
+      const response = await fetch(`${urlApi}/events`, {
+        method: "POST",
+        body: JSON.stringify({
+          address: {
+            state: data.state,
+            city: data.city,
+            street: data.street,
+            neighborhood: data.neighborhood,
+            zipCode: data.zipCode,
+            exteriorNumber: data.exteriorNumber,
+            interiorNumber: data.interiorNumber,
+            reference: data.reference,
           },
-        }
-      );
+          date: fechaFormateada,
+          endHour: data.endHour,
+          eventName: data.eventName,
+          eventType: data.eventType,
+          phoneClient: phonePrefix,
+          startHour: data.startHour,
+          totalHours: getTotalHours(),
+          eventFee: totalRes(),
+          isChecked: data.isChecked,
+          musician: musicianId,
+          client: tokenObject._id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         const eventData = await response.json();
         //console.log(eventData);
@@ -130,9 +133,7 @@ export default function EventForm({ userData, musicianId, tokenObject, eventFee 
   };
 
   const totalRes = () => {
-
     return userData.eventFee * getTotalHours();
-
   };
 
   return (

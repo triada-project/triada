@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { Select, SelectSection, SelectItem } from "@nextui-org/react";
 import ButtonPink from "./perfil-cliente/ButtonPink";
 import { Toaster, toast } from "sonner";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 // ... tus importaciones de componentes ...
 
@@ -73,16 +74,13 @@ export default function Availability({ data }) {
       }, []);
 
       try {
-        const response = await fetch(
-          `https://apitriada.rodolfo-ramirez.com/users/${idUser}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ availability: formattedAvailability }),
-          }
-        );
+        const response = await fetch(`${urlApi}/users/${idUser}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ availability: formattedAvailability }),
+        });
 
         // Manejo de la respuesta del servidor
         if (response.ok) {

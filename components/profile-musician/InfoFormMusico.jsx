@@ -17,6 +17,7 @@ import estadosMunicipios from "../../data/estados-municipios.json";
 import useSelectedStateStore from "@/stores/selectedStateStore";
 import React from "react";
 import { users, musicalGenre, typeEvents } from "./../SelectGenreMusic/data";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -85,25 +86,22 @@ export default function InfoFormMusico({ userData }) {
   // console.log(errors);
 
   async function onSubmit(data) {
-    const response = await fetch(
-      `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data.name,
-          city: selectedCity,
-          state: state,
-          description: data.description,
-          eventFee: data.eventFee,
-          eventType: typeEventsString.split(","),
-          maximumHours: data.maximumHours,
-          musicalGenre: genreMusicString.split(","),
-        }),
-      }
-    );
+    const response = await fetch(`${urlApi}/users/${tokenObject?._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        city: selectedCity,
+        state: state,
+        description: data.description,
+        eventFee: data.eventFee,
+        eventType: typeEventsString.split(","),
+        maximumHours: data.maximumHours,
+        musicalGenre: genreMusicString.split(","),
+      }),
+    });
     const responseData = await response.json();
     //console.log(responseData);
 

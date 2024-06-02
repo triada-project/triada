@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { Toaster, toast } from "sonner";
 import useTokenStore from "@/stores/tokenStore";
 import { Spinner } from "@nextui-org/react";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 //console.log(dataMusician.users.repertory);
 //const repertory = dataMusician.users.repertory;
@@ -60,16 +61,13 @@ export default function Repertorio() {
 
   const fetchRepertorie = async () => {
     //console.log(tokenObject);
-    const response = await fetch(
-      `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${tokenObject?.accessToken}`,
-        },
-      }
-    );
+    const response = await fetch(`${urlApi}/users/${tokenObject?._id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${tokenObject?.accessToken}`,
+      },
+    });
 
     const responseData = await response.json();
     //console.log(responseData?.data?.repertory);
@@ -139,17 +137,14 @@ export default function Repertorio() {
   const handleSaveRepertoire = async () => {
     if (!repertoire.length) return;
     try {
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${tokenObject?.accessToken}`, // Incluir encabezado de autorización
-          },
-          body: JSON.stringify({ repertory: repertoire }),
-        }
-      );
+      const response = await fetch(`${urlApi}/users/${tokenObject?._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenObject?.accessToken}`, // Incluir encabezado de autorización
+        },
+        body: JSON.stringify({ repertory: repertoire }),
+      });
       const responseData = await response.json();
 
       if (response.status === 201) {

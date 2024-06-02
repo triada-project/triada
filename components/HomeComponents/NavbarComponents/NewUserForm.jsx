@@ -3,6 +3,7 @@ import { Josefin_Sans, Lato } from "next/font/google";
 import { Checkbox } from "@nextui-org/react";
 import Swal from "sweetalert2";
 import ClientOrMusician from "./ClientOrMusician";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -23,19 +24,16 @@ export default function NewUserForm() {
   const password2 = watch("password2");
 
   async function onSubmit(data) {
-    const response = await fetch(
-      "https://apitriada.rodolfo-ramirez.com/users",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-          role: data.role,
-          name: data.name,
-        }),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await fetch(`${urlApi}/users`, {
+      method: "POST",
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+        role: data.role,
+        name: data.name,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
     if (response.ok) {
       Swal.fire({
         icon: "success",

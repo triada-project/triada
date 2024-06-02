@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import useTokenStore from "@/stores/tokenStore";
 import NewUpdateCard from "@/components/NewUpdatedCard.jsx";
 import { Spinner } from "@nextui-org/react";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -33,11 +34,10 @@ export default function PerfilCliente() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`
-        );
+        const response = await fetch(`${urlApi}/users/${tokenObject?._id}`);
         const data = await response.json();
         setUserData(data); // Almacena los datos del usuario
+        //console.log(data);
         //setSelectedState(data.data.state);
       } catch (error) {
         console.error("Error fetching user data:", error);

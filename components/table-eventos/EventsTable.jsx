@@ -32,6 +32,7 @@ import More from "../../public/assets/svg/add-circle.svg";
 import ModalCliente from "../Modales/ModalCliente";
 import ModalMusico from "../Modales/ModalMusico";
 import useTokenStore from "@/stores/tokenStore";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const statusColorMap = {
   aceptado: Active,
@@ -84,7 +85,7 @@ export default function EventsTable() {
   //     async function fetchEvents() {
   //       try {
   //         const response = await fetch(
-  //           `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/events`
+  //           `${urlApi}/events/${tokenObject._id}/events`
   //         );
   //         if (!response.ok) {
   //           throw new Error("Failed to fetch events");
@@ -102,7 +103,7 @@ export default function EventsTable() {
   //     async function fetchEvents() {
   //       try {
   //         const response = await fetch(
-  //           `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/eventsClient`
+  //           `${urlApi}/events/${tokenObject._id}/eventsClient`
   //         );
   //         if (!response.ok) {
   //           throw new Error("Failed to fetch events");
@@ -119,11 +120,17 @@ export default function EventsTable() {
   useEffect(() => {
     async function fetchEvents() {
       try {
+        const tokenFromLocalStorage = localStorage.getItem("token");
         const endpoint =
           tokenObject.role === "musico"
-            ? `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/events`
-            : `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/eventsClient`;
-        const response = await fetch(endpoint);
+            ? `${urlApi}/events/${tokenObject._id}/events`
+            : `${urlApi}/events/${tokenObject._id}/eventsClient`;
+        const response = await fetch(endpoint, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenFromLocalStorage}`,
+          },
+        });
         if (!response.ok) {
           throw new Error("Failed to fetch events");
         }
@@ -142,7 +149,7 @@ export default function EventsTable() {
   //   async function fetchEvents() {
   //     try {
   //       const response = await fetch(
-  //         `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/events`
+  //         `${urlApi}/events/${tokenObject._id}/events`
   //       );
   //       if (!response.ok) {
   //         throw new Error("Failed to fetch events");
@@ -160,7 +167,7 @@ export default function EventsTable() {
   //   async function fetchEvents() {
   //     try {
   //       const response = await fetch(
-  //         `https://apitriada.rodolfo-ramirez.com/events/${tokenObject._id}/eventsClient`
+  //         `${urlApi}/events/${tokenObject._id}/eventsClient`
   //       );
   //       if (!response.ok) {
   //         throw new Error("Failed to fetch events");

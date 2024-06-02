@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import clsx from "clsx";
 import { jwtDecode } from "jwt-decode"; // Importación correcta de jwt-decode
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const TOKEN_KEY = "token";
 const DEFAULT_PROFILE_PICTURE =
@@ -36,9 +37,7 @@ export default function UserLogOutNavbar() {
 
   const fetchUserProfile = async (userId) => {
     try {
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/users/${userId}`
-      );
+      const response = await fetch(`${urlApi}/users/${userId}`);
       const userData = await response.json();
       //console.log("este es userData haber:", userData);
 

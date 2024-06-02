@@ -49,23 +49,21 @@ export default function Step2() {
 
   const onSubmit = (data) => {
     // e.preventDefault();
+    const urlApi = process.env.NEXT_PUBLIC_API_URL;
     const phonePrefix = "+52" + data.phone;
     setRoute(router.push(`/stepper/paso3/${userId}`));
     console.log(data);
-    const response = fetch(
-      `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          city: data.city,
-          state: data.state,
-          phoneMusician: phonePrefix,
-        }),
-      }
-    );
+    const response = fetch(`${urlApi}/users/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        city: data.city,
+        state: data.state,
+        phoneMusician: phonePrefix,
+      }),
+    });
   };
 
   if (!userId) {

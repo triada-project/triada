@@ -59,6 +59,7 @@ export default function AvailabilityStepper({ data }) {
   //     }
   //   };
   const onSubmit = async (data) => {
+    const urlApi = process.env.NEXT_PUBLIC_API_URL;
     if (validateAvailability()) {
       // Transformar el objeto availability en un array de objetos
       const formattedAvailability = daysOfWeek.reduce((acc, day) => {
@@ -73,16 +74,13 @@ export default function AvailabilityStepper({ data }) {
       }, []);
 
       try {
-        const response = await fetch(
-          `https://apitriada.rodolfo-ramirez.com/users/${idUser}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ availability: formattedAvailability }),
-          }
-        );
+        const response = await fetch(`${urlApi}/users/${idUser}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ availability: formattedAvailability }),
+        });
 
         // Manejo de la respuesta del servidor
         if (response.ok) {

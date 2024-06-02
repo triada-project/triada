@@ -7,6 +7,7 @@ import { Spinner } from "@nextui-org/react";
 import useTokenStore from "@/stores/tokenStore";
 import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -34,7 +35,7 @@ export default function PerfilMusico() {
   useEffect(() => {
     if (tokenObject?._id) {
       // Realiza la solicitud fetch para obtener los datos del usuario
-      fetch(`https://apitriada.rodolfo-ramirez.com/users/${tokenObject._id}`)
+      fetch(`${urlApi}/users/${tokenObject._id}`)
         .then((response) => response.json())
         .then((data) => {
           // Almacena los datos del usuario en el estado local

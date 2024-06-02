@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 // import { useNavigate } from "react-router-dom";
 import { Josefin_Sans } from "next/font/google";
 import Swal from "sweetalert2";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -18,19 +19,16 @@ export default function LoginFormDB() {
   } = useForm();
 
   async function onSubmit(data) {
-    const response = await fetch(
-      "https://apitriada.rodolfo-ramirez.com/auth/login",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${urlApi}/auth/login`, {
+      method: "POST",
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     const redirection = () => {
       location.reload();

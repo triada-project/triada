@@ -39,19 +39,17 @@ export default function Finalizar() {
   const handleFinalizar = () => {
     // e.preventDefault();
     setRoute(router.push("/"));
+    const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
-    const response = fetch(
-      `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id_stripe: userId,
-        }),
-      }
-    );
+    const response = fetch(`${urlApi}/users/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id_stripe: userId,
+      }),
+    });
   };
 
   if (!userId) {

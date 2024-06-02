@@ -15,6 +15,7 @@ import NavBar from "@/components/Navbar";
 import FooterMain from "@/components/footer/footer";
 import { useRouter } from "next/router";
 import { Spinner } from "@nextui-org/react";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 function Payment() {
   const router = useRouter();
@@ -33,14 +34,11 @@ function Payment() {
 
   const fetchrequest = async () => {
     try {
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/events/${eventId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${urlApi}/events/${eventId}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const responseData = await response.json();
       //console.log(responseData, "responseData");
       setIdEvent(responseData.data._id);
@@ -53,14 +51,11 @@ function Payment() {
 
   const fetchrequestusers = async () => {
     try {
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/users/${eventData.musician}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${urlApi}/users/${eventData.musician}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const responseData = await response.json();
       //console.log(responseData), "datausuario";
       setUserData(responseData.data);
@@ -86,7 +81,7 @@ function Payment() {
   // };
 
   useEffect(() => {
-    fetch("https://apitriada.rodolfo-ramirez.com/config").then(async (r) => {
+    fetch(`${urlApi}/config`).then(async (r) => {
       const { publishableKey } = await r.json();
       setStripePromise(
         loadStripe(
@@ -111,10 +106,12 @@ function Payment() {
   //   })
   // }, [eventFee]);
   useEffect(() => {
-    fetch("https://apitriada.rodolfo-ramirez.com/create-payment-intent", {
+    const tokenFromLocalStorage = localStorage.getItem("token");
+    fetch(`${urlApi}/create-payment-intent`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${tokenFromLocalStorage}`,
       },
       body: JSON.stringify({
         _id: idEvent,

@@ -23,12 +23,13 @@ export default function NewUpdateCard({ userData }) {
   };
 
   const handleUpload = async () => {
+    const urlApi = process.env.NEXT_PUBLIC_API_URL;
     const formData = new FormData();
     formData.append("profilePicture", selectedFile);
 
     try {
       const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/images/profile-picture/${userId}`,
+        `${urlApi}/images/profile-picture/${userId}`,
         {
           method: "POST",
           body: formData,

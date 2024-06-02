@@ -1,15 +1,13 @@
 export async function capturePayment(paymentIntentId) {
+  const urlApi = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const response = await fetch(
-      "https://apitriada.rodolfo-ramirez.com/capture-payment",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ paymentIntentId }),
-      }
-    );
+    const response = await fetch(`${urlApi}/capture-payment`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ paymentIntentId }),
+    });
 
     if (!response.ok) {
       throw new Error("Failed to capture payment");
