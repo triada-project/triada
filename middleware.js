@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 // Función para verificar el rol
 export function hasRequiredRole(req, role) {
   const token = req.cookies.get("token"); // Obtén el token de la cookie
-  console.log(token);
+  //console.log(token);
   if (!token) {
     return false;
   }
