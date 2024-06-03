@@ -30,6 +30,10 @@ export function middleware(req) {
     return NextResponse.redirect(new URL("/", req.url));
   } // Permite otras rutas (como /login, /public, etc.)
 
+  if (url.startsWith("/stripe") && !hasRequiredRole(req, "cliente")) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+
   return NextResponse.next();
 }
 
