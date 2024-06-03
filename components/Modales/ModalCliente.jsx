@@ -29,6 +29,7 @@ import Events from "../../objects/events.json";
 // condicional rendering
 import { Josefin_Sans, Lato } from "next/font/google";
 import More from "../../public/assets/svg/add-circle";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -52,14 +53,11 @@ export default function ModalCliente({ eventData }) {
 
   const fetchrequestusers = async () => {
     try {
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/users/${eventData.musician}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${urlApi}/users/${eventData.musician}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const responseData = await response.json();
       //console.log(responseData), "datausuario";
       setUserData(responseData.data);
@@ -77,7 +75,7 @@ export default function ModalCliente({ eventData }) {
   const handleSolicitarCodigo = async () => {
     try {
       const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/events/${eventData._id}/solicitar-codigo-confirmacion`,
+        `${urlApi}/events/${eventData._id}/solicitar-codigo-confirmacion`,
         {
           method: "POST",
           headers: {

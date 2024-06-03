@@ -42,8 +42,9 @@ export default function MusicianDetail() {
   }, []);
 
   useEffect(() => {
+    const urlApi = process.env.NEXT_PUBLIC_API_URL;
     if (userId) {
-      fetch(`https://apitriada.rodolfo-ramirez.com/users/${userId}`)
+      fetch(`${urlApi}/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           setUserData(data.data);

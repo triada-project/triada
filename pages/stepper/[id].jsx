@@ -23,8 +23,9 @@ export default function Stepper() {
 
   useEffect(() => {
     if (userId) {
+      const urlApi = process.env.NEXT_PUBLIC_API_URL;
       // Realiza la solicitud fetch para obtener los datos del usuario
-      fetch(`https://apitriada.rodolfo-ramirez.com/users/${userId}`)
+      fetch(`${urlApi}/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           // Almacena los datos del usuario en el estado local
@@ -59,41 +60,41 @@ export default function Stepper() {
   //   }
   // }, [userData]);
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch(
-        "https://apitriada.rodolfo-ramirez.com/auth/login/verify",
-        {
-          // Corrección en la ruta
-          method: "POST",
-          body: JSON.stringify({
-            email: userData.email,
-            password: userData.password,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+  // const handleLogin = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "${urlApi}/auth/login/verify",
+  //       {
+  //         // Corrección en la ruta
+  //         method: "POST",
+  //         body: JSON.stringify({
+  //           email: userData.email,
+  //           password: userData.password,
+  //         }),
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
 
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem("token", data.token);
-        // Redirigir a otra página después del login exitoso (opcional)
-      } else {
-        console.error("Credenciales incorrectas"); // Establecer mensaje de error
-      }
-    } catch (error) {
-      console.error("Error en el login:", error);
-      // setError("Error al iniciar sesión"); // Establecer mensaje de error
-    }
-  };
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       localStorage.setItem("token", data.token);
+  //       // Redirigir a otra página después del login exitoso (opcional)
+  //     } else {
+  //       console.error("Credenciales incorrectas"); // Establecer mensaje de error
+  //     }
+  //   } catch (error) {
+  //     console.error("Error en el login:", error);
+  //     // setError("Error al iniciar sesión"); // Establecer mensaje de error
+  //   }
+  // };
 
-  useEffect(() => {
-    if (userData) {
-      handleLogin(); // Llama a la función de login cuando se cargan los datos
-    }
-  }, [userData]);
+  // useEffect(() => {
+  //   if (userData) {
+  //     handleLogin(); // Llama a la función de login cuando se cargan los datos
+  //   }
+  // }, [userData]);
 
   if (!userData) {
     return <div>Cargando...</div>; // Muestra un mensaje de carga mientras se obtienen los datos

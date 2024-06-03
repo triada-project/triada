@@ -25,7 +25,7 @@
     },
     {
         "clave": "CMX",
-        "nombre": "Ciudad de Mexico"
+        "nombre": "Ciudad de México"
     },
     {
         "clave": "COA",
@@ -57,11 +57,11 @@
     },
     {
         "clave": "MCH",
-        "nombre": "Michoacan"
+        "nombre": "Michoacán"
     },
     {
         "clave": "MEX",
-        "nombre": "Estado de Mexico"
+        "nombre": "Estado de México"
     },
     {
         "clave": "MOR",
@@ -73,7 +73,7 @@
     },
     {
         "clave": "NL",
-        "nombre": "Nuevo Leon"
+        "nombre": "Nuevo León"
     },
     {
         "clave": "OAX",
@@ -89,7 +89,7 @@
     },
     {
         "clave": "QRO",
-        "nombre": "Queretaro"
+        "nombre": "Querétaro"
     },
     {
         "clave": "SIN",
@@ -97,7 +97,7 @@
     },
     {
         "clave": "SLP",
-        "nombre": "San Luis Potosi"
+        "nombre": "San Luis Potosí"
     },
     {
         "clave": "SON",
@@ -121,7 +121,7 @@
     },
     {
         "clave": "YUC",
-        "nombre": "Yucatan"
+        "nombre": "Yucatán"
     },
     {
         "clave": "ZAC",

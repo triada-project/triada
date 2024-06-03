@@ -11,6 +11,7 @@ import { Toaster, toast } from "sonner";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useTokenStore from "@/stores/tokenStore";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -61,16 +62,13 @@ export default function Step4() {
 
   const fetchRepertorie = async () => {
     //console.log(tokenObject);
-    const response = await fetch(
-      `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: `Bearer ${tokenObject?.accessToken}`,
-        },
-      }
-    );
+    const response = await fetch(`${urlApi}/users/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: `Bearer ${tokenObject?.accessToken}`,
+      },
+    });
 
     const responseData = await response.json();
     //console.log(responseData?.data?.repertory);
@@ -136,17 +134,14 @@ export default function Step4() {
     if (!repertoire.length) return;
 
     try {
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${tokenObject?.accessToken}`, // Incluir encabezado de autorización
-          },
-          body: JSON.stringify({ repertory: repertoire }),
-        }
-      );
+      const response = await fetch(`${urlApi}/users/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${tokenObject?.accessToken}`, // Incluir encabezado de autorización
+        },
+        body: JSON.stringify({ repertory: repertoire }),
+      });
       const responseData = await response.json();
 
       if (response.status === 201) {

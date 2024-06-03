@@ -9,6 +9,7 @@ import { Spinner, Textarea } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useTokenStore from "@/stores/tokenStore";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -51,21 +52,18 @@ export default function Step3() {
     // e.preventDefault();
     setRoute(router.push(`/stepper/paso4/${userId}`));
     //console.log(data);
-    const response = fetch(
-      `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          eventType: data.eventType.split(","),
-          musicalGenre: data.musicalGenre.split(","),
-          musicianType: data.musicianType,
-          description: data.description,
-        }),
-      }
-    );
+    const response = fetch(`${urlApi}/users/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        eventType: data.eventType.split(","),
+        musicalGenre: data.musicalGenre.split(","),
+        musicianType: data.musicianType,
+        description: data.description,
+      }),
+    });
   };
 
   if (!userId) {

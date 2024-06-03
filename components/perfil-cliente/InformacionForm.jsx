@@ -5,6 +5,7 @@ import ButtonPink from "./ButtonPink";
 import { useForm } from "react-hook-form";
 import useTokenStore from "@/stores/tokenStore";
 import { useEffect, useState } from "react";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -28,18 +29,15 @@ export default function InformacionForm() {
   //const onSubmit = (data) => console.log(data);
 
   async function onSubmit(data) {
-    const response = await fetch(
-      `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data.nombre,
-        }),
-      }
-    );
+    const response = await fetch(`${urlApi}/users/${tokenObject?._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.nombre,
+      }),
+    });
   }
 
   // Verificar si el tokenObject está listo

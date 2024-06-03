@@ -7,6 +7,7 @@ import { Spinner } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useTokenStore from "@/stores/tokenStore";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -39,7 +40,7 @@ export default function Step5() {
   const handleCreateAccountStripe = async () => {
     setAccountCreatePending(true);
     setError(false);
-    fetch("https://apitriada.rodolfo-ramirez.com/account", {
+    fetch(`${urlApi}/account`, {
       method: "POST",
     })
       .then((response) => response.json())
@@ -52,7 +53,7 @@ export default function Step5() {
           setConnectedAccountId(account);
           setAccountLinkCreatePending(true);
           setError(false);
-          fetch("https://apitriada.rodolfo-ramirez.com/account_link", {
+          fetch(`${urlApi}/account_link`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -75,7 +76,7 @@ export default function Step5() {
               }
             });
 
-          fetch(`https://apitriada.rodolfo-ramirez.com/users/${userId}`, {
+          fetch(`${urlApi}/users/${userId}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

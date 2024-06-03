@@ -62,16 +62,14 @@ export default function Requerimientos() {
   const fetchRequests = async () => {
     //if (!tokenObject) return;
     //console.log(tokenObject);
+    const urlApi = process.env.NEXT_PUBLIC_API_URL;
     try {
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${tokenObject?.accessToken}`,
-          },
-        }
-      );
+      const response = await fetch(`${urlApi}/users/${tokenObject?._id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenObject?.accessToken}`,
+        },
+      });
 
       const responseData = await response.json();
       //console.log(responseData?.data?.requirements);
@@ -121,19 +119,17 @@ export default function Requerimientos() {
 
   const handleSaveRequests = async () => {
     if (!requests.length) return; // Manejar el escenario de solicitudes vacías
+    const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
     try {
-      const response = await fetch(
-        `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${tokenObject?.accessToken}`, // Incluir encabezado de autorización
-          },
-          body: JSON.stringify({ requirements: requests }),
-        }
-      );
+      const response = await fetch(`${urlApi}/users/${tokenObject?._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenObject?.accessToken}`, // Incluir encabezado de autorización
+        },
+        body: JSON.stringify({ requirements: requests }),
+      });
 
       const responseData = await response.json();
 

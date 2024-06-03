@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useTokenStore from "@/stores/tokenStore";
 import AvailabilityStepper from "@/components/AvailabilityStepper";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -51,19 +52,16 @@ export default function Step2() {
     // e.preventDefault();
     setRoute(router.push(`/stepper/paso7/${userId}`));
     //console.log(data);
-    const response = fetch(
-      `https://apitriada.rodolfo-ramirez.com/users/${userId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          city: data.city,
-          state: data.state,
-        }),
-      }
-    );
+    const response = fetch(`${urlApi}/users/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        city: data.city,
+        state: data.state,
+      }),
+    });
   };
 
   if (!userId) {

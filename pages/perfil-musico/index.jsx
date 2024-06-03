@@ -8,6 +8,7 @@ import { Josefin_Sans, Lato } from "next/font/google";
 import useTokenStore from "@/stores/tokenStore";
 import { useState, useEffect } from "react";
 import useSelectedStateStore from "@/stores/selectedStateStore";
+const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
   weight: ["300", "400", "600", "700"],
@@ -36,9 +37,13 @@ export default function PerfilMusico() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://apitriada.rodolfo-ramirez.com/users/${tokenObject?._id}`
-        );
+        const tokenFromLocalStorage = localStorage.getItem("token"); 
+        const response = await fetch(`${urlApi}/users/dashboard/${tokenObject?._id}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${tokenFromLocalStorage}`, 
+          },
+        }); 
         const data = await response.json();
         setUserData(data); // Almacena los datos del usuario
         setSelectedState(data.data.state);
