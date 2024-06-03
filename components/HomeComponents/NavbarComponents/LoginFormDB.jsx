@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 // import { useNavigate } from "react-router-dom";
 import { Josefin_Sans } from "next/font/google";
 import Swal from "sweetalert2";
+import Cookies from "js-cookie";
 const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
@@ -44,6 +45,12 @@ export default function LoginFormDB() {
       }).then((result) => {
         if (result.isConfirmed) {
           localStorage.setItem("token", responseData.token);
+          Cookies.set("token", responseData.token, {
+            expires: 1, // Caduca en 1 año (puedes ajustar esto)
+            sameSite: "strict",
+            //secure: true, // Solo se envía sobre HTTPS
+            //httpOnly: true, // No accesible desde JavaScript
+          });
           window.location.reload();
         }
       });
