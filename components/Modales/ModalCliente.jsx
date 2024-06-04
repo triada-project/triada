@@ -23,8 +23,6 @@ import {
 
 import { Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
-// import Events from "../objects/events.json";
-import Events from "../../objects/events.json";
 
 // condicional rendering
 import { Josefin_Sans, Lato } from "next/font/google";
@@ -41,10 +39,7 @@ export default function ModalCliente({ eventData }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [size, setSize] = React.useState("2xl");
   const [rating, setRating] = useState(3); // Initial value
-  //const [eventosPendientes, setEventosPendientes] = useState([]);
   const [userData, setUserData] = useState();
-
-  const { events } = Events;
 
   const handleOpen = (size) => {
     setSize(size);

@@ -20,7 +20,6 @@ import {
 import { Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import Events from "../../objects/events.json";
 import More from "../../public/assets/svg/add-circle";
 import { capturePayment } from "../Stripe/api";
 import { useRouter } from "next/router";
@@ -46,8 +45,6 @@ export default function ModalMusico({ eventData }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const { events } = Events;
 
   const handleOpen = (size) => {
     setSize(size);
