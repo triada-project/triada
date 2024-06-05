@@ -48,9 +48,11 @@ export default function ModalCliente({ eventData }) {
 
   const fetchrequestusers = async () => {
     try {
+      const token = localStorage.getItem("token");
       const response = await fetch(`${urlApi}/users/${eventData.musician}`, {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       });
       const responseData = await response.json();
@@ -69,12 +71,14 @@ export default function ModalCliente({ eventData }) {
 
   const handleSolicitarCodigo = async () => {
     try {
+      const token = localStorage.getItem("token");
       const response = await fetch(
         `${urlApi}/events/${eventData._id}/solicitar-codigo-confirmacion`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(eventData),
         }

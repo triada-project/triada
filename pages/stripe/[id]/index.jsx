@@ -82,7 +82,7 @@ function Payment() {
   // };
 
   useEffect(() => {
-    fetch(`${urlApi}/config`).then(async (r) => {
+    fetch(`${urlApi}/stripe/config`).then(async (r) => {
       const { publishableKey } = await r.json();
       setStripePromise(
         loadStripe(
@@ -94,7 +94,7 @@ function Payment() {
 
   useEffect(() => {
     const tokenFromLocalStorage = localStorage.getItem("token");
-    fetch(`${urlApi}/create-payment-intent`, {
+    fetch(`${urlApi}/stripe/create-payment-intent`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
