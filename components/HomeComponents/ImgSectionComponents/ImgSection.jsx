@@ -13,7 +13,7 @@ export default function ImgSection() {
     <>
       <div id="imgSection" className="container ">
         <div
-          className="relative w-[360px] h-[325px] sm:w-screen sm:h-[369px] lg:w-[1440px] lg:h-[759px] bg-cover bg-no-repeat  "
+          className="relative w-full h-[325px] sm:w-screen sm:h-[369px] lg:w-[1440px] lg:h-[759px] bg-cover bg-no-repeat  "
           style={{
             backgroundImage: `url('/assets/images/header-picture.webp')`,
           }}

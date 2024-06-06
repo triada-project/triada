@@ -13,7 +13,7 @@ export default function UsSection() {
     <>
       <div id="imgContainer" className="  flex lg:pl-20 lg:pb-[217px]  ">
         <img
-          className="object-cover w-[358px] h-[107px] sm:w-[380px] sm:h-[410px] sm:object-none  md:mt-5 md:z-10  md:static md:rounded-2xl lg:hidden"
+          className="object-cover w-full h-[107px] sm:w-[380px] sm:h-[410px] sm:object-none  md:mt-5 md:z-10  md:static md:rounded-2xl lg:hidden"
           src="/assets/images/picture-nosotros.webp"
           alt="microphoneUsSection"
         ></img>
@@ -61,7 +61,7 @@ export default function UsSection() {
           <img
             src="/assets/images/vista-central-mobile.webp"
             alt="people"
-            className="object-cover w-[358px] h-[107px] sm:h-[380px] sm:object-none  md:mt-5 md:z-10  md:static md:rounded-2xl lg:justify-center lg:w-[542px] lg:h-[540px]"
+            className="object-cover w-full h-[107px] sm:h-[380px] sm:object-none  md:mt-5 md:z-10  md:static md:rounded-2xl lg:justify-center lg:w-[542px] lg:h-[540px]"
           />
           <GradientLogInButton nameButton="¡Regístrate!" />
         </div>

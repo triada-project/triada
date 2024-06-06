@@ -242,18 +242,18 @@ export default function MusicianCatalog() {
             )}
           </Select>
 
-          <div className="pt-[19px] pb-[64px]  px-[16px] w-[330px] h-[40px] flex justify-around sm:pt-0 sm:px-0 sm:pb-0 sm:w-[166px] sm:h-[45px] lg:w-[300px] lg:pb-0 ">
+          <div>
             <button
               id="pinkButton"
               onClick={handleFilter}
-              className="text-white rounded-lg bg-[#EE0075] w-[328px] h-[35px] flex flex-row sm:w-[50px] justify-center gap-[18px] lg:h-[45px] "
+              className="text-white rounded-lg bg-[#EE0075] w-full h-[45px] flex flex-row sm:w-[50px] justify-center gap-[18px] lg:h-[50px] items-center "
             >
               <h2
                 className={`pt-[6px] font-bold text-[14px] sm:hidden  ${josefine.className} `}
               >
                 Buscar
               </h2>
-              <a href="" className="pt-2">
+              <a href="">
                 <svg
                   width="24"
                   height="24"
@@ -288,7 +288,9 @@ export default function MusicianCatalog() {
       >
         {noResults ? (
           <div className="text-white text-center flex flex-grow justify-center items-center h-[200px]">
-            No hay músicos que concuerden con lo que tú buscas por el momento.
+            <p>
+              No hay músicos que concuerden con lo que tú buscas por el momento.
+            </p>
           </div>
         ) : (
           filteredMusicians.slice(0, numCardsToShow).map((musician, index) => (
