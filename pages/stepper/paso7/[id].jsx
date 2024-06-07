@@ -40,7 +40,7 @@ export default function Step5() {
   const handleCreateAccountStripe = async () => {
     setAccountCreatePending(true);
     setError(false);
-    fetch(`${urlApi}/account`, {
+    fetch(`${urlApi}/stripe/account`, {
       method: "POST",
     })
       .then((response) => response.json())
@@ -53,7 +53,7 @@ export default function Step5() {
           setConnectedAccountId(account);
           setAccountLinkCreatePending(true);
           setError(false);
-          fetch(`${urlApi}/account_link`, {
+          fetch(`${urlApi}/stripe/account_link`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

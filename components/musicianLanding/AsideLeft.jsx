@@ -2,7 +2,6 @@ import React from "react";
 import { Josefin_Sans, Lato } from "next/font/google";
 import { Avatar, Chip } from "@nextui-org/react";
 import { Rating } from "@smastrom/react-rating";
-//import dataMusician from "../../objects/musicianObject.json";
 import play from "./play.webp";
 import Image from "next/image";
 import ButtonPink from "@/components/musicianLanding/ButtonPink";

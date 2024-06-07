@@ -52,7 +52,7 @@ export default function Step2() {
     const urlApi = process.env.NEXT_PUBLIC_API_URL;
     const phonePrefix = "+52" + data.phone;
     setRoute(router.push(`/stepper/paso3/${userId}`));
-    console.log(data);
+    //console.log(data);
     const response = fetch(`${urlApi}/users/${userId}`, {
       method: "PUT",
       headers: {

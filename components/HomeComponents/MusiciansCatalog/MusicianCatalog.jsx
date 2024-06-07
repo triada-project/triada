@@ -117,7 +117,7 @@ export default function MusicianCatalog() {
     <>
       <section
         id="musicianCatalog"
-        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-[1440px] lg:pb-[81px] "
+        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-full lg:pb-[81px] "
       >
         <div id="titleContainer ">
           <h1
@@ -128,7 +128,7 @@ export default function MusicianCatalog() {
         </div>
         <div
           id="inputsContainer"
-          className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-[744px] sm:px-[56px] sm:pt-[35px] sm:flex-row lg:w-[1440px] lg:px-[183px]"
+          className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-full sm:px-[56px] sm:pt-[35px] sm:flex-row lg:w-full lg:px-[183px]"
         >
           <Select
             id="typeOfEventInput"
@@ -242,18 +242,18 @@ export default function MusicianCatalog() {
             )}
           </Select>
 
-          <div className="pt-[19px] pb-[64px]  px-[16px] w-[330px] h-[40px] flex justify-around sm:pt-0 sm:px-0 sm:pb-0 sm:w-[166px] sm:h-[45px] lg:w-[300px] lg:pb-0 ">
+          <div>
             <button
               id="pinkButton"
               onClick={handleFilter}
-              className="text-white rounded-lg bg-[#EE0075] w-[328px] h-[35px] flex flex-row sm:w-[50px] justify-center gap-[18px] lg:h-[45px] "
+              className="text-white rounded-lg bg-[#EE0075] w-full h-[45px] flex flex-row sm:w-[50px] justify-center gap-[18px] lg:h-[50px] items-center "
             >
               <h2
                 className={`pt-[6px] font-bold text-[14px] sm:hidden  ${josefine.className} `}
               >
                 Buscar
               </h2>
-              <a href="" className="pt-2">
+              <a href="">
                 <svg
                   width="24"
                   height="24"
@@ -284,11 +284,13 @@ export default function MusicianCatalog() {
 
       <div
         id="bigContainer"
-        className="bg-[#081540] flex flex-wrap justify-center sm:w-[744px] sm:justify-normal sm:grid sm:grid-cols-3 sm:gap-[11px] sm:px-[56px] lg:w-[1440px] lg:gap-[52px] lg:py-0 lg:px-[173px] "
+        className="bg-[#081540] flex flex-wrap justify-center sm:w-full sm:justify-normal sm:grid sm:grid-cols-3 sm:gap-[11px] sm:px-[56px] lg:w-full lg:gap-[52px] lg:py-0 lg:px-[173px] "
       >
         {noResults ? (
           <div className="text-white text-center flex flex-grow justify-center items-center h-[200px]">
-            No hay músicos que concuerden con lo que tú buscas por el momento.
+            <p>
+              No hay músicos que concuerden con lo que tú buscas por el momento.
+            </p>
           </div>
         ) : (
           filteredMusicians.slice(0, numCardsToShow).map((musician, index) => (
@@ -325,7 +327,7 @@ export default function MusicianCatalog() {
         )}
       </div>
 
-      <div className="bg-[#081540] -mt-12 pe-[17px] sm:w-[744px] flex justify-end sm:pe-[35px] sm:-mt-0  sm:pt-[5px] lg:w-[1440px] lg:pe-[80px] lg:-mt-12 lg:pb-2">
+      <div className="bg-[#081540] -mt-12 pe-[17px]  flex justify-end sm:pe-[35px] sm:-mt-0  sm:pt-[5px] lg:pe-[80px] lg:-mt-12 lg:pb-2">
         <img
           src="/assets/images/GradientCircle.png"
           alt=""

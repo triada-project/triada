@@ -13,7 +13,6 @@ import { useForm, Controller } from "react-hook-form";
 import Image from "next/image";
 import info_FILL1 from "../../public/assets/svg/info_FILL1.svg";
 import ButtonPink from "./ButtonPink";
-//import dataMusician from "../../objects/musicianObject.json";
 import IdCatcher from "./IdCatcher";
 import { useRouter } from "next/router";
 const urlApi = process.env.NEXT_PUBLIC_API_URL;
@@ -60,6 +59,7 @@ export default function EventForm({
     //console.log(data);
 
     try {
+      const tokenStorage = localStorage.getItem("token");
       const response = await fetch(`${urlApi}/events`, {
         method: "POST",
         body: JSON.stringify({
@@ -87,6 +87,7 @@ export default function EventForm({
         }),
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenStorage}`,
         },
       });
       if (response.ok) {

@@ -64,7 +64,7 @@ export default function MusiciansCardsContainer() {
   return (
     <div
       id="bigContainer"
-      className="bg-[#081540] flex flex-wrap justify-center sm:w-[744px] sm:justify-normal sm:grid sm:grid-cols-3 sm:gap-[11px] sm:px-[56px] lg:w-[1440px] lg:gap-[52px] lg:py-0 lg:px-[173px] "
+      className="bg-[#081540] flex flex-wrap justify-center sm:w-full sm:justify-normal sm:grid sm:grid-cols-3 sm:gap-[11px] sm:px-[56px] lg:w-full lg:gap-[52px] lg:py-0 lg:px-[173px] "
     >
       {shuffledMusicians.slice(0, numCardsToShow).map((musician, index) => (
         <div

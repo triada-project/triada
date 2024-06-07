@@ -1,7 +1,7 @@
 export async function capturePayment(paymentIntentId) {
   const urlApi = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const response = await fetch(`${urlApi}/capture-payment`, {
+    const response = await fetch(`${urlApi}/stripe/capture-payment`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
