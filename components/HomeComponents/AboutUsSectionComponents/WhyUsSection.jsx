@@ -18,7 +18,7 @@ export default function WhyUsSection() {
       >
         <div
           id="infoContainer2"
-          className="flex flex-col sm:w-[320px] lg:w-[720px] lg:h-[456px]   "
+          className="flex flex-col sm:w-[320px] lg:w-[720px] lg:h-[456px] items-center"
         >
           <div
             id="textContainer3"

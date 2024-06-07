@@ -128,7 +128,7 @@ export default function MusicianCatalog() {
         </div>
         <div
           id="inputsContainer"
-          className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-[744px] sm:px-[56px] sm:pt-[35px] sm:flex-row lg:w-[1440px] lg:px-[183px]"
+          className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-full sm:px-[56px] sm:pt-[35px] sm:flex-row lg:w-[1440px] lg:px-[183px]"
         >
           <Select
             id="typeOfEventInput"
@@ -284,7 +284,7 @@ export default function MusicianCatalog() {
 
       <div
         id="bigContainer"
-        className="bg-[#081540] flex flex-wrap justify-center sm:w-[744px] sm:justify-normal sm:grid sm:grid-cols-3 sm:gap-[11px] sm:px-[56px] lg:w-[1440px] lg:gap-[52px] lg:py-0 lg:px-[173px] "
+        className="bg-[#081540] flex flex-wrap justify-center sm:w-full sm:justify-normal sm:grid sm:grid-cols-3 sm:gap-[11px] sm:px-[56px] lg:w-[1440px] lg:gap-[52px] lg:py-0 lg:px-[173px] "
       >
         {noResults ? (
           <div className="text-white text-center flex flex-grow justify-center items-center h-[200px]">
@@ -327,7 +327,7 @@ export default function MusicianCatalog() {
         )}
       </div>
 
-      <div className="bg-[#081540] -mt-12 pe-[17px] sm:w-[744px] flex justify-end sm:pe-[35px] sm:-mt-0  sm:pt-[5px] lg:w-[1440px] lg:pe-[80px] lg:-mt-12 lg:pb-2">
+      <div className="bg-[#081540] -mt-12 pe-[17px]  flex justify-end sm:pe-[35px] sm:-mt-0  sm:pt-[5px] lg:pe-[80px] lg:-mt-12 lg:pb-2">
         <img
           src="/assets/images/GradientCircle.png"
           alt=""

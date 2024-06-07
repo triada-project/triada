@@ -25,7 +25,7 @@ export default function CardsContainer() {
   return (
     <div
       id="cardsSection"
-      className=" bg-[#081540] sm:w-[744px] lg:w-[1440px] lg:pb-1 "
+      className=" bg-[#081540] sm:w-full lg:w-[1440px] lg:pb-1 "
     >
       <div id="cardsSlider" className="bg-[#081540] py-[66px] sm:hidden">
         <Slider {...settings} className="">

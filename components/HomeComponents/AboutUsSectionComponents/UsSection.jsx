@@ -25,7 +25,7 @@ export default function UsSection() {
       </div>
       <div
         id="infoContainer"
-        className="  container mx-auto flex flex-col  pt-[64px] sm:pt-[30px] sm:px-[31px]  lg:px-[80px]  "
+        className="  container mx-auto flex flex-col  pt-[64px] sm:pt-[30px] sm:px-[31px]  lg:px-[80px] items-center md:items-start "
       >
         <div
           id="textContainer"
@@ -57,7 +57,7 @@ export default function UsSection() {
           <ElementList titleElement="Seguridad en pagos" />
           <ElementList titleElement="Cobertura Nacional" />
         </div>
-        <div className="relative inline-block sm:hidden  ">
+        <div className="relative inline-block sm:hidden w-full  ">
           <img
             src="/assets/images/vista-central-mobile.webp"
             alt="people"
