@@ -14,7 +14,7 @@ export default function WhyUsSection() {
     <>
       <section
         id="whyUsContainer"
-        className="  bg-[#081540] flex sm:bg-[#9E1056] sm:w-[380px] sm:h-[430px]  lg:w-[1440px] lg:h-[730px] lg:bg-[#081540]   "
+        className="  bg-[#081540] flex sm:bg-[#9E1056] sm:w-full sm:h-[430px] lg:h-[730px] lg:bg-[#081540]   "
       >
         <div
           id="infoContainer2"

@@ -117,7 +117,7 @@ export default function MusicianCatalog() {
     <>
       <section
         id="musicianCatalog"
-        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-[1440px] lg:pb-[81px] "
+        className="bg-[#081540] py-[56px] px-[16px] flex flex-col sm:px-0 lg:w-full lg:pb-[81px] "
       >
         <div id="titleContainer ">
           <h1
@@ -128,7 +128,7 @@ export default function MusicianCatalog() {
         </div>
         <div
           id="inputsContainer"
-          className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-full sm:px-[56px] sm:pt-[35px] sm:flex-row lg:w-[1440px] lg:px-[183px]"
+          className="flex flex-col pt-[19px] gap-[19px] justify-center sm:w-full sm:px-[56px] sm:pt-[35px] sm:flex-row lg:w-full lg:px-[183px]"
         >
           <Select
             id="typeOfEventInput"
@@ -284,7 +284,7 @@ export default function MusicianCatalog() {
 
       <div
         id="bigContainer"
-        className="bg-[#081540] flex flex-wrap justify-center sm:w-full sm:justify-normal sm:grid sm:grid-cols-3 sm:gap-[11px] sm:px-[56px] lg:w-[1440px] lg:gap-[52px] lg:py-0 lg:px-[173px] "
+        className="bg-[#081540] flex flex-wrap justify-center sm:w-full sm:justify-normal sm:grid sm:grid-cols-3 sm:gap-[11px] sm:px-[56px] lg:w-full lg:gap-[52px] lg:py-0 lg:px-[173px] "
       >
         {noResults ? (
           <div className="text-white text-center flex flex-grow justify-center items-center h-[200px]">

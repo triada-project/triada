@@ -11,9 +11,9 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function ImgSection() {
   return (
     <>
-      <div id="imgSection" className="container ">
+      <div id="imgSection" className="container w-full  ">
         <div
-          className="relative w-full h-[325px]  sm:h-[369px] lg:w-[1440px] lg:h-[759px] bg-cover bg-no-repeat  "
+          className="relative w-full h-[325px]  sm:h-[369px] lg:h-[759px] bg-cover bg-no-repeat  "
           style={{
             backgroundImage: `url('/assets/images/header-picture.webp')`,
           }}

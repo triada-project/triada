@@ -22,7 +22,7 @@ export default function MainFooter() {
     <>
       <div
         id="footerContainer"
-        className="bg-[#081540] relative pt-[28px] lg:w-[1440px]  "
+        className="bg-[#081540] relative pt-[28px] lg:w-full  "
         style={{
           zIndex: -1,
         }}
