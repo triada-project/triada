@@ -1,12 +1,12 @@
-import dataMusician from "../../objects/musicianObject.json";
+//import dataMusician from "../../objects/musicianObject.json";
 
-const picUrl = dataMusician.users.multimedia.pics;
+//const picUrl = dataMusician.users.multimedia.pics;
 //console.log(picUrl);
 
 export default function CardPics() {
   return (
     <div className="grid grid-cols-3 mt-5 gap-4  h-[196px] rounded-lg ">
-      {picUrl.map((url) => (
+      {/* {picUrl.map((url) => (
         <div
           key={url.index}
           className="rounded shadow hover:outline outline-[#EF107D] object-fit cursor-pointer"
@@ -34,7 +34,7 @@ export default function CardPics() {
             <button className="rounded-bl-lg rounded-tr-lg p-1" />
           </div>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }

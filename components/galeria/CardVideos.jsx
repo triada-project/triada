@@ -1,13 +1,13 @@
-import dataMusician from "../../objects/musicianObject.json";
+//import dataMusician from "../../objects/musicianObject.json";
 import YouTube from "react-youtube";
 
-const videoUrl = dataMusician.users.multimedia.videos;
+//const videoUrl = dataMusician.users.multimedia.videos;
 //console.log(videoUrl);
 
 export default function CardPics() {
   return (
     <div className="grid grid-cols-1 mt-5 gap-2  rounded-lg ">
-      {videoUrl.map((url) => (
+      {/* {videoUrl.map((url) => (
         <div
           key={url.index}
           className="rounded shadow hover:outline outline-[#EF107D] object-fit cursor-pointer"
@@ -35,7 +35,7 @@ export default function CardPics() {
             <button className="rounded-bl-lg rounded-tr-lg p-1" />
           </div>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }
