@@ -24,6 +24,7 @@ import { columns, events, statusOptions } from "./data";
 import { capitalize } from "./utils";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Curso from "../../public/assets/svg/mic-pink.svg";
 import Active from "../../public/assets/svg/active.svg";
 import Alert from "../../public/assets/svg/alert-circle.svg";
 import Finalized from "../../public/assets/svg/finalized.svg";
@@ -36,7 +37,7 @@ const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const statusColorMap = {
   aceptado: Active,
-  "en curso": Active,
+  "en curso": Curso,
   pendiente: Alert,
   finalizado: Finalized,
   rechazado: Rejected,
