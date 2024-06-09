@@ -16,8 +16,6 @@ import {
   User,
   Pagination,
 } from "@nextui-org/react";
-import { PlusIcon } from "./PlusIcon";
-import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { SearchIcon } from "./SearchIcon";
 import { ChevronDownIcon } from "./ChevronDownIcon";
 import { columns, events, statusOptions } from "./data";
@@ -29,7 +27,6 @@ import Active from "../../public/assets/svg/active.svg";
 import Alert from "../../public/assets/svg/alert-circle.svg";
 import Finalized from "../../public/assets/svg/finalized.svg";
 import Rejected from "../../public/assets/svg/rejected.svg";
-import More from "../../public/assets/svg/add-circle.svg";
 import ModalCliente from "../Modales/ModalCliente";
 import ModalMusico from "../Modales/ModalMusico";
 import useTokenStore from "@/stores/tokenStore";
@@ -81,43 +78,6 @@ export default function EventsTable() {
   });
   const [page, setPage] = React.useState(1);
 
-  // if (tokenObject.role === "musico") {
-  //   useEffect(() => {
-  //     async function fetchEvents() {
-  //       try {
-  //         const response = await fetch(
-  //           `${urlApi}/events/${tokenObject._id}/events`
-  //         );
-  //         if (!response.ok) {
-  //           throw new Error("Failed to fetch events");
-  //         }
-  //         const data = await response.json();
-  //         setEvents(data.data);
-  //       } catch (error) {
-  //         console.error("Error fetching events:", error);
-  //       }
-  //     }
-  //     fetchEvents();
-  //   }, []);
-  // } else {
-  //   useEffect(() => {
-  //     async function fetchEvents() {
-  //       try {
-  //         const response = await fetch(
-  //           `${urlApi}/events/${tokenObject._id}/eventsClient`
-  //         );
-  //         if (!response.ok) {
-  //           throw new Error("Failed to fetch events");
-  //         }
-  //         const data = await response.json();
-  //         setEvents(data.data);
-  //       } catch (error) {
-  //         console.error("Error fetching events:", error);
-  //       }
-  //     }
-  //     fetchEvents();
-  //   }, []);
-  // }
   useEffect(() => {
     async function fetchEvents() {
       try {
@@ -146,44 +106,6 @@ export default function EventsTable() {
     }
   }, [tokenObject]);
 
-  // useEffect(() => {
-  //   async function fetchEvents() {
-  //     try {
-  //       const response = await fetch(
-  //         `${urlApi}/events/${tokenObject._id}/events`
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error("Failed to fetch events");
-  //       }
-  //       const data = await response.json();
-  //       setEvents(data.data);
-  //     } catch (error) {
-  //       console.error("Error fetching events:", error);
-  //     }
-  //   }
-  //   fetchEvents();
-  // }, []);
-
-  // useEffect(() => {
-  //   async function fetchEvents() {
-  //     try {
-  //       const response = await fetch(
-  //         `${urlApi}/events/${tokenObject._id}/eventsClient`
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error("Failed to fetch events");
-  //       }
-  //       const data = await response.json();
-  //       setEvents(data.data);
-  //     } catch (error) {
-  //       console.error("Error fetching events:", error);
-  //     }
-  //   }
-  //   fetchEvents();
-  // }, []);
-
-  //console.log(events);
-
   const hasSearchFilter = Boolean(filterValue);
 
   const headerColumns = React.useMemo(() => {
@@ -195,23 +117,23 @@ export default function EventsTable() {
   }, [visibleColumns]);
 
   const filteredItems = React.useMemo(() => {
-    let filteredUsers = [...events];
+    let filteredEvents = [...events];
 
     if (hasSearchFilter) {
-      filteredUsers = filteredUsers.filter((user) =>
-        user.name.toLowerCase().includes(filterValue.toLowerCase())
+      filteredEvents = filteredEvents.filter((event) =>
+        event.eventName.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
     if (
       statusFilter !== "all" &&
       Array.from(statusFilter).length !== statusOptions.length
     ) {
-      filteredUsers = filteredUsers.filter((user) =>
+      filteredEvents = filteredEvents.filter((user) =>
         Array.from(statusFilter).includes(user.estatus)
       );
     }
 
-    return filteredUsers;
+    return filteredEvents;
   }, [events, filterValue, statusFilter]);
 
   const pages = Math.ceil(filteredItems.length / rowsPerPage);
@@ -243,9 +165,9 @@ export default function EventsTable() {
           <User
             avatarProps={{ radius: "lg", src: event.clientPicture }}
             //description={event.email}
-            name={event.clientName}
+            name={event.eventName}
           >
-            {event.email}
+            {event.eventName}
           </User>
         );
       case "horario":
@@ -367,7 +289,7 @@ export default function EventsTable() {
           <Input
             isClearable
             className="w-full sm:max-w-[44%]"
-            placeholder="Busca tu evento..."
+            placeholder="Busca un evento..."
             startContent={<SearchIcon />}
             value={filterValue}
             onClear={() => onClear()}
