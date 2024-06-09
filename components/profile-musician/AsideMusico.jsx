@@ -10,6 +10,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  Avatar,
 } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -26,7 +27,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function AsideMusico({ page, hidden }) {
+export default function AsideMusico({ page, hidden, userData }) {
   const router = useRouter();
   const [route, setRoute] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -75,18 +76,22 @@ export default function AsideMusico({ page, hidden }) {
             } `}
           >
             <div className=" flex items-center gap-3 ">
-              <Image
+              <Avatar
+                src={userData?.data?.profilePicture?.URLImage}
+                className=" border border-[#29FEFD] "
+              />
+              {/* <Image
                 src={
-                  !tokenObjet()?.profilePicture?.url
+                  !userData?.data?.profilePicture?.URLImage
                     ? AvatarImage
-                    : tokenObjet()?.profilePicture?.url
+                    : userData?.data?.profilePicture?.URLImage
                 }
                 width={40}
                 height={40}
                 className=" w-10 h-10 rounded-full border border-[#29FEFD] "
-              />
+              /> */}
               <p className=" w-28 text-white text-base text-ellipsis overflow-hidden ...">
-                {tokenObjet()?.name}
+                {userData?.data?.name}
               </p>
             </div>
           </Button>
