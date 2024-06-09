@@ -93,17 +93,23 @@ export default function Step4() {
     localStorage.setItem("storedRepertoire", JSON.stringify(repertoire));
   }, [repertoire]);
 
-  const addSong = () => {
+  const addSong = (event) => {
     const trimmedText = text.trim();
     const trimmedArtist = artist.trim();
-    if (trimmedText !== "" && trimmedArtist !== "") {
+    if (
+      trimmedText.length > 0 &&
+      trimmedArtist.length > 0 &&
+      repertoire.length < 10
+    ) {
       // Verificar cadenas no vacías
       setRepertoire([
-        ...repertoire,
         { title: trimmedText, artist: trimmedArtist },
+        ...repertoire,
       ]);
       setText("");
       setArtist("");
+    } else if (repertoire.length >= 10) {
+      toast.warning("Ya has alcanzado el límite de 10 canciones");
     } else {
       toast.warning("Ingresa el título y nombre del artista de la canción.");
     }
@@ -131,7 +137,10 @@ export default function Step4() {
 
   const handleSaveRepertoire = async () => {
     // setRoute(router.push("/stepper/paso5"));
-    if (!repertoire.length) return;
+    if (!repertoire.length) {
+      toast.warning("Agrega al meno 1 canción");
+      return;
+    }
 
     try {
       const response = await fetch(`${urlApi}/users/${userId}`, {
@@ -184,7 +193,7 @@ export default function Step4() {
         >
           Esta información servirá para dar una muestra de las canciones que
           interpretas a las personas que buscan contratarte.
-          <b>Agrega mínimo 5</b> , podrás agregar mas en tu perfil.
+          <b>Agrega máximo 10</b> , podrás agregar más en tu perfil.
         </p>
         <section className="w-[330px] md:w-[500px] lg:w-[690px]">
           <form className=" flex flex-col items-center mt-8 w-full ">
@@ -197,6 +206,7 @@ export default function Step4() {
               className={`w-[328px] h-14 md:w-[500px] mb-7 lg:w-full`}
               onChange={onInputChangeText}
               onKeyDown={handleKeyDown}
+              value={text}
               //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
             />
 
@@ -209,7 +219,7 @@ export default function Step4() {
               className={`w-[328px] h-14 md:w-[500px] mb-7 lg:w-full`}
               onChange={onInputChangeArtist}
               onKeyDown={handleKeyDown}
-              //errorMessage={!errors.estado ? "" : "Debes elegir un Estado"}
+              value={artist}
             />
             <ButtonPink width="w-full" text="Agregar" onClick={addSong} />
           </form>
