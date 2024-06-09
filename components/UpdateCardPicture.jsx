@@ -31,8 +31,9 @@ export default function UpdateCardPicture({ userData }) {
     formData.append("profilePicture", file);
 
     try {
+      const apiURL = process.env.NEXT_PUBLIC_API_PICTURE;
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/images/profile-picture/${userId}`,
+        `${apiURL}/images/profile-picture/${userId}`,
         {
           method: "POST",
           body: formData,
