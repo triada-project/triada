@@ -40,9 +40,9 @@ export default function ModalMusico({ eventData }) {
   //console.log(eventData);
   const [userData, setUserData] = useState();
   const [clientData, setClientData] = useState();
-  console.log(userData);
-  console.log(eventData.client);
-  console.log(clientData);
+  // console.log(userData);
+  // console.log(eventData.client);
+  // console.log(clientData);
 
   const {
     register,
@@ -126,7 +126,7 @@ export default function ModalMusico({ eventData }) {
           confirmButtonText: "Aceptar",
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.reload();
+            //window.location.reload();
           }
         });
       }
@@ -137,7 +137,21 @@ export default function ModalMusico({ eventData }) {
       //console.log(resultOnlyPi);
       // Si la respuesta es exitosa, puedes hacer algo aquí (por ejemplo, cerrar el modal)
       await capturePayment(resultOnlyPi);
+      if (response.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Codigo correcto",
+          text: "Pago completado con éxito",
+          showConfirmButton: true,
+          confirmButtonText: "Aceptar",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload();
+          }
+        });
+      }
       onClose();
+      //window.location.reload();
     } catch (error) {
       // Manejo de errores generales (problemas de red, errores del servidor, etc.)
       console.error("Error en la solicitud:", error);

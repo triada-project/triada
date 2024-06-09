@@ -23,7 +23,7 @@ import {
 
 import { Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
-
+import Swal from "sweetalert2";
 // condicional rendering
 import { Josefin_Sans, Lato } from "next/font/google";
 import More from "../../public/assets/svg/add-circle";
@@ -89,7 +89,18 @@ export default function ModalCliente({ eventData }) {
       }
 
       const data = await response.json();
-      toast.success("¡Código enviado con éxito!");
+      //toast.success("¡Código enviado con éxito!");
+      Swal.fire({
+        icon: "success",
+        title: "¡Código enviado con éxito!",
+        text: "Revisa tus SMS y comparte el código de 6 dígitos al músico.",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          //window.location.reload();
+        }
+      });
       //console.log("Código solicitado:", data);
       // Manejar la respuesta aquí, si es necesario
     } catch (error) {
@@ -370,6 +381,7 @@ export default function ModalCliente({ eventData }) {
                     >
                       Solicitar código para incio de tu evento
                     </Button>
+                    {}
                   </div>
                 )}
 
