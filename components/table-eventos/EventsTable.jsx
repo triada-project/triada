@@ -128,8 +128,8 @@ export default function EventsTable() {
       statusFilter !== "all" &&
       Array.from(statusFilter).length !== statusOptions.length
     ) {
-      filteredEvents = filteredEvents.filter((user) =>
-        Array.from(statusFilter).includes(user.estatus)
+      filteredEvents = filteredEvents.filter((event) =>
+        Array.from(statusFilter).includes(event.status)
       );
     }
 
