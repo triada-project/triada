@@ -62,7 +62,7 @@ export default function MusicianDetail() {
   return (
     <>
       <main className="shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50 max-w-[1440px] m-auto bg-white">
-        <NavBar />
+        <NavBar page={"musicianLanding"} />
         <div className="lg:ml-[80px] lg:mr-[80px]">
           <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-4 md:grid-rows-7 grid-flow-col">
             <div className="p-5 col-start-1 sm:col-span-2 md:col-span-1 flex justify-center">

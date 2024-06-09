@@ -25,7 +25,7 @@ const ScrollLink = ({ position, children, extraClasses = "" }) => (
   </div>
 );
 
-export default function NavBar() {
+export default function NavBar({ page }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -54,7 +54,40 @@ export default function NavBar() {
           </a>
         </div>
       </NavbarContent>
-      <div id="anchors" className="ps-[230px] hidden gap-10 lg:flex">
+      {page === "musicianLanding" ? (
+        ""
+      ) : (
+        <div id="anchors" className="ps-[230px] hidden gap-10 lg:flex">
+          <ScrollLink position={0} extraClasses="text-blue">
+            INICIO
+          </ScrollLink>
+          <ScrollLink position={1000} extraClasses="text-blue hidden md:flex">
+            NOSOTROS
+          </ScrollLink>
+          <ScrollLink
+            position={870}
+            extraClasses="text-blue hidden sm:flex md:hidden"
+          >
+            NOSOTROS
+          </ScrollLink>
+          <ScrollLink position={800} extraClasses="text-blue sm:hidden">
+            NOSOTROS
+          </ScrollLink>
+          <ScrollLink position={2750} extraClasses="text-blue hidden md:flex">
+            MÚSICOS
+          </ScrollLink>
+          <ScrollLink
+            position={1900}
+            extraClasses="text-blue hidden sm:flex md:hidden"
+          >
+            MÚSICOS
+          </ScrollLink>
+          <ScrollLink position={2125} extraClasses="text-blue sm:hidden">
+            MÚSICOS
+          </ScrollLink>
+        </div>
+      )}
+      {/* <div id="anchors" className="ps-[230px] hidden gap-10 lg:flex">
         <ScrollLink position={0} extraClasses="text-blue">
           INICIO
         </ScrollLink>
@@ -82,7 +115,7 @@ export default function NavBar() {
         <ScrollLink position={2125} extraClasses="text-blue sm:hidden">
           MÚSICOS
         </ScrollLink>
-      </div>
+      </div> */}
       <div
         id="buttons"
         className={clsx("flex gap-[24px]", { hidden: isLoggedIn })}
