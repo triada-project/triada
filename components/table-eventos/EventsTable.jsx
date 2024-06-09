@@ -162,13 +162,14 @@ export default function EventsTable() {
     switch (columnKey) {
       case "evento":
         return (
-          <User
-            avatarProps={{ radius: "lg", src: event.clientPicture }}
-            //description={event.email}
-            name={event.eventName}
-          >
-            {event.eventName}
-          </User>
+          <p>{event.eventName}</p>
+          // <User
+          //   avatarProps={{ radius: "lg", src: event.clientPicture }}
+          //   //description={event.email}
+          //   name={event.eventName}
+          // >
+          //   {event.eventName}
+          // </User>
         );
       case "horario":
         return (
