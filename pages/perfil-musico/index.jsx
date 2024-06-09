@@ -8,6 +8,7 @@ import { Josefin_Sans, Lato } from "next/font/google";
 import useTokenStore from "@/stores/tokenStore";
 import { useState, useEffect } from "react";
 import useSelectedStateStore from "@/stores/selectedStateStore";
+import ButtonGradient from "@/components/profile-musician/ButtonGradient.jsx";
 const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
@@ -85,6 +86,10 @@ export default function PerfilMusico() {
               Mi Perfil
             </h1>
             <UpdateCardPicture userData={userData} />
+            <ButtonGradient
+              nameButton="Ver mi landing"
+              musicianId={tokenObject?._id}
+            />
           </div>
           <div className=" flex flex-col gap-8">
             <InfoFormMusico userData={userData} />
