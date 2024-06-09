@@ -22,7 +22,7 @@ export default function PerfilMusico() {
   const setSelectedState = useSelectedStateStore(
     (state) => state.setSelectedState
   );
-  console.log(userData);
+  //console.log(userData);
 
   useEffect(() => {
     const tokenFromLocalStorage = localStorage.getItem("token");
