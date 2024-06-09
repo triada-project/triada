@@ -162,7 +162,7 @@ export default function ModalCliente({ eventData }) {
                       </div>
                     )}
 
-                    {eventData.status === "cancelado" && (
+                    {eventData.status === "rechazado" && (
                       <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
                         <Image
                           src="/assets/svg/close-circle.svg"
@@ -395,6 +395,19 @@ export default function ModalCliente({ eventData }) {
                     <Button color="danger" className="w-full">
                       Enviar
                     </Button>
+                  </div>
+                )}
+                {eventData.status === "rechazado" && (
+                  <div className="bg-red-200 hover:bg-red-300  rounded-md h-22 w-full mt-4  p-4 ">
+                    Lamentamos informar que la realización de este evento no fue
+                    posible, ya que no cumplia con las expectativas ni del
+                    cliente ni de la banda musical. Diferencias en la ubicación,
+                    la fecha y otros factores externos influyeron en esta
+                    decisión. Estamos comprometidos a brindar experiencias
+                    excepcionales, y aunque esta ocasion no funcionó, esperamos
+                    que puedan colaborar en eventos futuros que se alineen mejor
+                    con las expectativas de ambas partes. ¡Agradecemos tu
+                    comprensión!
                   </div>
                 )}
               </ModalBody>
