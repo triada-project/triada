@@ -67,7 +67,7 @@ export default function EventForm({
             state: data.state,
             city: data.city,
             street: data.street,
-            neighborhood: data.neighborhood,
+            neighbourhood: data.neighborhood,
             zipCode: data.zipCode,
             exteriorNumber: data.exteriorNumber,
             interiorNumber: data.interiorNumber,

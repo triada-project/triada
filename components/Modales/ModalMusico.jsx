@@ -121,7 +121,7 @@ export default function ModalMusico({ eventData }) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Codigo incorrecto, porfavor introducir un codigo valido",
+          text: "Codigo incorrecto, valídalo con el cliente e intentalo de nuevo.",
           showConfirmButton: true,
           confirmButtonText: "Aceptar",
         }).then((result) => {
@@ -467,10 +467,11 @@ export default function ModalMusico({ eventData }) {
                       <p className="text-sm">
                         {eventData?.address?.street} #
                         {eventData?.address?.exteriorNumber}, Colonia{" "}
-                        {eventData?.address?.neighborhood},{" "}
+                        {eventData?.address?.neighbourhood},{" "}
                         {eventData?.address?.country},{" "}
-                        {eventData?.address?.city}, C.P.{" "}
-                        {eventData?.address?.zipCode}
+                        {eventData?.address?.city}, {eventData?.address?.state},
+                        C.P. {eventData?.address?.zipCode}. Referencia:{" "}
+                        {eventData?.address?.reference}
                       </p>
                     </div>
                   </div>

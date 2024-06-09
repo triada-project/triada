@@ -297,10 +297,11 @@ export default function ModalCliente({ eventData }) {
                       <p className="md:text-xs">
                         {eventData?.address?.street} #
                         {eventData?.address?.exteriorNumber}, Colonia{" "}
-                        {eventData?.address?.neighborhood},{" "}
+                        {eventData?.address?.neighbourhood},{" "}
                         {eventData?.address?.country},{" "}
-                        {eventData?.address?.city}, C.P.{" "}
-                        {eventData?.address?.zipCode}
+                        {eventData?.address?.city}, {eventData?.address?.state},
+                        C.P. {eventData?.address?.zipCode}. Referencia:
+                        {eventData?.address?.reference}
                       </p>
                     </div>
                   </CardBody>
