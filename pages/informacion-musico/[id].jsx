@@ -201,7 +201,7 @@ export default function MusicianDetail() {
                 </div>
               </div>
               <div className="mt-5 shadow-xl">
-                {tokenObject ? (
+                {tokenObject && tokenObject.role === "client" ? (
                   <EventForm
                     userData={userData}
                     tokenObject={tokenObject}
@@ -220,8 +220,8 @@ export default function MusicianDetail() {
                     </div>
                     <div>
                       <p className="text-yellow-700 flex-auto text-center p-2">
-                        Regístrate o inicia sesión para poder contratar a este
-                        músico.
+                        Regístrate o inicia sesión como cliente para poder
+                        contratar a este músico.
                       </p>
                     </div>
                   </div>
