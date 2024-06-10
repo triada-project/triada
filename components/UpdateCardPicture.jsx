@@ -31,8 +31,9 @@ export default function UpdateCardPicture({ userData }) {
     formData.append("profilePicture", file);
 
     try {
+      const apiURL = process.env.NEXT_PUBLIC_API_PICTURE;
       const response = await fetch(
-        `https://api-triada-25cba881b624.herokuapp.com/images/profile-picture/${userId}`,
+        `${apiURL}/images/profile-picture/${userId}`,
         {
           method: "POST",
           body: formData,
@@ -68,9 +69,9 @@ export default function UpdateCardPicture({ userData }) {
           onClick={() => document.getElementById("archivo").click()}
           className="cursor-pointer"
         >
-          {userData?.data?.profilePicture ? (
+          {previewUrl ? (
             <img
-              src={userData.data.profilePicture.URLImage}
+              src={previewUrl}
               alt="Vista previa"
               className="w-[144px] h-[144px] rounded-full object-cover"
             />
@@ -81,7 +82,7 @@ export default function UpdateCardPicture({ userData }) {
                 htmlFor="archivo"
                 className="text-sm text-white cursor-pointer"
               >
-                Selecciona foto
+                Selecciona una foto
               </label>
             </figure>
           )}
@@ -99,7 +100,7 @@ export default function UpdateCardPicture({ userData }) {
         className={`bg-[#EF107D] text-white w-[150px] h-[50px] rounded text-base ${lato.className} mt-5 cursor-pointer`}
       >
         <label className=" text-sm text-white cursor-pointer">
-          Cambiar foto de perfil
+          Guardar foto de perfil
         </label>
       </Button>
     </section>

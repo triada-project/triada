@@ -15,6 +15,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  Avatar,
 } from "@nextui-org/react";
 
 const josefine = Josefin_Sans({
@@ -23,7 +24,7 @@ const josefine = Josefin_Sans({
 });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
-export default function AsideCliente({ page, hidden }) {
+export default function AsideCliente({ page, hidden, userData }) {
   const router = useRouter();
   const [route, setRoute] = useState();
   const [token, setToken] = useState("");
@@ -67,18 +68,12 @@ export default function AsideCliente({ page, hidden }) {
             } `}
           >
             <div className=" flex items-center gap-3 ">
-              <Image
-                src={
-                  !tokenObjet()?.profilePicture?.url
-                    ? AvatarImage
-                    : tokenObjet()?.profilePicture?.url
-                }
-                width={40}
-                height={40}
-                className=" w-10 h-10 rounded-full border border-[#29FEFD] "
+              <Avatar
+                src={userData?.data?.profilePicture?.URLImage}
+                className=" border border-[#29FEFD] "
               />
               <p className=" w-28 text-white text-base text-ellipsis overflow-hidden ...">
-                {tokenObjet()?.name}
+                {userData?.data?.name}
               </p>
             </div>
           </Button>
