@@ -8,6 +8,7 @@ import { Josefin_Sans, Lato } from "next/font/google";
 import useTokenStore from "@/stores/tokenStore";
 import { useState, useEffect } from "react";
 import useSelectedStateStore from "@/stores/selectedStateStore";
+import ButtonGradient from "@/components/profile-musician/ButtonGradient.jsx";
 const urlApi = process.env.NEXT_PUBLIC_API_URL;
 
 const josefine = Josefin_Sans({
@@ -22,6 +23,7 @@ export default function PerfilMusico() {
   const setSelectedState = useSelectedStateStore(
     (state) => state.setSelectedState
   );
+  //console.log(userData);
 
   useEffect(() => {
     const tokenFromLocalStorage = localStorage.getItem("token");
@@ -37,13 +39,16 @@ export default function PerfilMusico() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const tokenFromLocalStorage = localStorage.getItem("token"); 
-        const response = await fetch(`${urlApi}/users/dashboard/${tokenObject?._id}`, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${tokenFromLocalStorage}`, 
-          },
-        }); 
+        const tokenFromLocalStorage = localStorage.getItem("token");
+        const response = await fetch(
+          `${urlApi}/users/dashboard/${tokenObject?._id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${tokenFromLocalStorage}`,
+            },
+          }
+        );
         const data = await response.json();
         setUserData(data); // Almacena los datos del usuario
         setSelectedState(data.data.state);
@@ -72,7 +77,7 @@ export default function PerfilMusico() {
     <>
       <MenuMobileMusician page="perfil" role="musico" />
       <main className=" 	shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50  bg-white max-w-[1440px] flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)] overflow-y-auto  ">
-        <AsideMusico page="perfil" />
+        <AsideMusico page="perfil" userData={userData} />
         <section className="  flex flex-col items-center sm:col-start-2 sm:col-span-1 sm:h-full lg:flex-row lg:gap-7 lg:items-start ">
           <div className=" flex flex-col items-center lg:items-start lg:ml-[4.5rem]">
             <h1
@@ -81,6 +86,10 @@ export default function PerfilMusico() {
               Mi Perfil
             </h1>
             <UpdateCardPicture userData={userData} />
+            <ButtonGradient
+              nameButton="Ver mi landing"
+              musicianId={tokenObject?._id}
+            />
           </div>
           <div className=" flex flex-col gap-8">
             <InfoFormMusico userData={userData} />

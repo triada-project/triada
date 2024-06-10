@@ -10,7 +10,8 @@ const columns = [
 ];
 
 const statusOptions = [
-  { name: "Activo", uid: "activo" },
+  { name: "Aceptado", uid: "aceptado" },
+  { name: "En Curso", uid: "en curso" },
   { name: "Pendiente", uid: "pendiente" },
   { name: "Finalizado", uid: "finalizado" },
   { name: "Rechazado", uid: "rechazado" },

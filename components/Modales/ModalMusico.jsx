@@ -39,6 +39,10 @@ export default function ModalMusico({ eventData }) {
   const [size, setSize] = React.useState("3xl");
   //console.log(eventData);
   const [userData, setUserData] = useState();
+  const [clientData, setClientData] = useState();
+  // console.log(userData);
+  // console.log(eventData.client);
+  // console.log(clientData);
 
   const {
     register,
@@ -68,9 +72,27 @@ export default function ModalMusico({ eventData }) {
     }
   };
 
+  const fetchrequestClient = async () => {
+    try {
+      const tokenFromLocalStorage = localStorage.getItem("token");
+      const response = await fetch(`${urlApi}/users/${eventData.client}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenFromLocalStorage}`,
+        },
+      });
+      const responseData = await response.json();
+      //console.log(responseData), "datausuario";
+      setClientData(responseData.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (eventData) {
       fetchrequestusers();
+      fetchrequestClient();
     }
   }, [eventData]);
 
@@ -99,12 +121,12 @@ export default function ModalMusico({ eventData }) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Codigo incorrecto, porfavor introducir un codigo valido",
+          text: "Codigo incorrecto, valídalo con el cliente e intentalo de nuevo.",
           showConfirmButton: true,
           confirmButtonText: "Aceptar",
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.reload();
+            //window.location.reload();
           }
         });
       }
@@ -115,7 +137,21 @@ export default function ModalMusico({ eventData }) {
       //console.log(resultOnlyPi);
       // Si la respuesta es exitosa, puedes hacer algo aquí (por ejemplo, cerrar el modal)
       await capturePayment(resultOnlyPi);
+      if (response.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Codigo correcto",
+          text: "Pago completado con éxito",
+          showConfirmButton: true,
+          confirmButtonText: "Aceptar",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload();
+          }
+        });
+      }
       onClose();
+      //window.location.reload();
     } catch (error) {
       // Manejo de errores generales (problemas de red, errores del servidor, etc.)
       console.error("Error en la solicitud:", error);
@@ -224,7 +260,7 @@ export default function ModalMusico({ eventData }) {
                       Evento {eventData.status}
                     </div>
                   )}
-                  {eventData.status === "cancelado" && (
+                  {eventData.status === "rechazado" && (
                     <div className="flex flex-row bg-red-200 hover:bg-red-300  rounded-md h-22 w-full  p-4 ">
                       <Image
                         src="/assets/svg/close-circle.svg"
@@ -285,15 +321,18 @@ export default function ModalMusico({ eventData }) {
                     <div className="flex gap-6 items-center">
                       <Image
                         alt="card-background"
-                        src={userData.profilePicture.URLImage}
+                        src={clientData.profilePicture.URLImage}
                         className="rounded-full w-20 h-20"
                       />
                       <p className="text-center text-xl md:text-lg font-semibold">
-                        {userData.name}
+                        {clientData.name}
                       </p>
                     </div>
 
                     <div className="flex flex-col gap-2">
+                      <p className="text-start text-xl md:text-xl font-semibold">
+                        Evento: {eventData.eventName}
+                      </p>
                       {/* {eventData.length > 0 &&
                           eventData[0].estado === "finalizado" && (
                             <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
@@ -442,10 +481,11 @@ export default function ModalMusico({ eventData }) {
                       <p className="text-sm">
                         {eventData?.address?.street} #
                         {eventData?.address?.exteriorNumber}, Colonia{" "}
-                        {eventData?.address?.neighborhood},{" "}
+                        {eventData?.address?.neighbourhood},{" "}
                         {eventData?.address?.country},{" "}
-                        {eventData?.address?.city}, C.P.{" "}
-                        {eventData?.address?.zipCode}
+                        {eventData?.address?.city}, {eventData?.address?.state},
+                        C.P. {eventData?.address?.zipCode}. Referencia:{" "}
+                        {eventData?.address?.reference}
                       </p>
                     </div>
                   </div>

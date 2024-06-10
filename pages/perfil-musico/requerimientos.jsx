@@ -18,6 +18,7 @@ const josefine = Josefin_Sans({
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Requerimientos() {
+  const [userData, setUserData] = useState(null);
   const [requests, setRequests] = useState(() => {
     if (typeof window !== "undefined") {
       // Retrieve requests from localStorage (if available)
@@ -76,6 +77,7 @@ export default function Requerimientos() {
 
       if (response.status === 200 || 201) {
         setRequests(responseData?.data?.requirements || []);
+        setUserData(responseData);
         // Optional: Display success message
       } else {
         toast.error("Ocurrió un error al obtener los requerimientos.");
@@ -170,7 +172,7 @@ export default function Requerimientos() {
     <>
       <MenuMobileMusician page="requerimientos" role="musico" />
       <main className=" shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50 max-w-[1440px] bg-white  flex flex-col items-center m-auto sm:grid sm:grid-cols-[245px_minmax(245px,_1fr)]">
-        <AsideMusico page="requerimientos" />
+        <AsideMusico page="requerimientos" userData={userData} />
         <section className=" h-full w-[90%] flex flex-col items-center gap-11 sm:col-start-2 sm:col-span-1  sm:w-[80%] sm:pl-11 lg:w-full lg:h-screen  lg:items-start ">
           <div className=" flex flex-col items-center mt-10 gap-2 w-full lg:items-start lg:mt-0 ">
             <h1

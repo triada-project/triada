@@ -23,7 +23,7 @@ import {
 
 import { Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
-
+import Swal from "sweetalert2";
 // condicional rendering
 import { Josefin_Sans, Lato } from "next/font/google";
 import More from "../../public/assets/svg/add-circle";
@@ -89,7 +89,18 @@ export default function ModalCliente({ eventData }) {
       }
 
       const data = await response.json();
-      toast.success("¡Código enviado con éxito!");
+      //toast.success("¡Código enviado con éxito!");
+      Swal.fire({
+        icon: "success",
+        title: "¡Código enviado con éxito!",
+        text: "Revisa tus SMS y comparte el código de 6 dígitos al músico.",
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          //window.location.reload();
+        }
+      });
       //console.log("Código solicitado:", data);
       // Manejar la respuesta aquí, si es necesario
     } catch (error) {
@@ -162,7 +173,7 @@ export default function ModalCliente({ eventData }) {
                       </div>
                     )}
 
-                    {eventData.status === "cancelado" && (
+                    {eventData.status === "rechazado" && (
                       <div className="flex flex-row border border-slate-950 p-1 w-1/4 rounded-full items-center">
                         <Image
                           src="/assets/svg/close-circle.svg"
@@ -297,10 +308,11 @@ export default function ModalCliente({ eventData }) {
                       <p className="md:text-xs">
                         {eventData?.address?.street} #
                         {eventData?.address?.exteriorNumber}, Colonia{" "}
-                        {eventData?.address?.neighborhood},{" "}
+                        {eventData?.address?.neighbourhood},{" "}
                         {eventData?.address?.country},{" "}
-                        {eventData?.address?.city}, C.P.{" "}
-                        {eventData?.address?.zipCode}
+                        {eventData?.address?.city}, {eventData?.address?.state},
+                        C.P. {eventData?.address?.zipCode}. Referencia:
+                        {eventData?.address?.reference}
                       </p>
                     </div>
                   </CardBody>
@@ -369,6 +381,7 @@ export default function ModalCliente({ eventData }) {
                     >
                       Solicitar código para incio de tu evento
                     </Button>
+                    {}
                   </div>
                 )}
 
@@ -395,6 +408,19 @@ export default function ModalCliente({ eventData }) {
                     <Button color="danger" className="w-full">
                       Enviar
                     </Button>
+                  </div>
+                )}
+                {eventData.status === "rechazado" && (
+                  <div className="bg-red-200 hover:bg-red-300  rounded-md h-22 w-full mt-4  p-4 ">
+                    Lamentamos informar que la realización de este evento no fue
+                    posible, ya que no cumplia con las expectativas ni del
+                    cliente ni de la banda musical. Diferencias en la ubicación,
+                    la fecha y otros factores externos influyeron en esta
+                    decisión. Estamos comprometidos a brindar experiencias
+                    excepcionales, y aunque esta ocasion no funcionó, esperamos
+                    que puedan colaborar en eventos futuros que se alineen mejor
+                    con las expectativas de ambas partes. ¡Agradecemos tu
+                    comprensión!
                   </div>
                 )}
               </ModalBody>
