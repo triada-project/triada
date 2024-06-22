@@ -14,8 +14,8 @@ export default function GradientBar() {
     cssEase: "linear",
   };
   return (
-    <section className="bg-[#081540] w-full ">
-      <div className="w-full bg-[url('/assets/images/pinkRectangle.png')]   sm:bg-[url('/assets/svg/gradientBar.svg')] sm:h-40 lg:bg-[url('/assets/images/pinkRectangle.png')] lg:h-[107px]">
+    <section className="bg-[#081540] w-full sm:mt-11">
+      <div className="w-full bg-[url('/assets/images/pinkRectangle.png')]  lg:h-[107px]">
         <Slider {...settings} className="">
           <MusicGenre genre="Soul" />
           <MusicGenre genre="Clasica" />
