@@ -10,8 +10,8 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function UsSection() {
   return (
-    <section className=" flex flex-col sm:flex-row sm:w-[90%] lg:w-full m-auto">
-      <div id="imgContainer" className="  flex lg:pl-20 lg:pb-[217px] w-2/4  ">
+    <section className=" flex flex-col sm:flex-row sm:w-[90%] lg:w-full m-auto justify-between">
+      <div id="imgContainer" className="  flex lg:pl-20  w-2/4  ">
         <img
           className=" hidden sm:flex w-full sm:w-max-w-[380px] sm:max-h-[410px]md:mt-5  md:rounded-2xl md:hidden"
           src="/assets/images/picture-nosotros.webp"

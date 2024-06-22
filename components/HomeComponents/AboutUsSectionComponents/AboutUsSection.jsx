@@ -16,7 +16,7 @@ export default function AboutUsSection() {
     <section id="idUsSection">
       <div
         id="usContainer"
-        className="w-full bg-[#081540] sm:flex flex-col lg:bg-[#081540]  "
+        className="w-full bg-[#081540] sm:flex flex-col gap-10 sm:gap-20 lg:bg-[#081540] lg:pt-[217px]  "
       >
         <UsSection />
         <WhyUsSection />

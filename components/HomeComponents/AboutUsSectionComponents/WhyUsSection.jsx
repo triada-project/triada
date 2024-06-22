@@ -11,10 +11,10 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function WhyUsSection() {
   return (
-    <>
-      <section
+    <section className=" flex flex-col sm:flex-row sm:w-[90%] lg:w-full m-auto justify-between">
+      <div
         id="whyUsContainer"
-        className="  bg-[#081540] flex  sm:w-full sm:h-[430px] lg:h-[730px] lg:bg-[#081540]   "
+        className="  bg-[#081540] flex w-full sm:max-w-sm lg:max-w-xl  sm:h-[430px] lg:h-[730px] lg:bg-[#081540]   "
       >
         <div
           id="infoContainer2"
@@ -62,24 +62,21 @@ export default function WhyUsSection() {
             <BlueNumbers numbers="98%" title="Buenas Reseñas" />
           </div>
         </div>
-      </section>
-      <div
-        id="imgContainer2"
-        className="hidden sm:flex justify-center   lg:w-[720px] lg:h-[720px]    "
-      >
+      </div>
+      <div id="imgContainer2" className=" flex lg:pr-20 lg:pb-[217px] w-2/4 ">
         <img
-          className=" hidden sm:flex  w-full  h-60  sm:h-[430px] sm:object-none md: md:mt-5 md:z-10  md:static md:rounded-2xl lg:hidden"
+          className=" hidden sm:flex  w-full  h-60  sm:h-[430px]  md:rounded-2xl md:hidden"
           // Puede ser esta classname, que opinan ustedes bg-cover
           src="/assets/images/pircture-elegirnos.webp"
           alt="microphoneUsSection"
         ></img>
 
         <img
-          className=" hidden lg:flex lg:w-4/6 lg:h-4/6  "
+          className=" hidden w-full md:flex lg:max-w-xl lg:max-h-xl"
           src="/assets/images/imagenPorQueNosotros.png"
           alt="microphoneUsSection"
         ></img>
       </div>
-    </>
+    </section>
   );
 }
