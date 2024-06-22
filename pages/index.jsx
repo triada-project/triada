@@ -12,8 +12,8 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <>
+      <NavBar />
       <main className="bg-[#081540] shadow-[15px_35px_60px_60px_rgba(0,0,0,0.3)] shadow-indigo-500/50 max-w-[1440px] m-auto">
-        <NavBar />
         <ImgSection />
         <CardsContainer />
         <AboutUsSection />

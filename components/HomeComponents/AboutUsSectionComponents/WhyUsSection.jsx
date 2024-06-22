@@ -14,7 +14,7 @@ export default function WhyUsSection() {
     <>
       <section
         id="whyUsContainer"
-        className="  bg-[#081540] flex sm:bg-[#9E1056] sm:w-full sm:h-[430px] lg:h-[730px] lg:bg-[#081540]   "
+        className="  bg-[#081540] flex  sm:w-full sm:h-[430px] lg:h-[730px] lg:bg-[#081540]   "
       >
         <div
           id="infoContainer2"
@@ -65,7 +65,7 @@ export default function WhyUsSection() {
       </section>
       <div
         id="imgContainer2"
-        className="hidden sm:flex   lg:w-[720px] lg:h-[720px]    "
+        className="hidden sm:flex justify-center   lg:w-[720px] lg:h-[720px]    "
       >
         <img
           className=" hidden sm:flex  w-full  h-60  sm:h-[430px] sm:object-none md: md:mt-5 md:z-10  md:static md:rounded-2xl lg:hidden"
@@ -75,7 +75,7 @@ export default function WhyUsSection() {
         ></img>
 
         <img
-          className=" hidden lg:flex lg:object-none md:z-10  md:static  lg:justify-center lg:w-[710px] lg:h-[600px] "
+          className=" hidden lg:flex lg:w-4/6 lg:h-4/6  "
           src="/assets/images/imagenPorQueNosotros.png"
           alt="microphoneUsSection"
         ></img>
