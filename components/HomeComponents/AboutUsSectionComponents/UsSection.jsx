@@ -10,22 +10,22 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function UsSection() {
   return (
-    <>
-      <div id="imgContainer" className="  flex lg:pl-20 lg:pb-[217px]  ">
+    <section className=" flex flex-col sm:flex-row sm:w-[90%] lg:w-full m-auto justify-between">
+      <div id="imgContainer" className="  flex lg:pl-20  w-2/4  ">
         <img
-          className="object-cover w-full h-[107px] sm:w-[380px] sm:h-[410px] sm:object-none  md:mt-5 md:z-10  md:static md:rounded-2xl lg:hidden"
+          className=" hidden sm:flex w-full sm:w-max-w-[380px] sm:max-h-[410px]md:mt-5  md:rounded-2xl md:hidden"
           src="/assets/images/picture-nosotros.webp"
           alt="microphoneUsSection"
         ></img>
         <img
-          className=" hidden lg:flex lg:object-none md:z-10  md:static  lg:justify-center lg:w-[599px] lg:h-[599px]"
+          className=" hidden w-full md:flex lg:justify-center lg:max-w-xl lg:max-h-xl"
           src="/assets/images/ImagenDeNosotros.png"
           alt="microphoneUsSection"
         ></img>
       </div>
       <div
         id="infoContainer"
-        className="  container mx-auto flex flex-col  pt-[64px] sm:pt-[30px] sm:px-[31px]  lg:px-[80px] items-center md:items-start "
+        className=" w-full mx-auto flex flex-col  pt-[64px] sm:pt-[30px] sm:px-[31px]  lg:px-[80px] items-center md:items-start sm:max-w-sm lg:max-w-xl "
       >
         <div
           id="textContainer"
@@ -66,6 +66,6 @@ export default function UsSection() {
           <GradientLogInButton nameButton="¡Regístrate!" />
         </div>
       </div>
-    </>
+    </section>
   );
 }

@@ -11,7 +11,7 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function ImgSection() {
   return (
     <>
-      <div id="imgSection" className="container w-full  ">
+      <div id="imgSection" className=" w-full  ">
         <div
           className="relative w-full h-[325px]  sm:h-[369px] lg:h-[759px] bg-cover bg-no-repeat  "
           style={{
