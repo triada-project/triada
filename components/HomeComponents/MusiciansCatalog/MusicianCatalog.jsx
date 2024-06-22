@@ -292,7 +292,7 @@ export default function MusicianCatalog() {
 
         <div
           id="bigContainer"
-          className="bg-[#081540] items-center flex flex-wrap justify-center w-full sm:gap-[11px]  lg:w-full lg:gap-[52px] "
+          className="bg-[#081540] items-center flex flex-col sm:flex-row flex-wrap justify-center w-full gap-5 lg:w-full lg:gap-[52px] "
         >
           {noResults ? (
             <div className="text-white text-center flex flex-grow justify-center items-center h-[200px]">
@@ -305,35 +305,32 @@ export default function MusicianCatalog() {
             filteredMusicians
               .slice(0, numCardsToShow)
               .map((musician, index) => (
-                <div
+                <MusicianCard
                   key={index}
                   className={`flex justify-center w-full sm:justify-normal sm:pt-0 sm:w-1/2 p-4 lg:w-[324px] lg:p-0`}
-                >
-                  <MusicianCard
-                    name={musician.name}
-                    profilePicture={
-                      musician.profilePicture
-                        ? musician.profilePicture
-                        : "https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=" // URL de la imagen por defecto
-                    }
-                    state={
-                      musician.state
-                        ? `${musician.city}, ${musician.state}`
-                        : "Locación no disponible"
-                    }
-                    chip1={
-                      musician.musicalGenre
-                        ? musician.musicalGenre[0]
-                        : "Genero no disponible"
-                    }
-                    chip2={
-                      musician.musicalGenre
-                        ? musician.musicalGenre[1]
-                        : "Genero no disponible"
-                    }
-                    id={musician._id}
-                  />
-                </div>
+                  name={musician.name}
+                  profilePicture={
+                    musician.profilePicture
+                      ? musician.profilePicture
+                      : "https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=" // URL de la imagen por defecto
+                  }
+                  state={
+                    musician.state
+                      ? `${musician.city}, ${musician.state}`
+                      : "Locación no disponible"
+                  }
+                  chip1={
+                    musician.musicalGenre
+                      ? musician.musicalGenre[0]
+                      : "Genero no disponible"
+                  }
+                  chip2={
+                    musician.musicalGenre
+                      ? musician.musicalGenre[1]
+                      : "Genero no disponible"
+                  }
+                  id={musician._id}
+                />
               ))
           )}
         </div>
