@@ -13,10 +13,10 @@ import WhyUsSection from "./WhyUsSection";
 
 export default function AboutUsSection() {
   return (
-    <section id="idUsSection" className="container ">
+    <section id="idUsSection">
       <div
         id="usContainer"
-        className="w-full bg-[#081540] grid sm:grid sm:grid-cols-2  lg:bg-[#081540]  "
+        className="w-full bg-[#081540] sm:flex flex-col lg:bg-[#081540]  "
       >
         <UsSection />
         <WhyUsSection />
