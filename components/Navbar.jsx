@@ -46,7 +46,7 @@ export default function NavBar({ page }) {
         <NavbarMenuToggle
           id="img&MenuToogle"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="dark md:hidden"
+          className="dark lg:hidden"
         />
         <div className="lg:-ms-[20px] xl:-ms-[140px]">
           <a href="/">
